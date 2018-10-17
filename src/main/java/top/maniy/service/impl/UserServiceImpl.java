@@ -29,4 +29,19 @@ public class UserServiceImpl implements UserService {
         return usermapper.findAllUser();
     }
 
+    @Override
+    public boolean saveUser(User user) {
+        return usermapper.saveUser(user);
+    }
+
+    @Override
+    public boolean updateUser(User user) {
+        return usermapper.updateUser(user);
+    }
+
+    @Override
+    public boolean deleteUser(Integer id) {
+        return usermapper.deleteUser(id);
+    }
+
 }

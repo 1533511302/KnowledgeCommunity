@@ -62,7 +62,7 @@ public class UserController {
      * 获取全部用户信息
      * @return
      */
-    @RequestMapping(value = "userList")
+    @RequestMapping(value = "users")
     @ResponseBody
     public List<User> userList(){
         return userService.findAllUser();
@@ -79,4 +79,40 @@ public class UserController {
         session.setAttribute("user",null);
         return "loginPage";
     }
+
+    /**
+     * 添加操作
+     * @param user
+     * @return
+     */
+    @RequestMapping(value = "users",method = RequestMethod.POST)
+    @ResponseBody
+    public boolean saveUser(User user){
+        return userService.saveUser(user);
+    }
+
+    /**
+     * 物理删除操作
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/users/",method = RequestMethod.DELETE)
+    @ResponseBody
+    public boolean deleteUser(Integer id){
+        return userService.deleteUser(id);
+    }
+
+    /**
+     * 逻辑删除操作
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/users/delete/{id}",method = RequestMethod.GET)
+    @ResponseBody
+    public boolean deleteUserByForbidden(Integer id){
+        User user=new User();
+        user.setForbidden("1");
+        return userService.updateUser(user);
+    }
+
 }

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace ="top.maniy.mapper.TopicclassMapper">
+
+
+
+
+	<select id="findAllTopicclass(" resultType="Topicclass">
+		select * from topicclass
+	</select>
+
+
+	<select id="findSomeTopicclass" resultType="Topicclass">
+		SELECT * FROM topicclass
+		<where>
+			id in
+			<foreach collection="ids" item="id" separator="," open="(" close=")">
+				#{id}
+			</foreach>
+		</where>
+	</select>
+
+	<insert id="saveTopicclass" parameterType="Topicclass">
+		INSERT INTO topicclass
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="topicClassName != null" >
+                topicClassName,
+            </if>
+            <if test="topicClassDescribe != null" >
+                topicClassDescribe,
+            </if>
+            <if test="photo != null" >
+                photo,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="topicClassName != null" >
+                #{topicClassName},
+            </if>
+            <if test="topicClassDescribe != null" >
+                #{topicClassDescribe},
+            </if>
+            <if test="photo != null" >
+                #{photo},
+            </if>
+        </trim>
+	</insert>
+
+	<delete id="deleteTopicclass">
+		DELETE FROM topicclass WHERE id=#{id}
+	</delete>
+
+	<update id="updateTopicclass" parameterType="Topicclass">
+		UPDATE topicclass SET
+        <set>
+			<if test="topicClassName != null" >
+                topicClassName=#{topicClassName},
+			</if>
+			<if test="topicClassDescribe != null" >
+                topicClassDescribe=#{topicClassDescribe},
+			</if>
+			<if test="photo != null" >
+                photo=#{photo},
+			</if>
+
+		</set>
+		WHERE id =#{id}
+	</update>
+</mapper>

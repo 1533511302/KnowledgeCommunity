@@ -17,6 +17,15 @@ public interface UserMapper {
 
     List<User> findAllUser();
 
+    //添加用户
+    boolean saveUser(User user);
+
+    //更新用户
+    boolean updateUser(User user);
+
+    //删除用户
+    boolean deleteUser(Integer id);
+
 
 
 

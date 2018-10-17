@@ -14,4 +14,122 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findAllUser" resultType="User">
 		select * from user
 	</select>
+
+	<insert id="saveUser" parameterType="User">
+		INSERT INTO user
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="email != null" >
+				email,
+			</if>
+			<if test="password != null" >
+				password,
+			</if>
+			<if test="username != null" >
+				username,
+			</if>
+			<if test="gender != null" >
+				gender,
+			</if>
+			<if test="photo != null" >
+				photo,
+			</if>
+			<if test="autograph != null" >
+				autograph,
+			</if>
+			<if test="introduce != null" >
+				introduce,
+			</if>
+			<if test="questionnumb != null" >
+				questionnumb,
+			</if>
+			<if test="answernumb != null" >
+				anwernumb,
+			</if>
+			<if test="role != null" >
+				role,
+			</if>
+			<if test="forbidden != null" >
+				forbidden,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="email != null" >
+				#{email},
+			</if>
+			<if test="password != null" >
+				#{password},
+			</if>
+			<if test="username != null" >
+				#{username},
+			</if>
+			<if test="gender != null" >
+				#{gender},
+			</if>
+			<if test="photo != null" >
+				#{photo},
+			</if>
+			<if test="autograph != null" >
+				#{autograph},
+			</if>
+			<if test="introduce != null" >
+				#{introduce},
+			</if>
+			<if test="questionnumb != null" >
+				#{questionnumb},
+			</if>
+			<if test="answernumb != null" >
+				#{anwernumb},
+			</if>
+			<if test="role != null" >
+				#{role},
+			</if>
+			<if test="forbidden != null" >
+				#{forbidden},
+			</if>
+		</trim>
+	</insert>
+
+	<delete id="deleteUser">
+		DELETE FROM user WHERE id=#{id}
+	</delete>
+
+	<update id="updateUser" parameterType="User">
+		UPDATE user SET
+        <set>
+			<if test="email != null" >
+				email=#{email},
+			</if>
+			<if test="password != null" >
+				password=#{password},
+			</if>
+			<if test="username != null" >
+				username=#{username},
+			</if>
+			<if test="gender != null" >
+				gender=#{gender},
+			</if>
+			<if test="photo != null" >
+				photo=#{photo},
+			</if>
+			<if test="autograph != null" >
+				autograph=#{autograph},
+			</if>
+			<if test="introduce != null" >
+				introduce=#{introduce},
+			</if>
+			<if test="questionnumb != null" >
+				questionnumb=#{questionnumb},
+			</if>
+			<if test="answernumb != null" >
+				anwernumb=#{anwernumb},
+			</if>
+			<if test="role != null" >
+				role=#{role},
+			</if>
+			<if test="forbidden != null" >
+				forbidden=#{forbidden},
+			</if>
+		</set>
+		WHERE id =#{id}
+	</update>
 </mapper>

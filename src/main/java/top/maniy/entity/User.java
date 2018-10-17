@@ -4,9 +4,7 @@ package top.maniy.entity;
 public class User {
 
   private int id;
-//  用户Id
-  private int userId;
-//邮箱
+
   private String email;
 //密码
   private String password;
@@ -36,15 +34,6 @@ public class User {
 
   public void setId(int id) {
     this.id = id;
-  }
-
-
-  public int getUserId() {
-    return userId;
-  }
-
-  public void setUserId(int userId) {
-    this.userId = userId;
   }
 
 
@@ -150,7 +139,6 @@ public class User {
   public String toString() {
     return "User{" +
             "id=" + id +
-            ", userId=" + userId +
             ", email='" + email + '\'' +
             ", password='" + password + '\'' +
             ", name='" + name + '\'' +

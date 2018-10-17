@@ -35,4 +35,6 @@ public class CategoryController {
                                        @RequestParam(value="status", required=false, defaultValue="1") String status){
         return categoryService.findCategoryByTypeAndStatus(type, status);
     }
+
+
 }
