@@ -24,7 +24,7 @@
         <commons-lang3.version>3.3.2</commons-lang3.version>
         <commons-io.version>1.3.2</commons-io.version>
         <commons-net.version>3.3</commons-net.version>
-        <pagehelper.version>3.4.1</pagehelper.version>
+        <pagehelper.version>4.1.1</pagehelper.version>
         <shiro-spring>1.2.3</shiro-spring>
         <shiro-core>1.2.3</shiro-core>
     </properties>
