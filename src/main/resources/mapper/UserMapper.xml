@@ -15,6 +15,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from user
 	</select>
 
+	<select id="findUserByRole" resultType="User">
+		select username,gender,photo,autograph,introduce,questionnumb,answernumb from user WHERE role =#{role}
+	</select>
+
 	<insert id="saveUser" parameterType="User">
 		INSERT INTO user
 		<trim prefix="(" suffix=")" suffixOverrides="," >
@@ -26,6 +30,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 			<if test="username != null" >
 				username,
+			</if>
+			<if test="realname != null" >
+				realname,
 			</if>
 			<if test="gender != null" >
 				gender,
@@ -43,7 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				questionnumb,
 			</if>
 			<if test="answernumb != null" >
-				anwernumb,
+				answernumb,
 			</if>
 			<if test="role != null" >
 				role,
@@ -62,6 +69,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="username != null" >
 				#{username},
 			</if>
+			<if test="realname != null" >
+				#{realname},
+			</if>
 			<if test="gender != null" >
 				#{gender},
 			</if>
@@ -78,7 +88,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				#{questionnumb},
 			</if>
 			<if test="answernumb != null" >
-				#{anwernumb},
+				#{answernumb},
 			</if>
 			<if test="role != null" >
 				#{role},
@@ -94,7 +104,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 
 	<update id="updateUser" parameterType="User">
-		UPDATE user SET
+		UPDATE user
         <set>
 			<if test="email != null" >
 				email=#{email},
@@ -104,6 +114,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 			<if test="username != null" >
 				username=#{username},
+			</if>
+			<if test="realname != null" >
+				realname=#{gender},
 			</if>
 			<if test="gender != null" >
 				gender=#{gender},
@@ -121,7 +134,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				questionnumb=#{questionnumb},
 			</if>
 			<if test="answernumb != null" >
-				anwernumb=#{anwernumb},
+				answernumb=#{answernumb},
 			</if>
 			<if test="role != null" >
 				role=#{role},

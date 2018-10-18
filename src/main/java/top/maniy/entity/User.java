@@ -9,7 +9,9 @@ public class User {
 //密码
   private String password;
 //名字
-  private String name;
+  private String username;
+//真实姓名
+  private String realname;
 //性别(1为男，0为女)
   private String gender;
 //头像
@@ -54,15 +56,21 @@ public class User {
     this.password = password;
   }
 
-
-  public String getName() {
-    return name;
+  public String getUsername() {
+    return username;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
+  public String getRealname() {
+    return realname;
+  }
+
+  public void setRealname(String realname) {
+    this.realname = realname;
+  }
 
   public String getGender() {
     return gender;
@@ -141,7 +149,8 @@ public class User {
             "id=" + id +
             ", email='" + email + '\'' +
             ", password='" + password + '\'' +
-            ", name='" + name + '\'' +
+            ", username='" + username + '\'' +
+            ", realname='" + realname + '\'' +
             ", gender='" + gender + '\'' +
             ", photo='" + photo + '\'' +
             ", autograph='" + autograph + '\'' +

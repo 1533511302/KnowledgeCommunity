@@ -1,5 +1,7 @@
 package top.maniy.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.maniy.entity.User;
@@ -28,6 +30,15 @@ public class UserServiceImpl implements UserService {
     public List<User> findAllUser() {
         return usermapper.findAllUser();
     }
+
+    @Override
+    public PageInfo<User> findVUserList(int currentPage, int pageSize) {
+        PageHelper.startPage(currentPage,pageSize);
+        List<User> userList =usermapper.findUserByRole("2");
+        PageInfo<User> pageInfo =new PageInfo<>(userList);
+        return pageInfo;
+    }
+
 
     @Override
     public boolean saveUser(User user) {

@@ -20,8 +20,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<insert id="saveMassage" parameterType="Massage">
-		INSERT INTO massage (title,userid,categoryId,username,browseNumb,label,content)
-		VALUES (#{title},#{userid},#{categoryid},#{username},#{browsenumb},#{label},#{content})
+		INSERT INTO massage
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="title != null" >
+				title,
+			</if>
+			<if test="userId != null" >
+				userId,
+			</if>
+			<if test="categoryId != null" >
+				categoryId,
+			</if>
+			<if test="username != null" >
+				username,
+			</if>
+			<if test="label != null" >
+				label,
+			</if>
+			<if test="content != null" >
+				content,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="title != null" >
+				#{title},
+			</if>
+			<if test="userId != null" >
+				#{userId},
+			</if>
+			<if test="categoryId != null" >
+				#{categoryId},
+			</if>
+			<if test="username != null" >
+				#{username},
+			</if>
+			<if test="label != null" >
+				#{label},
+			</if>
+			<if test="content != null" >
+				#{content},
+			</if>
+		</trim>
 	</insert>
 
 	<delete id="deleteMassage" parameterType="Integer">
@@ -29,6 +68,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 
 	<update id="updateMassage" parameterType="Massage">
-
+		UPDATE massage
+		<set>
+			<if test="title != null" >
+				title=#{title},
+			</if>
+			<if test="userId != null" >
+				userId=#{userId},
+			</if>
+			<if test="categoryId != null" >
+				categoryId=#{categoryId},
+			</if>
+			<if test="username != null" >
+				username=#{username},
+			</if>
+			<if test="browseNumb != null" >
+				browseNumb=#{browseNumb},
+			</if>
+			<if test="label != null" >
+				label=#{label},
+			</if>
+			<if test="content != null" >
+				content=#{content},
+			</if>
+		</set>
+		WHERE id =#{id}
 	</update>
 </mapper>

@@ -54,7 +54,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 
 	<update id="updateTopicclass" parameterType="Topicclass">
-		UPDATE topicclass SET
+		UPDATE topicclass
         <set>
 			<if test="topicClassName != null" >
                 topicClassName=#{topicClassName},

@@ -1,11 +1,10 @@
 package top.maniy.controller;
 
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
 import top.maniy.entity.User;
 import top.maniy.service.UserService;
 
@@ -67,6 +66,27 @@ public class UserController {
     public List<User> userList(){
         return userService.findAllUser();
     }
+
+
+    @RequestMapping(value = "vUser")
+    public String vUserListDef(@RequestParam(value = "pageSize",required = false,defaultValue = "12") int pageSize){
+
+        return "vUserList";
+    }
+
+    //分页获取所有认证用户预览信息
+    @RequestMapping(value = "vUsers/{page}",method = RequestMethod.GET)
+    public String vUserList(@PathVariable(value = "page") int page){
+        return "vUserList";
+    }
+    @RequestMapping(value = "vUserList")
+    @ResponseBody
+    public PageInfo<User> vUserListDefsV(@PathVariable(value = "page") int page,
+                                         @RequestParam(value = "pageSize",required = false,defaultValue = "12") int pageSize){
+
+        return userService.findVUserList(1,pageSize);
+    }
+
 
     /**
      * 登出操作

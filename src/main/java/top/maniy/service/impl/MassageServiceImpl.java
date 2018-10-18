@@ -34,4 +34,24 @@ public class MassageServiceImpl implements MassageService {
         PageInfo<Massage> pageInfo = new PageInfo<Massage>(massageList);
         return pageInfo;
     }
+
+    @Override
+    public List<Massage> findMassageLikeLabel(String label) {
+        return null;
+    }
+
+    @Override
+    public boolean saveMassage(Massage massage) {
+        return massageMapper.saveMassage(massage);
+    }
+
+    @Override
+    public boolean updateMassage(Massage massage) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteMassage(Integer id) {
+        return false;
+    }
 }

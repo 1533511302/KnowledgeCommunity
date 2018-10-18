@@ -4,10 +4,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import top.maniy.entity.Massage;
 import top.maniy.service.MassageService;
 
@@ -36,5 +33,15 @@ public class MassageController {
     public PageInfo<Massage> massagePageInfo(@PathVariable Integer categoryId,
     @RequestParam(value="page", required=false, defaultValue="1") Integer page){
         return massageService.findMassageByCategoryId(categoryId,page,10);
+    }
+
+    @RequestMapping(value = "/massages",method = RequestMethod.POST)
+    @ResponseBody
+    public boolean saveMassage(@RequestParam Integer type ,@RequestParam String title,@RequestParam String content){
+        Massage massage =new Massage();
+        massage.setCategoryId(type);
+        massage.setTitle(title);
+        massage.setContent(content);
+        return massageService.saveMassage(massage);
     }
 }

@@ -1,6 +1,7 @@
 package top.maniy.service;
 
 
+import com.github.pagehelper.PageInfo;
 import top.maniy.entity.User;
 
 import java.beans.IntrospectionException;
@@ -20,6 +21,8 @@ public interface UserService {
 
     List<User> findAllUser();
 
+    //认证用户列表
+    PageInfo<User> findVUserList(int currentPage, int pageSize);
     //添加用户
     boolean saveUser(User user);
 

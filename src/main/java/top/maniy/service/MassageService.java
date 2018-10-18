@@ -19,4 +19,16 @@ public interface MassageService {
     //根据categoryId分页查询massage
     PageInfo<Massage> findMassageByCategoryId(Integer categoryId, int currentPage, int pageSize);
 
+    //根据标签模糊查询massage
+    List<Massage> findMassageLikeLabel(String label);
+
+    //添加massage
+    boolean saveMassage(Massage massage);
+
+    //修改massage
+    boolean updateMassage(Massage massage);
+
+    //删除massage
+    boolean deleteMassage(Integer id);
+
 }

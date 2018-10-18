@@ -16,7 +16,8 @@ public interface UserMapper {
     User findUserByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
 
     List<User> findAllUser();
-
+    //根据用户角色查询信息
+    List<User> findUserByRole(String role);
     //添加用户
     boolean saveUser(User user);
 
