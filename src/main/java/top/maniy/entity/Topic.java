@@ -4,8 +4,7 @@ package top.maniy.entity;
 public class Topic {
 
   private Integer id;
-  private String topicId;
-  private String topicClassId;
+  private Integer topicClassId;
   private String topicName;
   private String topicDescribe;
   private String photo;
@@ -21,20 +20,11 @@ public class Topic {
   }
 
 
-  public String getTopicId() {
-    return topicId;
-  }
-
-  public void setTopicId(String topicId) {
-    this.topicId = topicId;
-  }
-
-
-  public String getTopicClassId() {
+  public Integer getTopicClassId() {
     return topicClassId;
   }
 
-  public void setTopicClassId(String topicClassId) {
+  public void setTopicClassId(Integer topicClassId) {
     this.topicClassId = topicClassId;
   }
 
