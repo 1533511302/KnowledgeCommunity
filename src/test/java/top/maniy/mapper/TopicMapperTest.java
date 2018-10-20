@@ -40,8 +40,8 @@ public class TopicMapperTest {
     public void saveTopic() {
         Topic topic=new Topic();
         topic.setTopicClassId(1);
-        topic.setTopicDescribe("40岁是买房号还是租房好？大家来聊一聊");
-        topic.setTopicName("40岁是买房号还是租房好？");
+        topic.setTopicDescribe("65岁是买房号还是租房好？大家来聊一聊");
+        topic.setTopicName("65岁是买房号还是租房好？");
         topic.setPhoto("xxx.jpg");
         topicMapper.saveTopic(topic);
     }
@@ -60,5 +60,11 @@ public class TopicMapperTest {
     @Test
     public void deleteTopic() {
         topicMapper.deleteTopic(3);
+    }
+
+    @Test
+    public void findTopicLikeName(){
+        List<Topic> topicList=topicMapper.findTopicLikeName("2");
+        System.out.println(topicList.size());
     }
 }

@@ -30,14 +30,24 @@ public class MassageController {
 
 
     @RequestMapping(value = "/categoryId/{categoryId}/massages")
-    public String massagePageInfo(@PathVariable Integer categoryId,
+    public String findMassageByCategoryId(@PathVariable Integer categoryId,
                                   @RequestParam(value="page", required=false, defaultValue="1") Integer page,
+                                  @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize,
                                   ModelMap modelMap){
-        PageInfo<Massage> pageInfo = massageService.findMassageByCategoryId(categoryId,page,5);
+        PageInfo<Massage> pageInfo = massageService.findMassageByCategoryId(categoryId,page,pageSize);
 
         modelMap.put("categoryId",categoryId);
         modelMap.put("pageInfo",pageInfo);
         return "massageList";
+    }
+    @RequestMapping(value = "/massages/likeName")
+    public String massagePageInfo(@RequestParam(value="page", required=false, defaultValue="1") Integer page,
+                                  @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize,
+                                  @RequestParam("name") String name,ModelMap modelMap){
+        PageInfo<Massage> pageInfo = massageService.findMassageLikeTitle(name,page,pageSize);
+        modelMap.put("pageInfo",pageInfo);
+        modelMap.put("name",name);
+        return "massageListBySearch";
     }
 
     @RequestMapping(value = "/massages",method = RequestMethod.POST)

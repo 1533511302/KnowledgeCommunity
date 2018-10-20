@@ -1,5 +1,6 @@
 package top.maniy.mapper;
 
+import org.apache.ibatis.annotations.Param;
 import top.maniy.entity.Massage;
 
 import java.util.List;
@@ -18,8 +19,10 @@ public interface MassageMapper {
     Massage findMassageById(Integer id);
 
     //根据标签模糊查询massage
-    List<Massage> findMassageLikeLabel(String label);
+    List<Massage> findMassageLikeLabel(@Param("label") String label);
 
+    //根据标题模糊查询
+    List<Massage> findMassageLikeTitle(@Param("title") String title);
     //添加massage
     boolean saveMassage(Massage massage);
 

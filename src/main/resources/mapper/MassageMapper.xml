@@ -16,7 +16,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="findMassageLikeLabel" resultType="Massage">
-		select * from massage WHERE '%${label}%'
+		select * from massage WHERE label LIKE '%${label}%'
+	</select>
+
+	<select id="findMassageLikeTitle" resultType="Massage">
+		select * from massage WHERE title LIKE '%${title}%'
 	</select>
 
 	<insert id="saveMassage" parameterType="Massage">

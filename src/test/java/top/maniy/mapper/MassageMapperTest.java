@@ -8,6 +8,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import top.maniy.entity.Massage;
 
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 /**
@@ -35,6 +37,12 @@ public class MassageMapperTest {
 
     @Test
     public void findMassageLikeLabel() {
+    }
+
+    @Test
+    public void findMassageLikeTitle(){
+        List<Massage> massageList=massageMapper.findMassageLikeTitle("苹果");
+        System.out.println(massageList.size());
     }
 
     @Test

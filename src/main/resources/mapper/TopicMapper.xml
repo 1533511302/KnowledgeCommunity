@@ -12,6 +12,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from topic
 	</select>
 
+	<select id="findTopicLikeName" resultType="Topic" parameterType="String">
+		SELECT * FROM topic WHERE topicName LIKE '%${code}%'
+	</select>
 
 	<select id="findTopicById" resultType="Topic">
 		SELECT * FROM topic WHERE id=#{id}

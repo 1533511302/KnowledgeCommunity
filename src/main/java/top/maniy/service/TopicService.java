@@ -1,5 +1,6 @@
 package top.maniy.service;
 
+import com.github.pagehelper.PageInfo;
 import top.maniy.entity.Topic;
 
 import java.util.List;
@@ -13,7 +14,9 @@ import java.util.List;
 public interface TopicService {
 
     //查询全部话题
-    List<Topic> findAllTopic();
+    PageInfo<Topic> findAllTopic(int currentPage, int pageSize);
+    //topicName模糊查询
+    PageInfo<Topic> findTopicLikeName(String name,int currentPage, int pageSize);
     //根据id查询话题
     Topic findTopicById(Integer id);
     //添加话题

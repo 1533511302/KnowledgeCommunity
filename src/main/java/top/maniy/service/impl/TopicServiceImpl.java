@@ -1,5 +1,7 @@
 package top.maniy.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.maniy.entity.Topic;
@@ -20,8 +22,19 @@ public class TopicServiceImpl implements TopicService {
     @Autowired
     private TopicMapper topicMapper;
     @Override
-    public List<Topic> findAllTopic() {
-        return topicMapper.findAllTopic();
+    public PageInfo<Topic> findAllTopic(int currentPage, int pageSize) {
+        PageHelper.startPage(currentPage,pageSize);
+        List<Topic> topicList=topicMapper.findAllTopic();
+        PageInfo<Topic> pageInfo =new PageInfo<>(topicList);
+        return pageInfo;
+    }
+
+    @Override
+    public PageInfo<Topic> findTopicLikeName(String name,int currentPage, int pageSize) {
+        PageHelper.startPage(currentPage,pageSize);
+        List<Topic> topicList=topicMapper.findTopicLikeName(name);
+        PageInfo<Topic> pageInfo =new PageInfo<>(topicList);
+        return pageInfo;
     }
 
     @Override

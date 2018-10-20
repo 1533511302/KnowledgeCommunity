@@ -84,12 +84,20 @@
                 <li><a href="#">评测</a></li>
                 <li class="am-active"><a href="#">活动</a></li>
             </ul>
+            <form action="<%=basePath%>topics/likeName" class="am-topbar-form am-topbar-left am-form-inline" role="search">
+                <div class="am-form-group" style="margin-top: 9px;margin-left: 100px">
+                    <input name="name" type="text" class="am-form-field am-input-sm" placeholder="搜索内容" value="${name}">
+                </div>
+                <div class="am-topbar-right">
+                    <button type="submit" class="am-btn am-btn-primary am-topbar-btn am-btn-sm">搜索</button>
+                </div>
+            </form>
 
-            <div class="am-topbar-right">
+            <div class="am-topbar-right" style="margin-top: 9px">
                 <button class="am-btn am-btn-default am-topbar-btn am-btn-sm"><span class="am-icon-pencil"></span>注册</button>
             </div>
 
-            <div class="am-topbar-right">
+            <div class="am-topbar-right" style="margin-top: 9px">
                 <button class="am-btn am-btn-danger am-topbar-btn am-btn-sm"><span class="am-icon-user"></span> 登录</button>
             </div>
         </div>
@@ -101,130 +109,60 @@
 <div class="star am-container mcenter"><span><img src="<%=basePath%>images/star.png">即将开始</span></div>
 <div class="am-container events">
     <ul data-am-widget="gallery" class="am-gallery am-avg-sm-1 am-avg-md-2 am-avg-lg-2 am-gallery-bordered" data-am-gallery="{  }" >
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-1.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
-                    <div class="efe">远方 有一个地方 那里种有我们的梦想</div>
-                    <p>远方 有一个地方 那里种有我们的梦想远方 有一个地方 那里种有我们的梦想远方 有一个地方 那里种有我们的梦想</p>
-                    <div class="am-gallery-desc fee">
-                        <div class="am-fl">北京</div>
-                        <div class="am-fr">2016-11-11</div>
-                    </div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-2.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
-                    <div class="efe">远方 有一个地方 那里种有我们的梦想</div>
-                    <p>远方 有一个地方 那里种有我们的梦想远方 有一个地方 那里种有我们的梦想远方 有一个地方 那里种有我们的梦想</p>
-                    <div class="am-gallery-desc fee">
-                        <div class="am-fl">北京</div>
-                        <div class="am-fr">2016-11-11</div>
-                    </div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-3.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
-                    <div class="efe">远方 有一个地方 那里种有我们的梦想</div>
-                    <p>远方 有一个地方 那里种有我们的梦想远方 有一个地方 那里种有我们的梦想远方 有一个地方 那里种有我们的梦想</p>
-                    <div class="am-gallery-desc fee">
-                        <div class="am-fl">北京</div>
-                        <div class="am-fr">2016-11-11</div>
-                    </div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-4.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
-                    <div class="efe">远方 有一个地方 那里种有我们的梦想</div>
-                    <p>远方 有一个地方 那里种有我们的梦想远方 有一个地方 那里种有我们的梦想远方 有一个地方 那里种有我们的梦想</p>
-                    <div class="am-gallery-desc fee">
-                        <div class="am-fl">北京</div>
-                        <div class="am-fr">2016-11-11</div>
-                    </div>
-                </a>
-            </div>
-        </li>
+        <c:forEach var="topic" items="${pageInfo.list}" varStatus="index">
+            <li>
+                <div class="am-gallery-item">
+                    <a href="http://s.amazeui.org/media/i/demos/bing-1.jpg" class="">
+                        <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
+                        <div class="efe">${topic.topicName}</div>
+                        <p>${topic.topicDescribe}</p>
+                        <div class="am-gallery-desc fee">
+                            <div class="am-fl">成都</div>
+                            <div class="am-fr">${topic.createTime}</div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+        </c:forEach>
     </ul>
     <div class="am-fr"></div>
     <button type="button" class="am-btn am-btn-default am-btn-block" style="margin: 20px 0">更多活动</button>
 </div>
-<div class="star am-container mcenter"><span><img src="<%=basePath%>images/star.png">往期活动</span></div>
-<div class="am-container">
-    <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2 am-avg-md-3 am-avg-lg-3 am-gallery-default" data-am-gallery="{ pureview: true }" >
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-1.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
-                    <div class="events-btn">
-                        <button type="button" class="am-btn am-btn-primary">活动回顾</button>
-                    </div>
-                </a>
-            </div>
+
+<div class="am-container" style="margin: 100px auto">
+    <ul data-am-widget="pagination" class="am-pagination am-pagination-default am-text-center">
+
+        <li class="am-pagination-first ">
+            <a href="<c:url value="/topics/1"/>">首页</a>
         </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-2.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-2.jpg"  alt="某天 也许会相遇 相遇在这个好地方"/>
-                    <div class="events-btn">
-                        <button type="button" class="am-btn am-btn-default">活动回顾</button>
-                    </div>
-                </a>
-            </div>
+
+        <li class="am-pagination-prev ">
+            <a href="<c:url value="/topics/${pageInfo.pageNum-1>1?pageInfo.pageNum-1:1}"/>">&laquo;</a>
         </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-3.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-3.jpg"  alt="不要太担心 只因为我相信"/>
-                    <div class="events-btn">
-                        <button type="button" class="am-btn am-btn-default">活动回顾</button>
-                    </div>
-                </a>
-            </div>
+        <c:set var="start" value="${pageInfo.pageNum-5<=0?1:pageInfo.pageNum-5}"/>
+        <c:set var="end" value="${start+10<pageInfo.pages?start+10:pageInfo.pages}"/>
+        <c:forEach begin="1" end="${pageInfo.pages}" varStatus="loop">
+            <c:set var="am-active" value="${loop.index==pageInfo.pageNum?'am-active':'am-active'}"/>
+
+
+            <li class="${am-active}">
+                <a href="<c:url value="/topics/${loop.index}"/>">${loop.index}</a>
+            </li>
+        </c:forEach>
+
+
+        <li class="am-pagination-next ">
+            <a href="<c:url value="/topics/${pageInfo.pageNum+1<pageInfo.pages?pageInfo.pageNum+1:pageInfo.pages}"/>">&raquo;</a>
         </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-4.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg"  alt="终会走过这条遥远的道路"/>
-                    <div class="events-btn">
-                        <button type="button" class="am-btn am-btn-default">活动回顾</button>
-                    </div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-3.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-3.jpg"  alt="不要太担心 只因为我相信"/>
-                    <div class="events-btn">
-                        <button type="button" class="am-btn am-btn-default">活动回顾</button>
-                    </div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-4.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg"  alt="终会走过这条遥远的道路"/>
-                    <div class="events-btn">
-                        <button type="button" class="am-btn am-btn-default">活动回顾</button>
-                    </div>
-                </a>
-            </div>
+
+        <li class="am-pagination-last ">
+            <a href="<c:url value="/topics/${pageInfo.pages}"/>">尾页</a>
         </li>
     </ul>
-    <div class="am-fr"></div>
-    <button type="button" class="am-btn am-btn-default am-btn-block" style="margin: 20px 0">更多活动</button>
 </div>
-<div class="star am-container mcenter"><span><img src="images/star.png">媒体报道</span></div>
+
+
+<div class="star am-container mcenter"><span><img src="<%=basePath%>images/star.png">媒体报道</span></div>
 <div class="am-container">
     <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2 am-avg-md-4 am-avg-lg-6 am-gallery-bordered" data-am-gallery="{  }" >
         <li>
@@ -356,7 +294,7 @@
             <li><a href="#">广告及服务</a></li>
             <li><a href="#">友情链接</a></li>
         </ul>
-        <div class="btnlogo"><img src="images/btnlogo.png"/></div>
+        <div class="btnlogo"><img src="<%=basePath%>images/btnlogo.png"/></div>
         <p>Amaze UI出品<br>© 2016 AllMobilize, Inc. Licensed under MIT license. Developed with WebStorm.</p>
         <div class="w2div">
             <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2

@@ -1,6 +1,7 @@
 package top.maniy.service;
 
 import com.github.pagehelper.PageInfo;
+import org.apache.ibatis.annotations.Param;
 import top.maniy.entity.Massage;
 
 import java.util.List;
@@ -21,6 +22,10 @@ public interface MassageService {
 
     //根据标签模糊查询massage
     List<Massage> findMassageLikeLabel(String label);
+
+
+    //根据标题模糊查询
+    PageInfo<Massage> findMassageLikeTitle(String title, int currentPage, int pageSize);
 
     //添加massage
     boolean saveMassage(Massage massage);

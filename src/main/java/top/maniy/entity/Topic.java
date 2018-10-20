@@ -8,6 +8,7 @@ public class Topic {
   private String topicName;
   private String topicDescribe;
   private String photo;
+  private String CreateTime;
 
 
 
@@ -55,5 +56,11 @@ public class Topic {
     this.photo = photo;
   }
 
+  public String getCreateTime() {
+    return CreateTime;
+  }
 
+  public void setCreateTime(String createTime) {
+    CreateTime = createTime;
+  }
 }
