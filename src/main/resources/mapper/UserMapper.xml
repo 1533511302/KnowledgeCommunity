@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="findUserByRole" resultType="User">
-		select username,gender,photo,autograph,introduce,questionnumb,answernumb from user WHERE role =#{role}
+		select realname,gender,photo,autograph,introduce,questionnumb,answernumb from user WHERE role =#{role}
 	</select>
 
 	<insert id="saveUser" parameterType="User">

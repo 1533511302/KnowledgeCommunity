@@ -11,6 +11,8 @@ public class Massage {
   private Integer browseNumb;
   private String label;
   private String content;
+  private String createTime;
+
 
 
   public Integer getId() {
@@ -85,7 +87,11 @@ public class Massage {
   }
 
 
+  public String getCreateTime() {
+    return createTime;
+  }
 
-
-
+  public void setCreateTime(String createTime) {
+    this.createTime = createTime;
+  }
 }

@@ -32,7 +32,7 @@ public class UserController {
     public String index() {
 
 
-        return "loginPage";
+        return "login";
     }
 
     /**
@@ -68,23 +68,20 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "vUser")
-    public String vUserListDef(@RequestParam(value = "pageSize",required = false,defaultValue = "12") int pageSize){
+    @RequestMapping(value = "vUsers",method = RequestMethod.GET)
+    public String vUserListDef(){
 
         return "vUserList";
     }
 
     //分页获取所有认证用户预览信息
     @RequestMapping(value = "vUsers/{page}",method = RequestMethod.GET)
-    public String vUserList(@PathVariable(value = "page") int page){
+    public String vUserList(@PathVariable(value = "page") int page,
+                            @RequestParam(value = "pageSize",required = false,defaultValue = "12") int pageSize,
+                            ModelMap modelMap){
+        PageInfo<User> pageInfo=userService.findVUserList(1,pageSize);
+        modelMap.put("pageInfo",pageInfo);
         return "vUserList";
-    }
-    @RequestMapping(value = "vUserList")
-    @ResponseBody
-    public PageInfo<User> vUserListDefsV(@PathVariable(value = "page") int page,
-                                         @RequestParam(value = "pageSize",required = false,defaultValue = "12") int pageSize){
-
-        return userService.findVUserList(1,pageSize);
     }
 
 
