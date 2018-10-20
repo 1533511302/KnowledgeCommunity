@@ -43,10 +43,10 @@ public class MassageController {
     @RequestMapping(value = "/massages/likeName")
     public String massagePageInfo(@RequestParam(value="page", required=false, defaultValue="1") Integer page,
                                   @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize,
-                                  @RequestParam("name") String name,ModelMap modelMap){
-        PageInfo<Massage> pageInfo = massageService.findMassageLikeTitle(name,page,pageSize);
+                                  @RequestParam("title") String title,ModelMap modelMap){
+        PageInfo<Massage> pageInfo = massageService.findMassageLikeTitle(title,page,pageSize);
         modelMap.put("pageInfo",pageInfo);
-        modelMap.put("name",name);
+        modelMap.put("title",title);
         return "massageListBySearch";
     }
 

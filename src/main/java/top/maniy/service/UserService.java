@@ -23,6 +23,9 @@ public interface UserService {
 
     //认证用户列表
     PageInfo<User> findVUserList(int currentPage, int pageSize);
+
+    //根据用户id查询信息
+    User findUserById(Integer id);
     //添加用户
     boolean saveUser(User user);
 

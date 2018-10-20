@@ -88,7 +88,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
             </ul>
             <form action="<%=basePath%>massages/likeName" class="am-topbar-form am-topbar-left am-form-inline" role="search">
                 <div class="am-form-group" style="margin-top: 9px;margin-left: 100px">
-                    <input name="name" type="text" class="am-form-field am-input-sm" placeholder="搜索内容" value="${name}">
+                    <input name="title" type="text" class="am-form-field am-input-sm" placeholder="搜索内容" value="${title}">
                 </div>
                 <div class="am-topbar-right">
                     <button type="submit" class="am-btn am-btn-primary am-topbar-btn am-btn-sm">搜索</button>
@@ -120,7 +120,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                             </div>
 
                             <div class=" am-u-sm-7 am-list-main">
-                                <h2 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">${massage.title}</a></h2>
+                                <h2 class="am-list-item-hd"><a href="<%=basePath%>massages/${massage.id}">${massage.title}</a></h2>
 
                                 <div class="am-list-item-text">${massage.content}</div>
 

@@ -23,6 +23,12 @@ public interface MassageService {
     //根据标签模糊查询massage
     List<Massage> findMassageLikeLabel(String label);
 
+    //根据userId，title模糊查询massage
+    PageInfo<Massage> findMassageByUserIdAndLikeTitle(Integer userId,String title, int currentPage, int pageSize);
+
+
+    //根据userId查询massage
+    PageInfo<Massage> findMassageByUserId(Integer userId, int currentPage, int pageSize);
 
     //根据标题模糊查询
     PageInfo<Massage> findMassageLikeTitle(String title, int currentPage, int pageSize);

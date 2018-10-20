@@ -86,11 +86,20 @@
                 <li><a href="#">活动</a></li>
             </ul>
 
-            <div class="am-topbar-right">
+            <form action="<%=basePath%>massages/likeName" class="am-topbar-form am-topbar-left am-form-inline" role="search">
+                <div class="am-form-group" style="margin-top: 9px;margin-left: 100px">
+                    <input name="title" type="text" class="am-form-field am-input-sm" placeholder="搜索内容" value="${title}">
+                </div>
+                <div class="am-topbar-right">
+                    <button type="submit" class="am-btn am-btn-primary am-topbar-btn am-btn-sm">搜索</button>
+                </div>
+            </form>
+
+            <div class="am-topbar-right" style="margin-top: 9px">
                 <button class="am-btn am-btn-default am-topbar-btn am-btn-sm"><span class="am-icon-pencil"></span>注册</button>
             </div>
 
-            <div class="am-topbar-right">
+            <div class="am-topbar-right" style="margin-top: 9px">
                 <button class="am-btn am-btn-danger am-topbar-btn am-btn-sm"><span class="am-icon-user"></span> 登录</button>
             </div>
         </div>

@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import top.maniy.entity.Massage;
 import top.maniy.entity.User;
+import top.maniy.service.MassageService;
 import top.maniy.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +25,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private MassageService massageService;
 
     /**
      * 默认首页
@@ -83,7 +88,30 @@ public class UserController {
         modelMap.put("pageInfo",pageInfo);
         return "vUserList";
     }
+    @RequestMapping(value = "vUsersCategory/{id}")
+    public String UserCategory(@PathVariable(value = "id") int id,
+                               @RequestParam(value="page", required=false, defaultValue="1") Integer page,
+                               @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize,
+                               ModelMap modelMap){
+        User user=userService.findUserById(id);
+        PageInfo<Massage> pageInfo=massageService.findMassageByUserId(id,page,pageSize);
+        modelMap.put("user",user);
+        modelMap.put("pageInfo",pageInfo);
+        return "userCategory";
+    }
 
+    @RequestMapping(value = "vUsersCategory/{id}/likeTitle")
+    public String UserCategoryByUserIdAndLikeTitle(@PathVariable(value = "id") int id,@RequestParam("title") String title,
+                               @RequestParam(value="page", required=false, defaultValue="1") Integer page,
+                               @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize,
+                               ModelMap modelMap){
+        User user=userService.findUserById(id);
+        PageInfo<Massage> pageInfo=massageService.findMassageByUserIdAndLikeTitle(id,title,page,pageSize);
+        modelMap.put("title",title);
+        modelMap.put("user",user);
+        modelMap.put("pageInfo",pageInfo);
+        return "userCategory";
+    }
 
     /**
      * 登出操作

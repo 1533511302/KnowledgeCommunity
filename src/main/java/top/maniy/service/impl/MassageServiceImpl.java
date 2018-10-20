@@ -41,6 +41,22 @@ public class MassageServiceImpl implements MassageService {
     }
 
     @Override
+    public PageInfo<Massage> findMassageByUserIdAndLikeTitle(Integer userId, String title, int currentPage, int pageSize) {
+        PageHelper.startPage(currentPage,pageSize);
+        List<Massage> massageList =massageMapper.findMassageByUserIdAndLikeTitle(userId,title);
+        PageInfo<Massage> pageInfo = new PageInfo<Massage>(massageList);
+        return pageInfo;
+    }
+
+    @Override
+    public PageInfo<Massage> findMassageByUserId(Integer userId, int currentPage, int pageSize) {
+        PageHelper.startPage(currentPage,pageSize);
+        List<Massage> massageList =massageMapper.findMassageByUserId(userId);
+        PageInfo<Massage> pageInfo = new PageInfo<Massage>(massageList);
+        return pageInfo;
+    }
+
+    @Override
     public PageInfo<Massage> findMassageLikeTitle(String title, int currentPage, int pageSize) {
         PageHelper.startPage(currentPage,pageSize);
         List<Massage> massageList =massageMapper.findMassageLikeTitle(title);

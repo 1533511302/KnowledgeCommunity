@@ -18,6 +18,9 @@ public interface UserMapper {
     List<User> findAllUser();
     //根据用户角色查询信息
     List<User> findUserByRole(String role);
+
+    //根据用户id查询信息
+    User findUserById(Integer id);
     //添加用户
     boolean saveUser(User user);
 

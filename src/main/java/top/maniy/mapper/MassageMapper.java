@@ -18,6 +18,12 @@ public interface MassageMapper {
     //根据id查询massage
     Massage findMassageById(Integer id);
 
+    //根据userId查询massage
+    List<Massage> findMassageByUserId(@Param("userId")Integer userId);
+
+    //根据userId，title模糊查询massage
+    List<Massage> findMassageByUserIdAndLikeTitle(@Param("userId")Integer userId,@Param("title") String title);
+
     //根据标签模糊查询massage
     List<Massage> findMassageLikeLabel(@Param("label") String label);
 

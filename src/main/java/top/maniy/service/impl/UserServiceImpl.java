@@ -39,6 +39,12 @@ public class UserServiceImpl implements UserService {
         return pageInfo;
     }
 
+    @Override
+    public User findUserById(Integer id) {
+
+        return usermapper.findUserById(id);
+    }
+
 
     @Override
     public boolean saveUser(User user) {
