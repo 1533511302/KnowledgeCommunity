@@ -21,6 +21,12 @@ public interface MassageMapper {
     //根据userId查询massage
     List<Massage> findMassageByUserId(@Param("userId")Integer userId);
 
+    //根据时间排序获取massage
+    List<Massage> findMassageByCreateTimeDesc(@Param("start") Integer start,@Param("end") Integer end);
+
+    //根据点击量排序获取massage
+    List<Massage> findMassageByBrowseNumbDesc(@Param("start") Integer start,@Param("end") Integer end);
+
     //根据userId，title模糊查询massage
     List<Massage> findMassageByUserIdAndLikeTitle(@Param("userId")Integer userId,@Param("title") String title);
 

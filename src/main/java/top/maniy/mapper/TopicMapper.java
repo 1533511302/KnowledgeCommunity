@@ -16,6 +16,9 @@ public interface TopicMapper {
     List<Topic> findAllTopic();
     //topicName模糊查询
     List<Topic> findTopicLikeName(@Param("code") String code);
+
+    //随机num个话题
+    List<Topic> findTopicRand(Integer num);
     //根据id查询话题
     Topic findTopicById(Integer id);
     //添加话题

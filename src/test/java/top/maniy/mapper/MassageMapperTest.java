@@ -54,6 +54,12 @@ public class MassageMapperTest {
     }
 
     @Test
+    public void findMassageByCreateTimeDesc(){
+        List<Massage> massageList =massageMapper.findMassageByCreateTimeDesc(0,4);
+        System.out.println(massageList.size());
+    }
+
+    @Test
     public void updateMassage() {
     }
 

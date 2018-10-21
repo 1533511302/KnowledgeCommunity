@@ -40,6 +40,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> findUserByRoleAndMassageNumbDescTo3() {
+        return usermapper.findUserByRoleAndMassageNumbDesc("2",0,3);
+    }
+
+    @Override
+    public List<User> findUserByRoleAndByMassageNumbAndCreateTimeDesc() {
+        return usermapper.findUserByRoleAndByMassageNumbAndCreateTimeDesc("2",1,0,3);
+    }
+
+    @Override
     public User findUserById(Integer id) {
 
         return usermapper.findUserById(id);

@@ -17,6 +17,9 @@ public interface TopicService {
     PageInfo<Topic> findAllTopic(int currentPage, int pageSize);
     //topicName模糊查询
     PageInfo<Topic> findTopicLikeName(String name,int currentPage, int pageSize);
+
+    //随机4个话题
+    List<Topic> findTopicRandTo4();
     //根据id查询话题
     Topic findTopicById(Integer id);
     //添加话题

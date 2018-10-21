@@ -2,6 +2,7 @@ package top.maniy.service;
 
 
 import com.github.pagehelper.PageInfo;
+import org.apache.ibatis.annotations.Param;
 import top.maniy.entity.User;
 
 import java.beans.IntrospectionException;
@@ -23,6 +24,14 @@ public interface UserService {
 
     //认证用户列表
     PageInfo<User> findVUserList(int currentPage, int pageSize);
+
+    //根据认证用户角色文章数量逆序查询3条信息
+    List<User> findUserByRoleAndMassageNumbDescTo3();
+
+
+    //根据角色及文章数量必须大于1按创建时间逆序排序取前3
+    List<User> findUserByRoleAndByMassageNumbAndCreateTimeDesc();
+
 
     //根据用户id查询信息
     User findUserById(Integer id);

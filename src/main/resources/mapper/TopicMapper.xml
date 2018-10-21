@@ -16,6 +16,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM topic WHERE topicName LIKE '%${code}%'
 	</select>
 
+
+	<select id="findTopicRand" resultType="Topic">
+		SELECT * FROM topic order by rand() limit #{num};
+	</select>
+
 	<select id="findTopicById" resultType="Topic">
 		SELECT * FROM topic WHERE id=#{id}
 	</select>

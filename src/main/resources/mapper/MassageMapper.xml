@@ -19,6 +19,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT * FROM massage WHERE userId=#{userId}
     </select>
 
+	<select id="findMassageByCreateTimeDesc" resultType="Massage">
+		SELECT * FROM massage  ORDER BY createTime DESC LIMIT #{start},#{end}
+	</select>
+
+	<select id="findMassageByBrowseNumbDesc" resultType="Massage">
+		SELECT * FROM massage  ORDER BY browseNumb DESC LIMIT #{start},#{end}
+	</select>
+
     <select id="findMassageByUserIdAndLikeTitle" resultType="Massage">
         SELECT * FROM massage WHERE userId=#{userId} AND title LIKE '%${title}%'
     </select>

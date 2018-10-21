@@ -19,6 +19,11 @@ public interface UserMapper {
     //根据用户角色查询信息
     List<User> findUserByRole(String role);
 
+    //根据用户角色文章数量逆序查询信息
+    List<User> findUserByRoleAndMassageNumbDesc(@Param("role") String role,@Param("start") int start,@Param("end") int end);
+
+    //根据角色及文章数量按创建时间逆序排序
+    List<User> findUserByRoleAndByMassageNumbAndCreateTimeDesc(@Param("role") String role,@Param("massagenumb")int massagenumb,@Param("start") int start,@Param("end") int end);
     //根据用户id查询信息
     User findUserById(Integer id);
     //添加用户

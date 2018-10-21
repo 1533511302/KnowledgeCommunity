@@ -20,6 +20,8 @@ public class User {
   private String autograph;
 //个人简介
   private String introduce;
+//文章数量
+  private int massagenumb;
 //提问次数
   private int questionnumb;
 //回答次数
@@ -29,6 +31,13 @@ public class User {
 //禁用（1是，0否）
   private String forbidden;
 
+  public int getMassagenumb() {
+    return massagenumb;
+  }
+
+  public void setMassagenumb(int massagenumb) {
+    this.massagenumb = massagenumb;
+  }
 
   public int getId() {
     return id;

@@ -151,7 +151,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
             <div class="am-list-news-bd">
                 <ul class="am-list">
 
-                    <c:forEach var="massage" items="${pageInfo.list}" varStatus="index">
+                    <c:forEach var="massage" items="${hotMassageList.list}" varStatus="index">
                         <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" style="border-top: 0px">
                             <div class="am-u-sm-5 am-list-thumb">
                                 <a href="#">

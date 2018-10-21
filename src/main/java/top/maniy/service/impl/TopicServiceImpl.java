@@ -38,6 +38,11 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
+    public List<Topic> findTopicRandTo4() {
+        return topicMapper.findTopicRand(4);
+    }
+
+    @Override
     public Topic findTopicById(Integer id) {
         return topicMapper.findTopicById(id);
     }

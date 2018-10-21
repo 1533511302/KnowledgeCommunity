@@ -15,12 +15,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from user
 	</select>
 
+	<select id="findUserByRoleAndMassageNumbDesc" resultType="User">
+		select id,realname,gender,photo,autograph,introduce,massagenumb,questionnumb,answernumb from user WHERE role =#{role}  ORDER BY massagenumb DESC LIMIT #{start},#{end}
+	</select>
+
+	<select id="findUserByRoleAndByMassageNumbAndCreateTimeDesc" resultType="User">
+		select id,realname,gender,photo,autograph,introduce,massagenumb,questionnumb,answernumb from user WHERE role =#{role} AND massagenumb>=#{massagenumb} ORDER BY createtime DESC LIMIT #{start},#{end}
+	</select>
+
 	<select id="findUserByRole" resultType="User">
-		select id,realname,gender,photo,autograph,introduce,questionnumb,answernumb from user WHERE role =#{role}
+		select id,realname,gender,photo,autograph,introduce,massagenumb,questionnumb,answernumb from user WHERE role =#{role}
 	</select>
 
 	<select id="findUserById" resultType="User">
-		select id,realname,gender,photo,autograph,introduce,questionnumb,answernumb from user WHERE id =#{id}
+		select id,realname,gender,photo,autograph,introduce,massagenumb,questionnumb,answernumb from user WHERE id =#{id}
 	</select>
 
 
@@ -134,6 +142,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 			<if test="introduce != null" >
 				introduce=#{introduce},
+			</if>
+			<if test="massagenumb != null" >
+				massagenumb=#{massagennumb},
 			</if>
 			<if test="questionnumb != null" >
 				questionnumb=#{questionnumb},

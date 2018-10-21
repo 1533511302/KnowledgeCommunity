@@ -23,6 +23,12 @@ public interface MassageService {
     //根据标签模糊查询massage
     List<Massage> findMassageLikeLabel(String label);
 
+    //根据时间排序获取massage前5条
+    List<Massage> findMassageByCreateTimeDesc0To5();
+
+    //根据点击量排序获取massage前5条
+    List<Massage> findMassageByBrowseNumbDesc0To5();
+
     //根据userId，title模糊查询massage
     PageInfo<Massage> findMassageByUserIdAndLikeTitle(Integer userId,String title, int currentPage, int pageSize);
 
