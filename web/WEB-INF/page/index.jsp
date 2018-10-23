@@ -67,8 +67,10 @@
 
         <div class="am-collapse am-topbar-collapse" id="collapse-head">
             <ul class="am-nav am-nav-pills am-topbar-nav">
-                <li class="am-active"><a href="#">首页</a></li>
-                <li><a href="zixun.html">位置</a></li>
+                <li class="am-active"><a href="toIndex">首页</a></li>
+                <li><a href="zixun.html">图文</a></li>
+                <li><a href="events.html">音频</a></li>
+                <li><a href="profile.html">问答</a></li>
                 <li><a href="vUserList.html">专栏</a></li>
                 <li class="am-dropdown" data-am-dropdown>
                     <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
@@ -82,15 +84,21 @@
 
                     </ul>
                 </li>
-                <li><a href="profile.html">问答</a></li>
-                <li><a href="events.html">音频</a></li>
             </ul>
+            <form action="<%=basePath%>massages/likeName" class="am-topbar-form am-topbar-left am-form-inline" role="search">
+                <div class="am-form-group" style="margin-top: 9px;margin-left: 100px">
+                    <input name="title" type="text" class="am-form-field am-input-sm" placeholder="搜索内容" value="${title}">
+                </div>
+                <div class="am-topbar-right">
+                    <button type="submit" class="am-btn am-btn-primary am-topbar-btn am-btn-sm">搜索</button>
+                </div>
+            </form>
 
-            <div class="am-topbar-right">
+            <div class="am-topbar-right" style="margin-top: 9px">
                 <button class="am-btn am-btn-default am-topbar-btn am-btn-sm"><span class="am-icon-pencil"></span>注册</button>
             </div>
 
-            <div class="am-topbar-right">
+            <div class="am-topbar-right" style="margin-top: 9px">
                 <button class="am-btn am-btn-danger am-topbar-btn am-btn-sm"><span class="am-icon-user"></span> 登录</button>
             </div>
         </div>
@@ -200,7 +208,7 @@
             <div class="am-list-news-bd">
                 <ul class="am-list">
                     <c:forEach var="massage" items="${hotMassageList}" varStatus="index">
-                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" style="border-top: 0px">
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
                             <div class="am-u-sm-5 am-list-thumb">
                                 <a href="#">
                                     <img src="<%=basePath%>Temp-images/b2.jpg" alt="配图"/>
@@ -213,12 +221,37 @@
                                 <div class="am-list-item-text">${massage.content}</div>
 
                             </div>
+                            <div style="width:840px;height:50px;margin-top: 120px;">
+                                <div class="am-btn-group">
+                                <button class="am-btn am-btn-secondary am-radius">
+                                <i class="am-icon-caret-up"></i>
+                                赞 531
+                                </button>
+                                <button class="am-btn am-btn-secondary am-radius">
+                                    <i class="am-icon-comment"></i>
+                                110条评论
+                                </button>
+
+                                <button class="am-btn am-btn-secondary am-radius">
+                                    <i class="am-icon-heart"></i>
+                                收藏
+                                </button>
+
+                                <button class="am-btn am-btn-secondary">
+                                    <i class="am-icon-share"></i>
+                                    分享
+                                </button>
+                                    <button class="am-btn am-btn-secondary" style="width: 100px">
+                                        <i class="am-icon-eye"></i>
+                                            ${massage.browseNumb}
+                                    </button>
+                                </div>
+
+                            </div>
 
                         </li>
                         <div class="newsico am-fr">
-
                             <i class="am-icon-clock-o">${massage.createTime}</i>
-                            <i class="am-icon-hand-pointer-o">${massage.browseNumb}</i>
                         </div>
                     </c:forEach>
                 </ul>
@@ -246,6 +279,33 @@
                                 <h2 class="am-list-item-hd"><a href="<%=basePath%>massages/${massage.id}">${massage.title}</a></h2>
 
                                 <div class="am-list-item-text">${massage.content}</div>
+
+                            </div>
+                            <div style="width:840px;height:50px;margin-top: 120px;">
+                                <div class="am-btn-group">
+                                    <button class="am-btn am-btn-secondary am-radius">
+                                        <i class="am-icon-caret-up"></i>
+                                        赞 531
+                                    </button>
+                                    <button class="am-btn am-btn-secondary am-radius">
+                                        <i class="am-icon-comment"></i>
+                                        110条评论
+                                    </button>
+
+                                    <button class="am-btn am-btn-secondary am-radius">
+                                        <i class="am-icon-heart"></i>
+                                        收藏
+                                    </button>
+
+                                    <button class="am-btn am-btn-secondary">
+                                        <i class="am-icon-share"></i>
+                                        分享
+                                    </button>
+                                    <button class="am-btn am-btn-secondary" style="width: 100px">
+                                        <i class="am-icon-eye"></i>
+                                            ${massage.browseNumb}
+                                    </button>
+                                </div>
 
                             </div>
 
@@ -521,13 +581,13 @@
                 <c:forEach var="user" items="${hotUserList}" varStatus="index">
                     <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
                         <div class="am-u-sm-4 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
+                            <a href="vUsersCategory/${user.id}">
                                 <img src="Temp-images/face.jpg" class="face"/>
                             </a>
                         </div>
 
                         <div class=" am-u-sm-8 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">${user.realname}</a></h3>
+                            <h3 class="am-list-item-hd"><a href="vUsersCategory/${user.id}">${user.realname}</a></h3>
 
                             <div class="am-list-item-text">${user.autograph}</div>
                         </div>
@@ -551,13 +611,13 @@
                 <c:forEach var="user" items="${newUserList}" varStatus="index">
                     <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
                         <div class="am-u-sm-4 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
+                            <a href="vUsersCategory/${user.id}">
                                 <img src="Temp-images/face.jpg" class="face"/>
                             </a>
                         </div>
 
                         <div class=" am-u-sm-8 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">${user.realname}</a></h3>
+                            <h3 class="am-list-item-hd"><a href="vUsersCategory/${user.id}">${user.realname}</a></h3>
 
                             <div class="am-list-item-text">${user.autograph}</div>
                         </div>

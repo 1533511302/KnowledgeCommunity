@@ -35,4 +35,59 @@
 
 
 
+
+
+	<!-- 定义一个任务类 -->
+	<bean id="myJob" class="top.maniy.test.MyJob"></bean>
+
+
+
+	<!-- jobDetailRemindHaveClass -->
+	<bean id="jobDetailRemindHaveClass" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="myJob"></property>
+		<property name="targetMethod" value="remindHaveAClass"></property>
+		<property name="concurrent" value="true" /><!-- 作业不并发调度  -->
+	</bean>
+
+
+
+	<!-- jobDetailRemindHaveClass -->
+	<bean id="jobDetailRemindClassIsOver" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="myJob"></property>
+		<property name="targetMethod" value="remindClassIsOver"></property>
+		<property name="concurrent" value="true" /><!-- 作业不并发调度  -->
+	</bean>
+
+
+
+
+
+
+	<!-- 定义trigger 触发器 -->
+	<bean id="cronTriggerHaveClass" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="jobDetailRemindHaveClass"></property>
+		<property name="cronExpression" value="0/60 * * * * ?"></property>
+	</bean>
+
+	<!-- 定义trigger 触发器 -->
+	<bean id="cronTriggerClassIsOver" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="jobDetailRemindClassIsOver"></property>
+		<property name="cronExpression" value="0/60 * * * * ?"></property>
+	</bean>
+
+
+
+
+
+	<bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+			<ref bean="cronTriggerHaveClass"/>
+			<ref bean="cronTriggerClassIsOver"/>
+			</list>
+		</property>
+	</bean>
+
+
+
 </beans>
