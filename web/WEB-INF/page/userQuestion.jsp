@@ -149,9 +149,9 @@
 </div>
 <div id="cattit">
     <ul class="am-avg-sm-2 am-avg-md-2 am-avg-lg-2">
-        <li><h3><a href="#">我的图文</a></h3></li>
-
-        <li  class="active-none"><h3><a href="#">我的问答</a></h3></li>
+        <li  class="active-none"><h3><a href="#">我的图文</a></h3></li>
+       
+        <li><h3><a href="#">我的问答</a></h3></li>
     </ul>
 </div>
 <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
@@ -161,7 +161,7 @@
         <div data-am-widget="list_news" class="am-list-news am-list-news-default ">
             <div class="am-list-news-bd">
                 <ul class="am-list">
-                    <c:forEach var="massage" items="${pageInfo.list}" varStatus="index">
+                    <c:forEach var="question" items="${pageInfo.list}" varStatus="index">
                         <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" style="border-top: 0px">
                             <div class="am-u-sm-5 am-list-thumb">
                                 <a href="#">
@@ -170,16 +170,16 @@
                             </div>
 
                             <div class=" am-u-sm-7 am-list-main">
-                                <h2 class="am-list-item-hd"><a href="<%=basePath%>massages/${massage.id}">${massage.title}</a></h2>
+                                <h2 class="am-list-item-hd"><a href="<%=basePath%>massages/${question.id}">${question.quesName}</a></h2>
 
-                                <div class="am-list-item-text">${massage.content}</div>
+                                <div class="am-list-item-text">${question.quesDescribe}</div>
 
                             </div>
 
                         </li>
                         <div class="newsico am-fr">
-                            <i class="am-icon-clock-o">${massage.createTime}</i>
-                            <i class="am-icon-hand-pointer-o">${massage.browseNumb}</i>
+                            <i class="am-icon-clock-o">${question.createTime}</i>
+
                         </div>
                     </c:forEach>
 
@@ -190,11 +190,11 @@
                 <ul data-am-widget="pagination" class="am-pagination am-pagination-default" style="text-align: center">
 
                     <li class="am-pagination-first ">
-                        <a href="<c:url value="/vUsersCategory/${user.id}?page=1"/>">首页</a>
+                        <a href="<c:url value="/vUsersQuestion/${user.id}?page=1"/>">首页</a>
                     </li>
 
                     <li class="am-pagination-prev ">
-                        <a href="<c:url value="/vUsersCategory/${user.id}?page=${pageInfo.pageNum-1>1?pageInfo.pageNum-1:1}"/>">&laquo;</a>
+                        <a href="<c:url value="/vUsersQuestion/${user.id}?page=${pageInfo.pageNum-1>1?pageInfo.pageNum-1:1}"/>">&laquo;</a>
                     </li>
                     <c:set var="start" value="${pageInfo.pageNum-5<=0?1:pageInfo.pageNum-5}"/>
                     <c:set var="end" value="${start+10<pageInfo.pages?start+10:pageInfo.pages}"/>
@@ -203,17 +203,17 @@
 
 
                         <li class="${am-active}">
-                            <a href="<c:url value="/vUsersCategory/${user.id}?page=${loop.index}"/>">${loop.index}</a>
+                            <a href="<c:url value="/vUsersQuestion/${user.id}?page=${loop.index}"/>">${loop.index}</a>
                         </li>
                     </c:forEach>
 
 
                     <li class="am-pagination-next ">
-                        <a href="<c:url value="/vUsersCategory/${user.id}?page=${pageInfo.pageNum+1<pageInfo.pages?pageInfo.pageNum+1:pageInfo.pages}"/>">&raquo;</a>
+                        <a href="<c:url value="/vUsersQuestion/${user.id}?page=${pageInfo.pageNum+1<pageInfo.pages?pageInfo.pageNum+1:pageInfo.pages}"/>">&raquo;</a>
                     </li>
 
                     <li class="am-pagination-last ">
-                        <a href="<c:url value="/vUsersCategory/${user.id}?page=${categoryId}/massages?page=${pageInfo.pages}"/>">尾页</a>
+                        <a href="<c:url value="/vUsersQuestion/${user.id}?page=${categoryId}/massages?page=${pageInfo.pages}"/>">尾页</a>
                     </li>
                 </ul>
             </div>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace ="top.maniy.mapper.QuestionMapper">
+
+
+
+
+	<select id="findQuestionByTopicId" resultType="Question">
+		select * from topic
+	</select>
+
+	<select id="findQuestionLikeQuesName" resultType="Question" parameterType="String">
+		SELECT * FROM question WHERE quesName LIKE '%${quesName}%'
+	</select>
+
+
+	<select id="findQuestionByUserId" resultType="Question">
+		SELECT * FROM question WHERE userId = #{userId}
+	</select>
+
+	<select id="findQuestionById" resultType="Question">
+		SELECT * FROM question WHERE id=#{id}
+	</select>
+
+	<insert id="saveQuestion" parameterType="Question">
+		INSERT INTO question
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="userId != null" >
+				userId,
+			</if>
+            <if test="topicId != null" >
+                topicId,
+            </if>
+            <if test="quesName != null" >
+                quesName,
+            </if>
+            <if test="quesDescribe != null" >
+				quesDescribe,
+            </if>
+			<if test="photo != null" >
+				photo,
+			</if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="userId != null" >
+				#{userId},
+			</if>
+            <if test="topicId != null" >
+                #{topicId},
+            </if>
+            <if test="quesName != null" >
+                #{quesName},
+            </if>
+			<if test="quesDescribe != null" >
+				#{quesDescribe},
+			</if>
+            <if test="photo != null" >
+                #{photo},
+            </if>
+        </trim>
+	</insert>
+
+	<delete id="deleteQuestion">
+		DELETE FROM question WHERE id=#{id}
+	</delete>
+
+	<update id="updateQuestion" parameterType="Question">
+		UPDATE question
+        <set>
+			<if test="topicId != null" >
+				topicId=#{topicId},
+			</if>
+			<if test="quesName != null" >
+				quesName=#{quesName},
+			</if>
+			<if test="quesDescribe != null" >
+				quesDescribe=#{quesDescribe},
+			</if>
+			<if test="answerNumb != null" >
+				answerNumb=#{answerNumb},
+			</if>
+			<if test="attentionNumb != null" >
+				attentionNumb=#{attentionNumb},
+			</if>
+			<if test="browseNumb != null" >
+				browseNumb=#{browseNumb},
+			</if>
+			<if test="photo != null" >
+                photo=#{photo},
+			</if>
+
+		</set>
+		WHERE id =#{id}
+	</update>
+</mapper>

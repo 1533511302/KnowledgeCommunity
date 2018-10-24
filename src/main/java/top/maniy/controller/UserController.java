@@ -6,8 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import top.maniy.entity.Massage;
+import top.maniy.entity.Question;
 import top.maniy.entity.User;
 import top.maniy.service.MassageService;
+import top.maniy.service.QuestionService;
 import top.maniy.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +30,9 @@ public class UserController {
 
     @Autowired
     private MassageService massageService;
+
+    @Autowired
+    private QuestionService questionService;
 
     /**
      * 默认首页
@@ -98,6 +103,17 @@ public class UserController {
         modelMap.put("user",user);
         modelMap.put("pageInfo",pageInfo);
         return "userCategory";
+    }
+    @RequestMapping(value = "vUsersQuestion/{id}")
+    public String UserQuestion(@PathVariable(value = "id") int id,
+                               @RequestParam(value="page", required=false, defaultValue="1") Integer page,
+                               @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize,
+                               ModelMap modelMap){
+        User user=userService.findUserById(id);
+        PageInfo<Question> pageInfo= questionService.findQuestionByUserId(id,page,pageSize);
+        modelMap.put("user",user);
+        modelMap.put("pageInfo",pageInfo);
+        return "userQuestion";
     }
 
     @RequestMapping(value = "vUsersCategory/{id}/likeTitle")
