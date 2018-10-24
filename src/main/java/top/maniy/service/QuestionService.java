@@ -15,7 +15,7 @@ import java.util.List;
 public interface QuestionService {
 
     //根据话题查询问题
-    //List<Question> findQuestionByTopicId(String topicId);
+    PageInfo<Question> findQuestionByTopicId(String topicId,int currentPage, int pageSize);
 
     //根据用户id查询问题
     PageInfo<Question> findQuestionByUserId(Integer userId,int currentPage, int pageSize);

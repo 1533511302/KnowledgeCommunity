@@ -6,6 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
+%>
 <!doctype html>
 <html class="no-js">
 <head>
@@ -21,19 +27,19 @@
     <meta name="author" content="wos">
     <!-- Android -->
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" sizes="192x192" href="images/i/app.png">
+    <link rel="icon" sizes="192x192" href="<%=basePath%>images/i/app.png">
     <!--Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
-    <link rel="apple-touch-icon-precomposed" href="images/i/app.png">
+    <link rel="apple-touch-icon-precomposed" href="<%=basePath%>images/i/app.png">
     <!--Win8 or 10 -->
-    <meta name="msapplication-TileImage" content="images/i/app.png">
+    <meta name="msapplication-TileImage" content="<%=basePath%>images/i/app.png">
     <meta name="msapplication-TileColor" content="#e1652f">
 
-    <link rel="icon" type="image/png" href="images/i/favicon.png">
-    <link rel="stylesheet" href="assets/css/amazeui.min.css">
-    <link rel="stylesheet" href="css/public.css">
+    <link rel="icon" type="image/png" href="<%=basePath%>images/i/favicon.png">
+    <link rel="stylesheet" href="<%=basePath%>assets/css/amazeui.min.css">
+    <link rel="stylesheet" href="<%=basePath%>css/public.css">
 
     <!--[if (gte IE 9)|!(IE)]><!-->
     <script src="assets/js/jquery.min.js"></script>
@@ -41,17 +47,17 @@
     <!--[if lte IE 8 ]>
     <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-    <script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+    <script src="<%=basePath%>assets/js/amazeui.ie8polyfill.min.js"></script>
     <![endif]-->
-    <script src="assets/js/amazeui.min.js"></script>
-    <script src="js/public.js"></script>
+    <script src="<%=basePath%>assets/js/amazeui.min.js"></script>
+    <script src="<%=basePath%>js/public.js"></script>
 </head>
 <body>
 
 <header class="am-topbar am-topbar-fixed-top wos-header">
     <div class="am-container">
         <h1 class="am-topbar-brand">
-            <a href="#"><img src="images/logo.png" alt=""></a>
+            <a href="#"><img src="<%=basePath%>images/logo.png" alt=""></a>
         </h1>
 
         <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-warning am-show-sm-only"
@@ -80,6 +86,14 @@
                 <li><a href="#">活动</a></li>
             </ul>
 
+            <form action="<%=basePath%>questionList/${topicId}/likeName" class="am-topbar-form am-topbar-left am-form-inline" role="search">
+                <div class="am-form-group" style="margin-top: 9px;margin-left: 100px">
+                    <input name="title" type="text" class="am-form-field am-input-sm" placeholder="搜索内容" value="${title}">
+                </div>
+                <div class="am-topbar-right">
+                    <button type="submit" class="am-btn am-btn-primary am-topbar-btn am-btn-sm" style="margin: 9px">搜索</button>
+                </div>
+            </form>
             <div class="am-topbar-right">
                 <button class="am-btn am-btn-default am-topbar-btn am-btn-sm"><span class="am-icon-pencil"></span>注册</button>
             </div>
@@ -97,22 +111,22 @@
             <div data-am-widget="slider" class="am-slider am-slider-c1" data-am-slider='{"directionNav":false}' >
                 <ul class="am-slides">
                     <li>
-                        <img src="Temp-images/tad3.png">
+                        <img src="<%=basePath%>Temp-images/tad3.png">
                         <div class="am-slider-desc">远方 有一个地方 那里种有我们的梦想</div>
 
                     </li>
                     <li>
-                        <img src="Temp-images/tad3.png">
+                        <img src="<%=basePath%>Temp-images/tad3.png">
                         <div class="am-slider-desc">某天 也许会相遇 相遇在这个好地方</div>
 
                     </li>
                     <li>
-                        <img src="Temp-images/tad3.png">
+                        <img src="<%=basePath%>Temp-images/tad3.png">
                         <div class="am-slider-desc">不要太担心 只因为我相信 终会走过这条遥远的道路</div>
 
                     </li>
                     <li>
-                        <img src="Temp-images/tad3.png">
+                        <img src="<%=basePath%>Temp-images/tad3.png">
                         <div class="am-slider-desc">OH PARA PARADISE 是否那么重要 你是否那么地遥远</div>
 
                     </li>
@@ -122,8 +136,8 @@
         </div>
         <div class="am-u-sm-0 am-u-md-0 am-u-lg-4 padding-none lrad">
             <ul class="am-avg-sm-1 am-avg-md-2 am-avg-lg-1">
-                <li class="ms"><img src="Temp-images/tad3.png" class="am-img-responsive"></li>
-                <li><img src="Temp-images/tad3.png" class="am-img-responsive"></li>
+                <li class="ms"><img src="<%=basePath%>Temp-images/tad3.png" class="am-img-responsive"></li>
+                <li><img src="<%=basePath%>Temp-images/tad3.png" class="am-img-responsive"></li>
             </ul>
         </div>
     </div>
@@ -133,155 +147,86 @@
         <div data-am-widget="list_news" class="am-list-news am-list-news-default ">
             <div class="am-list-news-bd">
                 <ul class="am-list">
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" >
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <img src="Temp-images/b2.jpg" alt="我最喜欢的一张画"/>
-                            </a>
+                    <c:forEach var="question" items="${pageInfo.list}" varStatus="index">
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="#">
+                                    <img src="<%=basePath%>Temp-images/b2.jpg" alt="配图"/>
+                                </a>
+                            </div>
+
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h2 class="am-list-item-hd"><a href="<%=basePath%>massages/${question.id}">${question.quesName}</a></h2>
+
+                                <div class="am-list-item-text">${question.quesDescribe}</div>
+
+                            </div>
+                            <div style="width:820px;height:50px;margin-top: 110px;">
+                                <div class="am-btn-group">
+                                    <button class="am-btn am-btn-default am-radius">
+                                        <i class="am-icon-caret-up"></i>
+                                        赞 531
+                                    </button>
+                                    <button class="am-btn am-btn-default am-radius">
+                                        <i class="am-icon-comment"></i>
+                                        ${question.answerNumb}条回答
+                                    </button>
+
+                                    <button class="am-btn am-btn-default am-radius">
+                                        <i class="am-icon-heart"></i>
+                                        收藏
+                                    </button>
+
+                                    <button class="am-btn am-btn-default">
+                                        <i class="am-icon-share"></i>
+                                        分享
+                                    </button>
+                                    <button class="am-btn am-btn-default" style="width: 100px">
+                                        <i class="am-icon-eye"></i>
+                                            ${question.browseNumb}
+                                    </button>
+                                </div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o">${question.createTime}</i>
                         </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">我最喜欢的一张画</a></h3>
-
-                            <div class="am-list-item-text">你最喜欢的艺术作品，告诉大家它们的------名图画，色彩，交织，撞色，线条雕塑装置当代古代现代作品的照片美我最喜欢的画群296795413进群发画，少说多发图，</div>
-
-                        </div>
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o">2016/11/11</i>
-                        <i class="am-icon-hand-pointer-o">12322</i>
-                    </div>
+                    </c:forEach>
 
 
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" >
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <img src="Temp-images/b2.jpg" alt="我最喜欢的一张画"/>
-                            </a>
-                        </div>
 
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">我最喜欢的一张画</a></h3>
-
-                            <div class="am-list-item-text">你最喜欢的艺术作品，告诉大家它们的------名图画，色彩，交织，撞色，线条雕塑装置当代古代现代作品的照片美我最喜欢的画群296795413进群发画，少说多发图，</div>
-
-                        </div>
-                    </li>
-
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" >
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <img src="Temp-images/b2.jpg" alt="我最喜欢的一张画"/>
-                            </a>
-                        </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">我最喜欢的一张画</a></h3>
-
-                            <div class="am-list-item-text">你最喜欢的艺术作品，告诉大家它们的------名图画，色彩，交织，撞色，线条雕塑装置当代古代现代作品的照片美我最喜欢的画群296795413进群发画，少说多发图，</div>
-
-                        </div>
-                    </li>
-
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" >
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <img src="Temp-images/b2.jpg" alt="我最喜欢的一张画"/>
-                            </a>
-                        </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">我最喜欢的一张画</a></h3>
-
-                            <div class="am-list-item-text">你最喜欢的艺术作品，告诉大家它们的------名图画，色彩，交织，撞色，线条雕塑装置当代古代现代作品的照片美我最喜欢的画群296795413进群发画，少说多发图，</div>
-
-                        </div>
-                    </li>
-
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" >
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <img src="Temp-images/b2.jpg" alt="我最喜欢的一张画"/>
-                            </a>
-                        </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">我最喜欢的一张画</a></h3>
-
-                            <div class="am-list-item-text">你最喜欢的艺术作品，告诉大家它们的------名图画，色彩，交织，撞色，线条雕塑装置当代古代现代作品的照片美我最喜欢的画群296795413进群发画，少说多发图，</div>
-
-                        </div>
-                    </li>
 
                 </ul>
 
                 <ul data-am-widget="pagination" class="am-pagination am-pagination-default">
 
                     <li class="am-pagination-first ">
-                        <a href="#" class="">第一页</a>
+                        <a href="<c:url value="/questionList/${topicId}?page=1"/>">首页</a>
                     </li>
 
                     <li class="am-pagination-prev ">
-                        <a href="#" class="">上一页</a>
+                        <a href="<c:url value="/questionList/${topicId}?page=${pageInfo.pageNum-1>1?pageInfo.pageNum-1:1}"/>">&laquo;</a>
                     </li>
+                    <c:set var="start" value="${pageInfo.pageNum-5<=0?1:pageInfo.pageNum-5}"/>
+                    <c:set var="end" value="${start+10<pageInfo.pages?start+10:pageInfo.pages}"/>
+                    <c:forEach begin="1" end="${pageInfo.pages}" varStatus="loop">
+                        <c:set var="am-active" value="${loop.index==pageInfo.pageNum?'am-active':'am-active'}"/>
 
 
-                    <li class="">
-                        <a href="#" class="">1</a>
-                    </li>
-                    <li >
-                        <a href="#">2</a>
-                    </li>
-                    <li class="">
-                        <a href="#" class="">3</a>
-                    </li>
-                    <li class="">
-                        <a href="#" class="">4</a>
-                    </li>
-                    <li class="">
-                        <a href="#" class="">5</a>
-                    </li>
-                    <li class="">
-                        <a href="#" class="">6</a>
-                    </li>
-                    <li class="">
-                        <a href="#" class="">7</a>
-                    </li>
-                    <li class="">
-                        <a href="#" class="">8</a>
-                    </li>
-                    <li class="am-active">
-                        <a href="#">9</a>
-                    </li>
-                    <li class="">
-                        <a href="#" class="">10</a>
-                    </li>
-                    <li class="">
-                        <a href="#" class="">11</a>
-                    </li>
-                    <li class="">
-                        <a href="#" class="">12</a>
-                    </li>
-                    <li class="">
-                        <a href="#" class="">13</a>
-                    </li>
-                    <li class="">
-                        <a href="#" class="">14</a>
-                    </li>
-                    <li class="">
-                        <a href="#" class="">15</a>
-                    </li>
-                    <li class="">
-                        <a href="#" class="">16</a>
-                    </li>
+                        <li class="${am-active}">
+                            <a href="<c:url value="/questionList/${topicId}?page=${loop.index}"/>">${loop.index}</a>
+                        </li>
+                    </c:forEach>
 
 
                     <li class="am-pagination-next ">
-                        <a href="#" class="">下一页</a>
+                        <a href="<c:url value="/questionList/${topicId}?page=${pageInfo.pageNum+1<pageInfo.pages?pageInfo.pageNum+1:pageInfo.pages}"/>">&raquo;</a>
                     </li>
 
                     <li class="am-pagination-last ">
-                        <a href="#" class="">最末页</a>
+                        <a href="<c:url value="/questionList/${topicId}?page=${pageInfo.pages}"/>">尾页</a>
                     </li>
                 </ul>
             </div>
@@ -328,23 +273,22 @@
             <li><a href="#">广告及服务</a></li>
             <li><a href="#">友情链接</a></li>
         </ul>
-        <div class="btnlogo"><img src="images/btnlogo.png"/></div>
+        <div class="btnlogo"><img src="<%=basePath%>images/btnlogo.png"/></div>
         <p>Amaze UI出品<br>© 2016 AllMobilize, Inc. Licensed under MIT license. Developed with WebStorm.</p>
         <div class="w2div">
             <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2
   am-avg-md-2 am-avg-lg-2 am-gallery-overlay" data-am-gallery="{ pureview: true }" >
                 <li class="w2">
                     <div class="am-gallery-item">
-                        <a href="Temp-images/dd.jpg">
-                            <img src="Temp-images/dd.jpg" />
-                            <h3 class="am-gallery-title">订阅号：Amaze UI</h3>
+                        <a href="<%=basePath%>Temp-images/dd.jpg">
+                            <img src="<%=basePath%>Temp-images/dd.jpg" />
                         </a>
                     </div>
                 </li>
                 <li   class="w2">
                     <div class="am-gallery-item">
-                        <a href="Temp-images/dd.jpg">
-                            <img src="Temp-images/dd.jpg"/>
+                        <a href="<%=basePath%>Temp-images/dd.jpg">
+                            <img src="<%=basePath%>Temp-images/dd.jpg"/>
                             <h3 class="am-gallery-title">服务号：Amaze UI</h3>
                         </a>
                     </div>

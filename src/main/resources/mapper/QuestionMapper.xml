@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<select id="findQuestionByTopicId" resultType="Question">
-		select * from topic
+		select * from question WHERE topicId=#{topicId}
 	</select>
 
 	<select id="findQuestionLikeQuesName" resultType="Question" parameterType="String">

@@ -20,6 +20,15 @@ import java.util.List;
 public class QuestionServiceImpl implements QuestionService {
     @Autowired
     private QuestionMapper questionMapper;
+
+    @Override
+    public PageInfo<Question> findQuestionByTopicId(String topicId,int currentPage, int pageSize) {
+        PageHelper.startPage(currentPage,pageSize);
+        List<Question> questionList=questionMapper.findQuestionByTopicId(topicId);
+        PageInfo<Question> pageInfo=new PageInfo<>(questionList);
+        return pageInfo;
+    }
+
     @Override
     public PageInfo<Question> findQuestionByUserId(Integer userId,int currentPage, int pageSize) {
         PageHelper.startPage(currentPage,pageSize);
