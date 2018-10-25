@@ -104,15 +104,6 @@
         </div>
     </div>
 </header>
-
-<div id="cattit">
-    <ul class="am-avg-sm-2 am-avg-md-2 am-avg-lg-2">
-        <li><h3><a href="#">话 题：</a></h3></li>
-
-        <li  class="active-none"><h3><a>电 竞</a></h3></li>
-    </ul>
-</div>
-<hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
 <!--banner-->
 <div class="banner">
     <div class="am-g am-container padding-none">
@@ -151,6 +142,7 @@
         </div>
     </div>
 </div>
+
 <div class="am-g am-container padding-none">
     <div class="am-u-sm-12 am-u-md-12 am-u-lg-8 newshui">
         <div data-am-widget="list_news" class="am-list-news am-list-news-default ">
@@ -212,30 +204,30 @@
                 <ul data-am-widget="pagination" class="am-pagination am-pagination-default">
 
                     <li class="am-pagination-first ">
-                        <a href="<c:url value="/questionList/${topicId}?page=1"/>">首页</a>
+                        <a href="<c:url value="/questionList/${topicId}/likeName?title=${title}&page=1"/>">首页</a>
                     </li>
 
                     <li class="am-pagination-prev ">
-                        <a href="<c:url value="/questionList/${topicId}?page=${pageInfo.pageNum-1>1?pageInfo.pageNum-1:1}"/>">&laquo;</a>
+                        <a href="<c:url value="/questionList/${topicId}/likeName?title=${title}&page=${pageInfo.pageNum-1>1?pageInfo.pageNum-1:1}"/>">&laquo;</a>
                     </li>
                     <c:set var="start" value="${pageInfo.pageNum-5<=0?1:pageInfo.pageNum-5}"/>
                     <c:set var="end" value="${start+9<pageInfo.pages?start+10:pageInfo.pages}"/>
                     <c:forEach begin="${start}" end="${end}" varStatus="loop">
-                        <c:set var="am-active" value="${start+loop.index==pageInfo.pageNum?'am-active':'am-active'}"/>
+                        <c:set var="am-active" value="${loop.index==pageInfo.pageNum?'am-active':'am-active'}"/>
 
 
                         <li class="${am-active}">
-                            <a href="<c:url value="/questionList/${topicId}?page=${loop.index}"/>">${loop.index}</a>
+                            <a href="<c:url value="/questionList/${topicId}/likeName?title=${title}&page=${loop.index}"/>">${loop.index}</a>
                         </li>
                     </c:forEach>
 
 
                     <li class="am-pagination-next ">
-                        <a href="<c:url value="/questionList/${topicId}?page=${pageInfo.pageNum+1<pageInfo.pages?pageInfo.pageNum+1:pageInfo.pages}"/>">&raquo;</a>
+                        <a href="<c:url value="/questionList/${topicId}/likeName?title=${title}&page=${pageInfo.pageNum+1<pageInfo.pages?pageInfo.pageNum+1:pageInfo.pages}"/>">&raquo;</a>
                     </li>
 
                     <li class="am-pagination-last ">
-                        <a href="<c:url value="/questionList/${topicId}?page=${pageInfo.pages}"/>">尾页</a>
+                        <a href="<c:url value="/questionList/${topicId}/likeName?title=${title}&page=${pageInfo.pages}"/>">尾页</a>
                     </li>
                 </ul>
             </div>

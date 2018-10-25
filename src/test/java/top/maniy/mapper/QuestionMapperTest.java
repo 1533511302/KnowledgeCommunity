@@ -54,8 +54,9 @@ public class QuestionMapperTest {
         question.setQuesName("uzi和厂长哪个是lpl排名");
         question.setQuesDescribe("uzi和厂长哪个是lpl排名");
         question.setPhoto("xxx.jpg");
-        questionMapper.saveQuestion(question);
-
+        for(int i=0;i<100;i++) {
+            questionMapper.saveQuestion(question);
+        }
 
 
     }

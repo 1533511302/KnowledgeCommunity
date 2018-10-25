@@ -44,7 +44,7 @@ public class QuestionController {
         modelMap.put("pageInfo",pageInfo);
         modelMap.put("topicId",topicId);
         modelMap.put("title",title);
-        return "questionList";
+        return "questionListBySearch";
     }
 
 
