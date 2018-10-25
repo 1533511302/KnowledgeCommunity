@@ -211,7 +211,7 @@
                         <a href="<c:url value="/questionList/${topicId}/likeName?title=${title}&page=${pageInfo.pageNum-1>1?pageInfo.pageNum-1:1}"/>">&laquo;</a>
                     </li>
                     <c:set var="start" value="${pageInfo.pageNum-5<=0?1:pageInfo.pageNum-5}"/>
-                    <c:set var="end" value="${start+9<pageInfo.pages?start+10:pageInfo.pages}"/>
+                    <c:set var="end" value="${start+9<pageInfo.pages?start+9:pageInfo.pages}"/>
                     <c:forEach begin="${start}" end="${end}" varStatus="loop">
                         <c:set var="am-active" value="${loop.index==pageInfo.pageNum?'am-active':'am-active'}"/>
 
