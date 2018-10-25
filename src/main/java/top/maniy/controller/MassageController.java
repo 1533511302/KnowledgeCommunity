@@ -6,8 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import top.maniy.entity.Category;
 import top.maniy.entity.Massage;
+import top.maniy.service.CategoryService;
 import top.maniy.service.MassageService;
+
+import java.util.List;
 
 /**
  * @author liuzonghua
@@ -21,11 +25,23 @@ public class MassageController {
     @Autowired
     private MassageService massageService;
 
+    @Autowired
+    private CategoryService categoryService;
+
     @RequestMapping(value = "/massages/{id}")
     public String findMassageById(@PathVariable Integer id,ModelMap modelMap){
         Massage massage= massageService.findMassageById(id);
         modelMap.put("massage",massage);
         return "massage";
+    }
+
+    @RequestMapping(value = "/massagePage")
+    public String massagePage(ModelMap modelMap){
+        List<Massage> massageList=massageService.findMassageRandTo10();
+        List<Category> categoryList=categoryService.findAllCategory();
+        modelMap.put("massageList",massageList);
+        modelMap.put("categoryList",categoryList);
+        return "massagesPage";
     }
 
 

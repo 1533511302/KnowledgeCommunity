@@ -36,6 +36,11 @@ public class MassageServiceImpl implements MassageService {
     }
 
     @Override
+    public List<Massage> findMassageRandTo10() {
+        return massageMapper.findMassageRand(10);
+    }
+
+    @Override
     public List<Massage> findMassageLikeLabel(String label) {
         return null;
     }

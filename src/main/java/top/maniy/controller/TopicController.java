@@ -24,7 +24,7 @@ public class TopicController {
 
     @RequestMapping("topics/{page}")
     public String findAllTopic(@PathVariable(value = "page") int page,
-                               @RequestParam(value = "pageSize",required = false,defaultValue = "8") int pageSize,
+                               @RequestParam(value = "pageSize",required = false,defaultValue = "9") int pageSize,
                                ModelMap modelMap){
         PageInfo<Topic> pageInfo =topicService.findAllTopic(page,pageSize);
         modelMap.put("pageInfo",pageInfo);
@@ -33,7 +33,7 @@ public class TopicController {
 
     @RequestMapping("topics/likeName")
     public String findTopicLikeName(@RequestParam(value = "page",required = false,defaultValue = "1") int page,@RequestParam("name") String name,
-                                    @RequestParam(value = "pageSize",required = false,defaultValue = "8") int pageSize,
+                                    @RequestParam(value = "pageSize",required = false,defaultValue = "9") int pageSize,
                                     ModelMap modelMap){
         PageInfo<Topic> pageInfo =topicService.findTopicLikeName(name,page,pageSize);
         modelMap.put("pageInfo",pageInfo);

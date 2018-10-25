@@ -54,7 +54,7 @@
                 console.log(mydata)
                 if (mydata == "1") {
                     console.log("成功");
-                    window.location.href="albumPage";
+                    window.location.href="toIndex";
                 }
                 else {
                     console.log("失败");

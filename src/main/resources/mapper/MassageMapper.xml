@@ -15,6 +15,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM massage WHERE id=#{id}
 	</select>
 
+	<select id="findMassageRand" resultType="Massage">
+		SELECT * FROM massage order by rand() limit #{num}
+	</select>
+
     <select id="findMassageByUserId" resultType="Massage">
         SELECT * FROM massage WHERE userId=#{userId}
     </select>

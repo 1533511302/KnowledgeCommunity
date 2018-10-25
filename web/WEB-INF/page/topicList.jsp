@@ -67,22 +67,23 @@
 
         <div class="am-collapse am-topbar-collapse" id="collapse-head">
             <ul class="am-nav am-nav-pills am-topbar-nav">
-                <li><a href="index.html">首页</a></li>
-                <li><a href="#">资讯</a></li>
-                <li><a href="#">专栏</a></li>
+                <li><a href="<%=basePath%>toIndex">首页</a></li>
+                <li><a href="<%=basePath%>massagePage">图文</a></li>
+                <li><a href="#">音频</a></li>
+                <li class="am-active"><a href="<%=basePath%>topics/1">问答</a></li>
+                <li><a href="<%=basePath%>vUsers/1">大咖秀</a></li>
                 <li class="am-dropdown" data-am-dropdown>
                     <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                        案例 <span class="am-icon-caret-down"></span>
+                        付费专区<span class="am-icon-caret-down"></span>
                     </a>
                     <ul class="am-dropdown-content">
-                        <li class="am-dropdown-header">案例</li>
-                        <li><a href="#">1. 游戏案例</a></li>
-                        <li><a href="#">2. 营销案例</a></li>
-                        <li><a href="#">3. 工具案例</a></li>
+                        <li class="am-dropdown-header">付费内容</li>
+                        <li><a href="#">图文付费</a></li>
+                        <li><a href="#">音频付费</a></li>
+                        <li><a href="#">问答付费</a></li>
+
                     </ul>
                 </li>
-                <li><a href="#">评测</a></li>
-                <li class="am-active"><a href="#">活动</a></li>
             </ul>
             <form action="<%=basePath%>topics/likeName" class="am-topbar-form am-topbar-left am-form-inline" role="search">
                 <div class="am-form-group" style="margin-top: 9px;margin-left: 100px">
@@ -108,11 +109,11 @@
 </div>
 <div class="star am-container mcenter"><span><img src="<%=basePath%>images/star.png">即将开始</span></div>
 <div class="am-container events">
-    <ul data-am-widget="gallery" class="am-gallery am-avg-sm-1 am-avg-md-2 am-avg-lg-2 am-gallery-bordered" data-am-gallery="{  }" >
+    <ul data-am-widget="gallery" class="am-gallery am-avg-sm-1 am-avg-md-3 am-avg-lg-3 am-gallery-bordered" data-am-gallery="{  }" >
         <c:forEach var="topic" items="${pageInfo.list}" varStatus="index">
             <li>
                 <div class="am-gallery-item">
-                    <a href="http://s.amazeui.org/media/i/demos/bing-1.jpg" class="">
+                    <a href="<%=basePath%>questionList/${topic.id}" class="">
                         <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
                         <div class="efe">${topic.topicName}</div>
                         <p>${topic.topicDescribe}</p>
@@ -142,10 +143,10 @@
         <c:set var="start" value="${pageInfo.pageNum-5<=0?1:pageInfo.pageNum-5}"/>
         <c:set var="end" value="${start+9<pageInfo.pages?start+9:pageInfo.pages}"/>
         <c:forEach begin="${start}" end="${end}" varStatus="loop">
-            <c:set var="am-active" value="${loop.index==pageInfo.pageNum?'am-active':'am-active'}"/>
+            <c:set var="active" value="${loop.index==pageInfo.pageNum?'am-active':''}"/>
 
 
-            <li class="${am-active}">
+            <li class="${active}">
                 <a href="<c:url value="/topics/${loop.index}"/>">${loop.index}</a>
             </li>
         </c:forEach>

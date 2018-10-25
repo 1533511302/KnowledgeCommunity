@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import top.maniy.entity.Question;
+import top.maniy.entity.Topic;
 import top.maniy.service.QuestionService;
+import top.maniy.service.TopicService;
 
 import java.util.List;
 
@@ -24,14 +26,18 @@ public class QuestionController {
     @Autowired
     private QuestionService questionService;
 
+    @Autowired
+    private TopicService topicService;
+
     @RequestMapping("/questionList/{topicId}")
     public String findQuestionByTopicId(@PathVariable String  topicId,
                                         @RequestParam(value="page", required=false, defaultValue="1") Integer page,
                                         @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize,
                                         ModelMap modelMap){
         PageInfo<Question> pageInfo=questionService.findQuestionByTopicId(topicId,page,pageSize);
+        Topic topic =topicService.findTopicById(Integer.valueOf(topicId));
         modelMap.put("pageInfo",pageInfo);
-        modelMap.put("topicId",topicId);
+        modelMap.put("topic",topic);
         return "questionList";
     }
 

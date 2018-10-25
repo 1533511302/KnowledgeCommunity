@@ -69,22 +69,23 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 
         <div class="am-collapse am-topbar-collapse" id="collapse-head">
             <ul class="am-nav am-nav-pills am-topbar-nav">
-                <li><a href="index.html">首页</a></li>
-                <li><a href="#">资讯</a></li>
-                <li><a href="#">专栏</a></li>
+                <li><a href="<%=basePath%>toIndex">首页</a></li>
+                <li class="am-active"><a href="<%=basePath%>massagePage">图文</a></li>
+                <li><a href="#">音频</a></li>
+                <li><a href="<%=basePath%>topics/1">问答</a></li>
+                <li><a href="<%=basePath%>vUsers/1">大咖秀</a></li>
                 <li class="am-dropdown" data-am-dropdown>
                     <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                        案例 <span class="am-icon-caret-down"></span>
+                        付费专区<span class="am-icon-caret-down"></span>
                     </a>
                     <ul class="am-dropdown-content">
-                        <li class="am-dropdown-header">案例</li>
-                        <li><a href="#">1. 游戏案例</a></li>
-                        <li><a href="#">2. 营销案例</a></li>
-                        <li><a href="#">3. 工具案例</a></li>
+                        <li class="am-dropdown-header">付费内容</li>
+                        <li><a href="#">图文付费</a></li>
+                        <li><a href="#">音频付费</a></li>
+                        <li><a href="#">问答付费</a></li>
+
                     </ul>
                 </li>
-                <li class="am-active"><a href="#">评测</a></li>
-                <li><a href="#">活动</a></li>
             </ul>
             <form action="<%=basePath%>massages/likeName" class="am-topbar-form am-topbar-left am-form-inline" role="search">
                 <div class="am-form-group" style="margin-top: 9px;margin-left: 100px">
@@ -106,6 +107,15 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
     </div>
 </header>
 <!--banner-->
+<nav data-am-widget="menu" class="am-menu  am-menu-default" style="margin-left: 100px;">
+    <a href="javascript: void(0)" class="am-menu-toggle">
+        <i class="am-menu-toggle-icon am-icon-bars"></i>
+    </a>
+
+
+
+
+</nav>
 <div class="banner">
     <div class="am-g am-container padding-none">
         <div class="am-u-sm-12 am-u-md-12 am-u-lg-8 padding-none">
@@ -151,7 +161,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
             <div class="am-list-news-bd">
                 <ul class="am-list">
 
-                    <c:forEach var="massage" items="${hotMassageList.list}" varStatus="index">
+                    <c:forEach var="massage" items="${pageInfo.list}" varStatus="index">
                         <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" style="border-top: 0px">
                             <div class="am-u-sm-5 am-list-thumb">
                                 <a href="#">
@@ -165,11 +175,36 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                                 <div class="am-list-item-text">${massage.content}</div>
 
                             </div>
+                            <div style="width:840px;height:50px;margin-top: 120px;">
+                                <div class="am-btn-group">
+                                    <button class="am-btn am-btn-secondary am-radius">
+                                        <i class="am-icon-caret-up"></i>
+                                        赞 531
+                                    </button>
+                                    <button class="am-btn am-btn-secondary am-radius">
+                                        <i class="am-icon-comment"></i>
+                                        110条评论
+                                    </button>
 
+                                    <button class="am-btn am-btn-secondary am-radius">
+                                        <i class="am-icon-heart"></i>
+                                        收藏
+                                    </button>
+
+                                    <button class="am-btn am-btn-secondary">
+                                        <i class="am-icon-share"></i>
+                                        分享
+                                    </button>
+                                    <button class="am-btn am-btn-secondary" style="width: 100px">
+                                        <i class="am-icon-eye"></i>
+                                            ${massage.browseNumb}
+                                    </button>
+                                </div>
+
+                            </div>
                         </li>
                         <div class="newsico am-fr">
                             <i class="am-icon-clock-o">${massage.createTime}</i>
-                            <i class="am-icon-hand-pointer-o">${massage.browseNumb}</i>
                         </div>
                     </c:forEach>
                 </ul>
@@ -205,10 +240,10 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                         <c:set var="start" value="${pageInfo.pageNum-5<=0?1:pageInfo.pageNum-5}"/>
                         <c:set var="end" value="${start+9<pageInfo.pages?start+9:pageInfo.pages}"/>
                     <c:forEach begin="${start}" end="${end}" varStatus="loop">
-                        <c:set var="am-active" value="${loop.index==pageInfo.pageNum?'am-active':'am-active'}"/>
+                        <c:set var="active" value="${loop.index==pageInfo.pageNum?'am-active':''}"/>
 
 
-                        <li class="${am-active}">
+                        <li class="${active}">
                             <a href="<c:url value="/categoryId/${categoryId}/massages?page=${loop.index}"/>">${loop.index}</a>
                         </li>
                     </c:forEach>

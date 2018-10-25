@@ -68,22 +68,23 @@
 
         <div class="am-collapse am-topbar-collapse" id="collapse-head">
             <ul class="am-nav am-nav-pills am-topbar-nav">
-                <li class="am-active"><a href="index.html">首页</a></li>
-                <li><a href="#">资讯</a></li>
-                <li><a href="#">专栏</a></li>
+                <li><a href="<%=basePath%>toIndex">首页</a></li>
+                <li class="am-active"><a href="<%=basePath%>massagePage">图文</a></li>
+                <li><a href="#">音频</a></li>
+                <li><a href="<%=basePath%>topics/1">问答</a></li>
+                <li><a href="<%=basePath%>vUsers/1">大咖秀</a></li>
                 <li class="am-dropdown" data-am-dropdown>
                     <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                        案例 <span class="am-icon-caret-down"></span>
+                        付费专区<span class="am-icon-caret-down"></span>
                     </a>
                     <ul class="am-dropdown-content">
-                        <li class="am-dropdown-header">案例</li>
-                        <li><a href="#">1. 游戏案例</a></li>
-                        <li><a href="#">2. 营销案例</a></li>
-                        <li><a href="#">3. 工具案例</a></li>
+                        <li class="am-dropdown-header">付费内容</li>
+                        <li><a href="#">图文付费</a></li>
+                        <li><a href="#">音频付费</a></li>
+                        <li><a href="#">问答付费</a></li>
+
                     </ul>
                 </li>
-                <li><a href="#">评测</a></li>
-                <li><a href="#">活动</a></li>
             </ul>
 
             <form action="<%=basePath%>massages/likeName" class="am-topbar-form am-topbar-left am-form-inline" role="search">

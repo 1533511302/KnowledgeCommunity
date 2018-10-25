@@ -20,6 +20,8 @@ public interface MassageService {
     //根据categoryId分页查询massage
     PageInfo<Massage> findMassageByCategoryId(Integer categoryId, int currentPage, int pageSize);
 
+    List<Massage> findMassageRandTo10();
+
     //根据标签模糊查询massage
     List<Massage> findMassageLikeLabel(String label);
 

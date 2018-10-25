@@ -1,17 +1,16 @@
 <%--
   Created by IntelliJ IDEA.
   User: Admin
-  Date: 2018/10/19
-  Time: 16:15
+  Date: 2018/10/25
+  Time: 14:29
   To change this template use File | Settings | File Templates.
 --%>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-+ path + "/";
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
 %>
 
 <html class="no-js">
@@ -106,13 +105,71 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
         </div>
     </div>
 </header>
+<!--banner-->
+<div class="banner">
+    <div class="am-g am-container padding-none">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-8 padding-none">
+            <div data-am-widget="slider" class="am-slider am-slider-c1" data-am-slider='{"directionNav":false}' >
+                <ul class="am-slides">
+                    <li>
+                        <img src="<%=basePath%>Temp-images/tad3.png">
+                        <div class="am-slider-desc">远方 有一个地方 那里种有我们的梦想</div>
+                    </li>
+                    <li>
+                        <img src="<%=basePath%>Temp-images/tad3.png">
+                        <div class="am-slider-desc">某天 也许会相遇 相遇在这个好地方</div>
+
+                    </li>
+                    <li>
+                        <img src="<%=basePath%>Temp-images/tad3.png">
+                        <div class="am-slider-desc">不要太担心 只因为我相信 终会走过这条遥远的道路</div>
+
+                    </li>
+                    <li>
+                        <img src="<%=basePath%>Temp-images/tad3.png">
+                        <div class="am-slider-desc">OH PARA PARADISE 是否那么重要 你是否那么地遥远</div>
+
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="am-u-sm-0 am-u-md-0 am-u-lg-4 padding-none lrad">
+            <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
+                <h2 class="am-titlebar-title ">
+                    图文类型
+                </h2>
+
+            </div>
+            <ul class="am-avg-sm-1 am-avg-md-2 am-avg-lg-1" style="margin-top: 30px;margin-left: 10px">
+                <li class="ms" style="line-height: 50px">
+
+                    <c:forEach var="category" items="${categoryList}" varStatus="v">
+                        <c:set var="badge" value="${v.index%4==1?'am-badge-primary':(v.index%4==2?'am-badge-secondary':(v.index%4==3?'am-badge-success':'am-badge-warning'))}"/>
+
+                        <a class="am-badge am-round ${badge} am-text-lg" style="margin-left: 10px" href="<%=basePath%>categoryId/${category.id}/massages">${category.categoryName}</a>
+                    </c:forEach>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
 <div class="am-g am-container padding-none">
     <div class="am-u-sm-12 am-u-md-12 am-u-lg-8">
         <div data-am-widget="list_news" class="am-list-news am-list-news-default ">
             <div class="am-list-news-bd">
+                <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
+                    <h2 class="am-titlebar-title ">
+                        图文
+                    </h2>
+                    <nav class="am-titlebar-nav">
+                        <a href="#more">more &raquo;</a>
+                    </nav>
+                </div>
                 <ul class="am-list">
 
-                    <c:forEach var="massage" items="${pageInfo.list}" varStatus="index">
+                    <c:forEach var="massage" items="${massageList}" varStatus="index">
                         <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" style="border-top: 0px">
                             <div class="am-u-sm-5 am-list-thumb">
                                 <a href="#">
@@ -153,62 +210,11 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                                 </div>
 
                             </div>
-
                         </li>
                         <div class="newsico am-fr">
                             <i class="am-icon-clock-o">${massage.createTime}</i>
-
                         </div>
                     </c:forEach>
-                </ul>
-
-                <ul data-am-widget="pagination" class="am-pagination am-pagination-default">
-
-
-
-                    <%--<li><a href="<c:url value="/categoryId/1/massages?page=1"/>">首页</a></li>--%>
-                    <%--<li><a href="<c:url value="/categoryId/1/massages?page=${pageInfo.pageNum-1>1?pageInfo.pageNum-1:1}"/>">&laquo;</a></li>--%>
-
-                    <%--<c:forEach begin="1" end="${pageInfo.pages}" varStatus="loop">--%>
-                        <%--<c:set var="active" value="${loop.index==pageInfo.pageNum?'active':''}"/>--%>
-                        <%--<li class="${active}"><a--%>
-                                <%--href="<c:url value="/categoryId/1/massages?page=${loop.index}"/>">${loop.index}</a>--%>
-                        <%--</li>--%>
-                    <%--</c:forEach>--%>
-                    <%--<li>--%>
-                        <%--<a href="<c:url value="/categoryId/1/massages?page=${pageInfo.pageNum+1<pageInfo.pages?pageInfo.pageNum+1:pageInfo.pages}"/>">&raquo;</a>--%>
-                    <%--</li>--%>
-                    <%--<li><a href="<c:url value="/categoryId/1/massages?page=${pageInfo.pages}"/>">尾页</a></li>--%>
-
-
-
-
-                    <li class="am-pagination-first ">
-                        <a href="<c:url value="/massages/likeName?title=${title}&page=1"/>">首页</a>
-                    </li>
-
-                    <li class="am-pagination-prev ">
-                        <a href="<c:url value="/massages/likeName?title=${title}&page=${pageInfo.pageNum-1>1?pageInfo.pageNum-1:1}"/>">&laquo;</a>
-                    </li>
-                        <c:set var="start" value="${pageInfo.pageNum-5<=0?1:pageInfo.pageNum-5}"/>
-                        <c:set var="end" value="${start+9<pageInfo.pages?start+9:pageInfo.pages}"/>
-                    <c:forEach begin="${start}" end="${end}" varStatus="loop">
-                        <c:set var="active" value="${loop.index==pageInfo.pageNum?'am-active':''}"/>
-
-
-                        <li class="${active}">
-                            <a href="<c:url value="/massages/likeName?title=${title}&page=${loop.index}"/>">${loop.index}</a>
-                        </li>
-                    </c:forEach>
-
-
-                    <li class="am-pagination-next ">
-                        <a href="<c:url value="/massages/likeName?title=${title}&page=${pageInfo.pageNum+1<pageInfo.pages?pageInfo.pageNum+1:pageInfo.pages}"/>">&raquo;</a>
-                    </li>
-
-                    <li class="am-pagination-last ">
-                        <a href="<c:url value="/massages/likeName?title=${title}&page=${pageInfo.pages}"/>">尾页</a>
-                    </li>
                 </ul>
             </div>
         </div>

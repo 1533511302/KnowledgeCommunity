@@ -67,18 +67,18 @@
 
         <div class="am-collapse am-topbar-collapse" id="collapse-head">
             <ul class="am-nav am-nav-pills am-topbar-nav">
-                <li class="am-active"><a href="toIndex">首页</a></li>
-                <li><a href="zixun.html">图文</a></li>
-                <li><a href="events.html">音频</a></li>
-                <li><a href="profile.html">问答</a></li>
-                <li><a href="vUserList.html">专栏</a></li>
+                <li class="am-active"><a href="<%=basePath%>toIndex">首页</a></li>
+                <li><a href="<%=basePath%>massagePage">图文</a></li>
+                <li><a href="#">音频</a></li>
+                <li><a href="<%=basePath%>topics/1">问答</a></li>
+                <li><a href="<%=basePath%>vUsers/1">大咖秀</a></li>
                 <li class="am-dropdown" data-am-dropdown>
                     <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
                         付费专区<span class="am-icon-caret-down"></span>
                     </a>
                     <ul class="am-dropdown-content">
-                        <li class="am-dropdown-header">案例</li>
-                        <li><a href="cases.html">图文付费</a></li>
+                        <li class="am-dropdown-header">付费内容</li>
+                        <li><a href="#">图文付费</a></li>
                         <li><a href="#">音频付费</a></li>
                         <li><a href="#">问答付费</a></li>
 

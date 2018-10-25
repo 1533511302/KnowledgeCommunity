@@ -68,22 +68,23 @@
 
         <div class="am-collapse am-topbar-collapse" id="collapse-head">
             <ul class="am-nav am-nav-pills am-topbar-nav">
-                <li><a href="index.html">首页</a></li>
-                <li><a href="#">资讯</a></li>
-                <li><a href="#">专栏</a></li>
+                <li><a href="<%=basePath%>toIndex">首页</a></li>
+                <li><a href="<%=basePath%>massagePage">图文</a></li>
+                <li><a href="#">音频</a></li>
+                <li  class="am-active"><a href="<%=basePath%>topics/1">问答</a></li>
+                <li><a href="<%=basePath%>vUsers/1">大咖秀</a></li>
                 <li class="am-dropdown" data-am-dropdown>
                     <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                        案例 <span class="am-icon-caret-down"></span>
+                        付费专区<span class="am-icon-caret-down"></span>
                     </a>
                     <ul class="am-dropdown-content">
-                        <li class="am-dropdown-header">案例</li>
-                        <li><a href="#">1. 游戏案例</a></li>
-                        <li><a href="#">2. 营销案例</a></li>
-                        <li><a href="#">3. 工具案例</a></li>
+                        <li class="am-dropdown-header">付费内容</li>
+                        <li><a href="#">图文付费</a></li>
+                        <li><a href="#">音频付费</a></li>
+                        <li><a href="#">问答付费</a></li>
+
                     </ul>
                 </li>
-                <li><a href="#">评测</a></li>
-                <li><a href="#">活动</a></li>
             </ul>
 
             <form action="<%=basePath%>questionList/${topicId}/likeName" class="am-topbar-form am-topbar-left am-form-inline" role="search">
@@ -107,9 +108,9 @@
 
 <div id="cattit">
     <ul class="am-avg-sm-2 am-avg-md-2 am-avg-lg-2">
-        <li><h3><a href="#">话 题：</a></h3></li>
+        <li><h3><a href="<%=basePath%>topics/1">话 题：</a></h3></li>
 
-        <li  class="active-none"><h3><a>电 竞</a></h3></li>
+        <li  class="active-none"><h3><a>${topic.topicName}</a></h3></li>
     </ul>
 </div>
 <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
@@ -167,7 +168,7 @@
                             <div class=" am-u-sm-7 am-list-main">
                                 <h2 class="am-list-item-hd"><a href="<%=basePath%>massages/${question.id}">${question.quesName}</a></h2>
 
-                                <div class="am-list-item-text">${question.quesDescribe}</div>
+                                <div class="am-list-item-text"><a class="am-text-truncate">${question.quesDescribe}</a></div>
 
                             </div>
                             <div style="width:820px;height:50px;margin-top: 110px;">
@@ -212,30 +213,30 @@
                 <ul data-am-widget="pagination" class="am-pagination am-pagination-default">
 
                     <li class="am-pagination-first ">
-                        <a href="<c:url value="/questionList/${topicId}?page=1"/>">首页</a>
+                        <a href="<c:url value="/questionList/${topic.id}?page=1"/>">首页</a>
                     </li>
 
                     <li class="am-pagination-prev ">
-                        <a href="<c:url value="/questionList/${topicId}?page=${pageInfo.pageNum-1>1?pageInfo.pageNum-1:1}"/>">&laquo;</a>
+                        <a href="<c:url value="/questionList/${topic.id}?page=${pageInfo.pageNum-1>1?pageInfo.pageNum-1:1}"/>">&laquo;</a>
                     </li>
                     <c:set var="start" value="${pageInfo.pageNum-5<=0?1:pageInfo.pageNum-5}"/>
                     <c:set var="end" value="${start+9<pageInfo.pages?start+9:pageInfo.pages}"/>
                     <c:forEach begin="${start}" end="${end}" varStatus="loop">
-                        <c:set var="am-active" value="${start+loop.index==pageInfo.pageNum?'am-active':'am-active'}"/>
+                        <c:set var="active" value="${start+loop.index==pageInfo.pageNum?'am-active':''}"/>
 
 
-                        <li class="${am-active}">
-                            <a href="<c:url value="/questionList/${topicId}?page=${loop.index}"/>">${loop.index}</a>
+                        <li class="${active}">
+                            <a href="<c:url value="/questionList/${topic.id}?page=${loop.index}"/>">${loop.index}</a>
                         </li>
                     </c:forEach>
 
 
                     <li class="am-pagination-next ">
-                        <a href="<c:url value="/questionList/${topicId}?page=${pageInfo.pageNum+1<pageInfo.pages?pageInfo.pageNum+1:pageInfo.pages}"/>">&raquo;</a>
+                        <a href="<c:url value="/questionList/${topic.id}?page=${pageInfo.pageNum+1<pageInfo.pages?pageInfo.pageNum+1:pageInfo.pages}"/>">&raquo;</a>
                     </li>
 
                     <li class="am-pagination-last ">
-                        <a href="<c:url value="/questionList/${topicId}?page=${pageInfo.pages}"/>">尾页</a>
+                        <a href="<c:url value="/questionList/${topic.id}?page=${pageInfo.pages}"/>">尾页</a>
                     </li>
                 </ul>
             </div>

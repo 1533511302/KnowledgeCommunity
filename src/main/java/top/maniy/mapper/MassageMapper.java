@@ -18,6 +18,9 @@ public interface MassageMapper {
     //根据id查询massage
     Massage findMassageById(Integer id);
 
+    //随机获取num条massage
+    List<Massage> findMassageRand(@Param("num") Integer num);
+
     //根据userId查询massage
     List<Massage> findMassageByUserId(@Param("userId")Integer userId);
 
