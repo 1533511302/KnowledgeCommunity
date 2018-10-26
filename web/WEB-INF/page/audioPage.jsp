@@ -1,17 +1,18 @@
 <%--
   Created by IntelliJ IDEA.
   User: Admin
-  Date: 2018/10/19
-  Time: 15:44
+  Date: 2018/10/25
+  Time: 21:41
   To change this template use File | Settings | File Templates.
 --%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
             + path + "/";
 %>
+
 <html class="no-js">
 <head>
     <meta charset="utf-8">
@@ -50,17 +51,6 @@
     <![endif]-->
     <script src="<%=basePath%>assets/js/amazeui.min.js"></script>
     <script src="<%=basePath%>js/public.js"></script>
-    <script>
-
-        var str=window.location.href;
-        var arr=str.split("vUsers/");
-        var page=arr[arr.length-1];
-        $.get("vUserList",{page:page},function (data) {
-            $.each(data,function (i,vUser) {
-                console.log(vUser);
-            });
-        })
-    </script>
 </head>
 <body>
 
@@ -80,9 +70,9 @@
             <ul class="am-nav am-nav-pills am-topbar-nav">
                 <li><a href="<%=basePath%>toIndex">首页</a></li>
                 <li><a href="<%=basePath%>massagePage">图文</a></li>
-                <li><a href="#">音频</a></li>
+                <li class="am-active"><a href="<%=basePath%>audioPage">音频</a></li>
                 <li><a href="<%=basePath%>topics/1">问答</a></li>
-                <li class="am-active"><a href="<%=basePath%>vUsers/1">大咖秀</a></li>
+                <li><a href="<%=basePath%>vUsers/1">大咖秀</a></li>
                 <li class="am-dropdown" data-am-dropdown>
                     <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
                         付费专区<span class="am-icon-caret-down"></span>
@@ -96,10 +86,9 @@
                     </ul>
                 </li>
             </ul>
-
-            <form action="<%=basePath%>topics/likeName" class="am-topbar-form am-topbar-left am-form-inline" role="search">
+            <form action="<%=basePath%>massages/likeName" class="am-topbar-form am-topbar-left am-form-inline" role="search">
                 <div class="am-form-group" style="margin-top: 9px;margin-left: 100px">
-                    <input name="name" type="text" class="am-form-field am-input-sm" placeholder="搜索内容" value="${name}">
+                    <input name="title" type="text" class="am-form-field am-input-sm" placeholder="搜索内容" value="${title}">
                 </div>
                 <div class="am-topbar-right">
                     <button type="submit" class="am-btn am-btn-primary am-topbar-btn am-btn-sm">搜索</button>
@@ -238,78 +227,121 @@
     </ul>
 </div>
 <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
-<div id="cattlist" class="am-container">
-    <ul class="am-avg-sm-1 am-avg-md-3 am-avg-lg-4">
-        <c:forEach var="user" items="${pageInfo.list}" varStatus="index">
-            <li>
-                <div class="cattlist_0">
-                    <div class="cattlist_1">
-                        <div class="am-g">
 
-                            <div class="am-u-sm-4 am-u-md-5 am-u-lg-5 am-vertical-align">
-                                <div class="am-vertical-align-middle">
-                                    <img src="<%=basePath%>Temp-images/face1.jpg">
-                                </div>
-                            </div>
-                            <div class="am-u-sm-8 am-u-md-7 am-u-lg-7">
-
-                                <h3>${user.realname}</h3>
-                                <h4>${user.autograph}</h4>
-                                <p>回答<span>${user.answernumb}</span></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cattlist_2">
-                        <p>
-                                ${user.introduce}
-                        </p>
-                    </div>
-
-                    <div class="cattlist_3">
-                        <a href="<%=basePath%>vUsersCategory/${user.id}" class="am-btn am-btn am-btn-warning">进入主页</a>
-                    </div>
-                </div>
-            </li>
-        </c:forEach>
-
+<div class="star am-container mcenter"><span><img src="images/star.png">媒体报道</span></div>
+<div class="am-container">
+    <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2 am-avg-md-4 am-avg-lg-6 am-gallery-bordered" data-am-gallery="{  }" >
+        <li>
+            <div class="am-gallery-item">
+                <a href="http://s.amazeui.org/media/i/demos/bing-1.jpg" class="">
+                    <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
+                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
+                    <div class="am-gallery-desc">2375-09-26</div>
+                </a>
+            </div>
+        </li>
+        <li>
+            <div class="am-gallery-item">
+                <a href="http://s.amazeui.org/media/i/demos/bing-2.jpg" class="">
+                    <img src="http://s.amazeui.org/media/i/demos/bing-2.jpg"  alt="某天 也许会相遇 相遇在这个好地方"/>
+                    <h3 class="am-gallery-title">某天 也许会相遇 相遇在这个好地方</h3>
+                    <div class="am-gallery-desc">2375-09-26</div>
+                </a>
+            </div>
+        </li>
+        <li>
+            <div class="am-gallery-item">
+                <a href="http://s.amazeui.org/media/i/demos/bing-3.jpg" class="">
+                    <img src="http://s.amazeui.org/media/i/demos/bing-3.jpg"  alt="不要太担心 只因为我相信"/>
+                    <h3 class="am-gallery-title">不要太担心 只因为我相信</h3>
+                    <div class="am-gallery-desc">2375-09-26</div>
+                </a>
+            </div>
+        </li>
+        <li>
+            <div class="am-gallery-item">
+                <a href="http://s.amazeui.org/media/i/demos/bing-4.jpg" class="">
+                    <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg"  alt="终会走过这条遥远的道路"/>
+                    <h3 class="am-gallery-title">终会走过这条遥远的道路</h3>
+                    <div class="am-gallery-desc">2375-09-26</div>
+                </a>
+            </div>
+        </li>
+        <li>
+            <div class="am-gallery-item">
+                <a href="http://s.amazeui.org/media/i/demos/bing-1.jpg" class="">
+                    <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
+                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
+                    <div class="am-gallery-desc">2375-09-26</div>
+                </a>
+            </div>
+        </li>
+        <li>
+            <div class="am-gallery-item">
+                <a href="http://s.amazeui.org/media/i/demos/bing-2.jpg" class="">
+                    <img src="http://s.amazeui.org/media/i/demos/bing-2.jpg"  alt="某天 也许会相遇 相遇在这个好地方"/>
+                    <h3 class="am-gallery-title">某天 也许会相遇 相遇在这个好地方</h3>
+                    <div class="am-gallery-desc">2375-09-26</div>
+                </a>
+            </div>
+        </li>
+        <li>
+            <div class="am-gallery-item">
+                <a href="http://s.amazeui.org/media/i/demos/bing-3.jpg" class="">
+                    <img src="http://s.amazeui.org/media/i/demos/bing-3.jpg"  alt="不要太担心 只因为我相信"/>
+                    <h3 class="am-gallery-title">不要太担心 只因为我相信</h3>
+                    <div class="am-gallery-desc">2375-09-26</div>
+                </a>
+            </div>
+        </li>
+        <li>
+            <div class="am-gallery-item">
+                <a href="http://s.amazeui.org/media/i/demos/bing-4.jpg" class="">
+                    <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg"  alt="终会走过这条遥远的道路"/>
+                    <h3 class="am-gallery-title">终会走过这条遥远的道路</h3>
+                    <div class="am-gallery-desc">2375-09-26</div>
+                </a>
+            </div>
+        </li>
+        <li>
+            <div class="am-gallery-item">
+                <a href="http://s.amazeui.org/media/i/demos/bing-3.jpg" class="">
+                    <img src="http://s.amazeui.org/media/i/demos/bing-3.jpg"  alt="不要太担心 只因为我相信"/>
+                    <h3 class="am-gallery-title">不要太担心 只因为我相信</h3>
+                    <div class="am-gallery-desc">2375-09-26</div>
+                </a>
+            </div>
+        </li>
+        <li>
+            <div class="am-gallery-item">
+                <a href="http://s.amazeui.org/media/i/demos/bing-4.jpg" class="">
+                    <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg"  alt="终会走过这条遥远的道路"/>
+                    <h3 class="am-gallery-title">终会走过这条遥远的道路</h3>
+                    <div class="am-gallery-desc">2375-09-26</div>
+                </a>
+            </div>
+        </li>
+        <li>
+            <div class="am-gallery-item">
+                <a href="http://s.amazeui.org/media/i/demos/bing-3.jpg" class="">
+                    <img src="http://s.amazeui.org/media/i/demos/bing-3.jpg"  alt="不要太担心 只因为我相信"/>
+                    <h3 class="am-gallery-title">不要太担心 只因为我相信</h3>
+                    <div class="am-gallery-desc">2375-09-26</div>
+                </a>
+            </div>
+        </li>
+        <li>
+            <div class="am-gallery-item">
+                <a href="http://s.amazeui.org/media/i/demos/bing-4.jpg" class="">
+                    <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg"  alt="终会走过这条遥远的道路"/>
+                    <h3 class="am-gallery-title">终会走过这条遥远的道路</h3>
+                    <div class="am-gallery-desc">2375-09-26</div>
+                </a>
+            </div>
+        </li>
     </ul>
+
 </div>
-
-<div class="am-container" style="margin: 100px auto">
-    <ul data-am-widget="pagination" class="am-pagination am-pagination-default am-text-center">
-
-        <li class="am-pagination-first ">
-            <a href="<c:url value="/vUsers/1"/>">首页</a>
-        </li>
-
-        <li class="am-pagination-prev ">
-            <a href="<c:url value="/vUsers/${pageInfo.pageNum-1>1?pageInfo.pageNum-1:1}"/>">&laquo;</a>
-        </li>
-        <c:set var="start" value="${pageInfo.pageNum-5<=0?1:pageInfo.pageNum-5}"/>
-        <c:set var="end" value="${start+9<pageInfo.pages?start+9:pageInfo.pages}"/>
-        <c:forEach begin="${start}" end="${end}" varStatus="loop">
-            <c:set var="active" value="${loop.index==pageInfo.pageNum?'am-active':''}"/>
-
-
-            <li class="${active}">
-                <a href="<c:url value="/vUsers/${loop.index}"/>">${loop.index}</a>
-            </li>
-        </c:forEach>
-
-
-        <li class="am-pagination-next ">
-            <a href="<c:url value="/vUsers/${pageInfo.pageNum+1<pageInfo.pages?pageInfo.pageNum+1:pageInfo.pages}"/>">&raquo;</a>
-        </li>
-
-        <li class="am-pagination-last ">
-            <a href="<c:url value="/vUsers/${pageInfo.pages}"/>">尾页</a>
-        </li>
-    </ul>
-</div>
-
-
-
-
 <div data-am-widget="gotop" class="am-gotop am-gotop-fixed" >
     <a href="#top" title="回到顶部">
         <span class="am-gotop-title">回到顶部</span>
@@ -327,7 +359,7 @@
             <li><a href="#">友情链接</a></li>
         </ul>
         <div class="btnlogo"><img src="<%=basePath%>images/btnlogo.png"/></div>
-        <p>Amaze UI出品<br>京ICP备11008918号-3 Copyright ©2015 HTML5梦工场 助推HTML5发展</p>
+        <p>Amaze UI出品<br>© 2016 AllMobilize, Inc. Licensed under MIT license. Developed with WebStorm.</p>
         <div class="w2div">
             <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2
   am-avg-md-2 am-avg-lg-2 am-gallery-overlay" data-am-gallery="{ pureview: true }" >
@@ -335,7 +367,7 @@
                     <div class="am-gallery-item">
                         <a href="<%=basePath%>Temp-images/dd.jpg">
                             <img src="<%=basePath%>Temp-images/dd.jpg" />
-                            <h3 class="am-gallery-title">订阅号：HTML5梦工厂</h3>
+                            <h3 class="am-gallery-title">订阅号：Amaze UI</h3>
                         </a>
                     </div>
                 </li>
@@ -343,7 +375,7 @@
                     <div class="am-gallery-item">
                         <a href="<%=basePath%>Temp-images/dd.jpg">
                             <img src="<%=basePath%>Temp-images/dd.jpg"/>
-                            <h3 class="am-gallery-title">服务号：HTML5头条</h3>
+                            <h3 class="am-gallery-title">服务号：Amaze UI</h3>
                         </a>
                     </div>
                 </li>

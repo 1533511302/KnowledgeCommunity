@@ -50,6 +50,7 @@
     <![endif]-->
     <script src="<%=basePath%>assets/js/amazeui.min.js"></script>
     <script src="<%=basePath%>js/public.js"></script>
+
 </head>
 <body>
 
@@ -69,7 +70,7 @@
             <ul class="am-nav am-nav-pills am-topbar-nav">
                 <li class="am-active"><a href="<%=basePath%>toIndex">首页</a></li>
                 <li><a href="<%=basePath%>massagePage">图文</a></li>
-                <li><a href="#">音频</a></li>
+                <li><a href="<%=basePath%>audioPage">音频</a></li>S
                 <li><a href="<%=basePath%>topics/1">问答</a></li>
                 <li><a href="<%=basePath%>vUsers/1">大咖秀</a></li>
                 <li class="am-dropdown" data-am-dropdown>
@@ -138,7 +139,7 @@
                 <li>
                     <div class="am-gallery-item">
                         <a href="#">
-                            <img src="Temp-images/lins.png"  alt="远方 有一个地方 那里种有我们的梦想"/>
+                            <img src="<%=basePath%>Temp-images/lins.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
                             <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
                             <div class="am-gallery-desc">2375-09-26</div>
                         </a>
@@ -147,7 +148,7 @@
                 <li>
                     <div class="am-gallery-item">
                         <a href="#">
-                            <img src="Temp-images/lins.png"  alt="远方 有一个地方 那里种有我们的梦想"/>
+                            <img src="<%=basePath%>Temp-images/lins.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
                             <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
                             <div class="am-gallery-desc">2375-09-26</div>
                         </a>
@@ -156,7 +157,7 @@
                 <li>
                     <div class="am-gallery-item">
                         <a href="#">
-                            <img src="Temp-images/lins.png"  alt="远方 有一个地方 那里种有我们的梦想"/>
+                            <img src="<%=basePath%>Temp-images/lins.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
                             <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
                             <div class="am-gallery-desc">2375-09-26</div>
                         </a>
@@ -165,7 +166,7 @@
                 <li>
                     <div class="am-gallery-item">
                         <a href="#">
-                            <img src="Temp-images/lins.png"  alt="远方 有一个地方 那里种有我们的梦想"/>
+                            <img src="<%=basePath%>Temp-images/lins.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
                             <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
                             <div class="am-gallery-desc">2375-09-26</div>
                         </a>
@@ -253,6 +254,71 @@
                         <div class="newsico am-fr">
                             <i class="am-icon-clock-o">${massage.createTime}</i>
                         </div>
+                        <ul class="am-comments-list am-comments-list-flip">
+                            <li class="am-comment am-comment-highlight">
+                                <article class="am-comment" style="margin-top: -20px;margin-bottom: -20px;margin-left: 30px;">
+                                    <a href="#link-to-user-home">
+                                        <img src="<%=basePath%>Temp-images/face2.jpg" alt="" class="am-comment-avatar" width="48" height="48"/>
+                                    </a>
+
+                                    <div class="am-comment-main">
+                                        <header class="am-comment-hd">
+                                            <!--<h3 class="am-comment-title">评论标题</h3>-->
+                                            <div class="am-comment-meta">
+                                                <a href="#link-to-user" class="am-comment-author">某人</a>
+                                                评论于 <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">2014-7-12 15:30</time>
+                                            </div>
+                                        </header>
+
+                                        <div class="am-comment-bd">
+                                            你好，我在评论中想你了！
+                                        </div>
+                                    </div>
+                                </article>
+                            </li>
+                            <li class="am-comment am-comment-highlight">
+                                <article class="am-comment" style="margin-top: -20px;margin-bottom: -20px;margin-left: 30px;">
+                                    <a href="#link-to-user-home">
+                                        <img src="<%=basePath%>Temp-images/face2.jpg" alt="" class="am-comment-avatar" width="48" height="48"/>
+                                    </a>
+
+                                    <div class="am-comment-main">
+                                        <header class="am-comment-hd">
+                                            <!--<h3 class="am-comment-title">评论标题</h3>-->
+                                            <div class="am-comment-meta">
+                                                <a href="#link-to-user" class="am-comment-author">某人</a>
+                                                评论于 <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">2014-7-12 15:30</time>
+                                            </div>
+                                        </header>
+
+                                        <div class="am-comment-bd">
+                                            你好，我在评论中想你了！
+                                        </div>
+                                    </div>
+                                </article>
+                            </li>
+                            <li class="am-comment am-comment-highlight">
+                                <article class="am-comment" style="margin-top: -20px;margin-bottom: -20px;margin-left: 30px;">
+                                    <a href="#link-to-user-home">
+                                        <img src="<%=basePath%>Temp-images/face2.jpg" alt="" class="am-comment-avatar" width="48" height="48"/>
+                                    </a>
+
+                                    <div class="am-comment-main">
+                                        <header class="am-comment-hd">
+                                            <!--<h3 class="am-comment-title">评论标题</h3>-->
+                                            <div class="am-comment-meta">
+                                                <a href="#link-to-user" class="am-comment-author">某人</a>
+                                                评论于 <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">2014-7-12 15:30</time>
+                                            </div>
+                                        </header>
+
+                                        <div class="am-comment-bd">
+                                            你好，我在评论中想你了！
+                                        </div>
+                                    </div>
+                                </article>
+                            </li>
+                        </ul>
                     </c:forEach>
                 </ul>
             </div>
@@ -374,7 +440,7 @@
                         <li>
                             <div class="am-gallery-item">
                                 <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
+                                    <img src="<%=basePath%>-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
                                     <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
                                     <div class="am-gallery-desc">2375-09-26</div>
                                 </a>
@@ -382,8 +448,8 @@
                         </li>
                         <li>
                             <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
+                                <a href="<%=basePath%>Temp-images/dd.jpg">
+                                    <img src="<%=basePath%>Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
                                     <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
                                     <div class="am-gallery-desc">2375-09-26</div>
                                 </a>
@@ -391,8 +457,8 @@
                         </li>
                         <li>
                             <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
+                                <a href="<%=basePath%>Temp-images/dd.jpg">
+                                    <img src="<%=basePath%>Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
                                     <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
                                     <div class="am-gallery-desc">2375-09-26</div>
                                 </a>
@@ -400,8 +466,8 @@
                         </li>
                         <li>
                             <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
+                                <a href="<%=basePath%>Temp-images/dd.jpg">
+                                    <img src="<%=basePath%>Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
                                     <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
                                     <div class="am-gallery-desc">2375-09-26</div>
                                 </a>
@@ -414,8 +480,26 @@
                     <ul class="am-gallery am-avg-sm-2 am-avg-md-4 am-avg-lg-4 am-gallery-overlay" data-am-gallery="{ pureview: true }" >
                         <li>
                             <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
+                                <a href="<%=basePath%>Temp-images/dd.jpg">
+                                    <img src="<%=basePath%>Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
+                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
+                                    <div class="am-gallery-desc">2375-09-26</div>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="am-gallery-item">
+                                <a href="<%=basePath%>Temp-images/dd.jpg">
+                                    <img src="<%=basePath%>Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
+                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
+                                    <div class="am-gallery-desc">2375-09-26</div>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="am-gallery-item">
+                                <a href="<%=basePath%>Temp-images/dd.jpg">
+                                    <img src="<%=basePath%>Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
                                     <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
                                     <div class="am-gallery-desc">2375-09-26</div>
                                 </a>
@@ -424,7 +508,7 @@
                         <li>
                             <div class="am-gallery-item">
                                 <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
+                                    <img src="<%=basePath%>Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
                                     <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
                                     <div class="am-gallery-desc">2375-09-26</div>
                                 </a>
@@ -433,25 +517,7 @@
                         <li>
                             <div class="am-gallery-item">
                                 <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
-                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                                    <div class="am-gallery-desc">2375-09-26</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
-                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                                    <div class="am-gallery-desc">2375-09-26</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
+                                    <img src="<%=basePath%>Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
                                     <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
                                     <div class="am-gallery-desc">2375-09-26</div>
                                 </a>

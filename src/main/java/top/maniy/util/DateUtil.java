@@ -4,6 +4,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateUtil {
+
+
+
+    public static String DateTimeToString(Date date) {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");//设置日期格式
+
+        String time=df.format(date);//顾客预定时的系统时间
+        return time;
+    }
+
     /**
      * 自定义日期格式
      * @return
@@ -14,6 +24,8 @@ public class DateUtil {
         String time=df.format(date);//顾客预定时的系统时间
         return time;
     }
+
+
 
     public static String getDate() {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
@@ -28,7 +40,9 @@ public class DateUtil {
         String time=df.format(date);//顾客预定时的系统时间
         return Integer.valueOf(time);
     }
-
+//    public static String cleanZero(){
+//
+//    }
 
     public static void main(String s[]){
         System.out.println(DateUtil.getMiniute());

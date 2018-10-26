@@ -1,6 +1,10 @@
 package top.maniy.entity;
 
 
+import top.maniy.util.DateUtil;
+
+import java.util.Date;
+
 public class Massage {
 
   private Integer id;
@@ -11,7 +15,7 @@ public class Massage {
   private Integer browseNumb;
   private String label;
   private String content;
-  private String createTime;
+  private Date createTime;
 
 
 
@@ -86,12 +90,11 @@ public class Massage {
     this.content = content;
   }
 
-
   public String getCreateTime() {
-    return createTime;
+    return DateUtil.DateTimeToString(createTime);
   }
 
-  public void setCreateTime(String createTime) {
+  public void setCreateTime(Date createTime) {
     this.createTime = createTime;
   }
 }
