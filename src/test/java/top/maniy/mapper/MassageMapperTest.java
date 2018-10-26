@@ -61,6 +61,12 @@ public class MassageMapperTest {
 
     @Test
     public void updateMassage() {
+        int likeNumb=massageMapper.findMassageById(1).getLikeNumb();
+        System.out.println(likeNumb);
+        Massage massage=new Massage();
+        massage.setLikeNumb(likeNumb+1);
+        System.out.println(massage);
+        massageMapper.updateMassage(massage);
     }
 
     @Test

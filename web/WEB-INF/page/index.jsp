@@ -111,6 +111,18 @@
                 $(btn).attr("key",1);
             }
         };
+
+        function clickLikeNumbBtn(massageId,likeNumb,btn) {
+            if($(btn).attr("key")==1){
+                $.post("AddLikeNum",{massageId:massageId},function (data) {
+                    if(data){
+                        $(btn).attr("data-am-popover","{content: '你已经点过赞了'}");
+                        $(btn).html("<i class=\"am-icon-caret-up\"></i>&nbsp;赞&nbsp;"+(likeNumb+1));
+                    }
+                });
+                $(btn).attr("key","2");
+            }
+        }
     </script>
 </head>
 <body>
@@ -285,7 +297,7 @@
                             </div>
                             <div style="width:840px;height:50px;margin-top: 120px;">
                                 <div class="am-btn-group">
-                                <button class="am-btn am-btn-secondary am-radius">
+                                <button class="am-btn am-btn-secondary am-radius" key="1"  onclick="clickLikeNumbBtn(${massage.id},${massage.likeNumb},this)">
                                 <i class="am-icon-caret-up"></i>
                                 赞 ${massage.likeNumb}
                                 </button>
@@ -348,7 +360,7 @@
                             </div>
                             <div style="width:840px;height:50px;margin-top: 120px;">
                                 <div class="am-btn-group">
-                                    <button class="am-btn am-btn-secondary am-radius">
+                                    <button class="am-btn am-btn-secondary am-radius" key="1" onclick="clickLikeNumbBtn(${massage.id},${massage.likeNumb},this)">
                                         <i class="am-icon-caret-up"></i>
                                         赞 ${massage.likeNumb}
                                     </button>

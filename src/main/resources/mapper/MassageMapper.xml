@@ -106,6 +106,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="username != null" >
 				username=#{username},
 			</if>
+			<if test="commentNumb != null" >
+				commentNumb=#{commentNumb},
+			</if>
+			<if test="likeNumb != null" >
+				likeNumb=#{likeNumb},
+			</if>
 			<if test="browseNumb != null" >
 				browseNumb=#{browseNumb},
 			</if>

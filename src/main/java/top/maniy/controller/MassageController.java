@@ -110,6 +110,10 @@ public class MassageController {
         return massageService.saveMassage(massage);
     }
 
-
+    @RequestMapping(value = "AddLikeNum")
+    @ResponseBody
+    public boolean addLikeNum(@RequestParam("massageId") Integer massageId) {
+       return massageService.LikeNumbAddOne(massageId);
+    }
 
 }

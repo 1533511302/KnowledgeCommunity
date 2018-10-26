@@ -20,6 +20,10 @@ public interface MassageService {
     //根据categoryId分页查询massage
     PageInfo<Massage> findMassageByCategoryId(Integer categoryId, int currentPage, int pageSize);
 
+    //根据id点赞数加一
+    boolean LikeNumbAddOne(Integer id);
+
+    //随机取10条massage
     List<Massage> findMassageRandTo10();
 
     //根据标签模糊查询massage

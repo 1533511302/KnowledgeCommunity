@@ -36,6 +36,15 @@ public class MassageServiceImpl implements MassageService {
     }
 
     @Override
+    public boolean LikeNumbAddOne(Integer id) {
+        int likeNumb=massageMapper.findMassageById(id).getLikeNumb()+1;
+        Massage massage=new Massage();
+        massage.setId(id);
+        massage.setLikeNumb(likeNumb);
+        return massageMapper.updateMassage(massage);
+    }
+
+    @Override
     public List<Massage> findMassageRandTo10() {
         return massageMapper.findMassageRand(10);
     }
