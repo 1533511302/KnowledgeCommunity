@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace ="top.maniy.mapper.CommentMapper">
+
+
+
+
+	<select id="findCommentByMassageId" resultType="Comment">
+		select * from comment WHERE massageId=#{massageId}
+	</select>
+
+	<select id="findCommentByMassageIdAndByLikeNumbDescToNum" resultType="Comment">
+		SELECT * FROM comment WHERE massageId=#{massageId} order by likeNumb DESC limit 0,#{num}
+	</select>
+
+
+
+	<insert id="saveComment" parameterType="Comment">
+		INSERT INTO comment
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="quesId != null" >
+				quesId,
+			</if>
+            <if test="answerId != null" >
+                answerId,
+            </if>
+            <if test="massageId != null" >
+				massageId,
+            </if>
+			<if test="commentatorId != null" >
+				commentatorId,
+			</if>
+			<if test="commentContent != null" >
+				commentContent,
+			</if>
+			<if test="likeNumb != null" >
+				likeNumb,
+			</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="quesId != null" >
+				#{quesId},
+			</if>
+			<if test="answerId != null" >
+				#{answerId},
+			</if>
+			<if test="massageId != null" >
+				#{massageId},
+			</if>
+			<if test="commentatorId != null" >
+				#{commentatorId},
+			</if>
+			<if test="commentContent != null" >
+				#{commentContent},
+			</if>
+			<if test="likeNumb != null" >
+				#{likeNumb},
+			</if>
+        </trim>
+	</insert>
+
+	<delete id="deleteComment">
+		DELETE FROM comment WHERE id=#{id}
+	</delete>
+
+</mapper>
