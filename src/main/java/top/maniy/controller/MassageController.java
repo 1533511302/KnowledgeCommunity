@@ -28,6 +28,12 @@ public class MassageController {
     @Autowired
     private CategoryService categoryService;
 
+    /**
+     * 图文详情页
+     * @param id
+     * @param modelMap
+     * @return
+     */
     @RequestMapping(value = "/massages/{id}")
     public String findMassageById(@PathVariable Integer id,ModelMap modelMap){
         Massage massage= massageService.findMassageById(id);
@@ -35,6 +41,11 @@ public class MassageController {
         return "massage";
     }
 
+    /**
+     * 图文主页
+     * @param modelMap
+     * @return
+     */
     @RequestMapping(value = "/massagePage")
     public String massagePage(ModelMap modelMap){
         List<Massage> massageList=massageService.findMassageRandTo10();
@@ -44,7 +55,14 @@ public class MassageController {
         return "massagesPage";
     }
 
-
+    /**
+     * 图文分类页
+     * @param categoryId
+     * @param page
+     * @param pageSize
+     * @param modelMap
+     * @return
+     */
     @RequestMapping(value = "/categoryId/{categoryId}/massages")
     public String findMassageByCategoryId(@PathVariable Integer categoryId,
                                   @RequestParam(value="page", required=false, defaultValue="1") Integer page,
@@ -56,6 +74,15 @@ public class MassageController {
         modelMap.put("pageInfo",pageInfo);
         return "massageList";
     }
+
+    /**
+     *根据标题模糊查询图文
+     * @param page
+     * @param pageSize
+     * @param title
+     * @param modelMap
+     * @return
+     */
     @RequestMapping(value = "/massages/likeName")
     public String massagePageInfo(@RequestParam(value="page", required=false, defaultValue="1") Integer page,
                                   @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize,
@@ -66,6 +93,13 @@ public class MassageController {
         return "massageListBySearch";
     }
 
+    /**
+     * 添加图文
+     * @param type
+     * @param title
+     * @param content
+     * @return
+     */
     @RequestMapping(value = "/massages",method = RequestMethod.POST)
     @ResponseBody
     public boolean saveMassage(@RequestParam Integer type ,@RequestParam String title,@RequestParam String content){
@@ -75,6 +109,7 @@ public class MassageController {
         massage.setContent(content);
         return massageService.saveMassage(massage);
     }
+
 
 
 }

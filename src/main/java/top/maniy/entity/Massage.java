@@ -12,6 +12,8 @@ public class Massage {
   private Integer userId;
   private Integer categoryId;
   private String username;
+  private Integer likeNumb;
+  private Integer CommentNumb;
   private Integer browseNumb;
   private String label;
   private String content;
@@ -63,6 +65,21 @@ public class Massage {
     this.username = username;
   }
 
+  public Integer getLikeNumb() {
+    return likeNumb;
+  }
+
+  public void setLikeNumb(Integer likeNumb) {
+    this.likeNumb = likeNumb;
+  }
+
+  public Integer getCommentNumb() {
+    return CommentNumb;
+  }
+
+  public void setCommentNumb(Integer commentNumb) {
+    CommentNumb = commentNumb;
+  }
 
   public Integer getBrowseNumb() {
     return browseNumb;

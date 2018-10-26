@@ -50,7 +50,68 @@
     <![endif]-->
     <script src="<%=basePath%>assets/js/amazeui.min.js"></script>
     <script src="<%=basePath%>js/public.js"></script>
+    <script>
+        function clickCommentBtn(massageId,btn) {
+            if($(btn).attr("key")==1){
+            $.post("indexComment",{massageId:massageId},function (data) {
+                $.each(data,function (i,comment) {
+                    if($(btn).attr("flag")=="new"){
+                        $("#new"+massageId).append(" <li class=\"am-comment am-comment-highlight\">\n" +
+                            "                                <article class=\"am-comment\" style=\"margin-top: -20px;margin-bottom: -20px;margin-left: 30px;\">\n" +
+                            "                                    <a href=\"#link-to-user-home\">\n" +
+                            "                                        <img src=\"<%=basePath%>Temp-images/face2.jpg\" alt=\"\" class=\"am-comment-avatar\" width=\"48\" height=\"48\"/>\n" +
+                            "                                    </a>\n" +
+                            "\n" +
+                            "                                    <div class=\"am-comment-main\">\n" +
+                            "                                        <header class=\"am-comment-hd\">\n" +
+                            "                                            <!--<h3 class=\"am-comment-title\">评论标题</h3>-->\n" +
+                            "                                            <div class=\"am-comment-meta\">\n" +
+                            "                                                <a href=\"#link-to-user\" class=\"am-comment-author\">某人</a>\n" +
+                            "                                                评论于 <time datetime=\"2013-07-27T04:54:29-07:00\" title=\"2013年7月27日 下午7:54 格林尼治标准时间+0800\">"+comment.createTime+"</time>\n" +
+                            "                                            </div>\n" +
+                            "                                        </header>\n" +
+                            "\n" +
+                            "                                        <div class=\"am-comment-bd\">\n" +
+                            "                                            "+comment.commentContent+"\n" +
+                            "                                        </div>\n" +
+                            "                                    </div>\n" +
+                            "                                </article>\n" +
+                            "                            </li>")
 
+                    }else {
+                    $("#"+massageId).append(" <li class=\"am-comment am-comment-highlight\">\n" +
+                        "                                <article class=\"am-comment\" style=\"margin-top: -20px;margin-bottom: -20px;margin-left: 30px;\">\n" +
+                        "                                    <a href=\"#link-to-user-home\">\n" +
+                        "                                        <img src=\"<%=basePath%>Temp-images/face2.jpg\" alt=\"\" class=\"am-comment-avatar\" width=\"48\" height=\"48\"/>\n" +
+                        "                                    </a>\n" +
+                        "\n" +
+                        "                                    <div class=\"am-comment-main\">\n" +
+                        "                                        <header class=\"am-comment-hd\">\n" +
+                        "                                            <!--<h3 class=\"am-comment-title\">评论标题</h3>-->\n" +
+                        "                                            <div class=\"am-comment-meta\">\n" +
+                        "                                                <a href=\"#link-to-user\" class=\"am-comment-author\">某人</a>\n" +
+                        "                                                评论于 <time datetime=\"2013-07-27T04:54:29-07:00\" title=\"2013年7月27日 下午7:54 格林尼治标准时间+0800\">"+comment.createTime+"</time>\n" +
+                        "                                            </div>\n" +
+                        "                                        </header>\n" +
+                        "\n" +
+                        "                                        <div class=\"am-comment-bd\">\n" +
+                        "                                            "+comment.commentContent+"\n" +
+                        "                                        </div>\n" +
+                        "                                    </div>\n" +
+                        "                                </article>\n" +
+                        "                            </li>")
+
+                    }
+                });
+            },'json');
+            $(btn).attr("key",2);
+            }else {
+                $("#"+massageId).empty();
+                $("#new"+massageId).empty();
+                $(btn).attr("key",1);
+            }
+        };
+    </script>
 </head>
 <body>
 
@@ -70,7 +131,7 @@
             <ul class="am-nav am-nav-pills am-topbar-nav">
                 <li class="am-active"><a href="<%=basePath%>toIndex">首页</a></li>
                 <li><a href="<%=basePath%>massagePage">图文</a></li>
-                <li><a href="<%=basePath%>audioPage">音频</a></li>S
+                <li><a href="<%=basePath%>audioPage">音频</a></li>
                 <li><a href="<%=basePath%>topics/1">问答</a></li>
                 <li><a href="<%=basePath%>vUsers/1">大咖秀</a></li>
                 <li class="am-dropdown" data-am-dropdown>
@@ -226,11 +287,11 @@
                                 <div class="am-btn-group">
                                 <button class="am-btn am-btn-secondary am-radius">
                                 <i class="am-icon-caret-up"></i>
-                                赞 531
+                                赞 ${massage.likeNumb}
                                 </button>
-                                <button class="am-btn am-btn-secondary am-radius">
+                                <button class="am-btn am-btn-secondary am-radius" key="1" onclick="clickCommentBtn(${massage.id},this)">
                                     <i class="am-icon-comment"></i>
-                                110条评论
+                                ${massage.commentNumb}条评论
                                 </button>
 
                                 <button class="am-btn am-btn-secondary am-radius">
@@ -254,70 +315,8 @@
                         <div class="newsico am-fr">
                             <i class="am-icon-clock-o">${massage.createTime}</i>
                         </div>
-                        <ul class="am-comments-list am-comments-list-flip">
-                            <li class="am-comment am-comment-highlight">
-                                <article class="am-comment" style="margin-top: -20px;margin-bottom: -20px;margin-left: 30px;">
-                                    <a href="#link-to-user-home">
-                                        <img src="<%=basePath%>Temp-images/face2.jpg" alt="" class="am-comment-avatar" width="48" height="48"/>
-                                    </a>
+                        <ul id="${massage.id}" class="am-comments-list am-comments-list-flip">
 
-                                    <div class="am-comment-main">
-                                        <header class="am-comment-hd">
-                                            <!--<h3 class="am-comment-title">评论标题</h3>-->
-                                            <div class="am-comment-meta">
-                                                <a href="#link-to-user" class="am-comment-author">某人</a>
-                                                评论于 <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">2014-7-12 15:30</time>
-                                            </div>
-                                        </header>
-
-                                        <div class="am-comment-bd">
-                                            你好，我在评论中想你了！
-                                        </div>
-                                    </div>
-                                </article>
-                            </li>
-                            <li class="am-comment am-comment-highlight">
-                                <article class="am-comment" style="margin-top: -20px;margin-bottom: -20px;margin-left: 30px;">
-                                    <a href="#link-to-user-home">
-                                        <img src="<%=basePath%>Temp-images/face2.jpg" alt="" class="am-comment-avatar" width="48" height="48"/>
-                                    </a>
-
-                                    <div class="am-comment-main">
-                                        <header class="am-comment-hd">
-                                            <!--<h3 class="am-comment-title">评论标题</h3>-->
-                                            <div class="am-comment-meta">
-                                                <a href="#link-to-user" class="am-comment-author">某人</a>
-                                                评论于 <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">2014-7-12 15:30</time>
-                                            </div>
-                                        </header>
-
-                                        <div class="am-comment-bd">
-                                            你好，我在评论中想你了！
-                                        </div>
-                                    </div>
-                                </article>
-                            </li>
-                            <li class="am-comment am-comment-highlight">
-                                <article class="am-comment" style="margin-top: -20px;margin-bottom: -20px;margin-left: 30px;">
-                                    <a href="#link-to-user-home">
-                                        <img src="<%=basePath%>Temp-images/face2.jpg" alt="" class="am-comment-avatar" width="48" height="48"/>
-                                    </a>
-
-                                    <div class="am-comment-main">
-                                        <header class="am-comment-hd">
-                                            <!--<h3 class="am-comment-title">评论标题</h3>-->
-                                            <div class="am-comment-meta">
-                                                <a href="#link-to-user" class="am-comment-author">某人</a>
-                                                评论于 <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">2014-7-12 15:30</time>
-                                            </div>
-                                        </header>
-
-                                        <div class="am-comment-bd">
-                                            你好，我在评论中想你了！
-                                        </div>
-                                    </div>
-                                </article>
-                            </li>
                         </ul>
                     </c:forEach>
                 </ul>
@@ -351,11 +350,11 @@
                                 <div class="am-btn-group">
                                     <button class="am-btn am-btn-secondary am-radius">
                                         <i class="am-icon-caret-up"></i>
-                                        赞 531
+                                        赞 ${massage.likeNumb}
                                     </button>
-                                    <button class="am-btn am-btn-secondary am-radius">
+                                    <button class="am-btn am-btn-secondary am-radius"  key="1" flag="new" onclick="clickCommentBtn('${massage.id}',this)">
                                         <i class="am-icon-comment"></i>
-                                        110条评论
+                                            ${massage.commentNumb}条评论
                                     </button>
 
                                     <button class="am-btn am-btn-secondary am-radius">
@@ -377,10 +376,11 @@
 
                         </li>
                         <div class="newsico am-fr">
-
                             <i class="am-icon-clock-o">${massage.createTime}</i>
-                            <i class="am-icon-hand-pointer-o">${massage.browseNumb}</i>
                         </div>
+                        <ul id="new${massage.id}" class="am-comments-list am-comments-list-flip">
+
+                        </ul>
                     </c:forEach>
                 </ul>
             </div>
@@ -440,7 +440,7 @@
                         <li>
                             <div class="am-gallery-item">
                                 <a href="Temp-images/dd.jpg">
-                                    <img src="<%=basePath%>-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
+                                    <img src="<%=basePath%>Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
                                     <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
                                     <div class="am-gallery-desc">2375-09-26</div>
                                 </a>
@@ -526,7 +526,7 @@
                         <li>
                             <div class="am-gallery-item">
                                 <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
+                                    <img src="<%=basePath%>Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
                                     <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
                                     <div class="am-gallery-desc">2375-09-26</div>
                                 </a>
