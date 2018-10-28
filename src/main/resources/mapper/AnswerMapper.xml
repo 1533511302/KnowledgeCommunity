@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace ="top.maniy.mapper.AnswerMapper">
+
+
+
+
+	<select id="findAnswerByQuesId" resultType="Answer">
+		select * from answer WHERE quesId=#{quseId} ORDER BY likeNumb DESC
+	</select>
+
+	<select id="findAnswerByUserId" resultType="Answer">
+		SELECT * FROM answer WHERE userId=#{userId}
+	</select>
+
+
+	<select id="findAnswerById" resultType="Answer">
+		SELECT * FROM answer WHERE id = #{id}
+	</select>
+
+
+	<insert id="saveAnswer" parameterType="Answer">
+		INSERT INTO answer
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="answerId != null" >
+			answerId,
+			</if>
+            <if test="userId != null" >
+                userId,
+            </if>
+            <if test="topicId != null" >
+				topicId,
+            </if>
+			<if test="answerContent != null" >
+				answerContent,
+			</if>
+			<if test="photo != null" >
+				photo,
+			</if>
+			<if test="anonymity != null" >
+				anonymity,
+			</if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="answerId != null" >
+				#{answerId},
+			</if>
+			<if test="userId != null" >
+				#{userId},
+			</if>
+			<if test="topicId != null" >
+				#{topicId},
+			</if>
+			<if test="answerContent != null" >
+				#{answerContent},
+			</if>
+			<if test="photo != null" >
+				#{photo},
+			</if>
+			<if test="anonymity != null" >
+				#{anonymity},
+			</if>
+        </trim>
+	</insert>
+
+	<delete id="deleteAnswer">
+		DELETE FROM answer WHERE id=#{id}
+	</delete>
+
+	<update id="updateAnswer" parameterType="Answer">
+		UPDATE answer
+        <set>
+
+			<if test="topicId != null" >
+				topicId=#{topicId},
+			</if>
+			<if test="answerContent != null" >
+				answerContent=#{answerContent},
+			</if>
+			<if test="photo != null" >
+				photo=#{photo},
+			</if>
+			<if test="anonymity != null" >
+				anonymity=#{anonymity},
+			</if>
+			<if test="likeNumb != null" >
+				likeNumb=#{likeNumb},
+			</if>
+			<if test="commentNumb != null" >
+				commentNumb=#{commentNumb},
+			</if>
+		</set>
+		WHERE id =#{id}
+	</update>
+</mapper>
