@@ -176,7 +176,7 @@
         <div class="am-u-sm-0 am-u-md-0 am-u-lg-4 padding-none lrad">
             <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
                 <h2 class="am-titlebar-title ">
-                    图文类型
+                    图文分类
                 </h2>
 
             </div>
@@ -224,24 +224,20 @@
                             </div>
                             <div style="width:840px;height:50px;margin-top: 120px;">
                                 <div class="am-btn-group">
-                                    <button class="am-btn am-btn-secondary am-radius">
+                                    <button class="am-btn am-btn-secondary am-radius"  style="width: 100px">
                                         <i class="am-icon-caret-up"></i>
                                         赞 ${massage.likeNumb}
                                     </button>
-                                    <button class="am-btn am-btn-secondary am-radius"  key="1" onclick="clickCommentBtn(${massage.id},this)">
+                                    <button class="am-btn am-btn-secondary am-radius"  key="1" onclick="clickCommentBtn(${massage.id},this)"  style="width: 150px">
                                         <i class="am-icon-comment"></i>
                                             ${massage.commentNumb}条评论
                                     </button>
 
-                                    <button class="am-btn am-btn-secondary am-radius">
+                                    <button class="am-btn am-btn-secondary am-radius" style="width: 100px">
                                         <i class="am-icon-heart"></i>
                                         收藏
                                     </button>
 
-                                    <button class="am-btn am-btn-secondary">
-                                        <i class="am-icon-share"></i>
-                                        分享
-                                    </button>
                                     <button class="am-btn am-btn-secondary" style="width: 100px">
                                         <i class="am-icon-eye"></i>
                                             ${massage.browseNumb}

@@ -80,7 +80,7 @@
             <ul class="am-nav am-nav-pills am-topbar-nav">
                 <li><a href="<%=basePath%>toIndex">首页</a></li>
                 <li><a href="<%=basePath%>massagePage">图文</a></li>
-                <li><a href="#">音频</a></li>
+                <li><a href="<%=basePath%>audioPage">音频</a></li>
                 <li><a href="<%=basePath%>topics/1">问答</a></li>
                 <li class="am-active"><a href="<%=basePath%>vUsers/1">大咖秀</a></li>
                 <li class="am-dropdown" data-am-dropdown>

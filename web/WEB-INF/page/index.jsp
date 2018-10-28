@@ -116,7 +116,7 @@
             if($(btn).attr("key")==1){
                 $.post("AddLikeNum",{massageId:massageId},function (data) {
                     if(data){
-                        $(btn).attr("data-am-popover","{content: '你已经点过赞了'}");
+                        $(btn).attr("data-am-popover","{content: '鄙是点击显示的'}");
                         $(btn).html("<i class=\"am-icon-caret-up\"></i>&nbsp;赞&nbsp;"+(likeNumb+1));
                     }
                 });
@@ -297,28 +297,23 @@
                             </div>
                             <div style="width:840px;height:50px;margin-top: 120px;">
                                 <div class="am-btn-group">
-                                <button class="am-btn am-btn-secondary am-radius" key="1"  onclick="clickLikeNumbBtn(${massage.id},${massage.likeNumb},this)">
+                                <button class="am-btn am-btn-secondary am-radius" key="1"  onclick="clickLikeNumbBtn(${massage.id},${massage.likeNumb},this)"  data-am-popover="{content: '已经点赞成功！！'}"  style="width: 100px">
                                 <i class="am-icon-caret-up"></i>
                                 赞 ${massage.likeNumb}
                                 </button>
-                                <button class="am-btn am-btn-secondary am-radius" key="1" onclick="clickCommentBtn(${massage.id},this)">
+                                <button class="am-btn am-btn-secondary am-radius" key="1" onclick="clickCommentBtn(${massage.id},this)"  style="width: 150px">
                                     <i class="am-icon-comment"></i>
                                 ${massage.commentNumb}条评论
                                 </button>
 
-                                <button class="am-btn am-btn-secondary am-radius">
+                                <button class="am-btn am-btn-secondary am-radius"  style="width: 100px">
                                     <i class="am-icon-heart"></i>
                                 收藏
                                 </button>
-
-                                <button class="am-btn am-btn-secondary">
-                                    <i class="am-icon-share"></i>
-                                    分享
+                                <button class="am-btn am-btn-secondary" style="width: 100px">
+                                    <i class="am-icon-eye"></i>
+                                        ${massage.browseNumb}
                                 </button>
-                                    <button class="am-btn am-btn-secondary" style="width: 100px">
-                                        <i class="am-icon-eye"></i>
-                                            ${massage.browseNumb}
-                                    </button>
                                 </div>
 
                             </div>
@@ -360,23 +355,18 @@
                             </div>
                             <div style="width:840px;height:50px;margin-top: 120px;">
                                 <div class="am-btn-group">
-                                    <button class="am-btn am-btn-secondary am-radius" key="1" onclick="clickLikeNumbBtn(${massage.id},${massage.likeNumb},this)">
+                                    <button class="am-btn am-btn-secondary am-radius" key="1" onclick="clickLikeNumbBtn(${massage.id},${massage.likeNumb},this)"  data-am-popover="{content: '已经点赞成功！！'}" style="width: 100px">
                                         <i class="am-icon-caret-up"></i>
                                         赞 ${massage.likeNumb}
                                     </button>
-                                    <button class="am-btn am-btn-secondary am-radius"  key="1" flag="new" onclick="clickCommentBtn('${massage.id}',this)">
+                                    <button class="am-btn am-btn-secondary am-radius"  key="1" flag="new" onclick="clickCommentBtn('${massage.id}',this)" style="width: 150px">
                                         <i class="am-icon-comment"></i>
                                             ${massage.commentNumb}条评论
                                     </button>
 
-                                    <button class="am-btn am-btn-secondary am-radius">
+                                    <button class="am-btn am-btn-secondary am-radius" style="width: 100px">
                                         <i class="am-icon-heart"></i>
                                         收藏
-                                    </button>
-
-                                    <button class="am-btn am-btn-secondary">
-                                        <i class="am-icon-share"></i>
-                                        分享
                                     </button>
                                     <button class="am-btn am-btn-secondary" style="width: 100px">
                                         <i class="am-icon-eye"></i>

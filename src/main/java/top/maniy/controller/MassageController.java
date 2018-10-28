@@ -49,7 +49,7 @@ public class MassageController {
     @RequestMapping(value = "/massagePage")
     public String massagePage(ModelMap modelMap){
         List<Massage> massageList=massageService.findMassageRandTo10();
-        List<Category> categoryList=categoryService.findAllCategory();
+        List<Category> categoryList=categoryService.findCategoryByTypeAndStatus(1,"1");
         modelMap.put("massageList",massageList);
         modelMap.put("categoryList",categoryList);
         return "massagesPage";
@@ -110,6 +110,11 @@ public class MassageController {
         return massageService.saveMassage(massage);
     }
 
+    /**
+     * 点赞加一
+     * @param massageId
+     * @return
+     */
     @RequestMapping(value = "AddLikeNum")
     @ResponseBody
     public boolean addLikeNum(@RequestParam("massageId") Integer massageId) {

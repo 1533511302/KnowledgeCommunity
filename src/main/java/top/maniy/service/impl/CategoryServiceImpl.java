@@ -26,6 +26,16 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public Category findCategoryById(Integer id) {
+        return categoryMapper.findCategoryById(id);
+    }
+
+    @Override
+    public List<Category> findCategoryByTypeRandNum(Integer categoryType, Integer num) {
+        return categoryMapper.findCategoryByTypeRandNum(categoryType,num);
+    }
+
+    @Override
     public List<Category> findCategoryByTypeAndStatus(Integer type, String status) {
         return categoryMapper.findCategoryByTypeAndStatus(type,status);
     }

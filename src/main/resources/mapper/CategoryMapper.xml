@@ -10,6 +10,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM category WHERE categoryType=#{categoryType} AND status=#{status}
 	</select>
 
+	<select id="findCategoryById" resultType="Category">
+		SELECT * FROM category WHERE id=#{id}
+	</select>
+
+	<select id="findCategoryByTypeRandNum" resultType="Category">
+		SELECT * FROM category WHERE categoryType=#{categoryType} order by rand() limit #{num}
+	</select>
+
 	<select id="findAllCategory" resultType="Category">
 		select * from category
 	</select>

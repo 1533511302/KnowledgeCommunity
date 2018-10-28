@@ -1,5 +1,6 @@
 package top.maniy.service;
 
+import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.annotations.Param;
 import top.maniy.entity.Audio;
 
@@ -13,15 +14,15 @@ import java.util.List;
  */
 public interface AudioService {
     //根据类型查询音频
-    List<Audio> findAudioByCategoryId(Integer categoryId);
+    PageInfo<Audio> findAudioByCategoryId(Integer categoryId, int currentPage, int pageSize);
 
     //根据id查询音频
-    List<Audio> findAudioById(Integer id);
+    Audio findAudioById(Integer id);
     //模糊查询音频
-    List<Audio> findAudioLikeAudioName(@Param("audioName") String audioName);
+    PageInfo<Audio> findAudioLikeAudioName(String audioName, int currentPage, int pageSize);
 
     //根据类型随机查询num条音频
-    List<Audio> findAudioByCategoryIdRand(@Param("categoryId") Integer categoryId, @Param("num") Integer num);
+    List<Audio> findAudioByCategoryIdRand(Integer categoryId,Integer num);
 
     //添加音频
     boolean saveAudio(Audio audio);

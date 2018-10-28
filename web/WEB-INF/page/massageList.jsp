@@ -177,24 +177,20 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                             </div>
                             <div style="width:840px;height:50px;margin-top: 120px;">
                                 <div class="am-btn-group">
-                                    <button class="am-btn am-btn-secondary am-radius">
+                                    <button class="am-btn am-btn-secondary am-radius"  style="width: 100px">
                                         <i class="am-icon-caret-up"></i>
                                         赞 531
                                     </button>
-                                    <button class="am-btn am-btn-secondary am-radius">
+                                    <button class="am-btn am-btn-secondary am-radius"  style="width: 150px">
                                         <i class="am-icon-comment"></i>
                                         110条评论
                                     </button>
 
-                                    <button class="am-btn am-btn-secondary am-radius">
+                                    <button class="am-btn am-btn-secondary am-radius"  style="width: 100px">
                                         <i class="am-icon-heart"></i>
                                         收藏
                                     </button>
 
-                                    <button class="am-btn am-btn-secondary">
-                                        <i class="am-icon-share"></i>
-                                        分享
-                                    </button>
                                     <button class="am-btn am-btn-secondary" style="width: 100px">
                                         <i class="am-icon-eye"></i>
                                             ${massage.browseNumb}

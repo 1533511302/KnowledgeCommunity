@@ -37,6 +37,7 @@ public class AudioMapperTest {
 
     @Test
     public void findAudioByCategoryIdRand() {
+        System.out.println(audioMapper.findAudioByCategoryIdRand(20,12).size());
     }
 
     @Test

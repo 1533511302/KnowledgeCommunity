@@ -1,5 +1,7 @@
 package top.maniy.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.maniy.entity.Audio;
@@ -21,37 +23,43 @@ public class AudioServiceImpl implements AudioService {
     private AudioMapper audioMapper;
 
     @Override
-    public List<Audio> findAudioByCategoryId(Integer categoryId) {
-        return null;
+    public PageInfo<Audio> findAudioByCategoryId(Integer categoryId, int currentPage, int pageSize) {
+        PageHelper.startPage(currentPage,pageSize);
+        List<Audio> audioList=audioMapper.findAudioByCategoryId(categoryId);
+        PageInfo<Audio> pageInfo=new PageInfo<>(audioList);
+        return pageInfo;
     }
 
     @Override
-    public List<Audio> findAudioById(Integer id) {
-        return null;
+    public Audio findAudioById(Integer id) {
+        return audioMapper.findAudioById(id);
     }
 
     @Override
-    public List<Audio> findAudioLikeAudioName(String audioName) {
-        return null;
+    public PageInfo<Audio> findAudioLikeAudioName(String audioName, int currentPage, int pageSize) {
+        PageHelper.startPage(currentPage,pageSize);
+        List<Audio> audioList=audioMapper.findAudioLikeAudioName(audioName);
+        PageInfo<Audio> pageInfo=new PageInfo<>(audioList);
+        return pageInfo;
     }
 
     @Override
     public List<Audio> findAudioByCategoryIdRand(Integer categoryId, Integer num) {
-        return null;
+        return audioMapper.findAudioByCategoryIdRand(categoryId,num);
     }
 
     @Override
     public boolean saveAudio(Audio audio) {
-        return false;
+        return audioMapper.saveAudio(audio);
     }
 
     @Override
     public boolean updateAudio(Audio audio) {
-        return false;
+        return audioMapper.updateAudio(audio);
     }
 
     @Override
     public boolean deleteAudio(Integer id) {
-        return false;
+        return audioMapper.deleteAudio(id);
     }
 }

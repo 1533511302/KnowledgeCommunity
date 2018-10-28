@@ -119,60 +119,60 @@
                 <a href="category2.html">
                     <div class="ctl active">
                         <img src="<%=basePath%>Temp-images/face1.jpg">
-                        <h3>高云峰</h3>
-                        <p>清华大学教授</p>
+                        <h3>情商课</h3>
+                        <p>蔡康永</p>
                     </div>
-                    <button type="button" class="am-btn am-btn-primary">大咖主页</button>
+                    <button type="button" class="am-btn am-btn-primary">专辑推荐</button>
                 </a>
             </li>
             <li>
                 <a href="http://www.sina.com">
                     <div class="ctl">
                         <img src="<%=basePath%>Temp-images/face2.jpg">
-                        <h3>刘玉乐</h3>
-                        <p>清华大学教授</p>
+                        <h3>矮大紧指北</h3>
+                        <p>高晓松</p>
                     </div>
-                    <button type="button" class="am-btn am-btn-default">大咖主页</button>
+                    <button type="button" class="am-btn am-btn-default">专辑推荐</button>
                 </a>
             </li>
             <li>
                 <a href="http://www.qq.com">
                     <div class="ctl">
                         <img src="<%=basePath%>Temp-images/face3.jpg">
-                        <h3>付林</h3>
-                        <p>清华大学教授</p>
+                        <h3>像他一样说话</h3>
+                        <p>崔永元</p>
                     </div>
-                    <button type="button" class="am-btn am-btn-default">大咖主页</button>
+                    <button type="button" class="am-btn am-btn-default">专辑推荐</button>
                 </a>
             </li>
             <li>
                 <a href="http://www.youku.com">
                     <div class="ctl">
                         <img src="<%=basePath%>Temp-images/face4.jpg">
-                        <h3>陈琳</h3>
-                        <p>哈佛大学管理类博士</p>
+                        <h3>观复嘟嘟</h3>
+                        <p>马未都</p>
                     </div>
-                    <button type="button" class="am-btn am-btn-default">大咖主页</button>
+                    <button type="button" class="am-btn am-btn-default">专辑推荐</button>
                 </a>
             </li>
             <li>
                 <a href="http://www.yahoo.com">
                     <div class="ctl">
                         <img src="<%=basePath%>Temp-images/face5.jpg">
-                        <h3>王明旭</h3>
-                        <p>哈佛大学医学博士</p>
+                        <h3>吴晓波频道</h3>
+                        <p>吴晓波</p>
                     </div>
-                    <button type="button" class="am-btn am-btn-default">大咖主页</button>
+                    <button type="button" class="am-btn am-btn-default">专辑推荐</button>
                 </a>
             </li>
             <li>
                 <a href="http://www.china.com">
                     <div class="ctl">
                         <img src="<%=basePath%>Temp-images/face6.jpg">
-                        <h3>高晓松</h3>
-                        <p>阿里娱乐仲裁</p>
+                        <h3>讲讲行天下</h3>
+                        <p>刘宗华</p>
                     </div>
-                    <button type="button" class="am-btn am-btn-default">大咖主页</button>
+                    <button type="button" class="am-btn am-btn-default">专辑推荐</button>
                 </a>
             </li>
         </ul>
@@ -220,125 +220,103 @@
         $("#topface li:eq(0) p").html(temp_p);
     });
 </script>
-<div id="cattit">
-    <ul class="am-avg-sm-2 am-avg-md-2 am-avg-lg-2">
-        <li><h3><a href="#">合作专栏</a></h3></li>
-        <li  class="active-none"><h3><a href="#">个人专栏</a></h3></li>
+<div class="am-container" style="margin-top: 10px">
+    <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
+        <h2 class="am-titlebar-title ">
+            音频分类
+        </h2>
+
+    </div>
+    <ul class="am-avg-sm-1 am-avg-md-2 am-avg-lg-1" style="margin-top: 30px;margin-left: 10px">
+        <li class="ms" style="line-height: 50px">
+
+            <c:forEach var="category" items="${categoryList}" varStatus="v">
+                <c:set var="badge" value="${v.index%4==1?'am-badge-primary':(v.index%4==2?'am-badge-secondary':(v.index%4==3?'am-badge-success':'am-badge-warning'))}"/>
+
+                <a class="am-badge am-round ${badge} am-text-lg" style="margin-left: 10px" href="<%=basePath%>audioList/${category.id}">${category.categoryName}</a>
+            </c:forEach>
+        </li>
+
     </ul>
+</div>
+
+<hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+
+<div class="star am-container mcenter"><span><img src="images/star.png">${categoryName1}</span></div>
+<div class="am-container">
+    <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2 am-avg-md-4 am-avg-lg-6 am-gallery-bordered" data-am-gallery="{  }" >
+        <c:forEach var="audio" items="${audioList1}" varStatus="v">
+            <li>
+            <div class="am-gallery-item">
+                <a href="<%=basePath%>audio/${audio.id}" class="">
+                    <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
+                    <h3 class="am-gallery-title">${audio.audioName}</h3>
+                    <div class="am-gallery-desc">${audio.createTime}</div>
+                </a>
+            </div>
+        </li>
+        </c:forEach>
+
+    </ul>
+
 </div>
 <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
 
-<div class="star am-container mcenter"><span><img src="images/star.png">媒体报道</span></div>
+<div class="star am-container mcenter"><span><img src="images/star.png">${categoryName2}</span></div>
 <div class="am-container">
     <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2 am-avg-md-4 am-avg-lg-6 am-gallery-bordered" data-am-gallery="{  }" >
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-1.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
-                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-2.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-2.jpg"  alt="某天 也许会相遇 相遇在这个好地方"/>
-                    <h3 class="am-gallery-title">某天 也许会相遇 相遇在这个好地方</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-3.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-3.jpg"  alt="不要太担心 只因为我相信"/>
-                    <h3 class="am-gallery-title">不要太担心 只因为我相信</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-4.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg"  alt="终会走过这条遥远的道路"/>
-                    <h3 class="am-gallery-title">终会走过这条遥远的道路</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-1.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
-                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-2.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-2.jpg"  alt="某天 也许会相遇 相遇在这个好地方"/>
-                    <h3 class="am-gallery-title">某天 也许会相遇 相遇在这个好地方</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-3.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-3.jpg"  alt="不要太担心 只因为我相信"/>
-                    <h3 class="am-gallery-title">不要太担心 只因为我相信</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-4.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg"  alt="终会走过这条遥远的道路"/>
-                    <h3 class="am-gallery-title">终会走过这条遥远的道路</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-3.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-3.jpg"  alt="不要太担心 只因为我相信"/>
-                    <h3 class="am-gallery-title">不要太担心 只因为我相信</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-4.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg"  alt="终会走过这条遥远的道路"/>
-                    <h3 class="am-gallery-title">终会走过这条遥远的道路</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-3.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-3.jpg"  alt="不要太担心 只因为我相信"/>
-                    <h3 class="am-gallery-title">不要太担心 只因为我相信</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-4.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg"  alt="终会走过这条遥远的道路"/>
-                    <h3 class="am-gallery-title">终会走过这条遥远的道路</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                </a>
-            </div>
-        </li>
+        <c:forEach var="audio" items="${audioList2}" varStatus="v">
+            <li>
+                <div class="am-gallery-item">
+                    <a href="<%=basePath%>audio/${audio.id}" class="">
+                        <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
+                        <h3 class="am-gallery-title">${audio.audioName}</h3>
+                        <div class="am-gallery-desc">${audio.createTime}</div>
+                    </a>
+                </div>
+            </li>
+        </c:forEach>
+
+    </ul>
+
+</div>
+<hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+
+<div class="star am-container mcenter"><span><img src="images/star.png">${categoryName3}</span></div>
+<div class="am-container">
+    <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2 am-avg-md-4 am-avg-lg-6 am-gallery-bordered" data-am-gallery="{  }" >
+        <c:forEach var="audio" items="${audioList3}" varStatus="v">
+            <li>
+                <div class="am-gallery-item">
+                    <a href="<%=basePath%>audio/${audio.id}" class="">
+                        <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
+                        <h3 class="am-gallery-title">${audio.audioName}</h3>
+                        <div class="am-gallery-desc">${audio.createTime}</div>
+                    </a>
+                </div>
+            </li>
+        </c:forEach>
+
+    </ul>
+
+</div>
+<hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+
+<div class="star am-container mcenter"><span><img src="images/star.png">${categoryName4}</span></div>
+<div class="am-container">
+    <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2 am-avg-md-4 am-avg-lg-6 am-gallery-bordered" data-am-gallery="{  }" >
+        <c:forEach var="audio" items="${audioList4}" varStatus="v">
+            <li>
+                <div class="am-gallery-item">
+                    <a href="<%=basePath%>audio/${audio.id}" class="">
+                        <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
+                        <h3 class="am-gallery-title">${audio.audioName}</h3>
+                        <div class="am-gallery-desc">${audio.createTime}</div>
+                    </a>
+                </div>
+            </li>
+        </c:forEach>
+
     </ul>
 
 </div>

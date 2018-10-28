@@ -12,8 +12,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from audio WHERE categoryId=#{categoryId}
 	</select>
 
-	<select id="findQuestionLikeQuesName" resultType="Question" parameterType="String">
-		SELECT * FROM audio WHERE quesName LIKE '%${quesName}%'
+	<select id="findAudioLikeAudioName" resultType="Audio" parameterType="String">
+		SELECT * FROM audio WHERE audioName LIKE '%${audioName}%'
 	</select>
 
 
