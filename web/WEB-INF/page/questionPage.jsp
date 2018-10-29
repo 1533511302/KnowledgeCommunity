@@ -104,183 +104,204 @@
         </div>
     </div>
 </header>
-<div class="am-container" style="margin-top: 10px">
+<!--banner-->
+<div class="banner">
+    <div class="am-g am-container padding-none">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-8 padding-none">
+            <div class="am-container" style="margin-top: 10px">
+                <div class="am-panel am-panel-success">
+                    <div class="am-panel-hd">问题：<h3 style="float: right;font-size: 18px;color:#dd514c"><span class="am-icon-eye">&nbsp;&nbsp;</span>${question.browseNumb}</h3></div>
+                    <div class="am-panel-bd" style="padding: 1rem;padding-bottom: 0.2rem">
+                        <h2>${question.quesName}</h2>
 
-</div>
-<div class="star am-container mcenter"><span><img src="<%=basePath%>images/star.png">回答</span></div>
-<div class="am-container events">
-    <ul  class="am-comments-list am-comments-list-flip">
-        <li class="am-comment am-comment-highlight">
-            <article class="am-comment" style="margin-top: -20px;margin-bottom: -20px;margin-left: 30px;">
-                <a href="#link-to-user-home">
-                    <img src="<%=basePath%>Temp-images/face2.jpg" alt="" class="am-comment-avatar" width="48" height="48"/>
-                </a>
-                <div class="am-comment-main">
-                    <header class="am-comment-hd">
-                        <!--<h3 class=\"am-comment-title\">评论标题</h3>-->
-                        <div class="am-comment-meta">
-                        <a href="#link-to-user" class="am-comment-author">某人</a>
-                         评论于 <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800"></time>
-                        </div>
-                    </header>
 
-                    <div class="am-comment-bd">
-                    comment.commentContent
                     </div>
+                    <div class="am-panel-bd">
+                        ${question.quesDescribe}
+                    </div>
+                    <footer class="am-panel-footer" style="margin-top: 1px">一共有${question.answerNumb}回答</footer>
                 </div>
-            </article>
-        </li>
-    </ul>
-    <div class="am-fr"></div>
-    <button type="button" class="am-btn am-btn-default am-btn-block" style="margin: 20px 0">更多活动</button>
+            </div>
+
+        </div>
+        <div class="am-u-sm-0 am-u-md-0 am-u-lg-4 padding-none lrad">
+            <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
+                <h2 class="am-titlebar-title ">
+                    话题
+                </h2>
+
+            </div>
+            <ul class="am-avg-sm-1 am-avg-md-2 am-avg-lg-1" style="margin-top: 30px;margin-left: 10px">
+                <li class="ms" style="line-height: 50px">
+
+                    <c:forEach var="topic" items="${topicList.list}" varStatus="v">
+                        <c:set var="badge" value="${v.index%4==1?'am-badge-primary':(v.index%4==2?'am-badge-secondary':(v.index%4==3?'am-badge-success':'am-badge-warning'))}"/>
+
+                        <a class="am-badge am-round ${badge} am-text-lg" style="margin-left: 10px" href="<%=basePath%>questionList/${topic.id}">${topic.topicName}</a>
+                    </c:forEach>
+                </li>
+
+            </ul>
+        </div>
+    </div>
 </div>
+<div class="am-g am-container newatype">
+    <div class="am-u-sm-12 am-u-md-12 am-u-lg-8 oh">
+        <div data-am-widget="list_news" class="am-list-news am-list-news-default ">
+            <div class="am-list-news-bd">
+                <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
+                    <h2 class="am-titlebar-title ">
+                        回答
+                    </h2>
+                    <nav class="am-titlebar-nav">
+                        <a href="#more">more &raquo;</a>
+                    </nav>
+                </div>
+                <ul id="answerList" class="am-comments-list am-comments-list-flip">
+                    <c:forEach var="answer" items="${pageInfo.list}" varStatus="index">
+                        <li class="am-comment am-comment-primary">
+                            <article class="am-comment">
+                                <a href="#link-to-user-home">
+                                    <img src="<%=basePath%>Temp-images/face2.jpg" alt="" class="am-comment-avatar" width="48" height="48"/>
+                                </a>
+                                <div class="am-comment-main">
+                                    <header class="am-comment-hd">
+                                        <!--<h3 class=\"am-comment-title\">评论标题</h3>-->
+                                        <div class="am-comment-meta">
+                                            <a href="#link-to-user" class="am-comment-author">某人</a>
+                                            回答于 <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">${answer.createTime}</time>
+                                        </div>
+                                    </header>
 
-<div class="am-container" style="margin: 100px auto">
-    <ul data-am-widget="pagination" class="am-pagination am-pagination-default am-text-center">
+                                    <div class="am-comment-bd">
+                                            ${answer.answerContent}
 
-        <li class="am-pagination-first ">
-            <a href="<c:url value="/topics/1"/>">首页</a>
-        </li>
+                                    </div>
+                                </div>
+                            </article>
+                        </li>
+                    </c:forEach>
+                    <div class="am-fr"></div>
+                    <a  href="<%=basePath%>question/${question.id}?pageSize=${pageInfo.pageSize+5}"><button type="button" class="am-badge-secondary am-btn am-btn-block" style="margin: 20px;">更多回答</button></a>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="am-u-sm-0 am-u-md-0 am-u-lg-4 ">
+        <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
+            <h2 class="am-titlebar-title ">
+                个人专栏
+            </h2>
+            <nav class="am-titlebar-nav">
+                <a href="#more">more &raquo;</a>
+            </nav>
+        </div>
 
-        <li class="am-pagination-prev ">
-            <a href="<c:url value="/topics/${pageInfo.pageNum-1>1?pageInfo.pageNum-1:1}"/>">&laquo;</a>
-        </li>
-        <c:set var="start" value="${pageInfo.pageNum-5<=0?1:pageInfo.pageNum-5}"/>
-        <c:set var="end" value="${start+9<pageInfo.pages?start+9:pageInfo.pages}"/>
-        <c:forEach begin="${start}" end="${end}" varStatus="loop">
-            <c:set var="active" value="${loop.index==pageInfo.pageNum?'am-active':''}"/>
+        <div data-am-widget="list_news" class="am-list-news am-list-news-default right-bg">
+            <ul class="am-list"  >
+                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+                    <div class="am-u-sm-4 am-list-thumb">
+                        <a href="http://www.douban.com/online/11624755/">
+                            <img src="<%=basePath%>Temp-images/face.jpg" class="face"/>
+                        </a>
+                    </div>
 
+                    <div class=" am-u-sm-8 am-list-main">
+                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">勾三古寺</a></h3>
 
-            <li class="${active}">
-                <a href="<c:url value="/topics/${loop.index}"/>">${loop.index}</a>
-            </li>
-        </c:forEach>
+                        <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
+                    </div>
+                </li>
+                <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+                    <div class="am-u-sm-4 am-list-thumb">
+                        <a href="http://www.douban.com/online/11624755/">
+                            <img src="<%=basePath%>Temp-images/face.jpg" class="face"/>
+                        </a>
+                    </div>
 
+                    <div class=" am-u-sm-8 am-list-main">
+                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">勾三古寺</a></h3>
 
-        <li class="am-pagination-next ">
-            <a href="<c:url value="/topics/${pageInfo.pageNum+1<pageInfo.pages?pageInfo.pageNum+1:pageInfo.pages}"/>">&raquo;</a>
-        </li>
+                        <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
 
-        <li class="am-pagination-last ">
-            <a href="<c:url value="/topics/${pageInfo.pages}"/>">尾页</a>
-        </li>
-    </ul>
-</div>
+                    </div>
+                </li>
+                <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+                    <div class="am-u-sm-4 am-list-thumb">
+                        <a href="http://www.douban.com/online/11624755/">
+                            <img src="<%=basePath%>Temp-images/face.jpg" class="face"/>
+                        </a>
+                    </div>
 
+                    <div class=" am-u-sm-8 am-list-main">
+                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">勾三古寺</a></h3>
 
-<div class="star am-container mcenter"><span><img src="<%=basePath%>images/star.png">媒体报道</span></div>
-<div class="am-container">
-    <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2 am-avg-md-4 am-avg-lg-6 am-gallery-bordered" data-am-gallery="{  }" >
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-1.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
-                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-2.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-2.jpg"  alt="某天 也许会相遇 相遇在这个好地方"/>
-                    <h3 class="am-gallery-title">某天 也许会相遇 相遇在这个好地方</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-3.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-3.jpg"  alt="不要太担心 只因为我相信"/>
-                    <h3 class="am-gallery-title">不要太担心 只因为我相信</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-4.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg"  alt="终会走过这条遥远的道路"/>
-                    <h3 class="am-gallery-title">终会走过这条遥远的道路</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-1.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
-                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-2.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-2.jpg"  alt="某天 也许会相遇 相遇在这个好地方"/>
-                    <h3 class="am-gallery-title">某天 也许会相遇 相遇在这个好地方</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-3.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-3.jpg"  alt="不要太担心 只因为我相信"/>
-                    <h3 class="am-gallery-title">不要太担心 只因为我相信</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-4.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg"  alt="终会走过这条遥远的道路"/>
-                    <h3 class="am-gallery-title">终会走过这条遥远的道路</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-3.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-3.jpg"  alt="不要太担心 只因为我相信"/>
-                    <h3 class="am-gallery-title">不要太担心 只因为我相信</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-4.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg"  alt="终会走过这条遥远的道路"/>
-                    <h3 class="am-gallery-title">终会走过这条遥远的道路</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-3.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-3.jpg"  alt="不要太担心 只因为我相信"/>
-                    <h3 class="am-gallery-title">不要太担心 只因为我相信</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-4.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg"  alt="终会走过这条遥远的道路"/>
-                    <h3 class="am-gallery-title">终会走过这条遥远的道路</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                </a>
-            </div>
-        </li>
-    </ul>
+                        <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
 
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
+            <h2 class="am-titlebar-title ">
+                合作专栏
+            </h2>
+            <nav class="am-titlebar-nav">
+                <a href="#more">more &raquo;</a>
+            </nav>
+        </div>
+
+        <div data-am-widget="list_news" class="am-list-news am-list-news-default right-bg">
+            <ul class="am-list">
+                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+                    <div class="am-u-sm-4 am-list-thumb">
+                        <a href="http://www.douban.com/online/11624755/">
+                            <img src="<%=basePath%>Temp-images/face.jpg" class="face"/>
+                        </a>
+                    </div>
+
+                    <div class=" am-u-sm-8 am-list-main">
+                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">勾三古寺</a></h3>
+
+                        <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
+                    </div>
+                </li>
+                <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+                    <div class="am-u-sm-4 am-list-thumb">
+                        <a href="http://www.douban.com/online/11624755/">
+                            <img src="<%=basePath%>Temp-images/face.jpg" class="face"/>
+                        </a>
+                    </div>
+
+                    <div class=" am-u-sm-8 am-list-main">
+                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">勾三古寺</a></h3>
+
+                        <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
+
+                    </div>
+                </li>
+                <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+                    <div class="am-u-sm-4 am-list-thumb">
+                        <a href="http://www.douban.com/online/11624755/">
+                            <img src="<%=basePath%>Temp-images/face.jpg" class="face"/>
+                        </a>
+                    </div>
+
+                    <div class=" am-u-sm-8 am-list-main">
+                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">勾三古寺</a></h3>
+
+                        <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
+
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
 
 

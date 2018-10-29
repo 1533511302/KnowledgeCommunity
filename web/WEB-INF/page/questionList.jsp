@@ -166,7 +166,7 @@
                             </div>
 
                             <div class=" am-u-sm-7 am-list-main">
-                                <h2 class="am-list-item-hd"><a href="<%=basePath%>massages/${question.id}">${question.quesName}</a></h2>
+                                <h2 class="am-list-item-hd"><a href="<%=basePath%>question/${question.id}">${question.quesName}</a></h2>
 
                                 <div class="am-list-item-text"><a class="am-text-truncate">${question.quesDescribe}</a></div>
 

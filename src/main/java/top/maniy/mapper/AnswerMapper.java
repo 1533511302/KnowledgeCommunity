@@ -18,7 +18,7 @@ public interface AnswerMapper {
     List<Answer> findAnswerByUserId(Integer userId);
 
     //根据回答id查询回答
-    List<Answer> findAnswerById(Integer id);
+    Answer findAnswerById(Integer id);
 
     //添加回答
     boolean saveAnswer(Answer answer);
@@ -27,5 +27,5 @@ public interface AnswerMapper {
     boolean updateAnswer(Answer answer);
 
     //删除回答
-    boolean deleteAnswer(Answer answer);
+    boolean deleteAnswer(Integer id);
 }

@@ -34,6 +34,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="topicId != null" >
 				topicId,
             </if>
+            <if test="quesId != null" >
+                quesId,
+            </if>
 			<if test="answerContent != null" >
 				answerContent,
 			</if>
@@ -55,6 +58,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="topicId != null" >
 				#{topicId},
 			</if>
+            <if test="quesId != null" >
+                #{quesId},
+            </if>
 			<if test="answerContent != null" >
 				#{answerContent},
 			</if>
