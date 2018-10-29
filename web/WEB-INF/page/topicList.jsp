@@ -104,9 +104,7 @@
         </div>
     </div>
 </header>
-<div class="am-container" style="margin-top: 10px">
-    <img src="<%=basePath%>Temp-images/tad1.png" class="am-img-responsive" alt=""/>
-</div>
+
 <div class="star am-container mcenter"><span><img src="<%=basePath%>images/star.png">即将开始</span></div>
 <div class="am-container events">
     <ul data-am-widget="gallery" class="am-gallery am-avg-sm-1 am-avg-md-3 am-avg-lg-3 am-gallery-bordered" data-am-gallery="{  }" >
@@ -130,7 +128,7 @@
     <button type="button" class="am-btn am-btn-default am-btn-block" style="margin: 20px 0">更多活动</button>
 </div>
 
-<div class="am-container" style="margin: 100px auto">
+<div class="am-container" style="margin: 20px auto">
     <ul data-am-widget="pagination" class="am-pagination am-pagination-default am-text-center">
 
         <li class="am-pagination-first ">
@@ -161,7 +159,35 @@
         </li>
     </ul>
 </div>
+<div class="am-container" style="margin-top: 10px">
+    <form class="am-form am-g" action="<%=basePath%>addAnswer/${question.id}" method="post">
+        <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 10px; margin-bottom: 10px">
+            <h2 class="am-titlebar-title ">
+                选择分类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </h2>
 
+            <select id="doc-select-1" style="width: 200px;height: 36px;">
+                <option value="0">---未选择---</option>
+            </select>
+        </div>
+
+        <div class="am-input-group am-input-group-primary" style="margin-top: 20px;margin-bottom: 20px">
+            <span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
+            <input id="title" type="text" class="am-form-field" placeholder="问题">
+        </div>
+
+        <h3 class="blog-comment">描述</h3>
+        <fieldset>
+            <div class="am-form-group">
+                <textarea name="answerContent" class="" rows="6" placeholder="问题描述"></textarea>
+            </div>
+
+
+        </fieldset>
+        <div class="star am-container mcenter"><span><button type="submit" class="am-btn am-btn-primary" style="width: 120px">提交</button></span></div>
+
+    </form>
+</div>
 
 <div class="star am-container mcenter"><span><img src="<%=basePath%>images/star.png">媒体报道</span></div>
 <div class="am-container">

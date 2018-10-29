@@ -50,6 +50,11 @@
     <![endif]-->
     <script src="<%=basePath%>assets/js/amazeui.min.js"></script>
     <script src="<%=basePath%>js/public.js"></script>
+    <script src="<%=basePath%>img/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script>
+
+
+    </script>
 </head>
 <body>
 
@@ -185,6 +190,17 @@
                     <a  href="<%=basePath%>question/${question.id}?pageSize=${pageInfo.pageSize+5}"><button type="button" class="am-badge-secondary am-btn am-btn-block" style="margin: 20px;">更多回答</button></a>
                 </ul>
             </div>
+            <form class="am-form am-g" action="<%=basePath%>addAnswer/${question.id}" method="post">
+                <h3 class="blog-comment">回答</h3>
+                <fieldset>
+                    <div class="am-form-group">
+                        <textarea name="answerContent" class="" rows="6" placeholder="回答内容"></textarea>
+                    </div>
+
+                    <button type="submit" class="am-btn am-btn-default">提交回答</button>
+                </fieldset>
+
+            </form>
         </div>
     </div>
     <div class="am-u-sm-0 am-u-md-0 am-u-lg-4 ">

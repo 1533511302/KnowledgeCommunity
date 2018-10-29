@@ -93,6 +93,11 @@ public class MassageController {
         return "massageListBySearch";
     }
 
+    @RequestMapping(value = "editMassage")
+    public String editMassagePage(){
+        return "editMassagePage";
+    }
+
     /**
      * 添加图文
      * @param type
