@@ -42,9 +42,13 @@ public class UserController {
     public String index() {
 
 
-        return "login";
+        return "loginPage";
     }
 
+    @RequestMapping(value = "registerPage",method = RequestMethod.GET)
+    public String registerPage(){
+        return "registerPage";
+    }
     /**
      * 登录验证
      * @param request
@@ -68,14 +72,19 @@ public class UserController {
     }
 
     /**
-     * 获取全部用户信息
+     * 用户名是否存在
      * @return
      */
-    @RequestMapping(value = "users")
+    @RequestMapping(value = "isUsername")
     @ResponseBody
-    public List<User> userList(){
-        return userService.findAllUser();
+    public boolean isUsername(@RequestParam String username){
+        if(userService.findUserByUsername(username)!=null)
+        {
+            return true;
+        }
+        return false;
     }
+
 
 
     @RequestMapping(value = "vUsers",method = RequestMethod.GET)

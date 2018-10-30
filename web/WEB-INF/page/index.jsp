@@ -207,44 +207,19 @@
             </div>
         </div>
         <div class="am-u-sm-0 am-u-md-0 am-u-lg-4 padding-none">
-            <div class="star am-container"><span><img src="images/star.png">荣誉榜</span></div>
+            <div class="star am-container"><span><img src="images/star.png">音频</span></div>
             <ul class="padding-none am-gallery am-avg-sm-2 am-avg-md-4 am-avg-lg-2 am-gallery-overlay" data-am-gallery="{ pureview: true }" >
-                <li>
-                    <div class="am-gallery-item">
-                        <a href="#">
-                            <img src="<%=basePath%>Temp-images/lins.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
-                            <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                            <div class="am-gallery-desc">2375-09-26</div>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="am-gallery-item">
-                        <a href="#">
-                            <img src="<%=basePath%>Temp-images/lins.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
-                            <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                            <div class="am-gallery-desc">2375-09-26</div>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="am-gallery-item">
-                        <a href="#">
-                            <img src="<%=basePath%>Temp-images/lins.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
-                            <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                            <div class="am-gallery-desc">2375-09-26</div>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="am-gallery-item">
-                        <a href="#">
-                            <img src="<%=basePath%>Temp-images/lins.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
-                            <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                            <div class="am-gallery-desc">2375-09-26</div>
-                        </a>
-                    </div>
-                </li>
+                <c:forEach var="audio" items="${audioList}">
+                    <li>
+                        <div class="am-gallery-item">
+                            <a href="#">
+                                <img src="<%=basePath%>Temp-images/lins.jpg"  alt="${audio.audioName}"/>
+                                <h3 class="am-gallery-title">${audio.audioName}</h3>
+                                <div class="am-gallery-desc">2375-09-26</div>
+                            </a>
+                        </div>
+                    </li>
+                </c:forEach>
             </ul>
         </div>
     </div>
@@ -752,7 +727,7 @@
         </div>
 
         <ul class="am-gallery am-avg-sm-1
-  am-avg-md-1 am-avg-lg-1 am-gallery-default" data-am-gallery="{ pureview: true }" >
+  am-avg-md-2 am-avg-lg-2 am-gallery-default" data-am-gallery="{ pureview: true }" >
             <li>
                 <div class="am-gallery-item">
                     <a href="http://s.amazeui.org/media/i/demos/bing-1.jpg" class="">

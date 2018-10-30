@@ -18,6 +18,10 @@ public interface AudioService {
 
     //根据id查询音频
     Audio findAudioById(Integer id);
+
+    //根据类型随机查询num条音频
+    List<Audio> findAudioRandTo4();
+
     //模糊查询音频
     PageInfo<Audio> findAudioLikeAudioName(String audioName, int currentPage, int pageSize);
 

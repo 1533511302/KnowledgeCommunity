@@ -36,6 +36,11 @@ public class AudioServiceImpl implements AudioService {
     }
 
     @Override
+    public List<Audio> findAudioRandTo4() {
+        return audioMapper.findAudioRand(4);
+    }
+
+    @Override
     public PageInfo<Audio> findAudioLikeAudioName(String audioName, int currentPage, int pageSize) {
         PageHelper.startPage(currentPage,pageSize);
         List<Audio> audioList=audioMapper.findAudioLikeAudioName(audioName);

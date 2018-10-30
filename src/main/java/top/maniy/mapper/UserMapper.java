@@ -12,6 +12,10 @@ import java.util.List;
  * @date 2018/9/29 9:07
  */
 public interface UserMapper {
+
+    //查询用户名 是否存在
+    User findUserByUsername(String username);
+
     //根据用户名和密码获得用户信息
     User findUserByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
 

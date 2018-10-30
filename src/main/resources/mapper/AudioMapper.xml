@@ -21,6 +21,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM audio WHERE id = #{Id}
 	</select>
 
+	<select id="findAudioRand" resultType="Audio">
+		SELECT * FROM audio order by rand() limit #{num}
+	</select>
+
 	<select id="findAudioByCategoryIdRand" resultType="Audio">
 		SELECT * FROM audio WHERE categoryId=#{categoryId} order by rand() limit #{num}
 	</select>

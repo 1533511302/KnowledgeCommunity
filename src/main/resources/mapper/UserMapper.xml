@@ -5,7 +5,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace ="top.maniy.mapper.UserMapper">
 
-
+	<select id="findUserByUsername" resultType="User">
+		SELECT username FROM user WHERE username=#{username}
+	</select>
 
 	<select id="findUserByUsernameAndPassword" resultType="User">
 		SELECT * FROM user WHERE username=#{username} AND password=#{password}

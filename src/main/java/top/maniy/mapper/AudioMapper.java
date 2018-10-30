@@ -21,6 +21,9 @@ public interface AudioMapper {
     List<Audio> findAudioLikeAudioName(@Param("audioName") String audioName);
 
     //根据类型随机查询num条音频
+    List<Audio> findAudioRand(@Param("num") Integer num);
+
+    //根据类型随机查询num条音频
     List<Audio> findAudioByCategoryIdRand(@Param("categoryId") Integer categoryId, @Param("num") Integer num);
 
     //添加音频

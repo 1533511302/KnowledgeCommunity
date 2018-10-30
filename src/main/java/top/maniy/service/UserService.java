@@ -17,6 +17,9 @@ import java.util.List;
  */
 public interface UserService {
 
+    //查询用户名 是否存在
+    User findUserByUsername(String username);
+
     //根据用户名和密码获得用户信息
     User findUserByUsernameAndPassword(String username, String password);
 
