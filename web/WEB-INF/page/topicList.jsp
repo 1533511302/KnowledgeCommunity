@@ -160,7 +160,8 @@
     </ul>
 </div>
 <div class="am-container" style="margin-top: 10px">
-    <form class="am-form am-g" action="<%=basePath%>addAnswer/${question.id}" method="post">
+    <div class="am-panel am-panel-success">
+        <div class="am-panel-hd">编辑器</div>
         <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 10px; margin-bottom: 10px">
             <h2 class="am-titlebar-title ">
                 选择分类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -173,20 +174,21 @@
 
         <div class="am-input-group am-input-group-primary" style="margin-top: 20px;margin-bottom: 20px">
             <span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
-            <input id="title" type="text" class="am-form-field" placeholder="问题">
+            <input id="quesTitle" type="text" class="am-form-field" placeholder="问题">
         </div>
 
         <h3 class="blog-comment">描述</h3>
         <fieldset>
             <div class="am-form-group">
-                <textarea name="answerContent" class="" rows="6" placeholder="问题描述"></textarea>
+                <textarea id="quesContent" style="width: 100%;" rows="6" placeholder="问题描述"></textarea>
             </div>
 
 
         </fieldset>
-        <div class="star am-container mcenter"><span><button type="submit" class="am-btn am-btn-primary" style="width: 120px">提交</button></span></div>
 
-    </form>
+    </div>
+    <div class="star am-container mcenter"><span><button id="save" type="button" class="am-btn am-btn-primary" onclick="clickSubmit()" style="width: 120px">提交</button></span></div>
+
 </div>
 
 <div class="star am-container mcenter"><span><img src="<%=basePath%>images/star.png">媒体报道</span></div>
@@ -346,5 +348,40 @@
         </div>
     </div>
 </footer>
+<script src="https://cdn.bootcss.com/jquery/3.1.0/jquery.js"></script>
+<script type="text/javascript">
+    $.get("<%=basePath%>topics",null,function (data) {
+        $.each(data,function (i,topic) {
+            $("#doc-select-1").append("<option value='"+topic.id+"'>"+topic.topicName+"</option>")
+        });
+    });
+
+    function clickSubmit() {
+        // 读取 text
+        var type=$("#doc-select-1 option:selected").val();
+        var title=$("#quesTitle").val();
+        var content=$("#quesContent").val();
+        console.log(type);
+        console.log(content);
+        console.log(title);
+        if(type!="0"){
+            if (title!="" && content!=""){
+                $.post("<%=basePath%>saveQuestion",{topicId:type,quesName:title,quesDescribe:content},function (data) {
+                    if(data=1){
+                        alert("提交成功");
+                    }
+                });
+            }else {
+                alert("标题和内容不能为空！！！")
+            }
+
+
+        }else{
+
+            alert("没有选择分类！！！")
+        }
+    }
+
+</script>
 </body>
 </html>

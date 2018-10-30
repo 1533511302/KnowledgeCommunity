@@ -190,17 +190,23 @@
                     <a  href="<%=basePath%>question/${question.id}?pageSize=${pageInfo.pageSize+5}"><button type="button" class="am-badge-secondary am-btn am-btn-block" style="margin: 20px;">更多回答</button></a>
                 </ul>
             </div>
-            <form class="am-form am-g" action="<%=basePath%>addAnswer/${question.id}" method="post">
-                <h3 class="blog-comment">回答</h3>
-                <fieldset>
-                    <div class="am-form-group">
-                        <textarea name="answerContent" class="" rows="6" placeholder="回答内容"></textarea>
+
+                <div class="am-container" style="margin-top: 10px">
+                    <div class="am-panel am-panel-success">
+                        <div class="am-panel-hd">回答</div>
+
+                        <fieldset>
+                            <div class="am-form-group">
+                                <textarea id="answerContent" style="width: 100%;" rows="6" placeholder="回答内容编辑"></textarea>
+                            </div>
+
+
+                        </fieldset>
+
                     </div>
+                    <div class="star am-container mcenter"><span><button id="save" type="button" class="am-btn am-btn-primary" onclick="clickSubmit(${question.id})" style="width: 120px">提交</button></span></div>
 
-                    <button type="submit" class="am-btn am-btn-default">提交回答</button>
-                </fieldset>
-
-            </form>
+                </div>
         </div>
     </div>
     <div class="am-u-sm-0 am-u-md-0 am-u-lg-4 ">
@@ -362,5 +368,23 @@
         </div>
     </div>
 </footer>
+
+<script type="text/javascript">
+
+    function clickSubmit(quesId) {
+        // 读取 text
+        var content=$("#answerContent").val();
+            if (content!=""){
+                $.post("<%=basePath%>saveAnswer",{quesId:quesId,answerContent:content},function (data) {
+                    if(data=1){
+                        alert("提交成功");
+                    }
+                });
+            }else {
+                alert("内容不能为空！！！")
+            }
+    }
+
+</script>
 </body>
 </html>

@@ -93,7 +93,7 @@ public class MassageController {
         return "massageListBySearch";
     }
 
-    @RequestMapping(value = "editMassage")
+    @RequestMapping(value = "editMassagePage")
     public String editMassagePage(){
         return "editMassagePage";
     }

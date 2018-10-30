@@ -121,7 +121,7 @@
     </div>
 
         <div class="star am-container mcenter">
-            <button id="save" type="button"  class="am-btn am-btn-primary am-radius" style="width: 150px">提交</button>
+            <span><button id="save" type="button"  class="am-btn am-btn-primary am-radius" style="width: 150px">提交</button></span>
         </div>
 
 
@@ -171,7 +171,7 @@
 <script type="text/javascript" src="assets/js/wangEditor.min.js"></script>
 <script type="text/javascript">
 
-    $.get("api/v1/categorise",null,function (data) {
+    $.get("categorise/1",null,function (data) {
         $.each(data,function (i,message) {
             $("#doc-select-1").append("<option value='"+message.categoryType+"'>"+message.categoryName+"</option>")
         });

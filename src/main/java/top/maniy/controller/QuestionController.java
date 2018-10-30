@@ -4,9 +4,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import top.maniy.entity.Answer;
 import top.maniy.entity.Question;
 import top.maniy.entity.Topic;
@@ -34,6 +32,14 @@ public class QuestionController {
     @Autowired
     private AnswerService answerService;
 
+    /**
+     * 问题列表
+     * @param topicId
+     * @param page
+     * @param pageSize
+     * @param modelMap
+     * @return
+     */
     @RequestMapping("/questionList/{topicId}")
     public String findQuestionByTopicId(@PathVariable String  topicId,
                                         @RequestParam(value="page", required=false, defaultValue="1") Integer page,
@@ -46,6 +52,15 @@ public class QuestionController {
         return "questionList";
     }
 
+    /**
+     * 问题查询列表
+     * @param topicId
+     * @param title
+     * @param page
+     * @param pageSize
+     * @param modelMap
+     * @return
+     */
     @RequestMapping("/questionList/{topicId}/likeName")
     public String findQuestionBySearch(@PathVariable String  topicId,@RequestParam("title") String title,
                                         @RequestParam(value="page", required=false, defaultValue="1") Integer page,
@@ -57,6 +72,15 @@ public class QuestionController {
         modelMap.put("title",title);
         return "questionListBySearch";
     }
+
+    /**
+     * 问题详情页
+     * @param quesId
+     * @param page
+     * @param pageSize
+     * @param modelMap
+     * @return
+     */
     @RequestMapping("question/{quesId}")
     public String questionPage(@PathVariable Integer quesId,@RequestParam(value="page", required=false, defaultValue="1") Integer page,
                                @RequestParam(value="pageSize", required=false, defaultValue="5") Integer pageSize,
@@ -71,7 +95,15 @@ public class QuestionController {
         return "questionPage";
     }
 
-
+    @RequestMapping(value = "saveQuestion",method = RequestMethod.POST)
+    @ResponseBody
+    public boolean SaveQuestion(@RequestParam String topicId,@RequestParam String quesName,@RequestParam String quesDescribe){
+        Question question =new Question();
+        question.setTopicId(topicId);
+        question.setQuesName(quesName);
+        question.setQuesDescribe(quesDescribe);
+        return questionService.saveQuestion(question);
+    }
 
 
 

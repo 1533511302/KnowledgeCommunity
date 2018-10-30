@@ -13,7 +13,8 @@ import java.util.List;
  */
 public interface TopicService {
 
-    //查询全部话题
+    List<Topic> findAllTopic();
+    //查询全部话题(分页)
     PageInfo<Topic> findAllTopic(int currentPage, int pageSize);
     //topicName模糊查询
     PageInfo<Topic> findTopicLikeName(String name,int currentPage, int pageSize);

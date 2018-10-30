@@ -174,6 +174,7 @@
 
         </div>
         <div class="am-u-sm-0 am-u-md-0 am-u-lg-4 padding-none lrad">
+            <div class="star am-container mcenter"><span><a class="am-badge am-badge-secondary am-text-lg" style="margin-left: 10px" href="<%=basePath%>editMassagePage">分享知识</a></span></div>
             <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
                 <h2 class="am-titlebar-title ">
                     图文分类

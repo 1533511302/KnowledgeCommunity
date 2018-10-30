@@ -7,8 +7,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import top.maniy.entity.Topic;
 import top.maniy.service.TopicService;
+
+import java.util.List;
 
 /**
  * @author liuzonghua
@@ -29,6 +32,12 @@ public class TopicController {
         PageInfo<Topic> pageInfo =topicService.findAllTopic(page,pageSize);
         modelMap.put("pageInfo",pageInfo);
         return "topicList";
+    }
+
+    @RequestMapping("topics")
+    @ResponseBody
+    public List<Topic> findAllTopic(){
+        return topicService.findAllTopic();
     }
 
     @RequestMapping("topics/likeName")

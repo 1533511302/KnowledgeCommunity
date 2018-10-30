@@ -18,7 +18,6 @@ import java.util.List;
  * @date 2018/10/16 14:27
  */
 @Controller
-@RequestMapping("/api/v1")
 public class CategoryController {
 
     @Autowired

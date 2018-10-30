@@ -21,6 +21,12 @@ public class TopicServiceImpl implements TopicService {
 
     @Autowired
     private TopicMapper topicMapper;
+
+    @Override
+    public List<Topic> findAllTopic() {
+        return topicMapper.findAllTopic();
+    }
+
     @Override
     public PageInfo<Topic> findAllTopic(int currentPage, int pageSize) {
         PageHelper.startPage(currentPage,pageSize);
