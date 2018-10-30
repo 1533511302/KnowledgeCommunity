@@ -7,11 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-            + path + "/";
-%>
+<c:set var="baseurl" value="${pageContext.request.contextPath}/"></c:set>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,10 +15,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="<%=basePath%>assets/css/amazeui.css" />
-    <link rel="stylesheet" href="<%=basePath%>assets/css/other.min.css" />
-    <script src="<%=basePath%>assets/js/jquery.min.js"></script>
-    <script>
+    <link rel="stylesheet" href="${baseurl}assets/css/amazeui.css" />
+    <link rel="stylesheet" href="${baseurl}assets/css/other.min.css" />
+    <script src="${baseurl}assets/js/jquery.min.js"></script>
+    <script type="text/javascript">
 
 
         //json两种形式
@@ -36,46 +32,50 @@
 
                 alert("用户名不能为空！");
                 return false;//因为这是submit表单提交 返回false 不进行请求
-            };
+            }else {
+                $.post("isUsername",{username:username},function (data) {
+                    if (data){
+                        alert("用户名已存在！");
+                        return false;
+                    }
+                });
 
-            $.post("isUsername",{username:username},function (data) {
-                if (data){
-                    alert("用户名已存在！");
-                    return false;
-                }
-            });
+            }
+
 
             var password=$("#password").val();
             if (password==""){
                 alert("密码不能为空！");
                 return false;
             }
+            var confirm=$("#confirm").val();
+            if(confirm !=password){
+                alert("确认密码不相等！");
+            }else {
+                $.ajax({
+                    type: 'post',
+                    url: "users",
+                    data: {username:username,password:password},
+                    success: function (data) {
 
-            $.ajax({
-                type: 'post',
-                url: "toLogin",
-                data: {username:username,password:password},
-                dataType: "text",
-                success: function (data) {
-                    var mydata =data;
-                    console.log(mydata)
-                    if (mydata == "1") {
-                        console.log("成功");
-                        window.location.href="toIndex";
+                        console.log(data)
+                        if (data) {
+                            alert("注册成功！")
+                            window.location.href="toLogin";
+                        }
+                        else {
+                            console.log("失败");
+                        }
                     }
-                    else {
-                        console.log("失败");
-                    }
-                }
-            });
-
+                });
+            }
         }
     </script>
 </head>
 <body class="login-container">
 <div class="login-box">
     <div class="logo-img">
-        <img src="<%=basePath%>images/logo2_03.png" alt="" />
+        <img src="${baseurl}images/logo2_03.png" alt="" />
     </div>
     <form action="" class="am-form" data-am-validator>
         <div class="am-form-group">
