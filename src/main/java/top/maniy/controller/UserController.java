@@ -5,12 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import top.maniy.entity.Massage;
-import top.maniy.entity.Question;
-import top.maniy.entity.User;
-import top.maniy.service.MassageService;
-import top.maniy.service.QuestionService;
-import top.maniy.service.UserService;
+import top.maniy.entity.*;
+import top.maniy.service.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -33,6 +29,12 @@ public class UserController {
 
     @Autowired
     private QuestionService questionService;
+
+    @Autowired
+    private AudioService audioService;
+
+    @Autowired
+    private AnswerService answerService;
 
     /**
      * 默认首页
@@ -95,7 +97,14 @@ public class UserController {
         return "vUserList";
     }
 
-    //分页获取所有认证用户预览信息
+
+    /**
+     * 分页获取所有认证用户预览信息
+     * @param page
+     * @param pageSize
+     * @param modelMap
+     * @return
+     */
     @RequestMapping(value = "vUsers/{page}",method = RequestMethod.GET)
     public String vUserList(@PathVariable(value = "page") int page,
                             @RequestParam(value = "pageSize",required = false,defaultValue = "12") int pageSize,
@@ -104,6 +113,15 @@ public class UserController {
         modelMap.put("pageInfo",pageInfo);
         return "vUserList";
     }
+
+    /**
+     * 认证用户主页图文
+     * @param id
+     * @param page
+     * @param pageSize
+     * @param modelMap
+     * @return
+     */
     @RequestMapping(value = "vUsersCategory/{id}")
     public String UserCategory(@PathVariable(value = "id") int id,
                                @RequestParam(value="page", required=false, defaultValue="1") Integer page,
@@ -115,6 +133,35 @@ public class UserController {
         modelMap.put("pageInfo",pageInfo);
         return "userCategory";
     }
+
+    /**
+     * 认证用户音频
+     * @param id
+     * @param page
+     * @param pageSize
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping(value = "vUsersAudio/{id}")
+    public String UserAudio(@PathVariable(value = "id") int id,
+                               @RequestParam(value="page", required=false, defaultValue="1") Integer page,
+                               @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize,
+                               ModelMap modelMap){
+        User user=userService.findUserById(id);
+        PageInfo<Audio> pageInfo=audioService.findAudioByUserId(id,page, pageSize);
+        modelMap.put("user",user);
+        modelMap.put("pageInfo",pageInfo);
+        return "userAudio";
+    }
+
+    /**
+     * 认证用户问题
+     * @param id
+     * @param page
+     * @param pageSize
+     * @param modelMap
+     * @return
+     */
     @RequestMapping(value = "vUsersQuestion/{id}")
     public String UserQuestion(@PathVariable(value = "id") int id,
                                @RequestParam(value="page", required=false, defaultValue="1") Integer page,
@@ -127,6 +174,38 @@ public class UserController {
         return "userQuestion";
     }
 
+    /**
+     * 认证用户回答
+     * @param id
+     * @param page
+     * @param pageSize
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping(value = "vUsersAnswer/{id}")
+    public String UserAnswer(@PathVariable(value = "id") int id,
+                               @RequestParam(value="page", required=false, defaultValue="1") Integer page,
+                               @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize,
+                               ModelMap modelMap){
+        User user=userService.findUserById(id);
+        PageInfo<Answer> pageInfo=answerService.findAnswerByUserId(id,page,pageSize);
+        modelMap.put("user",user);
+        modelMap.put("pageInfo",pageInfo);
+        return "userAnswer";
+    }
+
+
+
+
+    /**
+     * 模糊查询认证用户图文
+     * @param id
+     * @param title
+     * @param page
+     * @param pageSize
+     * @param modelMap
+     * @return
+     */
     @RequestMapping(value = "vUsersCategory/{id}/likeTitle")
     public String UserCategoryByUserIdAndLikeTitle(@PathVariable(value = "id") int id,@RequestParam("title") String title,
                                @RequestParam(value="page", required=false, defaultValue="1") Integer page,

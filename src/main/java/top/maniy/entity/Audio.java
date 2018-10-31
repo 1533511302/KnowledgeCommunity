@@ -1,6 +1,10 @@
 package top.maniy.entity;
 
 
+import top.maniy.util.DateUtil;
+
+import java.util.Date;
+
 public class Audio {
 
   private Integer id;
@@ -12,7 +16,7 @@ public class Audio {
   private String status;
   private String audioName;
   private String audioDescribe;
-  private String createTime;
+  private Date createTime;
 
 
   public Integer getId() {
@@ -96,10 +100,10 @@ public class Audio {
   }
 
   public String getCreateTime() {
-    return createTime;
+    return DateUtil.DateTimeToString(createTime);
   }
 
-  public void setCreateTime(String createTime) {
+  public void setCreateTime(Date createTime) {
     this.createTime = createTime;
   }
 }

@@ -31,6 +31,14 @@ public class AudioServiceImpl implements AudioService {
     }
 
     @Override
+    public PageInfo<Audio> findAudioByUserId(Integer userId, int currentPage, int pageSize) {
+        PageHelper.startPage(currentPage,pageSize);
+        List<Audio> audioList=audioMapper.findAudioByUserId(userId);
+        PageInfo<Audio> pageInfo=new PageInfo<>(audioList);
+        return pageInfo;
+    }
+
+    @Override
     public Audio findAudioById(Integer id) {
         return audioMapper.findAudioById(id);
     }

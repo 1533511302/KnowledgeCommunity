@@ -1,6 +1,10 @@
 package top.maniy.entity;
 
 
+import top.maniy.util.DateUtil;
+
+import java.util.Date;
+
 public class Question {
 
   private Integer id;
@@ -12,7 +16,7 @@ public class Question {
   private Integer answerNumb;
   private Integer attentionNumb;
   private Integer browseNumb;
-  private java.sql.Timestamp createTime;
+  private Date createTime;
 
 
   public Integer getId() {
@@ -95,13 +99,11 @@ public class Question {
     this.browseNumb = browseNumb;
   }
 
-
-  public java.sql.Timestamp getCreateTime() {
-    return createTime;
+  public String getCreateTime() {
+    return DateUtil.DateTimeToString(createTime);
   }
 
-  public void setCreateTime(java.sql.Timestamp createTime) {
+  public void setCreateTime(Date createTime) {
     this.createTime = createTime;
   }
-
 }

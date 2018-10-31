@@ -15,6 +15,10 @@ public interface AudioMapper {
     //根据类型查询音频
     List<Audio> findAudioByCategoryId(Integer categoryId);
 
+    //根据userId查询音频
+    List<Audio> findAudioByUserId(Integer userId);
+
+
     //根据id查询音频
     Audio findAudioById(Integer id);
     //模糊查询音频

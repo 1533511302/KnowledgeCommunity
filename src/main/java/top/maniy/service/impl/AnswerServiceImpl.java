@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import top.maniy.entity.Answer;
 import top.maniy.mapper.AnswerMapper;
 import top.maniy.service.AnswerService;
+import top.maniy.service.QuestionService;
 
 import java.util.List;
 
@@ -22,6 +23,9 @@ public class AnswerServiceImpl implements AnswerService {
     @Autowired
     private AnswerMapper answerMapper;
 
+    @Autowired
+    private QuestionService questionService;
+
     @Override
     public PageInfo<Answer> findAnswerByQuesId(Integer quesId, int currentPage, int pageSize) {
         PageHelper.startPage(currentPage,pageSize);
@@ -34,6 +38,10 @@ public class AnswerServiceImpl implements AnswerService {
     public PageInfo<Answer> findAnswerByUserId(Integer userId, int currentPage, int pageSize) {
         PageHelper.startPage(currentPage,pageSize);
         List<Answer> answerList=answerMapper.findAnswerByQuesId(userId);
+        for(Answer answer:answerList){
+            String quesTitle=questionService.findQuestionById(answer.getQuesId()).getQuesName();
+            answer.setQuesTitle(quesTitle);
+        }
         PageInfo<Answer> pageInfo =new PageInfo<>(answerList);
         return pageInfo;
     }

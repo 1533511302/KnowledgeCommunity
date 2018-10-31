@@ -1,6 +1,8 @@
 package top.maniy.entity;
 
 
+import top.maniy.util.DateUtil;
+
 import java.util.Date;
 
 public class Answer {
@@ -10,6 +12,7 @@ public class Answer {
   private Integer userId;
   private Integer topicId;
   private Integer quesId;
+  private String quesTitle;
   private String answerContent;
   private String photo;
   private String anonymity;
@@ -17,6 +20,14 @@ public class Answer {
   private Integer commentNumb;
   private Date createTime;
 
+
+  public String getQuesTitle() {
+    return quesTitle;
+  }
+
+  public void setQuesTitle(String quesTitle) {
+    this.quesTitle = quesTitle;
+  }
 
   public Integer getId() {
     return id;
@@ -105,8 +116,8 @@ public class Answer {
     this.commentNumb = commentNumb;
   }
 
-  public Date getCreateTime() {
-    return createTime;
+  public String getCreateTime() {
+    return DateUtil.DateTimeToString(createTime);
   }
 
   public void setCreateTime(Date createTime) {

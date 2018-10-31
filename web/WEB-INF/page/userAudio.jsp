@@ -43,7 +43,7 @@
     <!--[if lte IE 8 ]>
     <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-    <script src="${baseUrl}assets/js/amazeui.ie8polyfill.min.js"></script>
+    <script src="${paseUrl}assets/js/amazeui.ie8polyfill.min.js"></script>
     <![endif]-->
     <script src="${baseUrl}assets/js/amazeui.min.js"></script>
     <script src="${baseUrl}js/public.js"></script>
@@ -69,7 +69,7 @@
                 <li><a href="${baseUrl}massagePage">图文</a></li>
                 <li><a href="${baseUrl}audioPage">音频</a></li>
                 <li><a href="${baseUrl}topics/1">问答</a></li>
-                <li  class="am-active"><a href="${baseUrl}vUsers/1">大咖秀</a></li>
+                <li  class="am-active"><a href="${paseUrl}vUsers/1">大咖秀</a></li>
                 <li class="am-dropdown" data-am-dropdown>
                     <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
                         付费专区<span class="am-icon-caret-down"></span>
@@ -151,7 +151,7 @@
         <div data-am-widget="list_news" class="am-list-news am-list-news-default ">
             <div class="am-list-news-bd">
                 <ul class="am-list">
-                    <c:forEach var="question" items="${pageInfo.list}" varStatus="index">
+                    <c:forEach var="audio" items="${pageInfo.list}" varStatus="index">
                         <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" style="border-top: 0px">
                             <div class="am-u-sm-5 am-list-thumb">
                                 <a href="#">
@@ -160,15 +160,15 @@
                             </div>
 
                             <div class=" am-u-sm-7 am-list-main">
-                                <h2 class="am-list-item-hd"><a href="${baseUrl}massages/${question.id}">${question.quesName}</a></h2>
+                                <h2 class="am-list-item-hd"><a href="${baseUrl}audio/${audio.id}">${audio.audioName}</a></h2>
 
-                                <div class="am-list-item-text">${question.quesDescribe}</div>
+                                <div class="am-list-item-text">${audio.audioDescribe}</div>
 
                             </div>
 
                         </li>
                         <div class="newsico am-fr">
-                            <i class="am-icon-clock-o">${question.createTime}</i>
+                            <i class="am-icon-clock-o">${audio.createTime}</i>
 
                         </div>
                     </c:forEach>
@@ -180,11 +180,11 @@
                 <ul data-am-widget="pagination" class="am-pagination am-pagination-default" style="text-align: center">
 
                     <li class="am-pagination-first ">
-                        <a href="<c:url value="/vUsersQuestion/${user.id}?page=1"/>">首页</a>
+                        <a href="<c:url value="/vUsersAudio/${user.id}?page=1"/>">首页</a>
                     </li>
 
                     <li class="am-pagination-prev ">
-                        <a href="<c:url value="/vUsersQuestion/${user.id}?page=${pageInfo.pageNum-1>1?pageInfo.pageNum-1:1}"/>">&laquo;</a>
+                        <a href="<c:url value="/vUsersAudio/${user.id}?page=${pageInfo.pageNum-1>1?pageInfo.pageNum-1:1}"/>">&laquo;</a>
                     </li>
                     <c:set var="start" value="${pageInfo.pageNum-5<=0?1:pageInfo.pageNum-5}"/>
                     <c:set var="end" value="${start+9<pageInfo.pages?start+9:pageInfo.pages}"/>
@@ -193,17 +193,17 @@
 
 
                         <li class="${active}">
-                            <a href="<c:url value="/vUsersQuestion/${user.id}?page=${loop.index}"/>">${loop.index}</a>
+                            <a href="<c:url value="/vUsersAudio/${user.id}?page=${loop.index}"/>">${loop.index}</a>
                         </li>
                     </c:forEach>
 
 
                     <li class="am-pagination-next ">
-                        <a href="<c:url value="/vUsersQuestion/${user.id}?page=${pageInfo.pageNum+1<pageInfo.pages?pageInfo.pageNum+1:pageInfo.pages}"/>">&raquo;</a>
+                        <a href="<c:url value="/vUsersAudio/${user.id}?page=${pageInfo.pageNum+1<pageInfo.pages?pageInfo.pageNum+1:pageInfo.pages}"/>">&raquo;</a>
                     </li>
 
                     <li class="am-pagination-last ">
-                        <a href="<c:url value="/vUsersQuestion/${user.id}?page=${pageInfo.pages}"/>">尾页</a>
+                        <a href="<c:url value="/vUsersAudio/${user.id}?page=${pageInfo.pages}"/>">尾页</a>
                     </li>
                 </ul>
             </div>

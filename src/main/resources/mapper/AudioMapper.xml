@@ -12,6 +12,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from audio WHERE categoryId=#{categoryId}
 	</select>
 
+	<select id="findAudioByUserId" resultType="Audio">
+		select * from audio WHERE userId=#{userId}
+	</select>
+
 	<select id="findAudioLikeAudioName" resultType="Audio" parameterType="String">
 		SELECT * FROM audio WHERE audioName LIKE '%${audioName}%'
 	</select>
