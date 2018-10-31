@@ -2,6 +2,8 @@ package top.maniy.controller;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -35,6 +37,7 @@ public class MassageController {
      * @return
      */
     @RequestMapping(value = "/massages/{id}")
+    @RequiresPermissions("massage:select")
     public String findMassageById(@PathVariable Integer id,ModelMap modelMap){
         Massage massage= massageService.findMassageById(id);
         modelMap.put("massage",massage);
@@ -47,6 +50,7 @@ public class MassageController {
      * @return
      */
     @RequestMapping(value = "/massagePage")
+    @RequiresPermissions("massage:select")
     public String massagePage(ModelMap modelMap){
         List<Massage> massageList=massageService.findMassageRandTo10();
         List<Category> categoryList=categoryService.findCategoryByTypeAndStatus(1,"1");
@@ -64,6 +68,7 @@ public class MassageController {
      * @return
      */
     @RequestMapping(value = "/categoryId/{categoryId}/massages")
+    @RequiresPermissions("massage:select")
     public String findMassageByCategoryId(@PathVariable Integer categoryId,
                                   @RequestParam(value="page", required=false, defaultValue="1") Integer page,
                                   @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize,
@@ -84,6 +89,7 @@ public class MassageController {
      * @return
      */
     @RequestMapping(value = "/massages/likeName")
+    @RequiresPermissions("massage:select")
     public String massagePageInfo(@RequestParam(value="page", required=false, defaultValue="1") Integer page,
                                   @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize,
                                   @RequestParam("title") String title,ModelMap modelMap){
@@ -94,6 +100,7 @@ public class MassageController {
     }
 
     @RequestMapping(value = "editMassagePage")
+    @RequiresPermissions("massage:insert")
     public String editMassagePage(){
         return "editMassagePage";
     }
@@ -107,6 +114,7 @@ public class MassageController {
      */
     @RequestMapping(value = "/massages",method = RequestMethod.POST)
     @ResponseBody
+    @RequiresPermissions("massage:insert")
     public boolean saveMassage(@RequestParam Integer type ,@RequestParam String title,@RequestParam String content){
         Massage massage =new Massage();
         massage.setCategoryId(type);
@@ -122,6 +130,7 @@ public class MassageController {
      */
     @RequestMapping(value = "AddLikeNum")
     @ResponseBody
+    @RequiresPermissions("massage:select")
     public boolean addLikeNum(@RequestParam("massageId") Integer massageId) {
        return massageService.LikeNumbAddOne(massageId);
     }

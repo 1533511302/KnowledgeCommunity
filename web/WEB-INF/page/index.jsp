@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -168,13 +169,8 @@
                 </div>
             </form>
 
-            <div class="am-topbar-right" style="margin-top: 9px">
-                <button class="am-btn am-btn-default am-topbar-btn am-btn-sm"><span class="am-icon-pencil"></span>注册</button>
-            </div>
+                <c:import url="test.jsp"></c:import>
 
-            <div class="am-topbar-right" style="margin-top: 9px">
-                <button class="am-btn am-btn-danger am-topbar-btn am-btn-sm"><span class="am-icon-user"></span> 登录</button>
-            </div>
         </div>
     </div>
 </header>

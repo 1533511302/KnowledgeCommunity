@@ -28,10 +28,10 @@
 
                 /login.html = anon
                 /toLogin = anon
-                /testRole2=roles["admin"]
-                /testRole3=rolesOr["admin","admin1"]
-                /testPerms =perms[user:select]
-                /testPerms1 =perms["user:select","user:update"]
+                <!--/testRole2=roles["admin"]-->
+                <!--/testRole3=rolesOr["admin","admin1"]-->
+                <!--/testPerms =perms[user:select]-->
+                <!--/testPerms1 =perms["user:select","user:update"]-->
                 <!-- 请求logout地址（这个地址可以不存在），shiro去清除session-->
                 <!--/logout = logout-->
                 /** = authc

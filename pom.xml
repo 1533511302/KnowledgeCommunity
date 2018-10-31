@@ -187,6 +187,11 @@
             <artifactId>shiro-spring</artifactId>
             <version>${shiro-spring}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-web</artifactId>
+            <version>${shiro-core}</version>
+        </dependency>
         <!--quartz时间调度框架-->
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
