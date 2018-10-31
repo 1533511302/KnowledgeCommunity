@@ -1,6 +1,10 @@
 package top.maniy.controller;
 
 import com.github.pagehelper.PageInfo;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -62,14 +66,23 @@ public class UserController {
     @ResponseBody
     public String login(HttpServletRequest request, @RequestParam("username") String username, @RequestParam("password") String password){
 
-        User user =userService.findUserByUsernameAndPassword(username,password);
-        if(user!=null){
-            HttpSession session=request.getSession();
-            session.setAttribute("user",user);
-            return "1";
-        }else {
-            return "0";
+//        User user =userService.findUserByUsernameAndPassword(username,password);
+//        if(user!=null){
+//            HttpSession session=request.getSession();
+//            session.setAttribute("user",user);
+//            return "1";
+//        }else {
+//            return "0";
+//        }
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken token =new UsernamePasswordToken(username,
+                password);
+        try {
+            subject.login(token);
+        } catch (AuthenticationException e) {
+            return  "0";
         }
+        return "1";
 
     }
 
@@ -226,9 +239,9 @@ public class UserController {
      */
     @RequestMapping(value = "/logout",method = RequestMethod.GET)
     public String logout(HttpServletRequest request){
-        HttpSession session=request.getSession();
-        session.setAttribute("user",null);
-        return "loginPage";
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return "redirect:toLogin";
     }
 
     /**

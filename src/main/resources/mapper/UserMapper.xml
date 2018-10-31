@@ -5,8 +5,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace ="top.maniy.mapper.UserMapper">
 
+	<select id="queryPermissionByUserName" resultType="String">
+		SELECT permission FROM roles_permissions WHERE role_name=#{role_name}
+	</select>
+
+	<select id="queryRolesByUserName">
+		SELECT role FROM user WHERE username=#{username}
+	</select>
+
 	<select id="findUserByUsername" resultType="User">
-		SELECT username FROM user WHERE username=#{username}
+		SELECT * FROM user WHERE username=#{username}
 	</select>
 
 	<select id="findUserByUsernameAndPassword" resultType="User">

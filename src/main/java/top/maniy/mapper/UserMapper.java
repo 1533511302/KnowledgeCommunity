@@ -13,6 +13,12 @@ import java.util.List;
  */
 public interface UserMapper {
 
+    //根据username查询角色
+    List<String> queryRolesByUserName(String username);
+
+    //根据username查询权限
+    List<String> queryPermissionByUserName(String userName);
+
     //查询用户名 是否存在
     User findUserByUsername(String username);
 

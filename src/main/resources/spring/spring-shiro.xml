@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <!-- loginUrl认证地址，如果没有认证将会此地址进行认证-->
+        <property name="loginUrl" value="/toLogin"/>
+        <!-- 认证成功统一跳转到index，建议不配置，shiro认证成功自动跳请求路径-->
+        <!--<property name="successUrl" value="index"/>-->
+        <!-- 通过unauthorizedUrl指定没有权限操作时跳转页面-->
+        <property name="unauthorizedUrl" value="403.html" />
+        <property name="filterChainDefinitions">
+            <value>
+                <!-- 这里顺序执行 anon不要认证 authc需要认证，一般情况下 /*放在最下面-->
+                <!--加载静态资源 /js/** = anon-->
+                /assets/** =anon
+                /css/** =anon
+                /js/** =anon
+                /images/** =anon
+                /mp3/** =anon
+                /Temp-images/** =anon
+
+                /login.html = anon
+                /toLogin = anon
+                /testRole2=roles["admin"]
+                /testRole3=rolesOr["admin","admin1"]
+                /testPerms =perms[user:select]
+                /testPerms1 =perms["user:select","user:update"]
+                <!-- 请求logout地址（这个地址可以不存在），shiro去清除session-->
+                <!--/logout = logout-->
+                /** = authc
+            </value>
+        </property>
+        <property name="filters">
+            <util:map>
+                <entry key="rolesOr" value-ref="rolesOrFilter"/>
+            </util:map>
+
+
+        </property>
+    </bean>
+
+    <bean class="top.maniy.filter.RolesOrFilter" id="rolesOrFilter"/>
+    <!--创建SecurityManager对象 -->
+    <bean class="org.apache.shiro.web.mgt.DefaultWebSecurityManager" id="securityManager">
+        <property name="realm" ref="realm"/>
+    </bean>
+
+    <!--自定义realm -->
+    <bean class="top.maniy.shiro.realm.CustomRealm" id="realm">
+        <property name="credentialsMatcher" ref="credentialsMatcher" />
+    </bean>
+    <!--md5 加密-->
+    <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher" id="credentialsMatcher">
+        <property name="hashAlgorithmName" value="md5" />
+        <property name="hashIterations" value="1"/>
+
+    </bean>
+
+</beans>
