@@ -7,11 +7,8 @@
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-            + path + "/";
-%>
+<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+<c:set var="baseUrl" value="${pageContext.request.contextPath}/"></c:set>
 <html class="no-js">
 <head>
     <meta charset="utf-8">
@@ -26,30 +23,30 @@
     <meta name="author" content="wos">
     <!-- Android -->
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" sizes="192x192" href="<%=basePath%>images/i/app.png">
+    <link rel="icon" sizes="192x192" href="${baseUrl}images/i/app.png">
     <!--Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
-    <link rel="apple-touch-icon-precomposed" href="<%=basePath%>images/i/app.png">
+    <link rel="apple-touch-icon-precomposed" href="${baseUrl}images/i/app.png">
     <!--Win8 or 10 -->
-    <meta name="msapplication-TileImage" content="<%=basePath%>images/i/app.png">
+    <meta name="msapplication-TileImage" content="${baseUrl}images/i/app.png">
     <meta name="msapplication-TileColor" content="#e1652f">
 
-    <link rel="icon" type="image/png" href="<%=basePath%>images/i/favicon.png">
-    <link rel="stylesheet" href="<%=basePath%>assets/css/amazeui.min.css">
-    <link rel="stylesheet" href="<%=basePath%>css/public.css">
+    <link rel="icon" type="image/png" href="${baseUrl}images/i/favicon.png">
+    <link rel="stylesheet" href="${baseUrl}assets/css/amazeui.min.css">
+    <link rel="stylesheet" href="${baseUrl}css/public.css">
 
     <!--[if (gte IE 9)|!(IE)]><!-->
-    <script src="<%=basePath%>assets/js/jquery.min.js"></script>
+    <script src="${baseUrl}assets/js/jquery.min.js"></script>
     <!--<![endif]-->
     <!--[if lte IE 8 ]>
     <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-    <script src="<%=basePath%>assets/js/amazeui.ie8polyfill.min.js"></script>
+    <script src="${baseUrl}assets/js/amazeui.ie8polyfill.min.js"></script>
     <![endif]-->
-    <script src="<%=basePath%>assets/js/amazeui.min.js"></script>
-    <script src="<%=basePath%>js/public.js"></script>
+    <script src="${baseUrl}assets/js/amazeui.min.js"></script>
+    <script src="${baseUrl}js/public.js"></script>
     <script>
 
         var str=window.location.href;
@@ -67,7 +64,7 @@
 <header class="am-topbar am-topbar-fixed-top wos-header">
     <div class="am-container">
         <h1 class="am-topbar-brand">
-            <a href="#"><img src="<%=basePath%>images/logo.png" alt=""></a>
+            <a href="#"><img src="${baseUrl}images/logo.png" alt=""></a>
         </h1>
 
         <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-warning am-show-sm-only"
@@ -78,11 +75,11 @@
 
         <div class="am-collapse am-topbar-collapse" id="collapse-head">
             <ul class="am-nav am-nav-pills am-topbar-nav">
-                <li><a href="<%=basePath%>toIndex">首页</a></li>
-                <li><a href="<%=basePath%>massagePage">图文</a></li>
-                <li><a href="<%=basePath%>audioPage">音频</a></li>
-                <li><a href="<%=basePath%>topics/1">问答</a></li>
-                <li class="am-active"><a href="<%=basePath%>vUsers/1">大咖秀</a></li>
+                <li><a href="${baseUrl}toIndex">首页</a></li>
+                <li><a href="${baseUrl}massagePage">图文</a></li>
+                <li><a href="${baseUrl}audioPage">音频</a></li>
+                <li><a href="${baseUrl}topics/1">问答</a></li>
+                <li class="am-active"><a href="${baseUrl}vUsers/1">大咖秀</a></li>
                 <li class="am-dropdown" data-am-dropdown>
                     <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
                         付费专区<span class="am-icon-caret-down"></span>
@@ -105,14 +102,7 @@
                     <button type="submit" class="am-btn am-btn-primary am-topbar-btn am-btn-sm">搜索</button>
                 </div>
             </form>
-
-            <div class="am-topbar-right" style="margin-top: 9px">
-                <button class="am-btn am-btn-default am-topbar-btn am-btn-sm"><span class="am-icon-pencil"></span>注册</button>
-            </div>
-
-            <div class="am-topbar-right" style="margin-top: 9px">
-                <button class="am-btn am-btn-danger am-topbar-btn am-btn-sm"><span class="am-icon-user"></span> 登录</button>
-            </div>
+            <c:import url="userPlugin.jsp"></c:import>
         </div>
     </div>
 </header>
@@ -129,7 +119,7 @@
             <li>
                 <a href="category2.html">
                     <div class="ctl active">
-                        <img src="<%=basePath%>Temp-images/face1.jpg">
+                        <img src="${baseUrl}Temp-images/face1.jpg">
                         <h3>高云峰</h3>
                         <p>清华大学教授</p>
                     </div>
@@ -139,7 +129,7 @@
             <li>
                 <a href="http://www.sina.com">
                     <div class="ctl">
-                        <img src="<%=basePath%>Temp-images/face2.jpg">
+                        <img src="${baseUrl}Temp-images/face2.jpg">
                         <h3>刘玉乐</h3>
                         <p>清华大学教授</p>
                     </div>
@@ -149,7 +139,7 @@
             <li>
                 <a href="http://www.qq.com">
                     <div class="ctl">
-                        <img src="<%=basePath%>Temp-images/face3.jpg">
+                        <img src="${baseUrl}Temp-images/face3.jpg">
                         <h3>付林</h3>
                         <p>清华大学教授</p>
                     </div>
@@ -159,7 +149,7 @@
             <li>
                 <a href="http://www.youku.com">
                     <div class="ctl">
-                        <img src="<%=basePath%>Temp-images/face4.jpg">
+                        <img src="${baseUrl}Temp-images/face4.jpg">
                         <h3>陈琳</h3>
                         <p>哈佛大学管理类博士</p>
                     </div>
@@ -169,7 +159,7 @@
             <li>
                 <a href="http://www.yahoo.com">
                     <div class="ctl">
-                        <img src="<%=basePath%>Temp-images/face5.jpg">
+                        <img src="${baseUrl}Temp-images/face5.jpg">
                         <h3>王明旭</h3>
                         <p>哈佛大学医学博士</p>
                     </div>
@@ -179,7 +169,7 @@
             <li>
                 <a href="http://www.china.com">
                     <div class="ctl">
-                        <img src="<%=basePath%>Temp-images/face6.jpg">
+                        <img src="${baseUrl}Temp-images/face6.jpg">
                         <h3>高晓松</h3>
                         <p>阿里娱乐仲裁</p>
                     </div>
@@ -248,7 +238,7 @@
 
                             <div class="am-u-sm-4 am-u-md-5 am-u-lg-5 am-vertical-align">
                                 <div class="am-vertical-align-middle">
-                                    <img src="<%=basePath%>Temp-images/face1.jpg">
+                                    <img src="${baseUrl}Temp-images/face1.jpg">
                                 </div>
                             </div>
                             <div class="am-u-sm-8 am-u-md-7 am-u-lg-7">
@@ -266,7 +256,7 @@
                     </div>
 
                     <div class="cattlist_3">
-                        <a href="<%=basePath%>vUsersCategory/${user.id}" class="am-btn am-btn am-btn-warning">进入主页</a>
+                        <a href="${baseUrl}vUsersCategory/${user.id}" class="am-btn am-btn am-btn-warning">进入主页</a>
                     </div>
                 </div>
             </li>
@@ -326,23 +316,23 @@
             <li><a href="#">广告及服务</a></li>
             <li><a href="#">友情链接</a></li>
         </ul>
-        <div class="btnlogo"><img src="<%=basePath%>images/btnlogo.png"/></div>
+        <div class="btnlogo"><img src="${baseUrl}images/btnlogo.png"/></div>
         <p>Amaze UI出品<br>京ICP备11008918号-3 Copyright ©2015 HTML5梦工场 助推HTML5发展</p>
         <div class="w2div">
             <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2
   am-avg-md-2 am-avg-lg-2 am-gallery-overlay" data-am-gallery="{ pureview: true }" >
                 <li class="w2">
                     <div class="am-gallery-item">
-                        <a href="<%=basePath%>Temp-images/dd.jpg">
-                            <img src="<%=basePath%>Temp-images/dd.jpg" />
+                        <a href="${baseUrl}Temp-images/dd.jpg">
+                            <img src="${baseUrl}Temp-images/dd.jpg" />
                             <h3 class="am-gallery-title">订阅号：HTML5梦工厂</h3>
                         </a>
                     </div>
                 </li>
                 <li   class="w2">
                     <div class="am-gallery-item">
-                        <a href="<%=basePath%>Temp-images/dd.jpg">
-                            <img src="<%=basePath%>Temp-images/dd.jpg"/>
+                        <a href="${baseUrl}Temp-images/dd.jpg">
+                            <img src="${baseUrl}Temp-images/dd.jpg"/>
                             <h3 class="am-gallery-title">服务号：HTML5头条</h3>
                         </a>
                     </div>

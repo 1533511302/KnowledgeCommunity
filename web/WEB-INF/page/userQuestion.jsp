@@ -93,13 +93,7 @@
                 </div>
             </form>
 
-            <div class="am-topbar-right" style="margin-top: 9px">
-                <button class="am-btn am-btn-default am-topbar-btn am-btn-sm"><span class="am-icon-pencil"></span>注册</button>
-            </div>
-
-            <div class="am-topbar-right" style="margin-top: 9px">
-                <button class="am-btn am-btn-danger am-topbar-btn am-btn-sm"><span class="am-icon-user"></span> 登录</button>
-            </div>
+            <c:import url="userPlugin.jsp"></c:import>
         </div>
     </div>
 </header>

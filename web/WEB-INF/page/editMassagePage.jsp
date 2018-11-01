@@ -6,6 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+<c:set var="baseUrl" value="${pageContext.request.contextPath}/"></c:set>
+
 <!doctype html>
 <html class="no-js">
 <head>
@@ -21,37 +25,37 @@
     <meta name="author" content="wos">
     <!-- Android -->
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" sizes="192x192" href="images/i/app.png">
+    <link rel="icon" sizes="192x192" href="${baseUrl}images/i/app.png">
     <!--Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
-    <link rel="apple-touch-icon-precomposed" href="images/i/app.png">
+    <link rel="apple-touch-icon-precomposed" href="${baseUrl}images/i/app.png">
     <!--Win8 or 10 -->
-    <meta name="msapplication-TileImage" content="images/i/app.png">
+    <meta name="msapplication-TileImage" content="${baseUrl}images/i/app.png">
     <meta name="msapplication-TileColor" content="#e1652f">
 
-    <link rel="icon" type="image/png" href="images/i/favicon.png">
-    <link rel="stylesheet" href="assets/css/amazeui.min.css">
-    <link rel="stylesheet" href="css/public.css">
+    <link rel="icon" type="image/png" href="${baseUrl}images/i/favicon.png">
+    <link rel="stylesheet" href="${baseUrl}assets/css/amazeui.min.css">
+    <link rel="stylesheet" href="${baseUrl}css/public.css">
 
     <!--[if (gte IE 9)|!(IE)]><!-->
-    <script src="assets/js/jquery.min.js"></script>
+    <script src="${baseUrl}assets/js/jquery.min.js"></script>
     <!--<![endif]-->
     <!--[if lte IE 8 ]>
     <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-    <script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+    <script src="${baseUrl}assets/js/amazeui.ie8polyfill.min.js"></script>
     <![endif]-->
-    <script src="assets/js/amazeui.min.js"></script>
-    <script src="js/public.js"></script>
+    <script src="${baseUrl}assets/js/amazeui.min.js"></script>
+    <script src="${baseUrl}js/public.js"></script>
 </head>
 <body>
 
 <header class="am-topbar am-topbar-fixed-top wos-header">
     <div class="am-container">
         <h1 class="am-topbar-brand">
-            <a href="#"><img src="images/logo.png" alt=""></a>
+            <a href="#"><img src="${baseUrl}images/logo.png" alt=""></a>
         </h1>
 
         <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-warning am-show-sm-only"
@@ -62,31 +66,34 @@
 
         <div class="am-collapse am-topbar-collapse" id="collapse-head">
             <ul class="am-nav am-nav-pills am-topbar-nav">
-                <li class="am-active"><a href="index.html">首页</a></li>
-                <li><a href="#">资讯</a></li>
-                <li><a href="#">专栏</a></li>
+                <li><a href="${baseUrl}toIndex">首页</a></li>
+                <li class="am-active"><a href="${baseUrl}massagePage">图文</a></li>
+                <li><a href="${baseUrl}audioPage">音频</a></li>
+                <li><a href="${baseUrl}topics/1">问答</a></li>
+                <li><a href="${baseUrl}vUsers/1">大咖秀</a></li>
                 <li class="am-dropdown" data-am-dropdown>
                     <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                        案例 <span class="am-icon-caret-down"></span>
+                        付费专区<span class="am-icon-caret-down"></span>
                     </a>
                     <ul class="am-dropdown-content">
-                        <li class="am-dropdown-header">案例</li>
-                        <li><a href="#">1. 游戏案例</a></li>
-                        <li><a href="#">2. 营销案例</a></li>
-                        <li><a href="#">3. 工具案例</a></li>
+                        <li class="am-dropdown-header">付费内容</li>
+                        <li><a href="#">图文付费</a></li>
+                        <li><a href="#">音频付费</a></li>
+                        <li><a href="#">问答付费</a></li>
+
                     </ul>
                 </li>
-                <li><a href="#">评测</a></li>
-                <li><a href="#">活动</a></li>
             </ul>
+            <form action="${baseUrl}massages/likeName" class="am-topbar-form am-topbar-left am-form-inline" role="search">
+                <div class="am-form-group" style="margin-top: 9px;margin-left: 100px">
+                    <input name="title" type="text" class="am-form-field am-input-sm" placeholder="搜索内容" value="${title}">
+                </div>
+                <div class="am-topbar-right">
+                    <button type="submit" class="am-btn am-btn-primary am-topbar-btn am-btn-sm">搜索</button>
+                </div>
+            </form>
 
-            <div class="am-topbar-right">
-                <button class="am-btn am-btn-default am-topbar-btn am-btn-sm"><span class="am-icon-pencil"></span>注册</button>
-            </div>
-
-            <div class="am-topbar-right">
-                <button class="am-btn am-btn-danger am-topbar-btn am-btn-sm"><span class="am-icon-user"></span> 登录</button>
-            </div>
+            <c:import url="userPlugin.jsp"></c:import>
         </div>
     </div>
 </header>
@@ -150,16 +157,16 @@
   am-avg-md-2 am-avg-lg-2 am-gallery-overlay" data-am-gallery="{ pureview: true }" >
                 <li class="w2">
                     <div class="am-gallery-item">
-                        <a href="Temp-images/dd.jpg">
-                            <img src="Temp-images/dd.jpg" />
+                        <a href="${baseUrl}Temp-images/dd.jpg">
+                            <img src="${baseUrl}Temp-images/dd.jpg" />
                             <h3 class="am-gallery-title">订阅号：Amaze UI</h3>
                         </a>
                     </div>
                 </li>
                 <li   class="w2">
                     <div class="am-gallery-item">
-                        <a href="Temp-images/dd.jpg">
-                            <img src="Temp-images/dd.jpg"/>
+                        <a href="${baseUrl}Temp-images/dd.jpg">
+                            <img src="${baseUrl}Temp-images/dd.jpg"/>
                             <h3 class="am-gallery-title">服务号：Amaze UI</h3>
                         </a>
                     </div>
@@ -168,7 +175,7 @@
         </div>
     </div>
 </footer>
-<script type="text/javascript" src="assets/js/wangEditor.min.js"></script>
+<script type="text/javascript" src="${baseUrl}assets/js/wangEditor.min.js"></script>
 <script type="text/javascript">
 
     $.get("categorise/1",null,function (data) {

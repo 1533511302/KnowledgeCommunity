@@ -43,11 +43,12 @@
                 alert("密码不能为空！");
                 return false;
             }
+            var rememberMe=$("#rememberMe").val();
 
             $.ajax({
                 type: 'post',
                 url: "toLogin",
-                data: {username:username,password:password},
+                data: {username:username,password:password,rememberMe:rememberMe},
                 dataType: "text",
                 success: function (data) {
                     var mydata =data;
@@ -80,7 +81,11 @@
             <label for="password"><i class="am-icon-key"></i></label>
             <input type="password" id="password" placeholder="输入密码" required/>
         </div>
+
+            <input type="checkbox" id="rememberMe"/>自动登录
+
         <button class="am-btn am-btn-secondary"  onclick="login()" type="button">登录</button>
+
     </form>
 </div>
 </body>

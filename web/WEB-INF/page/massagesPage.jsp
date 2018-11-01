@@ -7,11 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-            + path + "/";
-%>
+<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+<c:set var="baseUrl" value="${pageContext.request.contextPath}/"></c:set>
 
 <html class="no-js">
 <head>
@@ -27,30 +24,30 @@
     <meta name="author" content="wos">
     <!-- Android -->
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" sizes="192x192" href="<%=basePath%>images/i/app.png">
+    <link rel="icon" sizes="192x192" href="${baseUrl}images/i/app.png">
     <!--Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
-    <link rel="apple-touch-icon-precomposed" href="<%=basePath%>images/i/app.png">
+    <link rel="apple-touch-icon-precomposed" href="${baseUrl}images/i/app.png">
     <!--Win8 or 10 -->
-    <meta name="msapplication-TileImage" content="<%=basePath%>images/i/app.png">
+    <meta name="msapplication-TileImage" content="${baseUrl}images/i/app.png">
     <meta name="msapplication-TileColor" content="#e1652f">
 
-    <link rel="icon" type="image/png" href="<%=basePath%>images/i/favicon.png">
-    <link rel="stylesheet" href="<%=basePath%>assets/css/amazeui.min.css">
-    <link rel="stylesheet" href="<%=basePath%>css/public.css">
+    <link rel="icon" type="image/png" href="${baseUrl}images/i/favicon.png">
+    <link rel="stylesheet" href="${baseUrl}assets/css/amazeui.min.css">
+    <link rel="stylesheet" href="${baseUrl}css/public.css">
 
     <!--[if (gte IE 9)|!(IE)]><!-->
-    <script src="<%=basePath%>assets/js/jquery.min.js"></script>
+    <script src="${baseUrl}assets/js/jquery.min.js"></script>
     <!--<![endif]-->
     <!--[if lte IE 8 ]>
     <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-    <script src="<%=basePath%>assets/js/amazeui.ie8polyfill.min.js"></script>
+    <script src="${baseUrl}assets/js/amazeui.ie8polyfill.min.js"></script>
     <![endif]-->
-    <script src="<%=basePath%>assets/js/amazeui.min.js"></script>
-    <script src="<%=basePath%>js/public.js"></script>
+    <script src="${baseUrl}assets/js/amazeui.min.js"></script>
+    <script src="${baseUrl}js/public.js"></script>
     <script>
     function clickCommentBtn(massageId,btn) {
 
@@ -61,7 +58,7 @@
                     $("#"+massageId).append(" <li class=\"am-comment am-comment-highlight\">\n" +
                         "                                <article class=\"am-comment\" style=\"margin-left: 30px;\">\n" +
                         "                                    <a href=\"#link-to-user-home\">\n" +
-                        "                                        <img src=\"<%=basePath%>Temp-images/face2.jpg\" alt=\"\" class=\"am-comment-avatar\" width=\"48\" height=\"48\"/>\n" +
+                        "                                        <img src=\"${baseUrl}Temp-images/face2.jpg\" alt=\"\" class=\"am-comment-avatar\" width=\"48\" height=\"48\"/>\n" +
                         "                                    </a>\n" +
                         "\n" +
                         "                                    <div class=\"am-comment-main\">\n" +
@@ -96,7 +93,7 @@
 <header class="am-topbar am-topbar-fixed-top wos-header">
     <div class="am-container">
         <h1 class="am-topbar-brand">
-            <a href="#"><img src="<%=basePath%>images/logo.png" alt=""></a>
+            <a href="#"><img src="${baseUrl}images/logo.png" alt=""></a>
         </h1>
 
         <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-warning am-show-sm-only"
@@ -107,11 +104,11 @@
 
         <div class="am-collapse am-topbar-collapse" id="collapse-head">
             <ul class="am-nav am-nav-pills am-topbar-nav">
-                <li><a href="<%=basePath%>toIndex">首页</a></li>
-                <li class="am-active"><a href="<%=basePath%>massagePage">图文</a></li>
-                <li><a href="<%=basePath%>audioPage">音频</a></li>
-                <li><a href="<%=basePath%>topics/1">问答</a></li>
-                <li><a href="<%=basePath%>vUsers/1">大咖秀</a></li>
+                <li><a href="${baseUrl}toIndex">首页</a></li>
+                <li class="am-active"><a href="${baseUrl}massagePage">图文</a></li>
+                <li><a href="${baseUrl}audioPage">音频</a></li>
+                <li><a href="${baseUrl}topics/1">问答</a></li>
+                <li><a href="${baseUrl}vUsers/1">大咖秀</a></li>
                 <li class="am-dropdown" data-am-dropdown>
                     <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
                         付费专区<span class="am-icon-caret-down"></span>
@@ -125,7 +122,7 @@
                     </ul>
                 </li>
             </ul>
-            <form action="<%=basePath%>massages/likeName" class="am-topbar-form am-topbar-left am-form-inline" role="search">
+            <form action="${baseUrl}massages/likeName" class="am-topbar-form am-topbar-left am-form-inline" role="search">
                 <div class="am-form-group" style="margin-top: 9px;margin-left: 100px">
                     <input name="title" type="text" class="am-form-field am-input-sm" placeholder="搜索内容" value="${title}">
                 </div>
@@ -133,14 +130,7 @@
                     <button type="submit" class="am-btn am-btn-primary am-topbar-btn am-btn-sm">搜索</button>
                 </div>
             </form>
-
-            <div class="am-topbar-right" style="margin-top: 9px">
-                <button class="am-btn am-btn-default am-topbar-btn am-btn-sm"><span class="am-icon-pencil"></span>注册</button>
-            </div>
-
-            <div class="am-topbar-right" style="margin-top: 9px">
-                <button class="am-btn am-btn-danger am-topbar-btn am-btn-sm"><span class="am-icon-user"></span> 登录</button>
-            </div>
+            <c:import url="userPlugin.jsp"></c:import>
         </div>
     </div>
 </header>
@@ -151,21 +141,21 @@
             <div data-am-widget="slider" class="am-slider am-slider-c1" data-am-slider='{"directionNav":false}' >
                 <ul class="am-slides">
                     <li>
-                        <img src="<%=basePath%>Temp-images/tad3.png">
+                        <img src="${baseUrl}Temp-images/tad3.png">
                         <div class="am-slider-desc">远方 有一个地方 那里种有我们的梦想</div>
                     </li>
                     <li>
-                        <img src="<%=basePath%>Temp-images/tad3.png">
+                        <img src="${baseUrl}Temp-images/tad3.png">
                         <div class="am-slider-desc">某天 也许会相遇 相遇在这个好地方</div>
 
                     </li>
                     <li>
-                        <img src="<%=basePath%>Temp-images/tad3.png">
+                        <img src="${baseUrl}Temp-images/tad3.png">
                         <div class="am-slider-desc">不要太担心 只因为我相信 终会走过这条遥远的道路</div>
 
                     </li>
                     <li>
-                        <img src="<%=basePath%>Temp-images/tad3.png">
+                        <img src="${baseUrl}Temp-images/tad3.png">
                         <div class="am-slider-desc">OH PARA PARADISE 是否那么重要 你是否那么地遥远</div>
 
                     </li>
@@ -174,7 +164,7 @@
 
         </div>
         <div class="am-u-sm-0 am-u-md-0 am-u-lg-4 padding-none lrad">
-            <div class="star am-container mcenter"><span><a class="am-badge am-badge-secondary am-text-lg" style="margin-left: 10px" href="<%=basePath%>editMassagePage">分享知识</a></span></div>
+            <div class="star am-container mcenter"><span><a class="am-badge am-badge-secondary am-text-lg" style="margin-left: 10px" href="${baseUrl}editMassagePage">分享知识</a></span></div>
             <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
                 <h2 class="am-titlebar-title ">
                     图文分类
@@ -187,7 +177,7 @@
                     <c:forEach var="category" items="${categoryList}" varStatus="v">
                         <c:set var="badge" value="${v.index%4==1?'am-badge-primary':(v.index%4==2?'am-badge-secondary':(v.index%4==3?'am-badge-success':'am-badge-warning'))}"/>
 
-                        <a class="am-badge am-round ${badge} am-text-lg" style="margin-left: 10px" href="<%=basePath%>categoryId/${category.id}/massages">${category.categoryName}</a>
+                        <a class="am-badge am-round ${badge} am-text-lg" style="margin-left: 10px" href="${baseUrl}categoryId/${category.id}/massages">${category.categoryName}</a>
                     </c:forEach>
                 </li>
 
@@ -213,12 +203,12 @@
                         <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" style="border-top: 0px">
                             <div class="am-u-sm-5 am-list-thumb">
                                 <a href="#">
-                                    <img src="<%=basePath%>Temp-images/b2.jpg" alt="配图"/>
+                                    <img src="${baseUrl}Temp-images/b2.jpg" alt="配图"/>
                                 </a>
                             </div>
 
                             <div class=" am-u-sm-7 am-list-main">
-                                <h2 class="am-list-item-hd"><a href="<%=basePath%>massages/${massage.id}">${massage.title}</a></h2>
+                                <h2 class="am-list-item-hd"><a href="${baseUrl}massages/${massage.id}">${massage.title}</a></h2>
 
                                 <div class="am-list-item-text">${massage.content}</div>
 
@@ -274,7 +264,7 @@
                 <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
                     <div class="am-u-sm-4 am-list-thumb">
                         <a href="http://www.douban.com/online/11624755/">
-                            <img src="<%=basePath%>Temp-images/face.jpg" class="face"/>
+                            <img src="${baseUrl}Temp-images/face.jpg" class="face"/>
                         </a>
                     </div>
 
@@ -288,7 +278,7 @@
                 <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
                     <div class="am-u-sm-4 am-list-thumb">
                         <a href="http://www.douban.com/online/11624755/">
-                            <img src="<%=basePath%>Temp-images/face.jpg" class="face"/>
+                            <img src="${baseUrl}Temp-images/face.jpg" class="face"/>
                         </a>
                     </div>
 
@@ -303,7 +293,7 @@
                 <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
                     <div class="am-u-sm-4 am-list-thumb">
                         <a href="http://www.douban.com/online/11624755/">
-                            <img src="<%=basePath%>Temp-images/face.jpg" class="face"/>
+                            <img src="${baseUrl}Temp-images/face.jpg" class="face"/>
                         </a>
                     </div>
 
@@ -331,7 +321,7 @@
                 <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
                     <div class="am-u-sm-4 am-list-thumb">
                         <a href="http://www.douban.com/online/11624755/">
-                            <img src="<%=basePath%>Temp-images/face.jpg" class="face"/>
+                            <img src="${baseUrl}Temp-images/face.jpg" class="face"/>
                         </a>
                     </div>
 
@@ -345,7 +335,7 @@
                 <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
                     <div class="am-u-sm-4 am-list-thumb">
                         <a href="http://www.douban.com/online/11624755/">
-                            <img src="<%=basePath%>Temp-images/face.jpg" class="face"/>
+                            <img src="${baseUrl}Temp-images/face.jpg" class="face"/>
                         </a>
                     </div>
 
@@ -360,7 +350,7 @@
                 <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
                     <div class="am-u-sm-4 am-list-thumb">
                         <a href="http://www.douban.com/online/11624755/">
-                            <img src="<%=basePath%>Temp-images/face.jpg" class="face"/>
+                            <img src="${baseUrl}Temp-images/face.jpg" class="face"/>
                         </a>
                     </div>
 
@@ -393,23 +383,23 @@
             <li><a href="#">广告及服务</a></li>
             <li><a href="#">友情链接</a></li>
         </ul>
-        <div class="btnlogo"><img src="<%=basePath%>images/btnlogo.png"/></div>
+        <div class="btnlogo"><img src="${baseUrl}images/btnlogo.png"/></div>
         <p>Amaze UI出品<br>© 2016 AllMobilize, Inc. Licensed under MIT license. Developed with WebStorm.</p>
         <div class="w2div">
             <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2
   am-avg-md-2 am-avg-lg-2 am-gallery-overlay" data-am-gallery="{ pureview: true }" >
                 <li class="w2">
                     <div class="am-gallery-item">
-                        <a href="<%=basePath%>Temp-images/dd.jpg">
-                            <img src="<%=basePath%>Temp-images/dd.jpg" />
+                        <a href="${baseUrl}Temp-images/dd.jpg">
+                            <img src="${baseUrl}Temp-images/dd.jpg" />
                             <h3 class="am-gallery-title">订阅号：Amaze UI</h3>
                         </a>
                     </div>
                 </li>
                 <li   class="w2">
                     <div class="am-gallery-item">
-                        <a href="<%=basePath%>Temp-images/dd.jpg">
-                            <img src="<%=basePath%>Temp-images/dd.jpg"/>
+                        <a href="${baseUrl}Temp-images/dd.jpg">
+                            <img src="${baseUrl}Temp-images/dd.jpg"/>
                             <h3 class="am-gallery-title">服务号：Amaze UI</h3>
                         </a>
                     </div>
