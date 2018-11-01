@@ -1,5 +1,6 @@
 package top.maniy.shiro.realm;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -104,9 +105,27 @@ public class CustomRealm extends AuthorizingRealm{
         //return userMap.get(username);
     }
 
+
+    //清除缓存
+    public void clearCached() {
+        PrincipalCollection principals = SecurityUtils.getSubject().getPrincipals();
+        super.clearCache(principals);
+    }
+
+
     public static void main(String[] args) {
         //单一的是密码加密容易破解，这时候就需要 加盐
         Md5Hash md5Hash= new Md5Hash("123456","wool");
         System.out.println(md5Hash.toString());
+
+        String username="zxx";
+        String username2=new String("zxx");
+        if(username.equals(username2)){
+            System.out.println("zxx");
+        }
+//
+//        int  x = 1;
+//        return x==1?true:false;
+
     }
 }

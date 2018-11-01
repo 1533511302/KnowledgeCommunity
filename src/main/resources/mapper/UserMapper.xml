@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT permission FROM roles_permissions WHERE role_name=#{role_name}
 	</select>
 
-	<select id="queryRolesByUserName">
+	<select id="queryRolesByUserName" resultType="String">
 		SELECT role FROM user WHERE username=#{username}
 	</select>
 

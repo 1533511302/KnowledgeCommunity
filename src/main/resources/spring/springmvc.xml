@@ -22,6 +22,10 @@
 	<mvc:default-servlet-handler />
 
 
+	<!-- Springmvc的异常处理器 -->
+	<bean class="top.maniy.exception.CustomExceptionResolve"></bean>
+
+
 	<!-- 配置视图解析器 -->
 	<bean	class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>

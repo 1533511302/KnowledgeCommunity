@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import top.maniy.entity.User;
 import top.maniy.mapper.UserMapper;
 import top.maniy.service.UserService;
+import top.maniy.shiro.realm.CustomRealm;
 
 import java.util.List;
 
@@ -20,6 +21,9 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper usermapper;
+    //注入realm
+    @Autowired
+    private CustomRealm customRealm;
 
     @Override
     public User findUserByUsername(String username) {
@@ -58,6 +62,16 @@ public class UserServiceImpl implements UserService {
     public User findUserById(Integer id) {
 
         return usermapper.findUserById(id);
+    }
+
+    @Override
+    public boolean updateUserRole(String role) {
+
+        User user =new User();
+        user.setRole(role);
+        //修改角色权限，清除shiro缓存
+        customRealm.clearCached();
+        return usermapper.updateUser(user);
     }
 
 

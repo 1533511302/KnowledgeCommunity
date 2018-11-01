@@ -38,6 +38,10 @@ public interface UserService {
 
     //根据用户id查询信息
     User findUserById(Integer id);
+
+    //改变用户角色
+    boolean updateUserRole(String role);
+
     //添加用户
     boolean saveUser(User user);
 

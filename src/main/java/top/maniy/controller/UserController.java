@@ -64,7 +64,8 @@ public class UserController {
      */
     @RequestMapping(value = "/toLogin",method = RequestMethod.POST)
     @ResponseBody
-    public String login(HttpServletRequest request, @RequestParam("username") String username, @RequestParam("password") String password){
+    public String login(HttpServletRequest request, @RequestParam("username") String username,
+                        @RequestParam("password") String password,@RequestParam("rememberMe") boolean rememberMe){
 
 //        User user =userService.findUserByUsernameAndPassword(username,password);
 //        if(user!=null){
@@ -78,7 +79,10 @@ public class UserController {
         UsernamePasswordToken token =new UsernamePasswordToken(username,
                 password);
         try {
+            System.out.println(rememberMe);
+            token.setRememberMe(rememberMe);
             subject.login(token);
+
         } catch (AuthenticationException e) {
             return  "0";
         }
