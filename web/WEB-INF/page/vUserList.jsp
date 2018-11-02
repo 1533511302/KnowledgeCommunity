@@ -94,7 +94,7 @@
                 </li>
             </ul>
 
-            <form action="<%=basePath%>topics/likeName" class="am-topbar-form am-topbar-left am-form-inline" role="search">
+            <form action="${baseUrl}topics/likeName" class="am-topbar-form am-topbar-left am-form-inline" role="search">
                 <div class="am-form-group" style="margin-top: 9px;margin-left: 100px">
                     <input name="name" type="text" class="am-form-field am-input-sm" placeholder="搜索内容" value="${name}">
                 </div>

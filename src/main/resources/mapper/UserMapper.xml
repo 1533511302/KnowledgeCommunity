@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="findUserById" resultType="User">
-		select id,realname,gender,photo,autograph,introduce,massagenumb,questionnumb,answernumb from user WHERE id =#{id}
+		select id,username,realname,gender,photo,autograph,introduce,massagenumb,questionnumb,answernumb,role from user WHERE id =#{id}
 	</select>
 
 

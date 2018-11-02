@@ -1,6 +1,7 @@
 package top.maniy.controller;
 
 import com.github.pagehelper.PageInfo;
+import jdk.management.resource.internal.inst.SocketOutputStreamRMHooks;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -82,6 +83,10 @@ public class UserController {
             System.out.println(rememberMe);
             token.setRememberMe(rememberMe);
             subject.login(token);
+            User user =userService.findUserByUsernameAndPassword(username,password);
+            if(user!=null){
+                subject.getSession().setAttribute("user",user);
+        }
 
         } catch (AuthenticationException e) {
             return  "0";
@@ -144,10 +149,15 @@ public class UserController {
                                @RequestParam(value="page", required=false, defaultValue="1") Integer page,
                                @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize,
                                ModelMap modelMap){
+
+
+        String username = (String) SecurityUtils.getSubject().getPrincipal();
+        modelMap.put("username",username);
         User user=userService.findUserById(id);
         PageInfo<Massage> pageInfo=massageService.findMassageByUserId(id,page,pageSize);
         modelMap.put("user",user);
         modelMap.put("pageInfo",pageInfo);
+
         return "userCategory";
     }
 
@@ -164,6 +174,8 @@ public class UserController {
                                @RequestParam(value="page", required=false, defaultValue="1") Integer page,
                                @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize,
                                ModelMap modelMap){
+        String username = (String) SecurityUtils.getSubject().getPrincipal();
+        modelMap.put("username",username);
         User user=userService.findUserById(id);
         PageInfo<Audio> pageInfo=audioService.findAudioByUserId(id,page, pageSize);
         modelMap.put("user",user);
@@ -184,6 +196,8 @@ public class UserController {
                                @RequestParam(value="page", required=false, defaultValue="1") Integer page,
                                @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize,
                                ModelMap modelMap){
+        String username = (String) SecurityUtils.getSubject().getPrincipal();
+        modelMap.put("username",username);
         User user=userService.findUserById(id);
         PageInfo<Question> pageInfo= questionService.findQuestionByUserId(id,page,pageSize);
         modelMap.put("user",user);
@@ -204,6 +218,8 @@ public class UserController {
                                @RequestParam(value="page", required=false, defaultValue="1") Integer page,
                                @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize,
                                ModelMap modelMap){
+        String username = (String) SecurityUtils.getSubject().getPrincipal();
+        modelMap.put("username",username);
         User user=userService.findUserById(id);
         PageInfo<Answer> pageInfo=answerService.findAnswerByUserId(id,page,pageSize);
         modelMap.put("user",user);
@@ -235,6 +251,9 @@ public class UserController {
         modelMap.put("pageInfo",pageInfo);
         return "userCategory";
     }
+
+
+
 
     /**
      * 登出操作

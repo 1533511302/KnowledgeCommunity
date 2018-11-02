@@ -104,11 +104,12 @@
                 <div class="am-u-md-12 am-u-lg-6 userface">
                     <img src="${baseurl}Temp-images/face2.jpg">
                 </div>
-                <div class="am-u-md-12 am-u-lg-6 userin">
-                    <h3>${user.realname}</h3>
+                <div class="am-u-md-9 am-u-lg-6 userin">
+                    <h3>姓名：${user.realname}</h3>
+                    <h4>性别：${user.gender==1?'男':'女'}</h4>
                     <h4>${user.autograph}</h4>
-                    <p>图文<span>${user.massagenumb}</span></p>
-                    <p>回答<span>${user.answernumb}</span></p>
+                    <p>图文：<span>${user.massagenumb}</span>
+                    <p>问题：<span>${user.questionnumb}</span> &nbsp;&nbsp;&nbsp; 回答：<span>${user.answernumb}</span></p></p>
                     <button type="button" class="am-btn am-btn-warning am-hide-lg-only" style="margin: 0 auto; margin-top: 30px">
                         <i class="am-icon-plus"></i>
                         订阅
@@ -120,22 +121,19 @@
         <div class="am-u-sm-0 am-u-md-12 am-u-lg-4 am-show-lg-only userinfo_center">
             ${user.introduce}
         </div>
-        <div class="am-u-sm-12 am-u-md-12 am-u-lg-3 am-show-lg-only userinfo_right">
-            <button type="button" class="am-btn am-btn-warning">
-                <i class="am-icon-plus"></i>
-                订阅
-            </button>
-        </div>
+        <c:if test="${user.username==username}">
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-3 am-show-lg-only userinfo_right">
+                <button type="button" class="am-btn am-btn-warning">
+                    <i class="am-icon-pencil-square"></i>
+                    个人信息
+                </button>
+            </div>
+        </c:if>
 
     </div>
 </div>
 <div id="cattit">
-    <ul class="am-avg-sm-4 am-avg-md-4 am-avg-lg-4" style="width: 700px;margin-left: -250px">
-        <li class="active-none"><h3><a href="${baseurl}vUsersCategory/${user.id}">我的图文</a></h3></li>
-        <li  class="active-none" ><h3><a href="${baseurl}vUsersAudio/${user.id}">我的音频</a></h3></li>
-        <li ><h3><a href="${baseurl}vUsersQuestion/${user.id}">我的问题</a></h3></li>
-        <li  class="active-none"><h3><a href="${baseurl}vUsersAnswer/${user.id}">我的问答</a></h3></li>
-    </ul>
+    <c:import url="tabPlugin.jsp"></c:import>
 </div>
 <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
 <div class="am-g">
@@ -158,7 +156,24 @@
                                 <div class="am-list-item-text">${answer.answerContent}</div>
 
                             </div>
+                            <c:if test="${user.username==username}">
+                                <div align="right" style="width:840px;height:50px;margin-top: 120px;">
+                                    <div class="am-btn-group">
 
+
+                                        <button class="am-btn am-btn-warning am-radius" style="width: 100px">
+                                            <i class="am-icon-pencil"></i>
+                                            修改
+                                        </button>
+
+                                        <button class="am-btn am-btn-danger  am-radius" style="width: 100px">
+                                            <i class="am-icon-eraser"></i>
+                                            删除
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </c:if>
                         </li>
                         <div class="newsico am-fr">
                             <i class="am-icon-clock-o">${answer.createTime}</i>
