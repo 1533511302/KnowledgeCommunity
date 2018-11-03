@@ -114,4 +114,21 @@ public class Massage {
   public void setCreateTime(Date createTime) {
     this.createTime = createTime;
   }
+
+  @Override
+  public String toString() {
+    return "Massage{" +
+            "id=" + id +
+            ", title='" + title + '\'' +
+            ", userId=" + userId +
+            ", categoryId=" + categoryId +
+            ", username='" + username + '\'' +
+            ", likeNumb=" + likeNumb +
+            ", CommentNumb=" + CommentNumb +
+            ", browseNumb=" + browseNumb +
+            ", label='" + label + '\'' +
+            ", content='" + content + '\'' +
+            ", createTime=" + createTime +
+            '}';
+  }
 }

@@ -49,6 +49,13 @@
     <![endif]-->
     <script src="${baseUrl}assets/js/amazeui.min.js"></script>
     <script src="${baseUrl}js/public.js"></script>
+    <script>
+        if(${massage.userId=userId}){
+            alert("你没有修改权限");
+            location.href="${baseUrl}massages/${massage.id}";
+        }
+
+    </script>
 </head>
 <body>
 
@@ -105,22 +112,35 @@
             <div class="am-panel-hd">编辑器</div>
             <div class="am-panel-bd" style="padding: 1rem;padding-bottom: 0.2rem">
                 <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 10px; margin-bottom: 10px">
+                    <input type="hidden" id="massageId" value="${massage.id}">
                     <h2 class="am-titlebar-title ">
                         选择分类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </h2>
 
                     <select id="doc-select-1" style="width: 200px;height: 36px;">
-                            <option value="0">---未选择---</option>
+
+                        <c:forEach var="category" items="${categoryList}">
+                            <c:choose>
+                                <c:when test="${category.id==massage.categoryId}">
+                                    <option value="${category.id}" selected="selected">${category.categoryName}</option>
+                                </c:when>
+
+                                <c:otherwise>
+                                    <option value="${category.id}">${category.categoryName}</option>
+                                </c:otherwise>
+                            </c:choose>
+
+                        </c:forEach>
                     </select>
                 </div>
 
                 <div class="am-input-group am-input-group-primary" style="margin-top: 20px;margin-bottom: 20px">
                     <span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
-                    <input id="title" type="text" class="am-form-field" placeholder="文章标题">
+                    <input id="title" type="text" class="am-form-field" value="${massage.title}">
                 </div>
-                <input type="hidden" name="content">
+
                 <div id="editor">
-                    <p>文章内容编辑区域</p>
+                    ${massage.content}
                 </div>
             </div>
 
@@ -175,14 +195,11 @@
         </div>
     </div>
 </footer>
+
 <script type="text/javascript" src="${baseUrl}assets/js/wangEditor.min.js"></script>
 <script type="text/javascript">
 
-    $.get("categorise/1",null,function (data) {
-        $.each(data,function (i,message) {
-            $("#doc-select-1").append("<option value='"+message.categoryType+"'>"+message.categoryName+"</option>")
-        });
-    });
+
 
     var E = window.wangEditor
     var editor = new E('#editor')
@@ -215,13 +232,17 @@
         var type=$("#doc-select-1 option:selected").val();
         var title=$("#title").val();
         var content=editor.txt.html();
+        var massageId=$("#massageId").val();
         console.log(title);
         console.log(content);
         if(type!="0"){
             if (title!="" && content!=""){
-                $.post("massages",{type:type,title:title,content:content},function (data) {
+                $.post("${baseUrl}updateMassages",{massageId:massageId,type:type,title:title,content:content},function (data) {
+                    console.log("sss");
                     if(data==1){
                         alert("提交成功");
+                        //js跳转页面
+                        location.href="${baseUrl}massages/${massage.id}";
                     }
                 });
             }else {
@@ -237,6 +258,5 @@
 
 
 </script>
-
 </body>
 </html>

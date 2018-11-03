@@ -166,7 +166,7 @@
                                             修改
                                         </button>
 
-                                        <button class="am-btn am-btn-danger  am-radius" style="width: 100px">
+                                        <button class="am-btn am-btn-danger  am-radius" style="width: 100px" onclick="clickDeletebtn(${answer.Id})">
                                             <i class="am-icon-eraser"></i>
                                             删除
                                         </button>
@@ -263,5 +263,15 @@
         </div>
     </div>
 </footer>
+<script>
+    function clickDeletebtn(answerId) {
+        $.post("deleteAnswer",{answerId:answerId},function (data) {
+            if(data){
+            alert("删除成功！");
+            }
+        });
+
+    }
+</script>
 </body>
 </html>

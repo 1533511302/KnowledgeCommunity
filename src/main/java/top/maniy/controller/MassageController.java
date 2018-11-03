@@ -2,6 +2,7 @@ package top.maniy.controller;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import top.maniy.entity.Category;
 import top.maniy.entity.Massage;
 import top.maniy.service.CategoryService;
 import top.maniy.service.MassageService;
+import top.maniy.service.UserService;
 
 import java.util.List;
 
@@ -29,6 +31,9 @@ public class MassageController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private UserService userService;
 
     /**
      * 图文详情页
@@ -123,6 +128,31 @@ public class MassageController {
         return massageService.saveMassage(massage);
     }
 
+    @RequestMapping(value = "/toUpdateMassages",method = RequestMethod.GET)
+    @RequiresPermissions("massage:update")
+    public String toUpdateMassage(@RequestParam Integer massageId,ModelMap modelMap){
+        String username = (String) SecurityUtils.getSubject().getPrincipal();
+        int userId=userService.findUserByUsername(username).getId();
+        Massage massage =massageService.findMassageById(massageId);
+        List<Category> categoryList =categoryService.findCategoryByTypeAndStatus(1,"1");
+        modelMap.put("massage",massage);
+        modelMap.put("categoryList",categoryList);
+        modelMap.put("userId",userId);
+     return "updateMassagePage";
+    }
+
+    @RequestMapping(value = "/updateMassages",method = RequestMethod.POST)
+    @ResponseBody
+    @RequiresPermissions("massage:update")
+    public boolean updateMassage(@RequestParam Integer massageId,@RequestParam Integer type ,@RequestParam String title,@RequestParam String content){
+        Massage massage =new Massage();
+        massage.setId(massageId);
+        massage.setCategoryId(type);
+        massage.setTitle(title);
+        massage.setContent(content);
+        return massageService.updateMassage(massage);
+    }
+
     /**
      * 点赞加一
      * @param massageId
@@ -134,5 +164,14 @@ public class MassageController {
     public boolean addLikeNum(@RequestParam("massageId") Integer massageId) {
        return massageService.LikeNumbAddOne(massageId);
     }
+
+    @RequestMapping(value = "/deleteMassage",method = RequestMethod.POST)
+    @ResponseBody
+    @RequiresPermissions("massage:delete")
+    public boolean deleteMassage(@RequestParam Integer massageId){
+
+        return massageService.deleteMassage(massageId);
+    }
+
 
 }

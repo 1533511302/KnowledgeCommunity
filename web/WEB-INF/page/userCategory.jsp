@@ -162,15 +162,18 @@
                                 <div class="am-btn-group">
 
 
-                                    <button class="am-btn am-btn-warning am-radius" style="width: 100px">
-                                        <i class="am-icon-pencil"></i>
-                                        修改
-                                    </button>
 
-                                    <button class="am-btn am-btn-danger  am-radius" style="width: 100px">
+                                        <button class="am-btn am-btn-danger  am-radius" style="width: 100px" onclick="clickDeleteBtn(${massage.id})">
                                         <i class="am-icon-eraser"></i>
                                            删除
-                                    </button>
+                                        </button>
+
+                                    <a href="${baseUrl}toUpdateMassages?massageId=${massage.id}">
+                                        <button class="am-btn am-btn-warning am-radius" style="width: 100px">
+                                            <i class="am-icon-pencil"></i>
+                                            修改
+                                        </button>
+                                    </a>
                                 </div>
 
                             </div>
@@ -257,5 +260,22 @@
         </div>
     </div>
 </footer>
+<script>
+    function clickDeleteBtn(massageId) {
+        $.post("${baseUrl}deleteMassage",{massageId:massageId},function (data) {
+            if(data){
+                alert("删除成功！");
+            }
+        });
+
+    }
+    function clickUpdateBtn(massageId) {
+
+        $.post("${baseUrl}toUpdateMassages",{massageId:massageId},function () {
+
+        })
+
+    }
+</script>
 </body>
 </html>

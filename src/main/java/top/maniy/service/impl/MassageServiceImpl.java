@@ -95,11 +95,13 @@ public class MassageServiceImpl implements MassageService {
 
     @Override
     public boolean updateMassage(Massage massage) {
-        return false;
+        return massageMapper.updateMassage(massage);
     }
 
     @Override
     public boolean deleteMassage(Integer id) {
-        return false;
+        return massageMapper.deleteMassage(id);
     }
+
+
 }

@@ -30,7 +30,7 @@
     </div>
 
     <div class="am-topbar-right" style="margin-top: 9px">
-        <a><button class="am-btn am-btn-danger am-topbar-btn am-btn-sm"><span class="am-icon-user"></span>个人中心</button></a>
+        <a href="${baseUrl}vUsersQuestion/${user.id}"><button class="am-btn am-btn-danger am-topbar-btn am-btn-sm"><span class="am-icon-user"></span>个人中心</button></a>
     </div>
 </shiro:authenticated>
 </body>
