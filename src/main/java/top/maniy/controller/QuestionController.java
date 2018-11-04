@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import top.maniy.entity.Answer;
+import top.maniy.entity.Category;
 import top.maniy.entity.Question;
 import top.maniy.entity.Topic;
 import top.maniy.service.AnswerService;
@@ -105,6 +106,21 @@ public class QuestionController {
         return questionService.saveQuestion(question);
     }
 
+
+    @RequestMapping(value = "deleteQuestion",method = RequestMethod.GET)
+    @ResponseBody
+    public boolean deleteQuestion(@RequestParam Integer questionId){
+        return questionService.deleteQuestion(questionId);
+    }
+
+    @RequestMapping(value = "toUpdateQuestion",method = RequestMethod.GET)
+    public String toUpdateQuestion(@RequestParam Integer questionId,ModelMap modelMap){
+        List<Topic> topicList =topicService.findAllTopic();
+        Question question =questionService.findQuestionById(questionId);
+        modelMap.put("question",question);
+        modelMap.put("topicList",topicList);
+        return "updateQuestion";
+    }
 
 
 }

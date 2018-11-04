@@ -265,5 +265,22 @@
         </div>
     </div>
 </footer>
+<script>
+    function clickDeleteBtn(massageId) {
+        $.post("${baseUrl}deleteQuestion",{massageId:massageId},function (data) {
+            if(data){
+                alert("删除成功！");
+            }
+        });
+
+    }
+    function clickUpdateBtn(massageId) {
+
+        $.post("${baseUrl}toUpdateQuestion",{massageId:massageId},function () {
+
+        })
+
+    }
+</script>
 </body>
 </html>
