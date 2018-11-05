@@ -50,7 +50,7 @@
     <script src="${baseUrl}assets/js/amazeui.min.js"></script>
     <script src="${baseUrl}js/public.js"></script>
     <script>
-        if(${massage.userId=userId}){
+        if(${massage.userId!=userId}){
             alert("你没有修改权限");
             location.href="${baseUrl}massages/${massage.id}";
         }

@@ -50,9 +50,9 @@
     <script src="${baseUrl}assets/js/amazeui.min.js"></script>
     <script src="${baseUrl}js/public.js"></script>
     <script>
-        if(${question.userId!=userId}){
+        if(${answer.userId!=userId}){
             alert("你没有修改权限");
-            location.href="${baseUrl}massages/${massage.id}";
+            location.href="${baseUrl}question/${answer.quesId}";
         }
 
     </script>
@@ -104,41 +104,27 @@
         </div>
     </div>
 </header>
-<div class="star am-container mcenter"><span>修改我的问题</span></div>
+<div class="star am-container mcenter"><span>修改我的回答</span></div>
 <div class="am-container" style="margin-top: 10px">
     <div class="am-panel am-panel-success">
+        <div class="am-panel-hd">问题：<h3 style="float: right;font-size: 18px;color:#dd514c"><span class="am-icon-eye">&nbsp;&nbsp;</span>${question.browseNumb}</h3></div>
+        <div class="am-panel-bd" style="padding: 1rem;padding-bottom: 0.2rem">
+            <h2>${question.quesName}</h2>
+
+
+        </div>
+        <div class="am-panel-bd">
+            ${question.quesDescribe}
+        </div>
+        <footer class="am-panel-footer" style="margin-top: 1px">一共有${question.answerNumb}回答</footer>
+    </div>
+    <div class="am-panel am-panel-success">
         <div class="am-panel-hd">编辑器</div>
-        <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 10px; margin-bottom: 10px">
-            <input type="hidden" value="${question.id}" id="questionId">
-            <h2 class="am-titlebar-title ">
-                选择分类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </h2>
+            <input type="hidden" value="${answer.id}" id="answerId">
 
-            <select id="doc-select-1" style="width: 200px;height: 36px;">
-                <c:forEach var="topic" items="${topicList}">
-                    <c:choose>
-                        <c:when test="${topic.id==question.topicId}">
-                            <option value="${topic.id}" selected="selected">${topic.topicName}</option>
-                        </c:when>
-
-                        <c:otherwise>
-                            <option value="${topic.id}">${topic.topicName}</option>
-                        </c:otherwise>
-                    </c:choose>
-
-                </c:forEach>
-            </select>
-        </div>
-
-        <div class="am-input-group am-input-group-primary" style="margin-top: 20px;margin-bottom: 20px">
-            <span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
-            <input id="quesTitle" type="text" class="am-form-field" placeholder="问题" value="${question.quesName}">
-        </div>
-
-        <h3 class="blog-comment">描述</h3>
         <fieldset>
             <div class="am-form-group">
-                <textarea id="quesContent" style="width: 100%;" rows="6" placeholder="问题描述">${question.quesDescribe}</textarea>
+                <textarea id="answerContent" style="width: 100%;" rows="6" placeholder="问题描述">${answer.answerContent}</textarea>
             </div>
 
 
@@ -198,30 +184,24 @@
 
         document.getElementById('save').addEventListener('click', function () {
             // 读取 text
-            var topicId=$("#doc-select-1 option:selected").val();
-            var quesName=$("#quesTitle").val();
-            var quesDescribe=$("#quesContent").val();
-            var questionId=$("#questionId").val();
+            var answerContent=$("#answerContent").val();
+            var answerId=$("#answerId").val();
 
-            if(topicId!="0"){
-                if (quesName!="" && quesDescribe!=""){
-                    $.post("${baseUrl}updateQuestion",{questionId:questionId,topicId:topicId,quesName:quesName,quesDescribe:quesDescribe},function (data) {
-                        console.log("dsds");
+
+                if (answerContent!=""){
+                    $.post("${baseUrl}updateAnswer",{answerId:answerId,answerContent:answerContent},function (data) {
+
                         if(data==1){
                             alert("提交成功");
                             //js跳转页面
-                            location.href="${baseUrl}question/${question.id}";
+                            location.href="${baseUrl}question/${answer.quesId}";
                         }
                     });
                 }else {
-                    alert("标题和内容不能为空！！！")
+                    alert("内容不能为空！！！")
                 }
 
 
-            }else{
-
-                alert("没有选择分类！！！")
-            }
         }, false)
 
 

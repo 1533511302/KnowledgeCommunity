@@ -152,7 +152,7 @@
                             </div>
 
                             <div class=" am-u-sm-7 am-list-main">
-                                <h2 class="am-list-item-hd"><a href="${baseUrl}massages/${question.id}">${question.quesName}</a></h2>
+                                <h2 class="am-list-item-hd"><a href="${baseUrl}question/${question.id}">${question.quesName}</a></h2>
 
                                 <div class="am-list-item-text">${question.quesDescribe}</div>
 
@@ -162,15 +162,17 @@
                                     <div class="am-btn-group">
 
 
-                                        <button class="am-btn am-btn-warning am-radius" style="width: 100px">
-                                            <i class="am-icon-pencil"></i>
-                                            修改
-                                        </button>
-
-                                        <button class="am-btn am-btn-danger  am-radius" style="width: 100px">
+                                        <button class="am-btn am-btn-danger  am-radius" style="width: 100px" onclick="clickDeleteBtn(${question.id})">
                                             <i class="am-icon-eraser"></i>
                                             删除
                                         </button>
+
+                                        <a href="${baseUrl}toUpdateQuestion?questionId=${question.id}">
+                                            <button class="am-btn am-btn-warning am-radius" style="width: 100px">
+                                                <i class="am-icon-pencil"></i>
+                                                修改
+                                            </button>
+                                        </a>
                                     </div>
 
                                 </div>
@@ -266,21 +268,15 @@
     </div>
 </footer>
 <script>
-    function clickDeleteBtn(massageId) {
-        $.post("${baseUrl}deleteQuestion",{massageId:massageId},function (data) {
+    function clickDeleteBtn(questionId) {
+        $.post("${baseUrl}deleteQuestion",{questionId:questionId},function (data) {
             if(data){
                 alert("删除成功！");
             }
         });
 
     }
-    function clickUpdateBtn(massageId) {
 
-        $.post("${baseUrl}toUpdateQuestion",{massageId:massageId},function () {
-
-        })
-
-    }
 </script>
 </body>
 </html>

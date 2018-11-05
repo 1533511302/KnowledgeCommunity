@@ -161,15 +161,17 @@
                                     <div class="am-btn-group">
 
 
-                                        <button class="am-btn am-btn-warning am-radius" style="width: 100px">
-                                            <i class="am-icon-pencil"></i>
-                                            修改
-                                        </button>
-
-                                        <button class="am-btn am-btn-danger  am-radius" style="width: 100px" onclick="clickDeletebtn(${answer.Id})">
+                                        <button class="am-btn am-btn-danger  am-radius" style="width: 100px" onclick="clickDeleteBtn(${answer.id})">
                                             <i class="am-icon-eraser"></i>
                                             删除
                                         </button>
+
+                                        <a href="${baseurl}toUpdateAnswer?answerId=${answer.id}">
+                                            <button class="am-btn am-btn-warning am-radius" style="width: 100px">
+                                                <i class="am-icon-pencil"></i>
+                                                修改
+                                            </button>
+                                        </a>
                                     </div>
 
                                 </div>
@@ -264,8 +266,8 @@
     </div>
 </footer>
 <script>
-    function clickDeletebtn(answerId) {
-        $.post("deleteAnswer",{answerId:answerId},function (data) {
+    function clickDeleteBtn(answerId) {
+        $.post("${baseurl}deleteAnswer",{answerId:answerId},function (data) {
             if(data){
             alert("删除成功！");
             }

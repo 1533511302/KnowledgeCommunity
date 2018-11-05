@@ -1,6 +1,7 @@
 package top.maniy.controller;
 
 import com.github.pagehelper.PageInfo;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,6 +13,7 @@ import top.maniy.entity.Topic;
 import top.maniy.service.AnswerService;
 import top.maniy.service.QuestionService;
 import top.maniy.service.TopicService;
+import top.maniy.service.UserService;
 
 import java.util.List;
 
@@ -32,6 +34,9 @@ public class QuestionController {
 
     @Autowired
     private AnswerService answerService;
+
+    @Autowired
+    private UserService userService;
 
     /**
      * 问题列表
@@ -115,11 +120,29 @@ public class QuestionController {
 
     @RequestMapping(value = "toUpdateQuestion",method = RequestMethod.GET)
     public String toUpdateQuestion(@RequestParam Integer questionId,ModelMap modelMap){
+
+        String username = (String) SecurityUtils.getSubject().getPrincipal();
+        int userId=userService.findUserByUsername(username).getId();
+
         List<Topic> topicList =topicService.findAllTopic();
         Question question =questionService.findQuestionById(questionId);
         modelMap.put("question",question);
         modelMap.put("topicList",topicList);
-        return "updateQuestion";
+        modelMap.put("userId",userId);
+        return "updateQuestionPage";
+    }
+
+    @RequestMapping(value = "updateQuestion",method = RequestMethod.POST)
+    @ResponseBody
+    public boolean updateQuestion(@RequestParam Integer questionId,@RequestParam String topicId,
+                                  @RequestParam String quesName,@RequestParam String quesDescribe){
+        Question question =new Question();
+        question.setId(questionId);
+        question.setTopicId(topicId);
+        question.setQuesName(quesName);
+        question.setQuesDescribe(quesDescribe);
+        System.out.println(question.getId());
+        return questionService.updateQuestion(question);
     }
 
 
