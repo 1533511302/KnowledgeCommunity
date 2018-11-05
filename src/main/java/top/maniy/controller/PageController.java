@@ -1,6 +1,7 @@
 package top.maniy.controller;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
+
+import org.apache.shiro.authz.annotation.RequiresGuest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,7 +11,7 @@ import top.maniy.entity.Audio;
 import top.maniy.entity.Massage;
 import top.maniy.entity.Topic;
 import top.maniy.entity.User;
-import top.maniy.mapper.MassageMapper;
+
 import top.maniy.service.AudioService;
 import top.maniy.service.MassageService;
 import top.maniy.service.TopicService;
@@ -39,7 +40,9 @@ public class PageController {
     @Autowired
     private AudioService audioService;
 
+
     @RequestMapping(value = "/toIndex",method = RequestMethod.GET)
+
     public String toIndex(ModelMap modelMap){
         //热门文章前五
         List<Massage> hotMassageList =massageService.findMassageByBrowseNumbDesc0To5();

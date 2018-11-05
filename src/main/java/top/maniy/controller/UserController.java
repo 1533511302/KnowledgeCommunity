@@ -12,6 +12,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import top.maniy.entity.*;
 import top.maniy.service.*;
+import top.maniy.shiro.realm.CustomRealm;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -41,8 +42,11 @@ public class UserController {
     @Autowired
     private AnswerService answerService;
 
+    @Autowired
+    private CustomRealm customRealm;
+
     /**
-     * 默认首页
+     * 登录
      * @return
      */
     @RequestMapping(value ="toLogin",method = RequestMethod.GET)
@@ -52,10 +56,15 @@ public class UserController {
         return "loginPage";
     }
 
-    @RequestMapping(value = "registerPage",method = RequestMethod.GET)
-    public String registerPage(){
+    /**
+     * 跳转注册页面
+     * @return
+     */
+    @RequestMapping(value = "/toRegister",method = RequestMethod.GET)
+    public String toRegister(){
         return "registerPage";
     }
+
     /**
      * 登录验证
      * @param request
@@ -136,6 +145,14 @@ public class UserController {
         return "vUserList";
     }
 
+
+    @RequestMapping(value = "userCenter")
+    public String userCenter(){
+        String username = (String) SecurityUtils.getSubject().getPrincipal();
+        int userId =userService.findUserByUsername(username).getId();
+        return "redirect:vUsersQuestion/"+userId;
+
+    }
     /**
      * 认证用户主页图文
      * @param id
@@ -218,7 +235,9 @@ public class UserController {
                                @RequestParam(value="page", required=false, defaultValue="1") Integer page,
                                @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize,
                                ModelMap modelMap){
+
         String username = (String) SecurityUtils.getSubject().getPrincipal();
+
         modelMap.put("username",username);
         User user=userService.findUserById(id);
         PageInfo<Answer> pageInfo=answerService.findAnswerByUserId(id,page,pageSize);
@@ -264,6 +283,8 @@ public class UserController {
     public String logout(HttpServletRequest request){
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
+        //清除shiro缓存
+        customRealm.clearCached();
         return "redirect:toLogin";
     }
 

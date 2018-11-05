@@ -189,7 +189,7 @@
             <li><a href="#">友情链接</a></li>
         </ul>
         <div class="btnlogo"><img src="${baseUrl}images/btnlogo.png"/></div>
-        <p>Amaze UI出品<br>© 2016 AllMobilize, Inc. Licensed under MIT license. Developed with WebStorm.</p>
+        <p>knowledge出品<br>© 2016 AllMobilize, Inc. Licensed under MIT license. Developed with WebStorm.</p>
         <div class="w2div">
             <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2
   am-avg-md-2 am-avg-lg-2 am-gallery-overlay" data-am-gallery="{ pureview: true }" >
@@ -197,7 +197,7 @@
                     <div class="am-gallery-item">
                         <a href="${baseUrl}Temp-images/dd.jpg">
                             <img src="${baseUrl}Temp-images/dd.jpg" />
-                            <h3 class="am-gallery-title">订阅号：Amaze UI</h3>
+                            <h3 class="am-gallery-title">订阅号：</h3>
                         </a>
                     </div>
                 </li>
@@ -205,7 +205,7 @@
                     <div class="am-gallery-item">
                         <a href="${baseUrl}Temp-images/dd.jpg">
                             <img src="${baseUrl}Temp-images/dd.jpg"/>
-                            <h3 class="am-gallery-title">服务号：Amaze UI</h3>
+                            <h3 class="am-gallery-title">服务号：</h3>
                         </a>
                     </div>
                 </li>

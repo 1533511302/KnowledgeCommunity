@@ -177,22 +177,22 @@
             <div data-am-widget="slider" class="am-slider am-slider-c1" data-am-slider='{"directionNav":false}' >
                 <ul class="am-slides">
                     <li>
-                        <a href="events_show.html"><img src="Temp-images/bb1.jpg"></a>
+                        <a href="#"><img src="${baseUrl}Temp-images/bb1.jpg"></a>
                         <div class="am-slider-desc">远方 有一个地方 那里种有我们的梦想</div>
 
                     </li>
                     <li>
-                        <a href="events_show.html"><img src="Temp-images/bb2.jpg"></a>
+                        <a href="#"><img src="Temp-images/bb2.jpg"></a>
                         <div class="am-slider-desc">某天 也许会相遇 相遇在这个好地方</div>
 
                     </li>
                     <li>
-                        <a href="events_show.html"><img src="Temp-images/bb3.jpg"></a>
+                        <a href="#"><img src="Temp-images/bb3.jpg"></a>
                         <div class="am-slider-desc">不要太担心 只因为我相信 终会走过这条遥远的道路</div>
 
                     </li>
                     <li>
-                        <a href="events_show.html"><img src="Temp-images/bb4.jpg"></a>
+                        <a href="#"><img src="Temp-images/bb4.jpg"></a>
                         <div class="am-slider-desc">OH PARA PARADISE 是否那么重要 你是否那么地遥远</div>
                     </li>
                 </ul>
@@ -223,7 +223,7 @@
         <c:forEach var="topic" items="${randTopicList}" varStatus="index">
         <li>
             <div class="am-gallery-item">
-                <a href="massage.html">
+                <a href="${baseUrl}questionList/${topic.id}">
                     <img src="${baseUrl}Temp-images/tempnews.png"  alt="远方 有一个地方 那里种有我们的梦想"/>
                     <h3 class="am-gallery-title">${topic.topicName}</h3>
                     <div class="am-gallery-desc">2375-09-26</div>
@@ -778,7 +778,7 @@
             <li><a href="#">友情链接</a></li>
         </ul>
         <div class="btnlogo"><img src="images/btnlogo.png"/></div>
-        <p>Amaze UI出品<br>© 2016 AllMobilize, Inc. Licensed under MIT license. Developed with WebStorm.</p>
+        <p>knowledge出品<br>© 2016 AllMobilize, Inc. Licensed under MIT license. Developed with WebStorm.</p>
         <div class="w2div">
             <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2
   am-avg-md-2 am-avg-lg-2 am-gallery-overlay" data-am-gallery="{ pureview: true }" >
@@ -786,7 +786,7 @@
                     <div class="am-gallery-item">
                         <a href="Temp-images/dd.jpg">
                             <img src="Temp-images/dd.jpg" />
-                            <h3 class="am-gallery-title">订阅号：Amaze UI</h3>
+                            <h3 class="am-gallery-title">订阅号：</h3>
                         </a>
                     </div>
                 </li>
@@ -794,7 +794,7 @@
                     <div class="am-gallery-item">
                         <a href="Temp-images/dd.jpg">
                             <img src="Temp-images/dd.jpg"/>
-                            <h3 class="am-gallery-title">服务号：Amaze UI</h3>
+                            <h3 class="am-gallery-title">服务号：</h3>
                         </a>
                     </div>
                 </li>

@@ -3,6 +3,7 @@ package top.maniy.controller;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresGuest;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,6 @@ public class MassageController {
      * @return
      */
     @RequestMapping(value = "/massages/{id}")
-    @RequiresPermissions("massage:select")
     public String findMassageById(@PathVariable Integer id,ModelMap modelMap){
         Massage massage= massageService.findMassageById(id);
         modelMap.put("massage",massage);
@@ -55,7 +55,6 @@ public class MassageController {
      * @return
      */
     @RequestMapping(value = "/massagePage")
-    @RequiresPermissions("massage:select")
     public String massagePage(ModelMap modelMap){
         List<Massage> massageList=massageService.findMassageRandTo10();
         List<Category> categoryList=categoryService.findCategoryByTypeAndStatus(1,"1");
@@ -73,7 +72,6 @@ public class MassageController {
      * @return
      */
     @RequestMapping(value = "/categoryId/{categoryId}/massages")
-    @RequiresPermissions("massage:select")
     public String findMassageByCategoryId(@PathVariable Integer categoryId,
                                   @RequestParam(value="page", required=false, defaultValue="1") Integer page,
                                   @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize,
@@ -94,7 +92,6 @@ public class MassageController {
      * @return
      */
     @RequestMapping(value = "/massages/likeName")
-    @RequiresPermissions("massage:select")
     public String massagePageInfo(@RequestParam(value="page", required=false, defaultValue="1") Integer page,
                                   @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize,
                                   @RequestParam("title") String title,ModelMap modelMap){
@@ -165,6 +162,11 @@ public class MassageController {
        return massageService.LikeNumbAddOne(massageId);
     }
 
+    /**
+     * 删除
+     * @param massageId
+     * @return
+     */
     @RequestMapping(value = "/deleteMassage",method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("massage:delete")

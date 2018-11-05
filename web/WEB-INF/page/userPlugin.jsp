@@ -17,11 +17,11 @@
 
 <shiro:notAuthenticated>
     <div class="am-topbar-right" style="margin-top: 9px">
-        <button class="am-btn am-btn-default am-topbar-btn am-btn-sm"><span class="am-icon-pencil"></span>注册</button>
+        <a href="${baseUrl}toRegister"><button class="am-btn am-btn-default am-topbar-btn am-btn-sm"><span class="am-icon-pencil"></span>注册</button></a>
     </div>
 
     <div class="am-topbar-right" style="margin-top: 9px">
-        <button class="am-btn am-btn-danger am-topbar-btn am-btn-sm"><span class="am-icon-user"></span> 登录</button>
+        <a href="${baseUrl}toLogin"><button class="am-btn am-btn-danger am-topbar-btn am-btn-sm"><span class="am-icon-user"></span>登录</button></a>
     </div>
 </shiro:notAuthenticated>
 <shiro:authenticated>
@@ -30,7 +30,7 @@
     </div>
 
     <div class="am-topbar-right" style="margin-top: 9px">
-        <a href="${baseUrl}vUsersQuestion/${user.id}"><button class="am-btn am-btn-danger am-topbar-btn am-btn-sm"><span class="am-icon-user"></span>个人中心</button></a>
+        <a href="${baseUrl}userCenter"><button class="am-btn am-btn-danger am-topbar-btn am-btn-sm"><span class="am-icon-user"></span>个人中心</button></a>
     </div>
 </shiro:authenticated>
 </body>

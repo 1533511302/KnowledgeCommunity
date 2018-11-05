@@ -28,13 +28,34 @@
 
                 /login.html = anon
                 /toLogin = anon
-                /toIndex = user
+                /toRegister = anon
+                /indexComment =anon
+
+                /isUsername = anon
+                /vUsers/* =anon
+                /vUsersCategory/** =anon
+                /vUsersAudio/* = anon
+                /vUsersQuestion/* =anon
+                /vUsersAnswer/*  = anon
+
+                /toIndex = anon
+                /massagePage =anon
+                /massages/* =anon
+                /categoryId/** =anon
+                /audioPage =anon
+                /audioList/* =anon
+                /audioList/likeName =anon
+                /audio/* =anon
+                /questionList/** =anon
+                /question/* = anon
+                /topics/* =anon
+                /topics=anon
                 <!--/testRole2=roles["admin"]-->
                 <!--/testRole3=rolesOr["admin","admin1"]-->
                 <!--/testPerms =perms[user:select]-->
                 <!--/testPerms1 =perms["user:select","user:update"]-->
                 <!-- 请求logout地址（这个地址可以不存在），shiro去清除session-->
-                <!--/logout = logout-->
+                /logout = logout
                 /** = authc
             </value>
         </property>

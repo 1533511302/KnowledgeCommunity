@@ -90,26 +90,19 @@
                     <button type="submit" class="am-btn am-btn-primary am-topbar-btn am-btn-sm">搜索</button>
                 </div>
             </form>
-
-            <div class="am-topbar-right" style="margin-top: 9px">
-                <button class="am-btn am-btn-default am-topbar-btn am-btn-sm"><span class="am-icon-pencil"></span>注册</button>
-            </div>
-
-            <div class="am-topbar-right" style="margin-top: 9px">
-                <button class="am-btn am-btn-danger am-topbar-btn am-btn-sm"><span class="am-icon-user"></span> 登录</button>
-            </div>
+            <c:import url="userPlugin.jsp"></c:import>
         </div>
     </div>
 </header>
 
-<div class="star am-container mcenter"><span><img src="${baseUrl}images/star.png">即将开始</span></div>
+<div class="star am-container mcenter"><span><img src="${baseUrl}images/star.png">话题</span></div>
 <div class="am-container events">
     <ul data-am-widget="gallery" class="am-gallery am-avg-sm-1 am-avg-md-3 am-avg-lg-3 am-gallery-bordered" data-am-gallery="{  }" >
         <c:forEach var="topic" items="${pageInfo.list}" varStatus="index">
             <li>
                 <div class="am-gallery-item">
                     <a href="${baseUrl}questionList/${topic.id}" class="">
-                        <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
+                        <img src="${baseUrl}Temp-images/question.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
                         <div class="efe">${topic.topicName}</div>
                         <p>${topic.topicDescribe}</p>
                         <div class="am-gallery-desc fee">
@@ -146,8 +139,13 @@
             </li>
         </c:forEach>
 
+        <li class="am-pagination-next ">
+            <a href="<c:url value="/topics/${pageInfo.pageNum+1<pageInfo.pages?pageInfo.pageNum+1:pageInfo.pages}"/>">&raquo;</a>
+        </li>
 
-        <c:import url="userPlugin.jsp"></c:import>
+        <li class="am-pagination-last ">
+            <a href="<c:url value="/topics/${pageInfo.pages}"/>">尾页</a>
+        </li>
     </ul>
 </div>
 <div class="am-container" style="margin-top: 10px">
@@ -315,7 +313,7 @@
             <li><a href="#">友情链接</a></li>
         </ul>
         <div class="btnlogo"><img src="${baseUrl}images/btnlogo.png"/></div>
-        <p>Amaze UI出品<br>© 2016 AllMobilize, Inc. Licensed under MIT license. Developed with WebStorm.</p>
+        <p>knowledge出品<br>© 2016 AllMobilize, Inc. Licensed under MIT license. Developed with WebStorm.</p>
         <div class="w2div">
             <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2
   am-avg-md-2 am-avg-lg-2 am-gallery-overlay" data-am-gallery="{ pureview: true }" >
@@ -323,7 +321,7 @@
                     <div class="am-gallery-item">
                         <a href="${baseUrl}Temp-images/dd.jpg">
                             <img src="${baseUrl}Temp-images/dd.jpg" />
-                            <h3 class="am-gallery-title">订阅号：Amaze UI</h3>
+                            <h3 class="am-gallery-title">订阅号：</h3>
                         </a>
                     </div>
                 </li>
@@ -331,7 +329,7 @@
                     <div class="am-gallery-item">
                         <a href="${baseUrl}Temp-images/dd.jpg">
                             <img src="${baseUrl}Temp-images/dd.jpg"/>
-                            <h3 class="am-gallery-title">服务号：Amaze UI</h3>
+                            <h3 class="am-gallery-title">服务号：</h3>
                         </a>
                     </div>
                 </li>
