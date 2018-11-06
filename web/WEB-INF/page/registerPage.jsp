@@ -37,38 +37,41 @@
                     if (data){
                         alert("用户名已存在！");
                         return false;
+                    }else {
+
+
+
+                        var password=$("#password").val();
+                        if (password==""){
+                            alert("密码不能为空！");
+                            return false;
+                        }
+                        var confirm=$("#confirm").val();
+                        if(confirm !=password){
+                            alert("确认密码不相等！");
+                        }else {
+                            $.ajax({
+                                type: 'post',
+                                url: "users",
+                                data: {username:username,password:password},
+                                success: function (data) {
+
+
+
+                                        alert("注册成功！")
+                                        window.location.href="toLogin";
+
+                                }
+                            });
+                        }
+
                     }
                 });
 
             }
 
 
-            var password=$("#password").val();
-            if (password==""){
-                alert("密码不能为空！");
-                return false;
-            }
-            var confirm=$("#confirm").val();
-            if(confirm !=password){
-                alert("确认密码不相等！");
-            }else {
-                $.ajax({
-                    type: 'post',
-                    url: "users",
-                    data: {username:username,password:password},
-                    success: function (data) {
 
-                        console.log(data)
-                        if (data) {
-                            alert("注册成功！")
-                            window.location.href="toLogin";
-                        }
-                        else {
-                            console.log("失败");
-                        }
-                    }
-                });
-            }
         }
     </script>
 </head>

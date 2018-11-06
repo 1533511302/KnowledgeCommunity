@@ -369,6 +369,7 @@
                 $.post("${baseUrl}saveAnswer",{quesId:quesId,answerContent:content},function (data) {
                     if(data=1){
                         alert("提交成功");
+                        location.href="${baseUrl}question/${question.id}";
                     }
                 });
             }else {

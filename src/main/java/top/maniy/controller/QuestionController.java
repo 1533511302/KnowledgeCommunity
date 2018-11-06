@@ -104,7 +104,11 @@ public class QuestionController {
     @RequestMapping(value = "saveQuestion",method = RequestMethod.POST)
     @ResponseBody
     public boolean SaveQuestion(@RequestParam String topicId,@RequestParam String quesName,@RequestParam String quesDescribe){
+        String username = (String) SecurityUtils.getSubject().getPrincipal();
+        int userId =userService.findUserByUsername(username).getId();
+
         Question question =new Question();
+        question.setUserId(userId);
         question.setTopicId(topicId);
         question.setQuesName(quesName);
         question.setQuesDescribe(quesDescribe);

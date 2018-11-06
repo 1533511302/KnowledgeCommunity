@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
     <welcome-file-list>
-        <welcome-file>toLogin</welcome-file>
+        <welcome-file>toIndex</welcome-file>
     </welcome-file-list>
 
     <!--配置shiro-->
@@ -65,6 +65,6 @@
     <servlet-mapping>
         <servlet-name>SpringMVC</servlet-name>
         <!-- 所有的请求都进入springMVC -->
-        <url-pattern>/toLogin</url-pattern>
+        <url-pattern>/toIndex</url-pattern>
     </servlet-mapping>
 </web-app>

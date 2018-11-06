@@ -2,6 +2,7 @@ package top.maniy.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.maniy.entity.User;
@@ -77,7 +78,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean saveUser(User user) {
-
+        //单一的是密码加密容易破解，这时候就需要 加盐
+        Md5Hash md5Hash= new Md5Hash(user.getPassword(),user.getUsername());
+        user.setPassword(md5Hash.toString());
         return usermapper.saveUser(user);
     }
 

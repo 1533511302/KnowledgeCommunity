@@ -85,7 +85,7 @@
             </ul>
 
             <form action="${baseUrl}questionList/${topicId}/likeName" class="am-topbar-form am-topbar-left am-form-inline" role="search">
-                <div class="am-form-group" style="margin-top: 9px;margin-left: 100px">
+                <div class="am-form-group" style="margin-top: 9px;margin-left: 80px">
                     <input name="title" type="text" class="am-form-field am-input-sm" placeholder="搜索内容" value="${title}">
                 </div>
                 <div class="am-topbar-right">

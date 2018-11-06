@@ -26,9 +26,9 @@
                 /mp3/** =anon
                 /Temp-images/** =anon
 
-                /login.html = anon
                 /toLogin = anon
                 /toRegister = anon
+                /users = anon
                 /indexComment =anon
 
                 /isUsername = anon

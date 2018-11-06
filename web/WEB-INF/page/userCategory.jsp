@@ -208,7 +208,13 @@
                             <a href="<c:url value="/vUsersCategory/${user.id}?page=${loop.index}"/>">${loop.index}</a>
                         </li>
                     </c:forEach>
+                    <li class="am-pagination-next ">
+                        <a href="<c:url value="/vUsersCategory/${user.id}?page=${pageInfo.pageNum+1<pageInfo.pages?pageInfo.pageNum+1:pageInfo.pages}"/>">&raquo;</a>
+                    </li>
 
+                    <li class="am-pagination-last ">
+                        <a href="<c:url value="/vUsersCategory/${user.id}?page=${pageInfo.pages}"/>">尾页</a>
+                    </li>
 
                 </ul>
             </div>

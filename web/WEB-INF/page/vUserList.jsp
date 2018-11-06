@@ -117,7 +117,7 @@
     <div class="am-container" >
         <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-6 am-thumbnails" id="topface">
             <li>
-                <a href="category2.html">
+                <a href="#">
                     <div class="ctl active">
                         <img src="${baseUrl}Temp-images/face1.jpg">
                         <h3>高云峰</h3>
@@ -127,7 +127,7 @@
                 </a>
             </li>
             <li>
-                <a href="http://www.sina.com">
+                <a href="#">
                     <div class="ctl">
                         <img src="${baseUrl}Temp-images/face2.jpg">
                         <h3>刘玉乐</h3>
@@ -137,7 +137,7 @@
                 </a>
             </li>
             <li>
-                <a href="http://www.qq.com">
+                <a href="#">
                     <div class="ctl">
                         <img src="${baseUrl}Temp-images/face3.jpg">
                         <h3>付林</h3>
@@ -147,7 +147,7 @@
                 </a>
             </li>
             <li>
-                <a href="http://www.youku.com">
+                <a href="#">
                     <div class="ctl">
                         <img src="${baseUrl}Temp-images/face4.jpg">
                         <h3>陈琳</h3>
@@ -157,7 +157,7 @@
                 </a>
             </li>
             <li>
-                <a href="http://www.yahoo.com">
+                <a href="#">
                     <div class="ctl">
                         <img src="${baseUrl}Temp-images/face5.jpg">
                         <h3>王明旭</h3>
@@ -167,7 +167,7 @@
                 </a>
             </li>
             <li>
-                <a href="http://www.china.com">
+                <a href="#">
                     <div class="ctl">
                         <img src="${baseUrl}Temp-images/face6.jpg">
                         <h3>高晓松</h3>
