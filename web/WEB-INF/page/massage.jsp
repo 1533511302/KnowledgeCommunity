@@ -112,12 +112,64 @@
         <div class="contents">
             ${massage.content}
         </div>
-        <div class="shang">
-            <img src="${baseUrl}images/shang.png" >
-        </div>
+
         <!--data-ds-short-name="amazeui" 多说的用户名-->
         <div data-am-widget="duoshuo" class="am-duoshuo am-duoshuo-default" data-ds-short-name="amazeui">
             <div class="ds-thread" >
+            </div>
+        </div>
+        <div data-am-widget="list_news" class="am-list-news am-list-news-default ">
+            <div class="am-list-news-bd">
+                <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
+                    <h2 class="am-titlebar-title ">
+                        评论内容
+                    </h2>
+                    <nav class="am-titlebar-nav">
+                        <a href="#more">more &raquo;</a>
+                    </nav>
+                </div>
+                <ul id="answerList" class="am-comments-list am-comments-list-flip">
+                    <c:forEach var="comment" items="${commentList}" varStatus="index">
+                        <li class="am-comment am-comment-primary">
+                            <article class="am-comment">
+                                <a href="#link-to-user-home">
+                                    <img src="${baseUrl}Temp-images/face2.jpg" alt="" class="am-comment-avatar" width="48" height="48"/>
+                                </a>
+                                <div class="am-comment-main">
+                                    <header class="am-comment-hd">
+                                        <!--<h3 class=\"am-comment-title\">评论标题</h3>-->
+                                        <div class="am-comment-meta">
+                                            <a href="#link-to-user" class="am-comment-author">某人</a>
+                                            评论于 <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">${comment.createTime}</time>
+                                        </div>
+                                    </header>
+
+                                    <div class="am-comment-bd">
+                                            ${comment.commentContent}
+
+                                    </div>
+                                </div>
+                            </article>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </div>
+
+            <div class="am-container" style="margin-top: 10px">
+                <div class="am-panel am-panel-success">
+                    <div class="am-panel-hd">评论</div>
+
+                    <fieldset>
+                        <div class="am-form-group">
+                            <textarea id="massageContent" style="width: 100%;" rows="6" placeholder="评论内容编辑"></textarea>
+                        </div>
+
+
+                    </fieldset>
+
+                </div>
+                <div class="star am-container mcenter"><span><button id="save" type="button" class="am-btn am-btn-primary" onclick="clickSubmit(${massage.id})" style="width: 120px">提交</button></span></div>
+
             </div>
         </div>
     </div>
@@ -340,5 +392,24 @@
         </div>
     </div>
 </footer>
+<script type="text/javascript">
+
+    function clickSubmit(massageId) {
+        // 读取 text
+        var content=$("#massageContent").val();
+        alert(content);
+        if (content!=""){
+            $.post("${baseUrl}saveComment",{massageId:massageId,commentContent:content},function (data) {
+                if(data==1){
+
+                    location.href="${baseUrl}massages/${massage.id}";
+                }
+            });
+        }else {
+            alert("内容不能为空！！！")
+        }
+    }
+
+</script>
 </body>
 </html>

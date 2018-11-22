@@ -44,8 +44,8 @@ public class DateUtil {
 //
 //    }
 
-    public static void main(String s[]){
-        System.out.println(DateUtil.getMiniute());
+    public static void main(String s[]) {
+        //System.out.println(DateUtil.getMiniute());
     }
 
 }

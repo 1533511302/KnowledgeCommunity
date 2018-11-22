@@ -23,6 +23,9 @@ public interface MassageService {
     //根据id点赞数加一
     boolean LikeNumbAddOne(Integer id);
 
+    //根据id浏览量加一
+    boolean browseNumb(Integer id);
+
     //随机取10条massage
     List<Massage> findMassageRandTo10();
 

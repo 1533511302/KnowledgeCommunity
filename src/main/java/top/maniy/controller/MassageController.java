@@ -11,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import top.maniy.entity.Category;
+import top.maniy.entity.Comment;
 import top.maniy.entity.Massage;
 import top.maniy.service.CategoryService;
+import top.maniy.service.CommentService;
 import top.maniy.service.MassageService;
 import top.maniy.service.UserService;
 
@@ -36,6 +38,9 @@ public class MassageController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private CommentService commentService;
+
     /**
      * 图文详情页
      * @param id
@@ -44,7 +49,12 @@ public class MassageController {
      */
     @RequestMapping(value = "/massages/{id}")
     public String findMassageById(@PathVariable Integer id,ModelMap modelMap){
+        massageService.browseNumb(id);
+
         Massage massage= massageService.findMassageById(id);
+        List<Comment> commentList=commentService.findCommentByMassageIdAndByLikeNumbDescTo3(id);
+
+        modelMap.put("commentList",commentList);
         modelMap.put("massage",massage);
         return "massage";
     }

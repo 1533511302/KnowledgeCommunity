@@ -45,6 +45,13 @@ public class MassageServiceImpl implements MassageService {
     }
 
     @Override
+    public boolean browseNumb(Integer id) {
+        Massage massage =massageMapper.findMassageById(id);
+        massage.setBrowseNumb(massage.getBrowseNumb()+1);
+        return massageMapper.updateMassage(massage);
+    }
+
+    @Override
     public List<Massage> findMassageRandTo10() {
         return massageMapper.findMassageRand(10);
     }
@@ -90,6 +97,7 @@ public class MassageServiceImpl implements MassageService {
 
     @Override
     public boolean saveMassage(Massage massage) {
+
         return massageMapper.saveMassage(massage);
     }
 
