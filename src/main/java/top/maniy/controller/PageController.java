@@ -70,4 +70,10 @@ public class PageController {
     public String musicPage(ModelMap modelMap){
         return "music";
     }
+
+
+    @RequestMapping(value = "toAdminIndex")
+    public String toAdminIndex(ModelMap modelMap){
+        return "adminIndex";
+    }
 }

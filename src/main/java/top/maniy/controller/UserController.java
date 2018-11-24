@@ -46,7 +46,7 @@ public class UserController {
     private CustomRealm customRealm;
 
     /**
-     * 登录
+     * 登录页面
      * @return
      */
     @RequestMapping(value ="toLogin",method = RequestMethod.GET)
@@ -89,14 +89,16 @@ public class UserController {
         UsernamePasswordToken token =new UsernamePasswordToken(username,
                 password);
         try {
-            System.out.println(rememberMe);
+
             token.setRememberMe(rememberMe);
             subject.login(token);
-            User user =userService.findUserByUsernameAndPassword(username,password);
-            if(user!=null){
-                subject.getSession().setAttribute("user",user);
+//            User user =userService.findUserByUsernameAndPassword(username,password);
+//            if(user!=null){
+//                subject.getSession().setAttribute("user",user);
+//        }
+        if(subject.hasRole("3")){
+            return "3";
         }
-
         } catch (AuthenticationException e) {
             return  "0";
         }

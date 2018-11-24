@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace ="top.maniy.mapper.CollectionMapper">
+
+
+	<select id="findCollectionByType" resultType="Collections">
+		SELECT * FROM collection WHERE type=#{type}
+	</select>
+
+
+	<insert id="saveCollection">
+		INSERT INTO collection
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="userId != null" >
+			userId,
+			</if>
+            <if test="massageId != null" >
+                massageId,
+            </if>
+            <if test="audioId != null" >
+				audioId,
+            </if>
+            <if test="questionId != null" >
+                questionId,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="userId != null" >
+				#{userId},
+			</if>
+			<if test="massageId != null" >
+				#{massageId},
+			</if>
+			<if test="questionId != null" >
+				#{questionId},
+			</if>
+        </trim>
+	</insert>
+
+	<delete id="deleteCollection">
+		DELETE FROM collection WHERE id=#{id}
+	</delete>
+
+
+</mapper>

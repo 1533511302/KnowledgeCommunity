@@ -49,6 +49,57 @@
     <![endif]-->
     <script src="${baseUrl}assets/js/amazeui.min.js"></script>
     <script src="${baseUrl}js/public.js"></script>
+    <script>
+        function clickCommentBtn(massageId,btn) {
+            if($(btn).attr("key")==1){
+                $.post("${baseUrl}indexComment",{massageId:massageId},function (data) {
+                    $.each(data,function (i,comment) {
+
+                        $("#"+massageId).append(" <li class=\"am-comment am-comment-highlight\">\n" +
+                            "                                <article class=\"am-comment\" style=\"margin-left: 30px;\">\n" +
+                            "                                    <a href=\"#link-to-user-home\">\n" +
+                            "                                        <img src=\"${baseUrl}Temp-images/face2.jpg\" alt=\"\" class=\"am-comment-avatar\" width=\"48\" height=\"48\"/>\n" +
+                            "                                    </a>\n" +
+                            "\n" +
+                            "                                    <div class=\"am-comment-main\">\n" +
+                            "                                        <header class=\"am-comment-hd\">\n" +
+                            "                                            <!--<h3 class=\"am-comment-title\">评论标题</h3>-->\n" +
+                            "                                            <div class=\"am-comment-meta\">\n" +
+                            "                                                <a href=\"#link-to-user\" class=\"am-comment-author\">某人</a>\n" +
+                            "                                                评论于 <time datetime=\"2013-07-27T04:54:29-07:00\" title=\"2013年7月27日 下午7:54 格林尼治标准时间+0800\">"+comment.createTime+"</time>\n" +
+                            "                                            </div>\n" +
+                            "                                        </header>\n" +
+                            "\n" +
+                            "                                        <div class=\"am-comment-bd\">\n" +
+                            "                                            "+comment.commentContent+"\n" +
+                            "                                        </div>\n" +
+                            "                                    </div>\n" +
+                            "                                </article>\n" +
+                            "                            </li>")
+
+
+                    });
+                },'json');
+                $(btn).attr("key",2);
+            }else {
+                $("#"+massageId).empty();
+
+                $(btn).attr("key",1);
+            }
+        };
+
+        function clickLikeNumbBtn(massageId,likeNumb,btn) {
+            if($(btn).attr("key")==1){
+                $.post("${baseUrl}AddLikeNum",{massageId:massageId},function (data) {
+                    if(data){
+                        $(btn).attr("data-am-popover","{content: '鄙是点击显示的'}");
+                        $(btn).html("<i class=\"am-icon-caret-up\"></i>&nbsp;赞&nbsp;"+(likeNumb+1));
+                    }
+                });
+                $(btn).attr("key",2);
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -162,22 +213,21 @@
                                 <div class="am-list-item-text">${massage.content}</div>
 
                             </div>
-                            <div style="width:840px;height:50px;margin-top: 120px;">
+                            <div style="width:840px;height:50px;margin-top: 110px;">
                                 <div class="am-btn-group">
-                                    <button class="am-btn am-btn-secondary am-radius"  style="width: 100px">
+                                    <button class="am-btn am-btn-secondary am-radius" key="1"  onclick="clickLikeNumbBtn(${massage.id},${massage.likeNumb},this)"  data-am-popover="{content: '已经点赞成功！！'}"  style="width: 100px">
                                         <i class="am-icon-caret-up"></i>
-                                        赞 531
+                                        赞 ${massage.likeNumb}
                                     </button>
-                                    <button class="am-btn am-btn-secondary am-radius"  style="width: 150px">
+                                    <button class="am-btn am-btn-secondary am-radius" key="1" onclick="clickCommentBtn(${massage.id},this)"  style="width: 150px">
                                         <i class="am-icon-comment"></i>
-                                        110条评论
+                                            ${massage.commentNumb}条评论
                                     </button>
 
                                     <button class="am-btn am-btn-secondary am-radius"  style="width: 100px">
                                         <i class="am-icon-heart"></i>
                                         收藏
                                     </button>
-
                                     <button class="am-btn am-btn-secondary" style="width: 100px">
                                         <i class="am-icon-eye"></i>
                                             ${massage.browseNumb}
@@ -189,26 +239,15 @@
                         <div class="newsico am-fr">
                             <i class="am-icon-clock-o">${massage.createTime}</i>
                         </div>
+                        <ul id="${massage.id}" class="am-comments-list am-comments-list-flip">
+
+                        </ul>
                     </c:forEach>
                 </ul>
 
                 <ul data-am-widget="pagination" class="am-pagination am-pagination-default">
 
 
-
-                    <%--<li><a href="<c:url value="/categoryId/1/massages?page=1"/>">首页</a></li>--%>
-                    <%--<li><a href="<c:url value="/categoryId/1/massages?page=${pageInfo.pageNum-1>1?pageInfo.pageNum-1:1}"/>">&laquo;</a></li>--%>
-
-                    <%--<c:forEach begin="1" end="${pageInfo.pages}" varStatus="loop">--%>
-                        <%--<c:set var="active" value="${loop.index==pageInfo.pageNum?'active':''}"/>--%>
-                        <%--<li class="${active}"><a--%>
-                                <%--href="<c:url value="/categoryId/1/massages?page=${loop.index}"/>">${loop.index}</a>--%>
-                        <%--</li>--%>
-                    <%--</c:forEach>--%>
-                    <%--<li>--%>
-                        <%--<a href="<c:url value="/categoryId/1/massages?page=${pageInfo.pageNum+1<pageInfo.pages?pageInfo.pageNum+1:pageInfo.pages}"/>">&raquo;</a>--%>
-                    <%--</li>--%>
-                    <%--<li><a href="<c:url value="/categoryId/1/massages?page=${pageInfo.pages}"/>">尾页</a></li>--%>
 
 
 

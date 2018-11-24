@@ -56,6 +56,9 @@
                     if (mydata == "1") {
                         console.log("成功");
                         window.location.href="toIndex";
+                    }if(mydata == "3"){
+                        console.log("成功");
+                        window.location.href="toAdminIndex";
                     }
                     else {
                         console.log("失败");

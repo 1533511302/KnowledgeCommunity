@@ -121,6 +121,22 @@
                 $(btn).attr("key","2");
             }
         }
+
+        function clickCollectionBtn(massageId,btn) {
+
+            if($(btn).attr("key")==1){
+
+                $.post("saveCollectionMassage",{massageId:massageId},function (data) {
+                    console.log("214312342342");
+                    if(data=="1"){
+                        $(btn).html("<i class='am-icon-heart'></i>&nbsp;已收藏");
+
+                    }
+                });
+            }
+            $(btn).attr("key","2");
+
+        }
     </script>
 </head>
 <body>
@@ -177,22 +193,22 @@
             <div data-am-widget="slider" class="am-slider am-slider-c1" data-am-slider='{"directionNav":false}' >
                 <ul class="am-slides">
                     <li>
-                        <a href="#"><img src="${baseUrl}Temp-images/bb1.jpg"></a>
+                        <a href="#"><img src="/img/bb1.jpg"></a>
                         <div class="am-slider-desc">远方 有一个地方 那里种有我们的梦想</div>
 
                     </li>
                     <li>
-                        <a href="#"><img src="Temp-images/bb2.jpg"></a>
+                        <a href="#"><img src="/img/bb2.jpg"></a>
                         <div class="am-slider-desc">某天 也许会相遇 相遇在这个好地方</div>
 
                     </li>
                     <li>
-                        <a href="#"><img src="Temp-images/bb3.jpg"></a>
+                        <a href="#"><img src="/img/bb3.jpg"></a>
                         <div class="am-slider-desc">不要太担心 只因为我相信 终会走过这条遥远的道路</div>
 
                     </li>
                     <li>
-                        <a href="#"><img src="Temp-images/bb4.jpg"></a>
+                        <a href="#"><img src="/img/bb4.jpg"></a>
                         <div class="am-slider-desc">OH PARA PARADISE 是否那么重要 你是否那么地遥远</div>
                     </li>
                 </ul>
@@ -273,7 +289,7 @@
                                 ${massage.commentNumb}条评论
                                 </button>
 
-                                <button class="am-btn am-btn-secondary am-radius"  style="width: 100px">
+                                <button class="am-btn am-btn-secondary am-radius" key="1" onclick="clickCollectionBtn(${massage.id},this)"  style="width: 100px"  data-am-popover="{content: '已经添加收藏！！'}">
                                     <i class="am-icon-heart"></i>
                                 收藏
                                 </button>

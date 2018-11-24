@@ -12,9 +12,12 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import top.maniy.entity.User;
 import top.maniy.mapper.UserMapper;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -43,6 +46,16 @@ public class CustomRealm extends AuthorizingRealm{
         SimpleAuthorizationInfo simpleAuthorizationInfo =new SimpleAuthorizationInfo();
         simpleAuthorizationInfo.setStringPermissions(permissions);
         simpleAuthorizationInfo.setRoles(roles);
+
+//        //用session 对象保存当前登陆用户
+//        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+//        HttpServletRequest req = attributes.getRequest();
+//        User userInfo  = (User) principalCollection.getPrimaryPrincipal();
+//
+//        if(req.getSession().getAttribute("User")==null) {
+//
+//            req.getSession().setAttribute("User", userInfo);
+//        }
         return simpleAuthorizationInfo;
     }
 
@@ -85,7 +98,7 @@ public class CustomRealm extends AuthorizingRealm{
         //shiro需要知道用了什么盐，在去解析密码
         simpleAuthenticationInfo.setCredentialsSalt(ByteSource.Util.bytes(userName));
 
-        return simpleAuthenticationInfo;
+               return simpleAuthenticationInfo;
     }
 
     /**
@@ -115,17 +128,9 @@ public class CustomRealm extends AuthorizingRealm{
 
     public static void main(String[] args) {
         //单一的是密码加密容易破解，这时候就需要 加盐
-        Md5Hash md5Hash= new Md5Hash("123456","wool");
+        Md5Hash md5Hash= new Md5Hash("123456","admin");
         System.out.println(md5Hash.toString());
 
-        String username="zxx";
-        String username2=new String("zxx");
-        if(username.equals(username2)){
-            System.out.println("zxx");
-        }
-//
-//        int  x = 1;
-//        return x==1?true:false;
 
     }
 }
