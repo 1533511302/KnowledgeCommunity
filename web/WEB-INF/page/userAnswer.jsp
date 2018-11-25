@@ -109,7 +109,7 @@
                     <h4>性别：${user.gender==1?'男':'女'}</h4>
                     <h4>${user.autograph}</h4>
                     <p>图文：<span>${user.massagenumb}</span>
-                    <p>问题：<span>${user.questionnumb}</span> &nbsp;&nbsp;&nbsp; 回答：<span>${user.answernumb}</span></p></p>
+                    <p>问题：<span>${user.questionnumb}</span> &nbsp;回答：<span>${user.answernumb}</span></p></p>
                     <button type="button" class="am-btn am-btn-warning am-hide-lg-only" style="margin: 0 auto; margin-top: 30px">
                         <i class="am-icon-plus"></i>
                         订阅

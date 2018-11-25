@@ -5,6 +5,7 @@ import jdk.management.resource.internal.inst.SocketOutputStreamRMHooks;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -319,10 +320,81 @@ public class UserController {
      */
     @RequestMapping(value = "/users/delete/{id}",method = RequestMethod.GET)
     @ResponseBody
-    public boolean deleteUserByForbidden(Integer id){
+    public boolean deleteUserByForbidden(@PathVariable Integer id){
         User user=new User();
         user.setForbidden("1");
         return userService.updateUser(user);
     }
+
+    /**
+     * 个人信息界面
+     * @param request
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping(value = "userInfo/{id}",method = RequestMethod.GET)
+    public String toUpdateUserInfo(@PathVariable int id,ModelMap modelMap){
+        User user =userService.findUserById(id);
+        modelMap.put("user",user);
+        return "updateUserInfo";
+    }
+
+    /**
+     * 修改个人信息
+     * @param request
+     * @param user
+     * @return
+     */
+    @RequestMapping(value = "updateUser",method = RequestMethod.POST)
+    public String updateUser(HttpServletRequest request,User user){
+        User user1 =(User)request.getSession().getAttribute("User");
+        System.out.println(user);
+        user.setId(user1.getId());
+        userService.updateUser(user);
+        return "redirect:vUsersQuestion/"+user.getId();
+    }
+
+    /**
+     * 修改密码界面
+     * @return
+     */
+    @RequestMapping(value = "toUpdateUserPassword/{id}",method = RequestMethod.GET)
+    public String toUpdateUserPassword(@PathVariable int id,ModelMap modelMap){
+        User user =userService.findUserById(id);
+        modelMap.put("user",user);
+        return "updatePassword";
+    }
+    /**
+     * 修改密码
+     * @param username
+     * @param oldPassword
+     * @param newPassword
+     * @return
+     */
+    @RequestMapping(value = "updateUserPassword",method = RequestMethod.POST)
+    @ResponseBody
+    public String updateUserPassword(String username,String oldPassword,String newPassword){
+        User user =userService.findUserByUsername(username);
+        if(user!=null){
+            Md5Hash md5Hash= new Md5Hash(oldPassword,username);
+            String temp=md5Hash.toString();
+            System.out.println(md5Hash.toString());
+            System.out.println(user.getPassword());
+            if(user.getPassword().equals(temp)){
+                Md5Hash newMd5= new Md5Hash(newPassword,username);
+                User tempUser= new User();
+                tempUser.setId(user.getId());
+                tempUser.setPassword(newMd5.toString());
+                System.out.println("12378");
+                if(userService.updateUser(tempUser)){
+                    return "2";
+                }
+                return "0";
+            }
+            return "1";
+        }
+        return "0";
+    }
+
 
 }

@@ -1,14 +1,14 @@
 <%--
   Created by IntelliJ IDEA.
   User: Admin
-  Date: 2018/10/20
-  Time: 19:56
+  Date: 2018/11/25
+  Time: 11:35
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="baseUrl" value="${pageContext.request.contextPath}/"></c:set>
-<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+
 <html class="no-js">
 <head>
     <meta charset="utf-8">
@@ -110,7 +110,7 @@
                     <h4>性别：${user.gender==1?'男':'女'}</h4>
                     <h4>${user.autograph}</h4>
                     <p>图文：<span>${user.massagenumb}</span>
-                    <p>问题：<span>${user.questionnumb}</span> &nbsp; 回答：<span>${user.answernumb}</span></p></p>
+                    <p>问题：<span>${user.questionnumb}</span> &nbsp;回答：<span>${user.answernumb}</span></p></p>
                     <button type="button" class="am-btn am-btn-warning am-hide-lg-only" style="margin: 0 auto; margin-top: 30px">
                         <i class="am-icon-plus"></i>
                         订阅
@@ -122,105 +122,56 @@
         <div class="am-u-sm-0 am-u-md-12 am-u-lg-4 am-show-lg-only userinfo_center">
             ${user.introduce}
         </div>
-        <c:if test="${user.username==username}">
-        <div class="am-u-sm-12 am-u-md-12 am-u-lg-3 am-show-lg-only userinfo_right">
-            <button type="button" class="am-btn am-btn-warning">
-                <i class="am-icon-pencil-square"></i>
-                个人信息
-            </button>
-        </div>
-        </c:if>
+
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-3 am-show-lg-only userinfo_right">
+                <button type="button" class="am-btn am-btn-warning">
+                    <i class="am-icon-pencil-square"></i>
+                    修改密码
+                </button>
+            </div>
+
+
     </div>
-</div>
-<div id="cattit">
-    <c:import url="tabPlugin.jsp"></c:import>
 </div>
 <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
-<div class="am-g">
-    <div class="am-u-sm-0 am-u-md-2 am-u-lg-3">&nbsp;</div>
-    <div class="am-u-sm-12 am-u-md-8 am-u-lg-6">
-        <div data-am-widget="list_news" class="am-list-news am-list-news-default ">
-            <div class="am-list-news-bd">
-                <ul class="am-list">
-                    <c:forEach var="massage" items="${pageInfo.list}" varStatus="index">
-                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" style="border-top: 0px">
-                            <div class="am-u-sm-5 am-list-thumb">
-                                <a href="#">
-                                    <img src="${baseUrl}Temp-images/b2.jpg" alt="配图"/>
-                                </a>
-                            </div>
+<div class="star am-container mcenter"><span>我的个人信息</span></div>
+<div>
 
-                            <div class=" am-u-sm-7 am-list-main">
-                                <h2 class="am-list-item-hd"><a href="${baseUrl}massages/${massage.id}">${massage.title}</a></h2>
+    <div class="am-container" style="margin-top: 10px">
+        <div class="am-panel am-panel-success">
+            <div class="am-panel-hd">个人信息</div>
+            <div class="am-panel-bd" style="padding: 1rem;padding-bottom: 0.2rem">
+                <form class="am-form">
+                    <fieldset>
 
-                                <div class="am-list-item-text">${massage.content}</div>
-
-                            </div>
-
-                            <c:if test="${user.username==username}">
-                            <div align="right" style="width:840px;height:50px;margin-top: 120px;">
-                                <div class="am-btn-group">
-
-
-
-                                        <button class="am-btn am-btn-danger  am-radius" style="width: 100px" onclick="clickDeleteBtn(${massage.id})">
-                                        <i class="am-icon-eraser"></i>
-                                           删除
-                                        </button>
-
-                                    <a href="${baseUrl}toUpdateMassages?massageId=${massage.id}">
-                                        <button class="am-btn am-btn-warning am-radius" style="width: 100px">
-                                            <i class="am-icon-pencil"></i>
-                                            修改
-                                        </button>
-                                    </a>
-                                </div>
-
-                            </div>
-                            </c:if>
-                        </li>
-                        <div class="newsico am-fr">
-                            <i class="am-icon-clock-o">${massage.createTime}</i>
-
+                        <div class="am-form-group">
+                            <label for="username">用户名</label>
+                            <input type="text" class="" id="username" name="username"  placeholder="用户名" >
                         </div>
-                    </c:forEach>
-
-
-
-
-                </ul>
-                <ul data-am-widget="pagination" class="am-pagination am-pagination-default" style="text-align: center">
-
-                    <li class="am-pagination-first ">
-                        <a href="<c:url value="/vUsersCategory/${user.id}?page=1"/>">首页</a>
-                    </li>
-
-                    <li class="am-pagination-prev ">
-                        <a href="<c:url value="/vUsersCategory/${user.id}?page=${pageInfo.pageNum-1>1?pageInfo.pageNum-1:1}"/>">&laquo;</a>
-                    </li>
-                    <c:set var="start" value="${pageInfo.pageNum-5<=0?1:pageInfo.pageNum-5}"/>
-                    <c:set var="end" value="${start+9<pageInfo.pages?start+9:pageInfo.pages}"/>
-                    <c:forEach begin="${start}" end="${end}" varStatus="loop">
-                        <c:set var="active" value="${loop.index==pageInfo.pageNum?'am-active':''}"/>
-
-
-                        <li class="${active}">
-                            <a href="<c:url value="/vUsersCategory/${user.id}?page=${loop.index}"/>">${loop.index}</a>
-                        </li>
-                    </c:forEach>
-                    <li class="am-pagination-next ">
-                        <a href="<c:url value="/vUsersCategory/${user.id}?page=${pageInfo.pageNum+1<pageInfo.pages?pageInfo.pageNum+1:pageInfo.pages}"/>">&raquo;</a>
-                    </li>
-
-                    <li class="am-pagination-last ">
-                        <a href="<c:url value="/vUsersCategory/${user.id}?page=${pageInfo.pages}"/>">尾页</a>
-                    </li>
-
-                </ul>
+                        <div class="am-form-group">
+                            <label for="oldPassword">旧密码</label>
+                            <input type="password" class="" id="oldPassword" name="oldPassword" placeholder="旧密码" >
+                        </div>
+                        <div class="am-form-group">
+                            <label for="newPassword">新密码</label>
+                            <input type="password" class="" id="newPassword" name="newPassword" placeholder="新密码" >
+                        </div>
+                        <div class="am-form-group">
+                            <label for="confirm">确认密码</label>
+                            <input type="password" class="" id="confirm" name="confirm" placeholder="确认密码" >
+                        </div>
+                    </fieldset>
+                </form>
             </div>
+
         </div>
     </div>
-    <div class="am-u-sm-0 am-u-md-2 am-u-lg-3">&nbsp;</div>
+
+    <div class="star am-container mcenter">
+        <span><button type="button"  class="am-btn am-btn-primary am-radius" style="width: 150px" onclick="onClickUpdatePasswordBtn()">修改</button></span>
+    </div>
+
+
 </div>
 
 
@@ -266,22 +217,64 @@
         </div>
     </div>
 </footer>
-<script>
-    function clickDeleteBtn(massageId) {
-        $.post("${baseUrl}deleteMassage",{massageId:massageId},function (data) {
-            if(data){
-                alert("删除成功！");
-            }
-        });
+</body>
+<script type="text/javascript">
 
-    }
-    function clickUpdateBtn(massageId) {
 
-        $.post("${baseUrl}toUpdateMassages",{massageId:massageId},function () {
+    //json两种形式
+    //当是对象的时候最外层是{}
+    //当是数组集合的时候最外层是[]
+    function onClickUpdatePasswordBtn() {
 
-        })
+
+        var username=$("#username").val();
+        if (username==""){
+
+            alert("用户名不能为空！");
+            return false;//因为这是submit表单提交 返回false 不进行请求
+        }else {
+                    var oldPassword=$("#oldPassword").val();
+                    if (oldPassword==""){
+                        alert("旧密码不能为空！");
+                        return false;
+                    }
+
+                    var newPassword=$("#newPassword").val();
+                    if (newPassword==""){
+                        alert("新密码不能为空！");
+                        return false;
+                    }
+                    var confirm=$("#confirm").val();
+                    if(confirm !=newPassword){
+                        alert("确认密码不相等！");
+                    }else {
+                        $.ajax({
+                            type: 'post',
+                            url: "${baseUrl}updateUserPassword",
+                            data: {username:username,oldPassword:oldPassword,newPassword:newPassword},
+                            success: function (data) {
+                                if(data=="2"){
+                                    alert("修改成功！");
+                                    window.location.href="${baseUrl}userInfo/${user.id}";
+                                }
+                                if(data=="1"){
+                                    alert("用户名或旧密码输入错误！")
+                                }
+                                if(data=="0"){
+                                    alert("修改操作失败！")
+                                }
+
+                            }
+                        });
+                    }
+
+
+
+
+        }
+
+
 
     }
 </script>
-</body>
 </html>

@@ -105,16 +105,13 @@
                 <div class="am-u-md-12 am-u-lg-6 userface">
                     <img src="${baseUrl}Temp-images/face2.jpg">
                 </div>
-                <div class="am-u-md-9 am-u-lg-6 userin">
+                <div class="am-u-md-12 am-u-lg-6 userin">
                     <h3>姓名：${user.realname}</h3>
                     <h4>性别：${user.gender==1?'男':'女'}</h4>
                     <h4>${user.autograph}</h4>
                     <p>图文：<span>${user.massagenumb}</span>
-                    <p>问题：<span>${user.questionnumb}</span> &nbsp;&nbsp;&nbsp; 回答：<span>${user.answernumb}</span></p></p>
-                    <button type="button" class="am-btn am-btn-warning am-hide-lg-only" style="margin: 0 auto; margin-top: 30px">
-                        <i class="am-icon-plus"></i>
-                        订阅
-                    </button>
+                    <p>问题：<span>${user.questionnumb}</span> &nbsp; 回答：<span>${user.answernumb}</span></p></p>
+
                 </div>
             </div>
 
@@ -124,10 +121,10 @@
         </div>
         <c:if test="${user.username==username}">
             <div class="am-u-sm-12 am-u-md-12 am-u-lg-3 am-show-lg-only userinfo_right">
-                <button type="button" class="am-btn am-btn-warning">
+                <a href="${baseUrl}userInfo/${user.id}"><button type="button" class="am-btn am-btn-warning">
                     <i class="am-icon-pencil-square"></i>
                     个人信息
-                </button>
+                </button></a>
             </div>
         </c:if>
 

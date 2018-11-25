@@ -10,8 +10,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM collection WHERE type=#{type}
 	</select>
 
+    <select id="findCollectionByUserIdAndMassageId" resultType="Collections">
+        SELECT * FROM collection WHERE userId=#{userId} AND massageId=#{massageId}
+    </select>
 
-	<insert id="saveCollection">
+    <select id="findCollectionByUserIdAndAudioId" resultType="Collections">
+        SELECT * FROM collection WHERE userId=#{userId} AND audioId=#{audioId}
+    </select>
+
+    <select id="findCollectionByUserIdAndQuestionId" resultType="Collections">
+        SELECT * FROM collection WHERE userId=#{userId} AND questionId=#{questionId}
+    </select>
+
+    <insert id="saveCollection">
 		INSERT INTO collection
         <trim prefix="(" suffix=")" suffixOverrides="," >
 			<if test="userId != null" >

@@ -26,4 +26,11 @@ public interface CollectionService {
     boolean saveCollectionByTypeIsAudio(int userId,int AudioId);
     //添加问题收藏
     boolean saveCollectionByTypeIsQuestion(int userId,int QuestionId);
+    //是否已经收藏文章
+    boolean findCollectionByUserIdAndMassageId(int userId,int massageId);
+    //是否已经收藏音频
+    boolean findCollectionByUserIdAndAudioId(int userId,int audioId);
+    //是否已经收藏问题
+    boolean findCollectionByUserIdAndQuestionId(int userId,int questionId);
+
 }

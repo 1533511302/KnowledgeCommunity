@@ -1,14 +1,14 @@
 <%--
   Created by IntelliJ IDEA.
   User: Admin
-  Date: 2018/10/20
-  Time: 19:56
+  Date: 2018/11/25
+  Time: 11:35
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="baseUrl" value="${pageContext.request.contextPath}/"></c:set>
-<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+
 <html class="no-js">
 <head>
     <meta charset="utf-8">
@@ -110,11 +110,8 @@
                     <h4>性别：${user.gender==1?'男':'女'}</h4>
                     <h4>${user.autograph}</h4>
                     <p>图文：<span>${user.massagenumb}</span>
-                    <p>问题：<span>${user.questionnumb}</span> &nbsp; 回答：<span>${user.answernumb}</span></p></p>
-                    <button type="button" class="am-btn am-btn-warning am-hide-lg-only" style="margin: 0 auto; margin-top: 30px">
-                        <i class="am-icon-plus"></i>
-                        订阅
-                    </button>
+                    <p>问题：<span>${user.questionnumb}</span> &nbsp;回答：<span>${user.answernumb}</span></p></p>
+
                 </div>
             </div>
 
@@ -122,105 +119,89 @@
         <div class="am-u-sm-0 am-u-md-12 am-u-lg-4 am-show-lg-only userinfo_center">
             ${user.introduce}
         </div>
-        <c:if test="${user.username==username}">
-        <div class="am-u-sm-12 am-u-md-12 am-u-lg-3 am-show-lg-only userinfo_right">
-            <button type="button" class="am-btn am-btn-warning">
-                <i class="am-icon-pencil-square"></i>
-                个人信息
-            </button>
-        </div>
-        </c:if>
+
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-3 am-show-lg-only userinfo_right">
+                <a href="${baseUrl}toUpdateUserPassword/${user.id}"><button type="button" class="am-btn am-btn-warning">
+                    <i class="am-icon-pencil-square"></i>
+                    修改密码
+                </button></a>
+            </div>
+
+
     </div>
-</div>
-<div id="cattit">
-    <c:import url="tabPlugin.jsp"></c:import>
 </div>
 <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
-<div class="am-g">
-    <div class="am-u-sm-0 am-u-md-2 am-u-lg-3">&nbsp;</div>
-    <div class="am-u-sm-12 am-u-md-8 am-u-lg-6">
-        <div data-am-widget="list_news" class="am-list-news am-list-news-default ">
-            <div class="am-list-news-bd">
-                <ul class="am-list">
-                    <c:forEach var="massage" items="${pageInfo.list}" varStatus="index">
-                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" style="border-top: 0px">
-                            <div class="am-u-sm-5 am-list-thumb">
-                                <a href="#">
-                                    <img src="${baseUrl}Temp-images/b2.jpg" alt="配图"/>
-                                </a>
-                            </div>
+<div class="star am-container mcenter"><span>我的个人信息</span></div>
+<div>
 
-                            <div class=" am-u-sm-7 am-list-main">
-                                <h2 class="am-list-item-hd"><a href="${baseUrl}massages/${massage.id}">${massage.title}</a></h2>
+    <div class="am-container" style="margin-top: 10px">
+        <div class="am-panel am-panel-success">
+            <div class="am-panel-hd">个人信息</div>
+            <div class="am-panel-bd" style="padding: 1rem;padding-bottom: 0.2rem">
 
-                                <div class="am-list-item-text">${massage.content}</div>
-
-                            </div>
-
-                            <c:if test="${user.username==username}">
-                            <div align="right" style="width:840px;height:50px;margin-top: 120px;">
-                                <div class="am-btn-group">
-
-
-
-                                        <button class="am-btn am-btn-danger  am-radius" style="width: 100px" onclick="clickDeleteBtn(${massage.id})">
-                                        <i class="am-icon-eraser"></i>
-                                           删除
-                                        </button>
-
-                                    <a href="${baseUrl}toUpdateMassages?massageId=${massage.id}">
-                                        <button class="am-btn am-btn-warning am-radius" style="width: 100px">
-                                            <i class="am-icon-pencil"></i>
-                                            修改
-                                        </button>
-                                    </a>
-                                </div>
-
-                            </div>
-                            </c:if>
-                        </li>
-                        <div class="newsico am-fr">
-                            <i class="am-icon-clock-o">${massage.createTime}</i>
-
+                <form class="am-form" action="${baseUrl}updateUser" method="post">
+                    <fieldset disabled id="field">
+                        <div class="am-form-group">
+                            <label for="doc-ipt-name-1">真实姓名</label>
+                            <input type="text" class="" id="doc-ipt-name-1" name="realname" value="${user.realname}" placeholder="输入真实姓名">
                         </div>
-                    </c:forEach>
+
+                        <div class="am-form-group">
+                            <label for="doc-ipt-email-1">邮件</label>
+                            <input type="email" class="" id="doc-ipt-email-1" name="email" value="${user.email}" placeholder="输入电子邮件">
+                        </div>
+
+                        <div class="am-form-group">
+                            <label for="doc-ipt-name-2">简介（如：清华教授、人工智能专家）</label>
+                            <input type="text" class="" id="doc-ipt-name-2" name="introduce" value="${user.autograph}" placeholder="一句话概括干什么的">
+                        </div>
+
+                        <div class="am-form-group">
+                            <label for="doc-select-1">性别</label>
+                            <select id="doc-select-1" name="gender">
+                                <c:if test="${user.gender=='1'}">
+                                    <option value="1" selected>男</option>
+                                    <option value="2">女</option>
+                                </c:if>
+                                <c:if test="${user.gender=='2'}">
+                                    <option value="1">男</option>
+                                    <option value="2" selected>女</option>
+                                </c:if>
+
+                            </select>
+                            <span class="am-form-caret"></span>
+                        </div>
+
+                       <%-- <div class="am-form-group am-form-file">
+                            <label for="doc-ipt-file-2">图片上传</label>
+                            <div>
+                                <button type="button" class="am-btn am-btn-default am-btn-sm">
+                                    <i class="am-icon-cloud-upload"></i> 选择要上传的文件</button>
+                            </div>
+                            <input type="file" id="doc-ipt-file-2">
+                        </div>--%>
 
 
 
-
-                </ul>
-                <ul data-am-widget="pagination" class="am-pagination am-pagination-default" style="text-align: center">
-
-                    <li class="am-pagination-first ">
-                        <a href="<c:url value="/vUsersCategory/${user.id}?page=1"/>">首页</a>
-                    </li>
-
-                    <li class="am-pagination-prev ">
-                        <a href="<c:url value="/vUsersCategory/${user.id}?page=${pageInfo.pageNum-1>1?pageInfo.pageNum-1:1}"/>">&laquo;</a>
-                    </li>
-                    <c:set var="start" value="${pageInfo.pageNum-5<=0?1:pageInfo.pageNum-5}"/>
-                    <c:set var="end" value="${start+9<pageInfo.pages?start+9:pageInfo.pages}"/>
-                    <c:forEach begin="${start}" end="${end}" varStatus="loop">
-                        <c:set var="active" value="${loop.index==pageInfo.pageNum?'am-active':''}"/>
-
-
-                        <li class="${active}">
-                            <a href="<c:url value="/vUsersCategory/${user.id}?page=${loop.index}"/>">${loop.index}</a>
-                        </li>
-                    </c:forEach>
-                    <li class="am-pagination-next ">
-                        <a href="<c:url value="/vUsersCategory/${user.id}?page=${pageInfo.pageNum+1<pageInfo.pages?pageInfo.pageNum+1:pageInfo.pages}"/>">&raquo;</a>
-                    </li>
-
-                    <li class="am-pagination-last ">
-                        <a href="<c:url value="/vUsersCategory/${user.id}?page=${pageInfo.pages}"/>">尾页</a>
-                    </li>
-
-                </ul>
+                        <div class="am-form-group">
+                            <label for="doc-ta-1">个人介绍</label>
+                            <textarea class="" rows="5" id="doc-ta-1" name="introduce">${user.introduce}</textarea>
+                        </div>
+                        <div class="star am-container mcenter">
+                            <span><button id="submit" type="submit" class="am-btn am-btn-secondary">提交</button></span>
+                        </div>
+                    </fieldset>
+                </form>
             </div>
+
         </div>
     </div>
-    <div class="am-u-sm-0 am-u-md-2 am-u-lg-3">&nbsp;</div>
+
+    <div class="star am-container mcenter">
+        <span><button type="button"  class="am-btn am-btn-primary am-radius" style="width: 150px" onclick="onClickUpdateBtn()">修改</button></span>
+    </div>
+
+
 </div>
 
 
@@ -266,22 +247,13 @@
         </div>
     </div>
 </footer>
+</body>
 <script>
-    function clickDeleteBtn(massageId) {
-        $.post("${baseUrl}deleteMassage",{massageId:massageId},function (data) {
-            if(data){
-                alert("删除成功！");
-            }
-        });
-
+    function  onClickUpdateBtn() {
+       $("fieldset").removeAttr("disabled");
     }
-    function clickUpdateBtn(massageId) {
-
-        $.post("${baseUrl}toUpdateMassages",{massageId:massageId},function () {
-
-        })
+    function onClickSaveBtn() {
 
     }
 </script>
-</body>
 </html>

@@ -45,6 +45,7 @@ public class CollectionServiceImpl implements CollectionService {
         Collections collections =new Collections();
         collections.setUserId(userId);
         collections.setMassageId(massageId);
+        collections.setType(1);
         return collectionMapper.saveCollection(collections);
     }
 
@@ -53,6 +54,7 @@ public class CollectionServiceImpl implements CollectionService {
         Collections collections =new Collections();
         collections.setUserId(userId);
         collections.setAudioId(audioId);
+        collections.setType(2);
         return collectionMapper.saveCollection(collections);
     }
 
@@ -61,7 +63,35 @@ public class CollectionServiceImpl implements CollectionService {
         Collections collections =new Collections();
         collections.setUserId(userId);
         collections.setQuestionId(QuestionId);
+        collections.setType(3);
         return collectionMapper.saveCollection(collections);
+    }
+
+    @Override
+    public boolean findCollectionByUserIdAndMassageId(int userId, int massageId) {
+        Collections collections = collectionMapper.findCollectionByUserIdAndMassageId(userId,massageId);
+        if(collections!=null){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean findCollectionByUserIdAndAudioId(int userId, int audioId) {
+        Collections collections = collectionMapper.findCollectionByUserIdAndAudioId(userId,audioId);
+        if(collections!=null){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean findCollectionByUserIdAndQuestionId(int userId, int questionId) {
+        Collections collections = collectionMapper.findCollectionByUserIdAndQuestionId(userId,questionId);
+        if(collections!=null){
+            return true;
+        }
+        return false;
     }
 
 

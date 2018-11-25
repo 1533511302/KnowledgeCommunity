@@ -127,9 +127,13 @@
             if($(btn).attr("key")==1){
 
                 $.post("saveCollectionMassage",{massageId:massageId},function (data) {
-                    console.log("214312342342");
+
                     if(data=="1"){
                         $(btn).html("<i class='am-icon-heart'></i>&nbsp;已收藏");
+
+                    }
+                    if(data=="2"){
+                        $(btn).html("<i class='am-icon-heart'></i>&nbsp;收藏过");
 
                     }
                 });
@@ -347,7 +351,7 @@
                                             ${massage.commentNumb}条评论
                                     </button>
 
-                                    <button class="am-btn am-btn-secondary am-radius" style="width: 100px">
+                                    <button class="am-btn am-btn-secondary am-radius" style="width: 100px"  key="1" onclick="clickCollectionBtn(${massage.id},this)"  style="width: 100px"  data-am-popover="{content: '已经添加收藏！！'}">
                                         <i class="am-icon-heart"></i>
                                         收藏
                                     </button>

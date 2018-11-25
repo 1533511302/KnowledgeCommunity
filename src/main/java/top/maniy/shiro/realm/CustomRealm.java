@@ -47,15 +47,6 @@ public class CustomRealm extends AuthorizingRealm{
         simpleAuthorizationInfo.setStringPermissions(permissions);
         simpleAuthorizationInfo.setRoles(roles);
 
-//        //用session 对象保存当前登陆用户
-//        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-//        HttpServletRequest req = attributes.getRequest();
-//        User userInfo  = (User) principalCollection.getPrimaryPrincipal();
-//
-//        if(req.getSession().getAttribute("User")==null) {
-//
-//            req.getSession().setAttribute("User", userInfo);
-//        }
         return simpleAuthorizationInfo;
     }
 
@@ -109,8 +100,16 @@ public class CustomRealm extends AuthorizingRealm{
     private String getPasswordByUserName(String username){
         //
         User user =userMapper.findUserByUsername(username);
+
         if(user!=null){
-            System.out.println(user.getPassword());
+            //        //用session 对象保存当前登陆用户
+            ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+            HttpServletRequest req = attributes.getRequest();
+
+            if(req.getSession().getAttribute("User")==null) {
+
+                req.getSession().setAttribute("User", user);
+            }
             return user.getPassword();
         }else {
             return null;
@@ -130,6 +129,10 @@ public class CustomRealm extends AuthorizingRealm{
         //单一的是密码加密容易破解，这时候就需要 加盐
         Md5Hash md5Hash= new Md5Hash("123456","admin");
         System.out.println(md5Hash.toString());
+
+        if("f0f8c900cc3816a7bfd1aaf8f890a05e"=="f0f8c900cc3816a7bfd1aaf8f890a05e"){
+            System.out.println("相同");
+        }
 
 
     }

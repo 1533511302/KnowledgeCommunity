@@ -23,21 +23,21 @@ public class User implements Serializable {
 //个人简介
   private String introduce;
 //文章数量
-  private int massagenumb;
+  private Integer massagenumb;
 //提问次数
-  private int questionnumb;
+  private Integer questionnumb;
 //回答次数
-  private int answernumb;
+  private Integer answernumb;
 //1普通用户，2认证用户，3管理员
   private String role;
 //禁用（1是，0否）
   private String forbidden;
 
-  public int getMassagenumb() {
+  public Integer getMassagenumb() {
     return massagenumb;
   }
 
-  public void setMassagenumb(int massagenumb) {
+  public void setMassagenumb(Integer massagenumb) {
     this.massagenumb = massagenumb;
   }
 
@@ -119,20 +119,20 @@ public class User implements Serializable {
   }
 
 
-  public int getQuestionnumb() {
+  public Integer getQuestionnumb() {
     return questionnumb;
   }
 
-  public void setQuestionnumb(int questionnumb) {
+  public void setQuestionnumb(Integer questionnumb) {
     this.questionnumb = questionnumb;
   }
 
 
-  public int getAnswernumb() {
+  public Integer getAnswernumb() {
     return answernumb;
   }
 
-  public void setAnswernumb(int answernumb) {
+  public void setAnswernumb(Integer answernumb) {
     this.answernumb = answernumb;
   }
 

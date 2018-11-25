@@ -28,11 +28,24 @@ public class CollectionController {
 
     @RequestMapping(value = "/saveCollectionMassage")
     @ResponseBody
-    public String saveCollectionByTypeIsMassage(@RequestParam("massageId") Integer massageId){
+    public String saveCollectionByTypeIsMassage(@RequestParam("massageId") Integer massageId,HttpServletRequest request){
 
-            System.out.println("user");
-             collectionService.saveCollectionByTypeIsMassage(1,massageId);
-             return "1";
+            //用户信息
+            User user = (User) request.getSession().getAttribute("User");
+
+            if(user!=null){
+
+                //判断是否已经收藏
+                if(collectionService.findCollectionByUserIdAndMassageId(user.getId(),massageId)){
+                    //添加收藏
+                    System.out.println("存在");
+                    return "2";
+                }
+                collectionService.saveCollectionByTypeIsMassage(user.getId(),massageId);
+                return "1";
+            }
+
+             return "0";
 
 
     }

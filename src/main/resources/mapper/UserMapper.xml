@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="findUserById" resultType="User">
-		select id,username,realname,gender,photo,autograph,introduce,massagenumb,questionnumb,answernumb,role from user WHERE id =#{id}
+		select id,username,email,realname,gender,photo,autograph,introduce,massagenumb,questionnumb,answernumb,role from user WHERE id =#{id}
 	</select>
 
 
@@ -68,6 +68,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 			<if test="introduce != null" >
 				introduce,
+			</if>
+			<if test="massagenumb != null" >
+				massagenumb,
 			</if>
 			<if test="questionnumb != null" >
 				questionnumb,
@@ -107,6 +110,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="introduce != null" >
 				#{introduce},
 			</if>
+			<if test="massagenumb != null" >
+				#{massagenumb},
+			</if>
 			<if test="questionnumb != null" >
 				#{questionnumb},
 			</if>
@@ -139,7 +145,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				username=#{username},
 			</if>
 			<if test="realname != null" >
-				realname=#{gender},
+				realname=#{realname},
 			</if>
 			<if test="gender != null" >
 				gender=#{gender},
@@ -154,7 +160,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				introduce=#{introduce},
 			</if>
 			<if test="massagenumb != null" >
-				massagenumb=#{massagennumb},
+				massagenumb=#{massagenumb},
 			</if>
 			<if test="questionnumb != null" >
 				questionnumb=#{questionnumb},
