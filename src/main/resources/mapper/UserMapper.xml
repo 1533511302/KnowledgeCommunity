@@ -13,6 +13,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT role FROM user WHERE username=#{username}
 	</select>
 
+	<select id="findUserByTotalNumDesc" resultType="User">
+		SELECT id,realname,gender,photo,autograph,introduce,massagenumb,questionnumb,answernumb,audionumb FROM user ORDER BY  massagenumb+questionnumb+answernumb+audionumb DESC LIMIT 0,#{num}
+	</select>
+
 	<select id="findUserByUsername" resultType="User">
 		SELECT * FROM user WHERE username=#{username}
 	</select>
@@ -26,19 +30,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="findUserByRoleAndMassageNumbDesc" resultType="User">
-		select id,realname,gender,photo,autograph,introduce,massagenumb,questionnumb,answernumb from user WHERE role =#{role}  ORDER BY massagenumb DESC LIMIT #{start},#{end}
+		select id,realname,gender,photo,autograph,introduce,massagenumb,questionnumb,answernumb,audionumb from user WHERE role =#{role}  ORDER BY massagenumb DESC LIMIT #{start},#{end}
 	</select>
 
 	<select id="findUserByRoleAndByMassageNumbAndCreateTimeDesc" resultType="User">
-		select id,realname,gender,photo,autograph,introduce,massagenumb,questionnumb,answernumb from user WHERE role =#{role} AND massagenumb>=#{massagenumb} ORDER BY createtime DESC LIMIT #{start},#{end}
+		select id,realname,gender,photo,autograph,introduce,massagenumb,questionnumb,answernumb,audionumb from user WHERE role =#{role} AND massagenumb>=#{massagenumb} ORDER BY createtime DESC LIMIT #{start},#{end}
 	</select>
 
 	<select id="findUserByRole" resultType="User">
-		select id,realname,gender,photo,autograph,introduce,massagenumb,questionnumb,answernumb from user WHERE role =#{role}
+		select id,realname,gender,photo,autograph,introduce,massagenumb,questionnumb,answernumb,audionumb from user WHERE role =#{role}
 	</select>
 
 	<select id="findUserById" resultType="User">
-		select id,username,email,realname,gender,photo,autograph,introduce,massagenumb,questionnumb,answernumb,role from user WHERE id =#{id}
+		select id,username,email,realname,gender,photo,autograph,introduce,massagenumb,questionnumb,answernumb,audionumb,role from user WHERE id =#{id}
 	</select>
 
 
@@ -77,6 +81,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 			<if test="answernumb != null" >
 				answernumb,
+			</if>
+			<if test="audionumb != null" >
+				audionumb,
 			</if>
 			<if test="role != null" >
 				role,
@@ -118,6 +125,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 			<if test="answernumb != null" >
 				#{answernumb},
+			</if>
+			<if test="audionumb != null" >
+				#{audionumb},
 			</if>
 			<if test="role != null" >
 				#{role},
@@ -167,6 +177,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 			<if test="answernumb != null" >
 				answernumb=#{answernumb},
+			</if>
+			<if test="audionumb != null" >
+				audionumb=#{answernumb},
 			</if>
 			<if test="role != null" >
 				role=#{role},

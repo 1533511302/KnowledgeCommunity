@@ -144,6 +144,9 @@ public class UserController {
                             @RequestParam(value = "pageSize",required = false,defaultValue = "12") int pageSize,
                             ModelMap modelMap){
         PageInfo<User> pageInfo=userService.findVUserList(1,pageSize);
+        List<User> userList =userService.findUserByTotalNumDesc(6);
+        System.out.println(userList);
+        modelMap.put("userList",userList);
         modelMap.put("pageInfo",pageInfo);
         return "vUserList";
     }
@@ -328,7 +331,7 @@ public class UserController {
 
     /**
      * 个人信息界面
-     * @param request
+
      * @param modelMap
      * @return
      */

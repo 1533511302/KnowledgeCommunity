@@ -17,6 +17,10 @@ import java.util.List;
  */
 public interface UserService {
 
+    //根据文章数、问题数、回答数、音频数总和从大大小排列获取num条数据
+    List<User> findUserByTotalNumDesc(int num);
+
+
     //查询用户名 是否存在
     User findUserByUsername(String username);
 

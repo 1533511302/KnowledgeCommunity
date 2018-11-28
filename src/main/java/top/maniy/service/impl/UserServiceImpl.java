@@ -27,6 +27,11 @@ public class UserServiceImpl implements UserService {
     private CustomRealm customRealm;
 
     @Override
+    public List<User> findUserByTotalNumDesc(int num) {
+        return usermapper.findUserByTotalNumDesc(6);
+    }
+
+    @Override
     public User findUserByUsername(String username) {
         return usermapper.findUserByUsername(username);
     }

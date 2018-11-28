@@ -19,7 +19,7 @@
         <li class="active-none"><h3><a href="${baseUrl}vUsersCategory/${user.id}">我的图文</a></h3></li>
         <li  class="active-none" ><h3><a href="${baseUrl}vUsersAudio/${user.id}">我的音频</a></h3></li>
         <li  class="active-none"><h3><a href="${baseUrl}vUsersQuestion/${user.id}">我的问题</a></h3></li>
-        <li  class="active-none"><h3><a href="${baseUrl}vUsersAnswer/${user.id}">我的问答</a></h3></li>
+        <li  class="active-none"><h3><a href="${baseUrl}vUsersAnswer/${user.id}">我的回答</a></h3></li>
     </ul>
 </c:if>
 <c:if test="${user.role=='1'}">

@@ -13,6 +13,9 @@ import java.util.List;
  */
 public interface UserMapper {
 
+    //根据文章数、问题数、回答数、音频数总和从大大小排列获取num条数据
+    List<User> findUserByTotalNumDesc(@Param("num") int num);
+
     //根据username查询角色
     List<String> queryRolesByUserName(String username);
 

@@ -116,66 +116,18 @@
     </div>
     <div class="am-container" >
         <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-6 am-thumbnails" id="topface">
+            <c:forEach var="vUser" items="${userList}">
             <li>
                 <a href="#">
-                    <div class="ctl active">
+                    <div class="ctl ">
                         <img src="${baseUrl}Temp-images/face1.jpg">
-                        <h3>高云峰</h3>
-                        <p>清华大学教授</p>
+                        <h3>${vUser.realname}</h3>
+                        <p>${vUser.autograph}</p>
                     </div>
                     <button type="button" class="am-btn am-btn-primary">大咖主页</button>
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <div class="ctl">
-                        <img src="${baseUrl}Temp-images/face2.jpg">
-                        <h3>刘玉乐</h3>
-                        <p>清华大学教授</p>
-                    </div>
-                    <button type="button" class="am-btn am-btn-default">大咖主页</button>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <div class="ctl">
-                        <img src="${baseUrl}Temp-images/face3.jpg">
-                        <h3>付林</h3>
-                        <p>清华大学教授</p>
-                    </div>
-                    <button type="button" class="am-btn am-btn-default">大咖主页</button>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <div class="ctl">
-                        <img src="${baseUrl}Temp-images/face4.jpg">
-                        <h3>陈琳</h3>
-                        <p>哈佛大学管理类博士</p>
-                    </div>
-                    <button type="button" class="am-btn am-btn-default">大咖主页</button>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <div class="ctl">
-                        <img src="${baseUrl}Temp-images/face5.jpg">
-                        <h3>王明旭</h3>
-                        <p>哈佛大学医学博士</p>
-                    </div>
-                    <button type="button" class="am-btn am-btn-default">大咖主页</button>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <div class="ctl">
-                        <img src="${baseUrl}Temp-images/face6.jpg">
-                        <h3>高晓松</h3>
-                        <p>阿里娱乐仲裁</p>
-                    </div>
-                    <button type="button" class="am-btn am-btn-default">大咖主页</button>
-                </a>
-            </li>
+            </c:forEach>
         </ul>
 
     </div>
