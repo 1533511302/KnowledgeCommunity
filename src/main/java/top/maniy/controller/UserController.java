@@ -44,6 +44,10 @@ public class UserController {
     private AnswerService answerService;
 
     @Autowired
+    private CollectionService collectionService;
+
+
+    @Autowired
     private CustomRealm customRealm;
 
     /**
@@ -145,7 +149,7 @@ public class UserController {
                             ModelMap modelMap){
         PageInfo<User> pageInfo=userService.findVUserList(1,pageSize);
         List<User> userList =userService.findUserByTotalNumDesc(6);
-        System.out.println(userList);
+
         modelMap.put("userList",userList);
         modelMap.put("pageInfo",pageInfo);
         return "vUserList";
@@ -388,7 +392,7 @@ public class UserController {
                 User tempUser= new User();
                 tempUser.setId(user.getId());
                 tempUser.setPassword(newMd5.toString());
-                System.out.println("12378");
+
                 if(userService.updateUser(tempUser)){
                     return "2";
                 }
@@ -398,6 +402,19 @@ public class UserController {
         }
         return "0";
     }
+
+    @RequestMapping(value = "collectionVUser",method = RequestMethod.GET)
+    public String collectionMassage(ModelMap modelMap,HttpServletRequest request,
+                                    @RequestParam(value="page", required=false, defaultValue="1") Integer page,
+                                    @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize){
+        User user =((User)request.getSession().getAttribute("User"));
+        List<Collections> collectionsList =collectionService.findCollectionByTypeIsVUser(user.getId());
+        PageInfo<User> pageInfo =userService.findVUserByUserCollection(collectionsList,page,pageSize);
+        modelMap.put("pageInfo",pageInfo);
+        modelMap.put("user",user);
+        return "collectionVUser";
+    }
+
 
 
 }

@@ -2,6 +2,7 @@ package top.maniy.service;
 
 import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.annotations.Param;
+import top.maniy.entity.Collections;
 import top.maniy.entity.Massage;
 
 import java.util.List;
@@ -13,6 +14,9 @@ import java.util.List;
  * @date 2018/10/16 16:25
  */
 public interface MassageService {
+
+    //根据用户收藏获取massage
+    PageInfo<Massage> findMassageByUserCollection(List<Collections> collectionsList,int currentPage, int pageSize);
 
     //根据id查询massage
     Massage findMassageById(Integer id);

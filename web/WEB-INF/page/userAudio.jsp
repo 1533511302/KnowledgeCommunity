@@ -109,12 +109,9 @@
                     <h3>姓名：${user.realname}</h3>
                     <h4>性别：${user.gender==1?'男':'女'}</h4>
                     <h4>${user.autograph}</h4>
-                    <p>图文：<span>${user.massagenumb}</span>
-                    <p>问题：<span>${user.questionnumb}</span> &nbsp;回答：<span>${user.answernumb}</span></p></p>
-                    <button type="button" class="am-btn am-btn-warning am-hide-lg-only" style="margin: 0 auto; margin-top: 30px">
-                        <i class="am-icon-plus"></i>
-                        订阅
-                    </button>
+                    <p>图文：${user.massagenumb} &nbsp; 音频：${user.audionumb}</p>
+                    <p>问题：${user.questionnumb} &nbsp; 回答：${user.answernumb}</p>
+
                 </div>
             </div>
 
@@ -123,11 +120,19 @@
             ${user.introduce}
         </div>
         <c:if test="${user.username==username}">
-            <div class="am-u-sm-12 am-u-md-12 am-u-lg-3 am-show-lg-only userinfo_right">
-                <button type="button" class="am-btn am-btn-warning">
-                    <i class="am-icon-pencil-square"></i>
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-2 am-show-lg-only userinfo_right">
+                <a href="${baseUrl}userInfo/${user.id}"><button type="button" class="am-btn am-btn-warning">
+                    <i class="am-icon-pencil-square-o"></i>
                     个人信息
-                </button>
+                </button></a>
+                <a href="${baseUrl}collectionMassage"><button type="button" class="am-btn am-btn-warning">
+                    <i class="am-icon-shopping-bag"></i>
+                    我的收藏
+                </button></a>
+                <a href="${baseUrl}userInfo/${user.id}"><button type="button" class="am-btn am-btn-warning">
+                    <i class="am-icon-heart"></i>
+                    我的关注
+                </button></a>
             </div>
         </c:if>
 

@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface CollectionMapper {
     //根据类型获取收藏列表
-    List<Collections> findCollectionByType(int type);
+    List<Collections> findCollectionByUserIdAndType(@Param("userId") int userId,@Param("type") int type);
     //删除收藏
     boolean deleteCollection(int id);
     //添加收藏
@@ -24,4 +24,7 @@ public interface CollectionMapper {
     Collections findCollectionByUserIdAndAudioId(@Param("userId") int userId,@Param("audioId") int audioId);
     //查询已收藏的文章
     Collections findCollectionByUserIdAndQuestionId(@Param("userId") int userId,@Param("questionId") int questionId);
+    //查询已关注的认证用户
+    Collections findCollectionByUserIdAndVUserId(@Param("userId") int userId,@Param("vUserId") int vUserId);
+
 }

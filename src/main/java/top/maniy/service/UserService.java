@@ -3,6 +3,7 @@ package top.maniy.service;
 
 import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.annotations.Param;
+import top.maniy.entity.Collections;
 import top.maniy.entity.User;
 
 import java.beans.IntrospectionException;
@@ -20,6 +21,8 @@ public interface UserService {
     //根据文章数、问题数、回答数、音频数总和从大大小排列获取num条数据
     List<User> findUserByTotalNumDesc(int num);
 
+    //查询关注的用户
+    PageInfo<User> findVUserByUserCollection(List<Collections> collectionsList, int currentPage, int pageSize);
 
     //查询用户名 是否存在
     User findUserByUsername(String username);

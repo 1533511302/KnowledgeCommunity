@@ -27,11 +27,21 @@ public class User implements Serializable {
 //提问次数
   private Integer questionnumb;
 //回答次数
+private Integer audionumb;
+  //回答次数
   private Integer answernumb;
 //1普通用户，2认证用户，3管理员
   private String role;
 //禁用（1是，0否）
   private String forbidden;
+
+  public Integer getAudionumb() {
+    return audionumb;
+  }
+
+  public void setAudionumb(Integer audionumb) {
+    this.audionumb = audionumb;
+  }
 
   public Integer getMassagenumb() {
     return massagenumb;

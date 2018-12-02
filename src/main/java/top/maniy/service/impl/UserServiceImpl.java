@@ -5,11 +5,13 @@ import com.github.pagehelper.PageInfo;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import top.maniy.entity.Collections;
 import top.maniy.entity.User;
 import top.maniy.mapper.UserMapper;
 import top.maniy.service.UserService;
 import top.maniy.shiro.realm.CustomRealm;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,6 +31,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findUserByTotalNumDesc(int num) {
         return usermapper.findUserByTotalNumDesc(6);
+    }
+
+    @Override
+    public PageInfo<User> findVUserByUserCollection(List<Collections> collectionsList, int currentPage, int pageSize) {
+        PageHelper.startPage(currentPage,pageSize);
+        List<User> userList = new ArrayList<User>();
+        for(Collections collections : collectionsList){
+            userList.add(usermapper.findUserById(collections.getvUserId()));
+        }
+        PageInfo<User> pageInfo = new PageInfo<User>(userList);
+        return pageInfo;
     }
 
     @Override

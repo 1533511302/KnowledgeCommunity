@@ -120,18 +120,10 @@
             ${user.introduce}
         </div>
         <c:if test="${user.username==username}">
-            <div class="am-u-sm-12 am-u-md-12 am-u-lg-2 am-show-lg-only userinfo_right">
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-3 am-show-lg-only userinfo_right">
                 <a href="${baseUrl}userInfo/${user.id}"><button type="button" class="am-btn am-btn-warning">
-                    <i class="am-icon-pencil-square-o"></i>
+                    <i class="am-icon-pencil-square"></i>
                     个人信息
-                </button></a>
-                <a href="${baseUrl}collectionMassage"><button type="button" class="am-btn am-btn-warning">
-                    <i class="am-icon-shopping-bag"></i>
-                    我的收藏
-                </button></a>
-                <a href="${baseUrl}userInfo/${user.id}"><button type="button" class="am-btn am-btn-warning">
-                    <i class="am-icon-heart"></i>
-                    我的关注
                 </button></a>
             </div>
         </c:if>
@@ -139,7 +131,12 @@
     </div>
 </div>
 <div id="cattit">
-    <c:import url="tabPlugin.jsp"></c:import>
+    <ul class="am-avg-sm-4 am-avg-md-4 am-avg-lg-4" style="width: 700px;margin-left: -250px">
+        <li class="active-none"><h3><a href="${baseUrl}vUsersCategory/${user.id}">收藏图文</a></h3></li>
+        <li  class="active-none" ><h3><a href="${baseUrl}vUsersAudio/${user.id}">收藏音频</a></h3></li>
+        <li  class="active-none"><h3><a href="${baseUrl}vUsersQuestion/${user.id}">收藏问题</a></h3></li>
+        <li  class="active-none"><h3><a href="${baseUrl}vUsersAnswer/${user.id}">关注大咖</a></h3></li>
+    </ul>
 </div>
 <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
 <div class="am-g">
@@ -162,26 +159,6 @@
                                 <div class="am-list-item-text">${question.quesDescribe}</div>
 
                             </div>
-                            <c:if test="${user.username==username}">
-                                <div align="right" style="width:840px;height:50px;margin-top: 120px;">
-                                    <div class="am-btn-group">
-
-
-                                        <button class="am-btn am-btn-danger  am-radius" style="width: 100px" onclick="clickDeleteBtn(${question.id})">
-                                            <i class="am-icon-eraser"></i>
-                                            删除
-                                        </button>
-
-                                        <a href="${baseUrl}toUpdateQuestion?questionId=${question.id}">
-                                            <button class="am-btn am-btn-warning am-radius" style="width: 100px">
-                                                <i class="am-icon-pencil"></i>
-                                                修改
-                                            </button>
-                                        </a>
-                                    </div>
-
-                                </div>
-                            </c:if>
                         </li>
 
                         <div class="newsico am-fr">

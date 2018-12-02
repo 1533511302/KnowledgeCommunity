@@ -1,9 +1,12 @@
 package top.maniy.service.impl;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.maniy.entity.Collections;
+import top.maniy.entity.Question;
 import top.maniy.mapper.CollectionMapper;
+import top.maniy.mapper.MassageMapper;
 import top.maniy.service.CollectionService;
 
 import java.util.List;
@@ -21,23 +24,64 @@ public class CollectionServiceImpl implements CollectionService {
     private CollectionMapper collectionMapper;
 
     @Override
-    public List<Collections> findCollectionByTypeIsMassage() {
-        return collectionMapper.findCollectionByType(1);
+    public List<Collections> findCollectionByTypeIsMassage(int userId) {
+        return collectionMapper.findCollectionByUserIdAndType(userId,1);
     }
 
     @Override
-    public List<Collections> findCollectionByTypeIsAudio() {
-        return collectionMapper.findCollectionByType(2);
+    public List<Collections> findCollectionByTypeIsAudio(int userId) {
+        return collectionMapper.findCollectionByUserIdAndType(userId,2);
     }
 
     @Override
-    public List<Collections> findCollectionByTypeIsQuestion() {
-        return collectionMapper.findCollectionByType(3);
+    public List<Collections> findCollectionByTypeIsQuestion(int userId) {
+        return collectionMapper.findCollectionByUserIdAndType(userId,3);
+    }
+
+    @Override
+    public List<Collections> findCollectionByTypeIsVUser(int userId) {
+        return collectionMapper.findCollectionByUserIdAndType(userId,4);
     }
 
     @Override
     public boolean deleteCollection(int id) {
         return collectionMapper.deleteCollection(id);
+    }
+
+    @Override
+    public boolean deleteCollectionMassage(int userId, int massageId) {
+        Collections collections = collectionMapper.findCollectionByUserIdAndMassageId(userId, massageId);
+        if(collections!=null) {
+            return deleteCollection(collections.getId());
+        }
+        return false;
+    }
+
+    @Override
+    public boolean deleteCollectionAudio(int userId, int audioId) {
+        Collections collections =collectionMapper.findCollectionByUserIdAndAudioId(userId,audioId);
+        if(collections!=null){
+            return deleteCollection(collections.getId());
+        }
+        return false;
+    }
+
+    @Override
+    public boolean deleteCollectionQuestion(int userId, int questionId) {
+        Collections collections =collectionMapper.findCollectionByUserIdAndQuestionId(userId, questionId);
+        if(collections!=null){
+            return deleteCollection(collections.getId());
+        }
+        return false;
+    }
+
+    @Override
+    public boolean deleteCollectionVUser(int userId, int vUserId) {
+        Collections collections =collectionMapper.findCollectionByUserIdAndVUserId(userId, vUserId);
+        if(collections!=null){
+            return deleteCollection(collections.getId());
+        }
+        return false;
     }
 
     @Override
@@ -68,6 +112,15 @@ public class CollectionServiceImpl implements CollectionService {
     }
 
     @Override
+    public boolean saveCollectionByTypeIsVUser(int userId, int vUserId) {
+        Collections collections =new Collections();
+        collections.setUserId(userId);
+        collections.setvUserId(vUserId);
+        collections.setType(4);
+        return collectionMapper.saveCollection(collections);
+    }
+
+    @Override
     public boolean findCollectionByUserIdAndMassageId(int userId, int massageId) {
         Collections collections = collectionMapper.findCollectionByUserIdAndMassageId(userId,massageId);
         if(collections!=null){
@@ -88,6 +141,15 @@ public class CollectionServiceImpl implements CollectionService {
     @Override
     public boolean findCollectionByUserIdAndQuestionId(int userId, int questionId) {
         Collections collections = collectionMapper.findCollectionByUserIdAndQuestionId(userId,questionId);
+        if(collections!=null){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean findCollectionByUserIdAndVUserId(int userId, int vUserId) {
+        Collections collections = collectionMapper.findCollectionByUserIdAndVUserId(userId,vUserId);
         if(collections!=null){
             return true;
         }

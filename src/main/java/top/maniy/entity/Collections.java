@@ -12,6 +12,7 @@ public class Collections {
   private Integer massageId;
   private Integer audioId;
   private Integer questionId;
+  private Integer vUserId;
   private Integer type;//类型：文章：1；音频：2；问题：3；
   private Date createTime;
 
@@ -60,6 +61,13 @@ public class Collections {
     this.questionId = questionId;
   }
 
+  public Integer getvUserId() {
+    return vUserId;
+  }
+
+  public void setvUserId(Integer vUserId) {
+    this.vUserId = vUserId;
+  }
 
   public Integer getType() {
     return type;
@@ -75,5 +83,19 @@ public class Collections {
 
   public void setCreateTime(Date createTime) {
     this.createTime = createTime;
+  }
+
+
+  @Override
+  public String toString() {
+    return "Collections{" +
+            "id=" + id +
+            ", userId=" + userId +
+            ", massageId=" + massageId +
+            ", audioId=" + audioId +
+            ", questionId=" + questionId +
+            ", type=" + type +
+            ", createTime=" + createTime +
+            '}';
   }
 }

@@ -4,10 +4,13 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import top.maniy.entity.Collections;
 import top.maniy.entity.Massage;
+import top.maniy.mapper.CollectionMapper;
 import top.maniy.mapper.MassageMapper;
 import top.maniy.service.MassageService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +24,18 @@ public class MassageServiceImpl implements MassageService {
 
     @Autowired
     private MassageMapper massageMapper;
+
+
+    @Override
+    public PageInfo<Massage> findMassageByUserCollection(List<Collections> collectionsList, int currentPage, int pageSize) {
+        PageHelper.startPage(currentPage,pageSize);
+        List<Massage> massageList = new ArrayList<Massage>();
+        for(Collections collections : collectionsList){
+            massageList.add(massageMapper.findMassageById(collections.getMassageId()));
+        }
+        PageInfo<Massage> pageInfo = new PageInfo<Massage>(massageList);
+        return pageInfo;
+    }
 
     @Override
     public Massage findMassageById(Integer id) {

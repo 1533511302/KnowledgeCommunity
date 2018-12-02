@@ -141,6 +141,26 @@
             $(btn).attr("key","2");
 
         }
+
+        function clickVUserBtn(vUserId,btn) {
+
+            if($(btn).attr("key")==1){
+
+                $.post("saveCollectionVUser",{vUserId:vUserId},function (data) {
+
+                    if(data=="1"){
+                        $(btn).html("已关注");
+
+                    }
+                    if(data=="2"){
+                        $(btn).html("关注过");
+
+                    }
+                });
+            }
+            $(btn).attr("key","2");
+
+        }
     </script>
 </head>
 <body>
@@ -637,8 +657,13 @@
                     <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
                         <div class="am-u-sm-4 am-list-thumb">
                             <a href="vUsersCategory/${user.id}">
-                                <img src="Temp-images/face.jpg" class="face"/>
+                                <img src="Temp-images/face.jpg" class="face" style="width: 70px;height: 70px;"/>
                             </a>
+
+                                <button class="am-btn am-btn-warning am-round am-btn-xs"  key="1" onclick="clickVUserBtn(${user.id},this)"  style="margin-top: 5px;">
+                                    关注一下
+                                </button>
+
                         </div>
 
                         <div class=" am-u-sm-8 am-list-main">
@@ -646,6 +671,7 @@
 
                             <div class="am-list-item-text">${user.autograph}</div>
                         </div>
+
                     </li>
                     <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
                 </c:forEach>
@@ -667,8 +693,13 @@
                     <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
                         <div class="am-u-sm-4 am-list-thumb">
                             <a href="vUsersCategory/${user.id}">
-                                <img src="Temp-images/face.jpg" class="face"/>
+                                <img src="Temp-images/face.jpg" class="face" style="width: 70px;height: 70px;"/>
                             </a>
+
+                            <button class="am-btn am-btn-warning am-round am-btn-xs"  key="1" onclick="clickVUserBtn(${user.id},this)"  style="margin-top: 5px;">
+                                关注一下
+                            </button>
+
                         </div>
 
                         <div class=" am-u-sm-8 am-list-main">

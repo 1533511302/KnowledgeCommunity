@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="baseUrl" value="${pageContext.request.contextPath}/"></c:set>
-
+<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <html class="no-js">
 <head>
     <meta charset="utf-8">
@@ -105,7 +105,7 @@
                 <div class="am-u-md-12 am-u-lg-6 userface">
                     <img src="${baseUrl}Temp-images/face2.jpg">
                 </div>
-                <div class="am-u-md-12 am-u-lg-6 userin">
+                <div class="am-u-md-9 am-u-lg-6 userin">
                     <h3>姓名：${user.realname}</h3>
                     <h4>性别：${user.gender==1?'男':'女'}</h4>
                     <h4>${user.autograph}</h4>
@@ -119,115 +119,102 @@
         <div class="am-u-sm-0 am-u-md-12 am-u-lg-4 am-show-lg-only userinfo_center">
             ${user.introduce}
         </div>
-        <c:if test="${user.username==username}">
-            <div class="am-u-sm-12 am-u-md-12 am-u-lg-2 am-show-lg-only userinfo_right">
-                <a href="${baseUrl}userInfo/${user.id}"><button type="button" class="am-btn am-btn-warning">
-                    <i class="am-icon-pencil-square-o"></i>
-                    个人信息
-                </button></a>
-                <a href="${baseUrl}collectionMassage"><button type="button" class="am-btn am-btn-warning">
-                    <i class="am-icon-shopping-bag"></i>
-                    我的收藏
-                </button></a>
-                <a href="${baseUrl}userInfo/${user.id}"><button type="button" class="am-btn am-btn-warning">
-                    <i class="am-icon-heart"></i>
-                    我的关注
-                </button></a>
-            </div>
-        </c:if>
 
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-2 am-show-lg-only userinfo_right">
+            <a href="${baseUrl}userInfo/${user.id}"><button type="button" class="am-btn am-btn-warning">
+                <i class="am-icon-pencil-square-o"></i>
+                个人信息
+            </button></a>
+            <a href="${baseUrl}userInfo/${user.id}"><button type="button" class="am-btn am-btn-warning">
+                <i class="am-icon-shopping-bag"></i>
+                我的收藏
+            </button></a>
+            <a href="${baseUrl}userInfo/${user.id}"><button type="button" class="am-btn am-btn-warning">
+                <i class="am-icon-heart"></i>
+                我的关注
+            </button></a>
+        </div>
     </div>
 </div>
 <div id="cattit">
-    <c:import url="tabPlugin.jsp"></c:import>
+    <ul class="am-avg-sm-4 am-avg-md-4 am-avg-lg-4" style="width: 700px;margin-left: -250px">
+        <li class="active-none"><h3><a href="${baseUrl}vUsersCategory/${user.id}">收藏图文</a></h3></li>
+        <li  class="active-none" ><h3><a href="${baseUrl}vUsersAudio/${user.id}">收藏音频</a></h3></li>
+        <li  class="active-none"><h3><a href="${baseUrl}vUsersQuestion/${user.id}">收藏问题</a></h3></li>
+        <li  class="active-none"><h3><a href="${baseUrl}collectionVUser">关注大咖</a></h3></li>
+    </ul>
 </div>
 <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
-<div class="am-g">
-    <div class="am-u-sm-0 am-u-md-2 am-u-lg-3">&nbsp;</div>
-    <div class="am-u-sm-12 am-u-md-8 am-u-lg-6">
-        <div data-am-widget="list_news" class="am-list-news am-list-news-default ">
-            <div class="am-list-news-bd">
-                <ul class="am-list">
-                    <c:forEach var="question" items="${pageInfo.list}" varStatus="index">
-                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" style="border-top: 0px">
-                            <div class="am-u-sm-5 am-list-thumb">
-                                <a href="#">
-                                    <img src="${baseUrl}Temp-images/b2.jpg" alt="配图"/>
-                                </a>
-                            </div>
+<div id="cattlist" class="am-container">
+    <ul class="am-avg-sm-1 am-avg-md-3 am-avg-lg-4">
+        <c:forEach var="user" items="${pageInfo.list}" varStatus="index">
+            <li>
+                <div class="cattlist_0">
+                    <div class="cattlist_1">
+                        <div class="am-g">
 
-                            <div class=" am-u-sm-7 am-list-main">
-                                <h2 class="am-list-item-hd"><a href="${baseUrl}question/${question.id}">${question.quesName}</a></h2>
-
-                                <div class="am-list-item-text">${question.quesDescribe}</div>
-
-                            </div>
-                            <c:if test="${user.username==username}">
-                                <div align="right" style="width:840px;height:50px;margin-top: 120px;">
-                                    <div class="am-btn-group">
-
-
-                                        <button class="am-btn am-btn-danger  am-radius" style="width: 100px" onclick="clickDeleteBtn(${question.id})">
-                                            <i class="am-icon-eraser"></i>
-                                            删除
-                                        </button>
-
-                                        <a href="${baseUrl}toUpdateQuestion?questionId=${question.id}">
-                                            <button class="am-btn am-btn-warning am-radius" style="width: 100px">
-                                                <i class="am-icon-pencil"></i>
-                                                修改
-                                            </button>
-                                        </a>
-                                    </div>
-
+                            <div class="am-u-sm-4 am-u-md-5 am-u-lg-5 am-vertical-align">
+                                <div class="am-vertical-align-middle">
+                                    <img src="${baseUrl}Temp-images/face1.jpg">
                                 </div>
-                            </c:if>
-                        </li>
+                            </div>
+                            <div class="am-u-sm-8 am-u-md-7 am-u-lg-7">
 
-                        <div class="newsico am-fr">
-                            <i class="am-icon-clock-o">${question.createTime}</i>
-
+                                <h3>${user.realname}</h3>
+                                <h4>${user.autograph}</h4>
+                                <p>回答<span>${user.answernumb}</span></p>
+                            </div>
                         </div>
-                    </c:forEach>
+                    </div>
+                    <div class="cattlist_2">
+                        <p>
+                                ${user.introduce}
+                        </p>
+                    </div>
 
+                    <div class="cattlist_3">
+                        <a  class="am-btn am-btn am-btn-warning" onclick="clickDeleteBtn(${user.id})">删除</a>
+                    </div>
+                </div>
+            </li>
+        </c:forEach>
 
-
-
-                </ul>
-                <ul data-am-widget="pagination" class="am-pagination am-pagination-default" style="text-align: center">
-
-                    <li class="am-pagination-first ">
-                        <a href="<c:url value="/vUsersQuestion/${user.id}?page=1"/>">首页</a>
-                    </li>
-
-                    <li class="am-pagination-prev ">
-                        <a href="<c:url value="/vUsersQuestion/${user.id}?page=${pageInfo.pageNum-1>1?pageInfo.pageNum-1:1}"/>">&laquo;</a>
-                    </li>
-                    <c:set var="start" value="${pageInfo.pageNum-5<=0?1:pageInfo.pageNum-5}"/>
-                    <c:set var="end" value="${start+9<pageInfo.pages?start+9:pageInfo.pages}"/>
-                    <c:forEach begin="${start}" end="${end}" varStatus="loop">
-                        <c:set var="active" value="${loop.index==pageInfo.pageNum?'am-active':''}"/>
-
-
-                        <li class="${active}">
-                            <a href="<c:url value="/vUsersQuestion/${user.id}?page=${loop.index}"/>">${loop.index}</a>
-                        </li>
-                    </c:forEach>
-
-
-                    <li class="am-pagination-next ">
-                        <a href="<c:url value="/vUsersQuestion/${user.id}?page=${pageInfo.pageNum+1<pageInfo.pages?pageInfo.pageNum+1:pageInfo.pages}"/>">&raquo;</a>
-                    </li>
-
-                    <li class="am-pagination-last ">
-                        <a href="<c:url value="/vUsersQuestion/${user.id}?page=${pageInfo.pages}"/>">尾页</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="am-u-sm-0 am-u-md-2 am-u-lg-3">&nbsp;</div>
+    </ul>
 </div>
+
+<div class="am-container" style="margin: 100px auto">
+    <ul data-am-widget="pagination" class="am-pagination am-pagination-default am-text-center">
+
+        <li class="am-pagination-first ">
+            <a href="<c:url value="/vUsers/1"/>">首页</a>
+        </li>
+
+        <li class="am-pagination-prev ">
+            <a href="<c:url value="/vUsers/${pageInfo.pageNum-1>1?pageInfo.pageNum-1:1}"/>">&laquo;</a>
+        </li>
+        <c:set var="start" value="${pageInfo.pageNum-5<=0?1:pageInfo.pageNum-5}"/>
+        <c:set var="end" value="${start+9<pageInfo.pages?start+9:pageInfo.pages}"/>
+        <c:forEach begin="${start}" end="${end}" varStatus="loop">
+            <c:set var="active" value="${loop.index==pageInfo.pageNum?'am-active':''}"/>
+
+
+            <li class="${active}">
+                <a href="<c:url value="/vUsers/${loop.index}"/>">${loop.index}</a>
+            </li>
+        </c:forEach>
+
+
+        <li class="am-pagination-next ">
+            <a href="<c:url value="/vUsers/${pageInfo.pageNum+1<pageInfo.pages?pageInfo.pageNum+1:pageInfo.pages}"/>">&raquo;</a>
+        </li>
+
+        <li class="am-pagination-last ">
+            <a href="<c:url value="/vUsers/${pageInfo.pages}"/>">尾页</a>
+        </li>
+    </ul>
+</div>
+
+
 
 
 
@@ -273,10 +260,12 @@
     </div>
 </footer>
 <script>
-    function clickDeleteBtn(questionId) {
-        $.post("${baseUrl}deleteQuestion",{questionId:questionId},function (data) {
+    function clickDeleteBtn(vUserId) {
+        $.post("${baseUrl}deleteCollectionVUser",{vUserId:vUserId},function (data) {
             if(data){
                 alert("删除成功！");
+                //js跳转页面
+                location.href="${baseUrl}collectionVUser";
             }
         });
 

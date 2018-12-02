@@ -6,8 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace ="top.maniy.mapper.CollectionMapper">
 
 
-	<select id="findCollectionByType" resultType="Collections">
-		SELECT * FROM collection WHERE type=#{type}
+	<select id="findCollectionByUserIdAndType" resultType="Collections">
+		SELECT * FROM collection WHERE userId=#{userId} AND type=#{type}
 	</select>
 
     <select id="findCollectionByUserIdAndMassageId" resultType="Collections">
@@ -20,6 +20,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <select id="findCollectionByUserIdAndQuestionId" resultType="Collections">
         SELECT * FROM collection WHERE userId=#{userId} AND questionId=#{questionId}
+    </select>
+    <select id="findCollectionByUserIdAndVUserId" resultType="Collections">
+        SELECT * FROM collection WHERE userId=#{userId} AND vUserId=#{vUserId}
     </select>
 
     <insert id="saveCollection">
@@ -37,6 +40,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="questionId != null" >
                 questionId,
             </if>
+            <if test="vUserId != null" >
+                vUserId,
+            </if>
+            <if test="type != null" >
+                type,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
 			<if test="userId != null" >
@@ -45,9 +54,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="massageId != null" >
 				#{massageId},
 			</if>
-			<if test="questionId != null" >
-				#{questionId},
+			<if test="audioId != null" >
+				#{audioId},
 			</if>
+            <if test="questionId != null" >
+                #{questionId},
+            </if>
+            <if test="vUserId != null" >
+                #{vUserId},
+            </if>
+            <if test="type != null" >
+                #{type},
+            </if>
         </trim>
 	</insert>
 

@@ -10,14 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import top.maniy.entity.Category;
-import top.maniy.entity.Comment;
-import top.maniy.entity.Massage;
-import top.maniy.service.CategoryService;
-import top.maniy.service.CommentService;
-import top.maniy.service.MassageService;
-import top.maniy.service.UserService;
+import top.maniy.entity.*;
+import top.maniy.service.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -40,6 +36,9 @@ public class MassageController {
 
     @Autowired
     private CommentService commentService;
+
+    @Autowired
+    private CollectionService collectionService;
 
     /**
      * 图文详情页
@@ -183,6 +182,26 @@ public class MassageController {
     public boolean deleteMassage(@RequestParam Integer massageId){
 
         return massageService.deleteMassage(massageId);
+    }
+
+    /**
+     * 图文收藏
+     * @param modelMap
+     * @param request
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    @RequestMapping(value = "collectionMassage",method = RequestMethod.GET)
+    public String collectionMassage(ModelMap modelMap, HttpServletRequest request,
+                                    @RequestParam(value="page", required=false, defaultValue="1") Integer page,
+                                    @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize){
+        User user =((User)request.getSession().getAttribute("User"));
+        List<Collections> collectionsList =collectionService.findCollectionByTypeIsMassage(user.getId());
+        PageInfo<Massage> pageInfo =massageService.findMassageByUserCollection(collectionsList,page,pageSize);
+        modelMap.put("pageInfo",pageInfo);
+        modelMap.put("user",user);
+        return "collectionMassage";
     }
 
 
