@@ -80,6 +80,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="quesDescribe != null" >
 				quesDescribe=#{quesDescribe},
 			</if>
+			<if test="likeNumb != null" >
+				likeNumb=#{likeNumb},
+			</if>
 			<if test="answerNumb != null" >
 				answerNumb=#{answerNumb},
 			</if>

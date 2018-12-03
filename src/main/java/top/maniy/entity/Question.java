@@ -13,6 +13,7 @@ public class Question {
   private String quesName;
   private String quesDescribe;
   private String photo;
+  private Integer likeNumb;
   private Integer answerNumb;
   private Integer attentionNumb;
   private Integer browseNumb;
@@ -72,6 +73,13 @@ public class Question {
     this.photo = photo;
   }
 
+  public Integer getLikeNumb() {
+    return likeNumb;
+  }
+
+  public void setLikeNumb(Integer likeNumb) {
+    this.likeNumb = likeNumb;
+  }
 
   public Integer getAnswerNumb() {
     return answerNumb;

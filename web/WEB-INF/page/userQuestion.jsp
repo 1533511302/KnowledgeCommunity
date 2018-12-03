@@ -129,7 +129,7 @@
                     <i class="am-icon-shopping-bag"></i>
                     我的收藏
                 </button></a>
-                <a href="${baseUrl}userInfo/${user.id}"><button type="button" class="am-btn am-btn-warning">
+                <a href="${baseUrl}collectionVUser"><button type="button" class="am-btn am-btn-warning">
                     <i class="am-icon-heart"></i>
                     我的关注
                 </button></a>

@@ -1,5 +1,6 @@
 package top.maniy.controller;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -136,5 +137,54 @@ public class CollectionController {
         return false;
     }
 
+    /**
+     * 添加收藏问题
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/saveCollectionQuestion",method = RequestMethod.POST)
+    @ResponseBody
+    public String saveCollectionByTypeIsQuestion(@RequestParam("questionId") Integer questionId, HttpServletRequest request){
+
+        //用户信息
+        User user = (User) request.getSession().getAttribute("User");
+
+        if(user!=null){
+
+            //判断是否已经收藏
+            if(collectionService.findCollectionByUserIdAndQuestionId(user.getId(),questionId)){
+                //添加收藏
+                System.out.println("存在");
+                return "2";
+            }
+            collectionService.saveCollectionByTypeIsQuestion(user.getId(),questionId);
+            return "1";
+        }
+
+        return "0";
+
+
+    }
+    /**
+     * 删除关注问题
+     * @param questionId
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/deleteCollectionQuestion")
+    @ResponseBody
+    public boolean deleteCollectionQuestion(@RequestParam("questionId") Integer questionId,HttpServletRequest request){
+        //用户信息
+        User user = (User) request.getSession().getAttribute("User");
+        if(user!=null){
+            if(collectionService.findCollectionByUserIdAndQuestionId(user.getId(),questionId)){
+                collectionService.deleteCollectionQuestion(user.getId(),questionId);
+                return  true;
+            }
+
+        }
+        return false;
+    }
 
 }

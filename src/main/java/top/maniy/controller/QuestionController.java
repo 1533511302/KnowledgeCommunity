@@ -1,20 +1,16 @@
 package top.maniy.controller;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.github.pagehelper.PageInfo;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import top.maniy.entity.Answer;
-import top.maniy.entity.Category;
-import top.maniy.entity.Question;
-import top.maniy.entity.Topic;
-import top.maniy.service.AnswerService;
-import top.maniy.service.QuestionService;
-import top.maniy.service.TopicService;
-import top.maniy.service.UserService;
+import top.maniy.entity.*;
+import top.maniy.service.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -38,6 +34,9 @@ public class QuestionController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private CollectionService collectionService;
+
     /**
      * 问题列表
      * @param topicId
@@ -47,12 +46,12 @@ public class QuestionController {
      * @return
      */
     @RequestMapping("/questionList/{topicId}")
-    public String findQuestionByTopicId(@PathVariable String  topicId,
+    public String findQuestionByTopicId(@PathVariable Integer  topicId,
                                         @RequestParam(value="page", required=false, defaultValue="1") Integer page,
                                         @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize,
                                         ModelMap modelMap){
-        PageInfo<Question> pageInfo=questionService.findQuestionByTopicId(topicId,page,pageSize);
-        Topic topic =topicService.findTopicById(Integer.valueOf(topicId));
+        PageInfo<Question> pageInfo=questionService.findQuestionByTopicId(String.valueOf(topicId),page,pageSize);
+        Topic topic =topicService.findTopicById(topicId);
         modelMap.put("pageInfo",pageInfo);
         modelMap.put("topic",topic);
         return "questionList";
@@ -91,6 +90,7 @@ public class QuestionController {
     public String questionPage(@PathVariable Integer quesId,@RequestParam(value="page", required=false, defaultValue="1") Integer page,
                                @RequestParam(value="pageSize", required=false, defaultValue="5") Integer pageSize,
                                ModelMap modelMap){
+        questionService.browseNumb(quesId);
         //话题
         PageInfo<Topic> topicList=topicService.findAllTopic(1,20);
         Question question=questionService.findQuestionById(quesId);
@@ -122,6 +122,12 @@ public class QuestionController {
         return questionService.deleteQuestion(questionId);
     }
 
+    /**
+     * 加载更新界面
+     * @param questionId
+     * @param modelMap
+     * @return
+     */
     @RequestMapping(value = "toUpdateQuestion",method = RequestMethod.GET)
     public String toUpdateQuestion(@RequestParam Integer questionId,ModelMap modelMap){
 
@@ -136,6 +142,14 @@ public class QuestionController {
         return "updateQuestionPage";
     }
 
+    /**
+     * 更新操作
+     * @param questionId
+     * @param topicId
+     * @param quesName
+     * @param quesDescribe
+     * @return
+     */
     @RequestMapping(value = "updateQuestion",method = RequestMethod.POST)
     @ResponseBody
     public boolean updateQuestion(@RequestParam Integer questionId,@RequestParam String topicId,
@@ -149,5 +163,31 @@ public class QuestionController {
         return questionService.updateQuestion(question);
     }
 
+    @RequestMapping(value = "questionAddLikeNumb",method = RequestMethod.POST)
+    @ResponseBody
+    public boolean questionAddLikeNumb(@RequestParam Integer questionId){
+        return questionService.LikeNumbAddOne(questionId);
+    }
+
+
+    /**
+     * 图文收藏
+     * @param modelMap
+     * @param request
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    @RequestMapping(value = "collectionQuestion",method = RequestMethod.GET)
+    public String collectionMassage(ModelMap modelMap, HttpServletRequest request,
+                                    @RequestParam(value="page", required=false, defaultValue="1") Integer page,
+                                    @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize){
+        User user =((User)request.getSession().getAttribute("User"));
+        List<Collections> collectionsList =collectionService.findCollectionByTypeIsQuestion(user.getId());
+        PageInfo<Question> pageInfo =questionService.findQuestionByUserCollection(collectionsList,page,pageSize);
+        modelMap.put("pageInfo",pageInfo);
+        modelMap.put("user",user);
+        return "collectionQuestion";
+    }
 
 }

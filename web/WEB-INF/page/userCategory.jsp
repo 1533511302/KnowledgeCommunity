@@ -120,20 +120,20 @@
             ${user.introduce}
         </div>
         <c:if test="${user.username==username}">
-        <div class="am-u-sm-12 am-u-md-12 am-u-lg-2 am-show-lg-only userinfo_right">
-            <a href="${baseUrl}userInfo/${user.id}"><button type="button" class="am-btn am-btn-warning">
-                <i class="am-icon-pencil-square-o"></i>
-                个人信息
-            </button></a>
-            <a href="${baseUrl}collectionMassage"><button type="button" class="am-btn am-btn-warning">
-                <i class="am-icon-shopping-bag"></i>
-                我的收藏
-            </button></a>
-            <a href="${baseUrl}userInfo/${user.id}"><button type="button" class="am-btn am-btn-warning">
-                <i class="am-icon-heart"></i>
-                我的关注
-            </button></a>
-        </div>
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-2 am-show-lg-only userinfo_right">
+                <a href="${baseUrl}userInfo/${user.id}"><button type="button" class="am-btn am-btn-warning">
+                    <i class="am-icon-pencil-square-o"></i>
+                    个人信息
+                </button></a>
+                <a href="${baseUrl}collectionMassage"><button type="button" class="am-btn am-btn-warning">
+                    <i class="am-icon-shopping-bag"></i>
+                    我的收藏
+                </button></a>
+                <a href="${baseUrl}collectionVUser"><button type="button" class="am-btn am-btn-warning">
+                    <i class="am-icon-heart"></i>
+                    我的关注
+                </button></a>
+            </div>
         </c:if>
     </div>
 </div>

@@ -48,6 +48,39 @@
     <![endif]-->
     <script src="${baseUrl}assets/js/amazeui.min.js"></script>
     <script src="${baseUrl}js/public.js"></script>
+    <script>
+        function clickLikeNumbBtn(questionId,likeNumb,btn) {
+            if($(btn).attr("key")==1){
+                $.post("${baseUrl}questionAddLikeNumb",{questionId:questionId},function (data) {
+                    if(data){
+                        $(btn).attr("data-am-popover","{content: '鄙是点击显示的'}");
+                        $(btn).html("<i class=\"am-icon-caret-up\"></i>&nbsp;赞&nbsp;"+(likeNumb+1));
+                    }
+                });
+                $(btn).attr("key",2);
+            }
+        }
+
+        function clickCollectionBtn(questionId,btn) {
+
+            if($(btn).attr("key")==1){
+
+                $.post("${baseUrl}saveCollectionQuestion",{questionId:questionId},function (data) {
+
+                    if(data=="1"){
+                        $(btn).html("<i class='am-icon-heart'></i>&nbsp;已收藏");
+
+                    }
+                    if(data=="2"){
+                        $(btn).html("<i class='am-icon-heart'></i>&nbsp;收藏过");
+
+                    }
+                });
+            }
+            $(btn).attr("key","2");
+
+        }
+    </script>
 </head>
 <body>
 
@@ -164,24 +197,20 @@
                             </div>
                             <div style="width:820px;height:50px;margin-top: 110px;">
                                 <div class="am-btn-group">
-                                    <button class="am-btn am-btn-default am-radius">
+                                    <button class="am-btn am-btn-default am-radius"  key="1"  onclick="clickLikeNumbBtn(${question.id},${question.likeNumb},this)"  data-am-popover="{content: '已经点赞成功！！'}"  style="width: 100px">
                                         <i class="am-icon-caret-up"></i>
-                                        赞 531
+                                        赞 ${question.likeNumb}
                                     </button>
                                     <button class="am-btn am-btn-default am-radius">
                                         <i class="am-icon-comment"></i>
                                         ${question.answerNumb}条回答
                                     </button>
 
-                                    <button class="am-btn am-btn-default am-radius">
+                                    <button class="am-btn am-btn-default am-radius"  style="width: 100px"  key="1" onclick="clickCollectionBtn(${question.id},this)"  style="width: 100px"  data-am-popover="{content: '已经添加收藏！！'}">
                                         <i class="am-icon-heart"></i>
                                         收藏
                                     </button>
 
-                                    <button class="am-btn am-btn-default">
-                                        <i class="am-icon-share"></i>
-                                        分享
-                                    </button>
                                     <button class="am-btn am-btn-default" style="width: 100px">
                                         <i class="am-icon-eye"></i>
                                             ${question.browseNumb}

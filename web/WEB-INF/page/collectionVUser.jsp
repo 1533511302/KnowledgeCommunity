@@ -125,11 +125,11 @@
                 <i class="am-icon-pencil-square-o"></i>
                 个人信息
             </button></a>
-            <a href="${baseUrl}userInfo/${user.id}"><button type="button" class="am-btn am-btn-warning">
+            <a href="${baseUrl}collectionMassage"><button type="button" class="am-btn am-btn-warning">
                 <i class="am-icon-shopping-bag"></i>
                 我的收藏
             </button></a>
-            <a href="${baseUrl}userInfo/${user.id}"><button type="button" class="am-btn am-btn-warning">
+            <a href="${baseUrl}collectionVUser"><button type="button" class="am-btn am-btn-warning">
                 <i class="am-icon-heart"></i>
                 我的关注
             </button></a>
@@ -138,10 +138,10 @@
 </div>
 <div id="cattit">
     <ul class="am-avg-sm-4 am-avg-md-4 am-avg-lg-4" style="width: 700px;margin-left: -250px">
-        <li class="active-none"><h3><a href="${baseUrl}vUsersCategory/${user.id}">收藏图文</a></h3></li>
-        <li  class="active-none" ><h3><a href="${baseUrl}vUsersAudio/${user.id}">收藏音频</a></h3></li>
-        <li  class="active-none"><h3><a href="${baseUrl}vUsersQuestion/${user.id}">收藏问题</a></h3></li>
-        <li  class="active-none"><h3><a href="${baseUrl}collectionVUser">关注大咖</a></h3></li>
+        <li class="active-none"><h3><a href="${baseUrl}collectionMassage">收藏图文</a></h3></li>
+        <li  class="active-none" ><h3><a href="${baseUrl}collectionQuestion">收藏音频</a></h3></li>
+        <li  class="active-none"><h3><a href="${baseUrl}collectionQuestion">关注问题</a></h3></li>
+        <li  class="active"><h3><a href="${baseUrl}collectionVUser">关注大咖</a></h3></li>
     </ul>
 </div>
 <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
