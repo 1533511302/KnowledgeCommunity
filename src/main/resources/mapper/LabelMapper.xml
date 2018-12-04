@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace ="top.maniy.mapper.LabelMapper">
+
+	<!--//查询是否存在massageLabel标签-->
+	<!--Label findLabelByMassageLabel(String massageLabel);-->
+
+	<!--//查询是否存在audioLabel标签-->
+	<!--Label findLabelByAudioLabel(String audioLabel);-->
+
+	<!--//查询是否存在questionLabel标签-->
+	<!--Label findLabelByQuestionLabel(String questionLabel);-->
+	<!---->
+	<select id="findLabelByMassageLabel" resultType="Label">
+		select * from label WHERE massageLabel =#{massageLabel}
+	</select>
+
+	<select id="findLabelByAudioLabel" resultType="Label">
+		select * from label WHERE audioLabel =#{audioLabel}
+	</select>
+
+	<select id="findLabelByQuestionLabel" resultType="Label">
+		select * from label WHERE questionLabel =#{questionLabel}
+	</select>
+
+	<select id="findMassageLabelByHot" resultType="Label">
+		select * from label WHERE massageLabel IS NOT Null ORDER BY massageLabelHot DESC LIMIT 0,#{num}
+	</select>
+
+	<select id="findAudioLabelByHot" resultType="Label">
+		select * from label WHERE audioLabel IS NOT Null ORDER BY audioLabelHot DESC LIMIT 0,#{num}
+	</select>
+
+
+	<select id="findQuestionLabelByHot" resultType="Label">
+		select * from label WHERE questionLabel IS NOT Null ORDER BY questionLabelHot DESC LIMIT 0,#{num}
+	</select>
+
+
+	<insert id="saveLabel" parameterType="Label">
+		INSERT INTO label
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="massageLabel != null" >
+                massageLabel,
+            </if>
+            <if test="audioLabel != null" >
+                audioLabel,
+            </if>
+			<if test="questionLabel != null" >
+				questionLabel,
+			</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="massageLabel != null" >
+				#{massageLabel},
+			</if>
+            <if test="audioLabel != null" >
+                #{audioLabel},
+            </if>
+			<if test="questionLabel != null" >
+				#{questionLabel},
+			</if>
+
+        </trim>
+	</insert>
+
+	<delete id="deleteLabel">
+		DELETE FROM label WHERE id=#{id}
+	</delete>
+
+	<update id="updateLabel" parameterType="Label">
+		UPDATE label
+		<set>
+			<if test="massageLabel != null" >
+				massageLabel=#{massageLabel},
+			</if>
+			<if test="massageLabelHot != null" >
+				massageLabelHot=#{massageLabelHot},
+			</if>
+			<if test="audioLabel != null" >
+				audioLabel=#{audioLabel},
+			</if>
+			<if test="audioLabelHot != null" >
+				audioLabelHot=#{audioLabelHot},
+			</if>
+			<if test="questionLabel != null" >
+				questionLabel=#{questionLabel},
+			</if>
+			<if test="questionLabelHot != null" >
+				questionLabelHot=#{questionLabelHot},
+			</if>
+		</set>
+		WHERE id =#{id}
+	</update>
+
+</mapper>

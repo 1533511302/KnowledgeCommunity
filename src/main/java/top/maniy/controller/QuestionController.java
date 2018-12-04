@@ -37,6 +37,9 @@ public class QuestionController {
     @Autowired
     private CollectionService collectionService;
 
+    @Autowired
+    private LabelService labelService;
+
     /**
      * 问题列表
      * @param topicId
@@ -52,29 +55,43 @@ public class QuestionController {
                                         ModelMap modelMap){
         PageInfo<Question> pageInfo=questionService.findQuestionByTopicId(String.valueOf(topicId),page,pageSize);
         Topic topic =topicService.findTopicById(topicId);
+        List<Label> labelList =labelService.findQuestionLabelByHot(20);
         modelMap.put("pageInfo",pageInfo);
         modelMap.put("topic",topic);
+        modelMap.put("labelList",labelList);
         return "questionList";
     }
 
     /**
      * 问题查询列表
-     * @param topicId
      * @param title
      * @param page
      * @param pageSize
      * @param modelMap
      * @return
      */
-    @RequestMapping("/questionList/{topicId}/likeName")
-    public String findQuestionBySearch(@PathVariable String  topicId,@RequestParam("title") String title,
+    @RequestMapping("/questionList/likeName")
+    public String findQuestionBySearch(@RequestParam("title") String title,
                                         @RequestParam(value="page", required=false, defaultValue="1") Integer page,
                                         @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize,
                                         ModelMap modelMap){
-        PageInfo<Question> pageInfo=questionService.findQuestionByTopicId(topicId,page,pageSize);
+        //title不为空
+        if(title!="" && title!=null) {
+            //查询是否存在
+            Label label = labelService.findLabelByQuestionLabel(title);
+            if (label == null) {//不存在加标签
+                labelService.saveQuestionLabel(title);
+            } else {
+                //存在的话，该标签热度加一
+                label.setQuestionLabelHot(label.getQuestionLabelHot() + 1);
+                labelService.updateLabel(label);
+            }
+        }
+        PageInfo<Question> pageInfo=questionService.findQuestionLikeQuesName(title,page,pageSize);
+        List<Label> labelList =labelService.findQuestionLabelByHot(20);
         modelMap.put("pageInfo",pageInfo);
-        modelMap.put("topicId",topicId);
         modelMap.put("title",title);
+        modelMap.put("labelList",labelList);
         return "questionListBySearch";
     }
 
@@ -193,7 +210,7 @@ public class QuestionController {
 
 
     /**
-     * 图文收藏
+     * 问题收藏
      * @param modelMap
      * @param request
      * @param page
@@ -201,7 +218,7 @@ public class QuestionController {
      * @return
      */
     @RequestMapping(value = "collectionQuestion",method = RequestMethod.GET)
-    public String collectionMassage(ModelMap modelMap, HttpServletRequest request,
+    public String collectionQuestion(ModelMap modelMap, HttpServletRequest request,
                                     @RequestParam(value="page", required=false, defaultValue="1") Integer page,
                                     @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize){
         User user =((User)request.getSession().getAttribute("User"));

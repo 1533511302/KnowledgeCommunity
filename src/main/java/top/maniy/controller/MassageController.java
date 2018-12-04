@@ -40,6 +40,9 @@ public class MassageController {
     @Autowired
     private CollectionService collectionService;
 
+    @Autowired
+    private LabelService labelService;
+
     /**
      * 图文详情页
      * @param id
@@ -65,10 +68,16 @@ public class MassageController {
      */
     @RequestMapping(value = "/massagePage")
     public String massagePage(ModelMap modelMap){
+        //文章大于或等于1新认证用户前三 bycreateTime
+        List<User> newUserList=userService.findUserByRoleAndByMassageNumbAndCreateTimeDesc();
+        //随机10片文章
         List<Massage> massageList=massageService.findMassageRandTo10();
         List<Category> categoryList=categoryService.findCategoryByTypeAndStatus(1,"1");
+        List<Label> labelList =labelService.findMassageLabelByHot(20);
         modelMap.put("massageList",massageList);
         modelMap.put("categoryList",categoryList);
+        modelMap.put("labelList",labelList);
+        modelMap.put("newUserList",newUserList);
         return "massagesPage";
     }
 
@@ -85,10 +94,14 @@ public class MassageController {
                                   @RequestParam(value="page", required=false, defaultValue="1") Integer page,
                                   @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize,
                                   ModelMap modelMap){
+        //文章大于或等于1新认证用户前三 bycreateTime
+        List<User> newUserList=userService.findUserByRoleAndByMassageNumbAndCreateTimeDesc();
         PageInfo<Massage> pageInfo = massageService.findMassageByCategoryId(categoryId,page,pageSize);
-
+        List<Label> labelList =labelService.findMassageLabelByHot(20);
         modelMap.put("categoryId",categoryId);
         modelMap.put("pageInfo",pageInfo);
+        modelMap.put("labelList",labelList);
+        modelMap.put("newUserList",newUserList);
         return "massageList";
     }
 
@@ -104,9 +117,28 @@ public class MassageController {
     public String massagePageInfo(@RequestParam(value="page", required=false, defaultValue="1") Integer page,
                                   @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize,
                                   @RequestParam("title") String title,ModelMap modelMap){
+        //title不为空
+        if(title!="" && title!=null){
+            //查询是否存在
+            Label label=labelService.findLabelByMassageLabel(title);
+            if (label==null){//不存在加标签
+                labelService.saveMassageLabel(title);
+            }else {
+                //存在的话，标签热点加一
+                label.setMassageLabelHot(label.getMassageLabelHot()+1);
+                labelService.updateLabel(label);
+            }
+
+        }
+        //热门认证用户前三 by文章数
+        List<User> hotUserList=userService.findUserByRoleAndMassageNumbDescTo3();
+
         PageInfo<Massage> pageInfo = massageService.findMassageLikeTitle(title,page,pageSize);
+        List<Label> labelList =labelService.findMassageLabelByHot(20);
         modelMap.put("pageInfo",pageInfo);
         modelMap.put("title",title);
+        modelMap.put("labelList",labelList);
+        modelMap.put("hotUserList",hotUserList);
         return "massageListBySearch";
     }
 

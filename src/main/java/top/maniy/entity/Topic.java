@@ -1,6 +1,10 @@
 package top.maniy.entity;
 
 
+import top.maniy.util.DateUtil;
+
+import java.util.Date;
+
 public class Topic {
 
   private Integer id;
@@ -8,7 +12,7 @@ public class Topic {
   private String topicName;
   private String topicDescribe;
   private String photo;
-  private String CreateTime;
+  private Date CreateTime;
 
 
 
@@ -57,10 +61,10 @@ public class Topic {
   }
 
   public String getCreateTime() {
-    return CreateTime;
+    return DateUtil.DateTimeToString(CreateTime);
   }
 
-  public void setCreateTime(String createTime) {
+  public void setCreateTime(Date createTime) {
     CreateTime = createTime;
   }
 }

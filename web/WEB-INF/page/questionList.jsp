@@ -117,7 +117,7 @@
                 </li>
             </ul>
 
-            <form action="${baseUrl}questionList/${topicId}/likeName" class="am-topbar-form am-topbar-left am-form-inline" role="search">
+            <form action="${baseUrl}questionList/likeName" class="am-topbar-form am-topbar-left am-form-inline" role="search">
                 <div class="am-form-group" style="margin-top: 9px;margin-left: 80px">
                     <input name="title" type="text" class="am-form-field am-input-sm" placeholder="搜索内容" value="${title}">
                 </div>
@@ -270,16 +270,9 @@
                 </h2>
             </div>
             <ul>
-                <li class="active"><a href="#">的房间打开</a></li>
-                <li><a href="#">阿斯达</a></li>
-                <li><a href="#">恩恩</a></li>
-                <li><a href="#">十二分</a></li>
-                <li><a href="#">爱妃</a></li>
-                <li><a href="#">而非</a></li>
-                <li><a href="#">为非</a></li>
-                <li><a href="#">二位</a></li>
-                <li><a href="#">维吾尔</a></li>
-                <li><a href="#">玩儿玩儿</a></li>
+                <c:forEach var="label" items="${labelList}">
+                <li class="active"><a href="${baseUrl}questionList/likeName?title=${label.questionLabel}">${label.questionLabel}</a></li>
+                </c:forEach>
             </ul>
             <div class="am-cf"></div>
         </div>

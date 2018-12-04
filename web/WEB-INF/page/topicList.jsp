@@ -115,7 +115,7 @@
         </c:forEach>
     </ul>
     <div class="am-fr"></div>
-    <button type="button" class="am-btn am-btn-default am-btn-block" style="margin: 20px 0">更多活动</button>
+
 </div>
 
 <div class="am-container" style="margin: 20px auto">
