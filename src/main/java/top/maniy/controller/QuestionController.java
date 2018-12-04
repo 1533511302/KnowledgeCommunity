@@ -90,6 +90,7 @@ public class QuestionController {
     public String questionPage(@PathVariable Integer quesId,@RequestParam(value="page", required=false, defaultValue="1") Integer page,
                                @RequestParam(value="pageSize", required=false, defaultValue="5") Integer pageSize,
                                ModelMap modelMap){
+        //浏览量加一
         questionService.browseNumb(quesId);
         //话题
         PageInfo<Topic> topicList=topicService.findAllTopic(1,20);
@@ -101,6 +102,27 @@ public class QuestionController {
         return "questionPage";
     }
 
+    /**
+     * ajax加载回答
+     * @param quesId
+     * @param page
+     * @return
+     */
+    @RequestMapping(value = "answerListByQuestionId/{quesId}",method = RequestMethod.POST)
+    @ResponseBody
+    public List<Answer> questionPageAnswerList(@PathVariable Integer quesId, Integer page){
+        PageInfo<Answer> pageInfo =answerService.findAnswerByQuesId(quesId,page,5);
+        List<Answer> answerList =pageInfo.getList();
+        return answerList;
+    }
+
+    /**
+     * ajax添加回答
+     * @param topicId
+     * @param quesName
+     * @param quesDescribe
+     * @return
+     */
     @RequestMapping(value = "saveQuestion",method = RequestMethod.POST)
     @ResponseBody
     public boolean SaveQuestion(@RequestParam String topicId,@RequestParam String quesName,@RequestParam String quesDescribe){

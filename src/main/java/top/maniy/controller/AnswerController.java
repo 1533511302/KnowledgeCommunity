@@ -37,7 +37,12 @@ public class AnswerController {
     @Autowired
     private UserService userService;
 
-
+    /**
+     * 添加回答
+     * @param quesId
+     * @param answerContent
+     * @return
+     */
     @RequestMapping(value = "saveAnswer",method = RequestMethod.POST)
     @ResponseBody
     public boolean addAnswer(@RequestParam Integer quesId, @RequestParam String answerContent
@@ -48,13 +53,23 @@ public class AnswerController {
         return answerService.saveAnswer(answer);
     }
 
-
+    /**
+     * 删除回答
+     * @param answerId
+     * @return
+     */
     @RequestMapping(value = "deleteAnswer",method = RequestMethod.GET)
     @ResponseBody
     public boolean deleteAnswer(@RequestParam Integer answerId){
         return answerService.deleteAnswer(answerId);
     }
 
+    /**
+     * 修改回答页面
+     * @param answerId
+     * @param modelMap
+     * @return
+     */
     @RequestMapping(value = "toUpdateAnswer",method = RequestMethod.GET)
     public String toUpdateAnswer(@RequestParam Integer answerId,ModelMap modelMap){
 
@@ -70,6 +85,12 @@ public class AnswerController {
         return "updateAnswerPage";
     }
 
+    /**
+     * 修改回答
+     * @param answerId
+     * @param answerContent
+     * @return
+     */
     @RequestMapping(value = "updateAnswer",method = RequestMethod.POST)
     @ResponseBody
     public boolean updateAnswer(@RequestParam Integer answerId,@RequestParam String answerContent){

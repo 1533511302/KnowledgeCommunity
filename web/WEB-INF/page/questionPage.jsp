@@ -48,10 +48,7 @@
     <script src="${baseUrl}assets/js/amazeui.min.js"></script>
     <script src="${baseUrl}js/public.js"></script>
     <script src="${baseUrl}img/vendor/jquery/jquery-3.2.1.min.js"></script>
-    <script>
 
-
-    </script>
 </head>
 <body>
 
@@ -171,15 +168,14 @@
 
                                     <div class="am-comment-bd">
                                             ${answer.answerContent}
-
                                     </div>
                                 </div>
                             </article>
                         </li>
                     </c:forEach>
-                    <div class="am-fr"></div>
-                    <a  href="${baseUrl}question/${question.id}?pageSize=${pageInfo.pageSize+5}"><button type="button" class="am-badge-secondary am-btn am-btn-block" style="margin: 20px;">更多回答</button></a>
                 </ul>
+                <div class="am-fr"></div>
+                <button type="button" class="am-badge-secondary am-btn am-btn-block" onclick="clickMoreBtn(${question.id},this)" style="margin-top: 20px;margin-bottom: 20px;">更多回答</button>
             </div>
 
                 <div class="am-container" style="margin-top: 10px">
@@ -377,6 +373,41 @@
             }
     }
 
+    var pageNum = 1;
+    function clickMoreBtn(questId,btn) {
+        pageNum++;
+        $.post("${baseUrl}answerListByQuestionId/"+questId,{page:pageNum},function (data) {
+
+            if (data.length==0){
+                $(btn).html("已经到底了，没有更多的回答了");
+            }else {
+            $.each(data,function (i,answer) {
+                console.log(answer.id);
+                var temp="<li class=\"am-comment am-comment-primary\">\n" +
+                    "                            <article class=\"am-comment\">\n" +
+                    "                                <a href=\"#link-to-user-home\">\n" +
+                    "                                    <img src=\"${baseUrl}Temp-images/face2.jpg\" alt=\"\" class=\"am-comment-avatar\" width=\"48\" height=\"48\"/>\n" +
+                    "                                </a>\n" +
+                    "                                <div class=\"am-comment-main\">\n" +
+                    "                                    <header class=\"am-comment-hd\">\n" +
+                    "                                        <div class=\"am-comment-meta\">\n" +
+                    "                                            <a href=\"#link-to-user\" class=\"am-comment-author\">某人</a>\n" +
+                    "                                            回答于 <time datetime=\"2013-07-27T04:54:29-07:00\" title=\"2013年7月27日 下午7:54 格林尼治标准时间+0800\">"+answer.createTime+"</time>\n" +
+                    "                                        </div>\n" +
+                    "                                    </header>\n" +
+                    "\n" +
+                    "                                    <div class=\"am-comment-bd\">\n" +
+                    "                                            "+answer.answerContent+"\n" +
+                    "                                    </div>\n" +
+                    "                                </div>\n" +
+                    "                            </article>\n" +
+                    "                        </li>";
+                $("#answerList").append(temp);
+            });
+            }
+        });
+
+    }
 </script>
 </body>
 </html>

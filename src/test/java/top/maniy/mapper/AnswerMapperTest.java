@@ -41,9 +41,7 @@ public class AnswerMapperTest {
     public void saveAnswer() {
         Answer answer =new Answer();
         answer.setUserId(1);
-        answer.setTopicId(1);
         answer.setQuesId(1);
-        answer.setAnswerId(1);
         answer.setPhoto("xxx.jpg");
         answer.setAnswerContent("  有一个学长，警校毕业以后工作。女朋友劈腿了，他失魂落魄的出门，眼前正好跑过一个男人，紧接着是女人追着哭求“抓小偷”。\n" +
                 "                学长二话不说，追上去一招擒拿，把小偷摁在地上。中年妇女拿回了钱包，路过的行人迅速围观。\n" +

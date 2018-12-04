@@ -242,7 +242,7 @@
                     <c:set var="start" value="${pageInfo.pageNum-5<=0?1:pageInfo.pageNum-5}"/>
                     <c:set var="end" value="${start+9<pageInfo.pages?start+9:pageInfo.pages}"/>
                     <c:forEach begin="${start}" end="${end}" varStatus="loop">
-                        <c:set var="active" value="${start+loop.index==pageInfo.pageNum?'am-active':''}"/>
+                        <c:set var="active" value="${loop.index==pageInfo.pageNum?'am-active':''}"/>
 
 
                         <li class="${active}">

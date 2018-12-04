@@ -25,14 +25,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="saveAnswer" parameterType="Answer">
 		INSERT INTO answer
         <trim prefix="(" suffix=")" suffixOverrides="," >
-			<if test="answerId != null" >
-			answerId,
-			</if>
             <if test="userId != null" >
                 userId,
-            </if>
-            <if test="topicId != null" >
-				topicId,
             </if>
             <if test="quesId != null" >
                 quesId,
@@ -49,14 +43,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
-			<if test="answerId != null" >
-				#{answerId},
-			</if>
 			<if test="userId != null" >
 				#{userId},
-			</if>
-			<if test="topicId != null" >
-				#{topicId},
 			</if>
             <if test="quesId != null" >
                 #{quesId},
@@ -80,10 +68,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateAnswer" parameterType="Answer">
 		UPDATE answer
         <set>
-
-			<if test="topicId != null" >
-				topicId=#{topicId},
-			</if>
 			<if test="answerContent != null" >
 				answerContent=#{answerContent},
 			</if>

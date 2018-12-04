@@ -8,9 +8,7 @@ import java.util.Date;
 public class Answer {
 
   private Integer id;
-  private Integer answerId;
   private Integer userId;
-  private Integer topicId;
   private Integer quesId;
   private String quesTitle;
   private String answerContent;
@@ -38,30 +36,12 @@ public class Answer {
   }
 
 
-  public Integer getAnswerId() {
-    return answerId;
-  }
-
-  public void setAnswerId(Integer answerId) {
-    this.answerId = answerId;
-  }
-
-
   public Integer getUserId() {
     return userId;
   }
 
   public void setUserId(Integer userId) {
     this.userId = userId;
-  }
-
-
-  public Integer getTopicId() {
-    return topicId;
-  }
-
-  public void setTopicId(Integer topicId) {
-    this.topicId = topicId;
   }
 
 
