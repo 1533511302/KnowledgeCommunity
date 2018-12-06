@@ -76,4 +76,15 @@ public class PageController {
     public String toAdminIndex(ModelMap modelMap){
         return "adminIndex";
     }
+
+    @RequestMapping(value = "toPay")
+    public String toPay(){
+        return "testPay";
+    }
+
+
+    @RequestMapping(value = "index_v1")
+    public String toIndex_v1(){
+        return "index_v1";
+    }
 }

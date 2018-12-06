@@ -25,6 +25,14 @@
 	<!--&lt;!&ndash; Springmvc的异常处理器 &ndash;&gt;-->
 	<!--<bean class="top.maniy.exception.CustomExceptionResolve"></bean>-->
 
+	<!-- 上传图片配置实现类 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 上传图片的大小  单位B -->
+		<property name="maxUploadSize" value="5000000"></property>
+		<property name="maxInMemorySize" value="4096" />
+		<property name="defaultEncoding" value="UTF-8"></property>
+	</bean>
+
 
 	<!-- 配置视图解析器 -->
 	<bean	class="org.springframework.web.servlet.view.InternalResourceViewResolver">

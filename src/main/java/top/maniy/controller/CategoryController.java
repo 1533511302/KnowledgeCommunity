@@ -36,5 +36,33 @@ public class CategoryController {
         return categoryService.findCategoryByTypeAndStatus(type, status);
     }
 
+    @RequestMapping("saveCategory")
+    @ResponseBody
+    public boolean saveCategory(@RequestParam("categoryName") String categoryName,
+                                @RequestParam("categoryType") Integer categoryType,
+                                @RequestParam("status") String status){
+        Category category =new Category();
+        category.setCategoryName(categoryName);
+        category.setCategoryType(categoryType);
+        category.setStatus(status);
+       return categoryService.saveCategory(category);
+    }
 
+    @RequestMapping("updateCategory")
+    @ResponseBody
+    public boolean updateCategory(@RequestParam("id") Integer id,@RequestParam("categoryName") String categoryName,
+                                  @RequestParam("categoryType") Integer categoryType,
+                                  @RequestParam("status") String status){
+        Category category=categoryService.findCategoryById(id);
+        category.setCategoryName(categoryName);
+        category.setCategoryType(categoryType);
+        category.setStatus(status);
+        return categoryService.updateCategory(category);
+    }
+
+    @RequestMapping("deleteCategory")
+    @ResponseBody
+    public boolean deleteCategory(@RequestParam("id") Integer id){
+        return categoryService.deleteCategory(id);
+    }
 }

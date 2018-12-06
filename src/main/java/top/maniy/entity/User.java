@@ -1,7 +1,10 @@
 package top.maniy.entity;
 
 
+import top.maniy.util.DateUtil;
+
 import java.io.Serializable;
+import java.util.Date;
 
 public class User implements Serializable {
 
@@ -34,6 +37,7 @@ private Integer audionumb;
   private String role;
 //禁用（1是，0否）
   private String forbidden;
+  private Date createTime;
 
   public Integer getAudionumb() {
     return audionumb;
@@ -162,6 +166,14 @@ private Integer audionumb;
 
   public void setForbidden(String forbidden) {
     this.forbidden = forbidden;
+  }
+
+  public String getCreateTime() {
+    return DateUtil.DateTimeToString(createTime);
+  }
+
+  public void setCreateTime(Date createTime) {
+    this.createTime = createTime;
   }
 
   @Override

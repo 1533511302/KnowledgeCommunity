@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<insert id="saveCategory" parameterType="Category">
-		INSERT INTO category (categoryName, categoryType, status) VALUES (#{categoryname},#{categoryType},#{status})
+		INSERT INTO category (categoryName, categoryType, status) VALUES (#{categoryName},#{categoryType},#{status})
 	</insert>
 
 	<delete id="deleteCategory" parameterType="Integer">
@@ -31,6 +31,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 
 	<update id="updateCategory" parameterType="Category">
-		UPDATE category SET categoryName=#{categoryname},categoryType=#{categoryname},status=#{status} WHERE id=#{id}
+		UPDATE category SET categoryName=#{categoryName},categoryType=#{categoryType},status=#{status} WHERE id=#{id}
 	</update>
 </mapper>

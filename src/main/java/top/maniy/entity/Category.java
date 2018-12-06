@@ -1,12 +1,17 @@
 package top.maniy.entity;
 
 
+import top.maniy.util.DateUtil;
+
+import java.util.Date;
+
 public class Category {
 
   private Integer id;
   private String categoryName;
   private Integer categoryType;
   private String status;
+  private Date createTime;
 
 
   public Integer getId() {
@@ -39,5 +44,13 @@ public class Category {
 
   public void setStatus(String status) {
     this.status = status;
+  }
+
+  public String getCreateTime() {
+    return DateUtil.DateTimeToString(createTime);
+  }
+
+  public void setCreateTime(Date createTime) {
+    this.createTime = createTime;
   }
 }

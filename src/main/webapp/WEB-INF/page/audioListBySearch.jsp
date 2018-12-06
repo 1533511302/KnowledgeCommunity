@@ -80,7 +80,6 @@
                         <li><a href="#">图文付费</a></li>
                         <li><a href="#">音频付费</a></li>
                         <li><a href="#">问答付费</a></li>
-
                     </ul>
                 </li>
             </ul>
@@ -126,7 +125,6 @@
         <h2 class="am-titlebar-title ">
             搜索结果
         </h2>
-
     </div>
     <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2 am-avg-md-4 am-avg-lg-4 am-gallery-bordered" data-am-gallery="{  }" >
         <c:forEach var="audio" items="${pageInfo.list}" varStatus="v">

@@ -2,22 +2,28 @@ package top.maniy.controller;
 
 import com.github.pagehelper.PageInfo;
 import jdk.management.resource.internal.inst.SocketOutputStreamRMHooks;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSendException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import top.maniy.entity.*;
 import top.maniy.service.*;
 import top.maniy.shiro.realm.CustomRealm;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author liuzonghua
@@ -49,6 +55,8 @@ public class UserController {
 
     @Autowired
     private CustomRealm customRealm;
+
+    private static User user;
 
     /**
      * 登录页面
@@ -127,13 +135,6 @@ public class UserController {
 
 
 
-
-
-    @RequestMapping(value = "vUsers",method = RequestMethod.GET)
-    public String vUserListDef(){
-
-        return "vUserList";
-    }
 
 
     /**
@@ -314,7 +315,7 @@ public class UserController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "/users/",method = RequestMethod.DELETE)
+    @RequestMapping(value = "deleteUser")
     @ResponseBody
     public boolean deleteUser(Integer id){
         return userService.deleteUser(id);
@@ -360,6 +361,7 @@ public class UserController {
         userService.updateUser(user);
         return "redirect:vUsersQuestion/"+user.getId();
     }
+
 
     /**
      * 修改密码界面
@@ -416,5 +418,84 @@ public class UserController {
     }
 
 
+    @RequestMapping("AllUser")
+    @ResponseBody
+    public List<User> AllUser(){
+        return userService.findAllUser();
+    }
+
+
+    /**
+     * 修改用户信息
+     *
+     * @return
+     */
+    @RequestMapping("AdminUpdateUser")
+    @ResponseBody
+    public boolean AdminUpdateUser(User user2){
+        user =new User();
+        user.setId(user2.getId());
+        user.setEmail(user2.getEmail());
+        user.setRealname(user2.getRealname());
+        user.setGender(user2.getGender());
+        user.setAutograph(user2.getAutograph());
+        user.setForbidden(user2.getForbidden());
+        return  true;
+
+    }
+
+    /**
+     * 修改图片
+     * @param request
+     * @param photo
+     * @param topicName
+     * @param topicDescribe
+     * @return
+     */
+    @RequestMapping("uploadUser")
+    @ResponseBody
+    public boolean uploadTopic(HttpServletRequest request, MultipartFile photo,
+                               String topicName,String topicDescribe){
+
+        String name = UUID.randomUUID().toString().replaceAll("-", "");
+
+
+        String fileName=photo.getOriginalFilename();// 文件原名称
+
+        //获取上传文件的目录
+
+        String path=request.getSession().getServletContext().getRealPath("/");
+
+        String newPath= null;
+        try {
+            newPath = path.substring(0,path.indexOf("KnowledgeCommunity"))+"images\\";
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new MailSendException("图片路径不正确");
+        }
+
+        //获取图片后缀
+        String ext= FilenameUtils.getExtension(fileName);
+
+        //获取文件的后缀
+        //String ext2=name.substring(name.lastIndexOf("."), name.length()-1);
+
+        //新图片
+        File newfile =new File(newPath+ name+"."+ext);
+        //把内存图片写入磁盘中
+
+        try {
+            photo.transferTo(newfile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //把图片信息保存都数据库
+
+        user.setPhoto(name+"."+ext);
+        System.out.println("图片写入");
+
+
+        return userService.updateUser(user);
+    }
 
 }
