@@ -13,6 +13,10 @@ import java.util.List;
  * @date 2018/10/25 23:11
  */
 public interface AudioService {
+
+    //全部音频
+    List<Audio> findAllAudio();
+
     //根据类型查询音频
     PageInfo<Audio> findAudioByCategoryId(Integer categoryId, int currentPage, int pageSize);
 

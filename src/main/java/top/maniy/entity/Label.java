@@ -9,7 +9,7 @@ public class Label {
   private String audioLabel;
   private Integer audioLabelHot;
   private String questionLabel;
-  private String questionLabelHot;
+  private Integer questionLabelHot;
   private java.sql.Timestamp createTime;
 
 
@@ -66,15 +66,13 @@ public class Label {
     this.questionLabel = questionLabel;
   }
 
-
-  public String getQuestionLabelHot() {
+  public Integer getQuestionLabelHot() {
     return questionLabelHot;
   }
 
-  public void setQuestionLabelHot(String questionLabelHot) {
+  public void setQuestionLabelHot(Integer questionLabelHot) {
     this.questionLabelHot = questionLabelHot;
   }
-
 
   public java.sql.Timestamp getCreateTime() {
     return createTime;

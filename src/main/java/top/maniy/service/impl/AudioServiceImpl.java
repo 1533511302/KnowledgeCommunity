@@ -23,6 +23,11 @@ public class AudioServiceImpl implements AudioService {
     private AudioMapper audioMapper;
 
     @Override
+    public List<Audio> findAllAudio() {
+        return audioMapper.findAllAudio();
+    }
+
+    @Override
     public PageInfo<Audio> findAudioByCategoryId(Integer categoryId, int currentPage, int pageSize) {
         PageHelper.startPage(currentPage,pageSize);
         List<Audio> audioList=audioMapper.findAudioByCategoryId(categoryId);

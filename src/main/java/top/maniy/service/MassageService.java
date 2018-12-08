@@ -15,6 +15,10 @@ import java.util.List;
  */
 public interface MassageService {
 
+    //统计
+    //全部图文
+    List<Massage> findAllMassage();
+
     //根据用户收藏获取massage
     PageInfo<Massage> findMassageByUserCollection(List<Collections> collectionsList,int currentPage, int pageSize);
 

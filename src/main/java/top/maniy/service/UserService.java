@@ -3,6 +3,7 @@ package top.maniy.service;
 
 import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.annotations.Param;
+import top.maniy.Form.CountForm;
 import top.maniy.entity.Collections;
 import top.maniy.entity.User;
 
@@ -17,6 +18,13 @@ import java.util.List;
  * @date 2018/9/29 9:17
  */
 public interface UserService {
+
+    //统计
+    //男女性别统计
+    List<CountForm> CountUserByGender();
+
+    //普通用户和认证用户角色统计
+    List<CountForm> CountUserByRole();
 
     //根据文章数、问题数、回答数、音频数总和从大大小排列获取num条数据
     List<User> findUserByTotalNumDesc(int num);

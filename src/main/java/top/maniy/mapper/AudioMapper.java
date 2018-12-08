@@ -12,6 +12,10 @@ import java.util.List;
  * @date 2018/10/25 21:58
  */
 public interface AudioMapper {
+
+    //全部音频
+    List<Audio> findAllAudio();
+
     //根据类型查询音频
     List<Audio> findAudioByCategoryId(Integer categoryId);
 

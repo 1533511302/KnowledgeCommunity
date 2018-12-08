@@ -24,6 +24,11 @@ public class QuestionServiceImpl implements QuestionService {
     private QuestionMapper questionMapper;
 
     @Override
+    public List<Question> findAllQuestion() {
+        return questionMapper.findAllQuestion();
+    }
+
+    @Override
     public PageInfo<Question> findQuestionByUserCollection(List<Collections> collectionsList, int currentPage, int pageSize) {
         PageHelper.startPage(currentPage,pageSize);
         List<Question> massageList = new ArrayList<Question>();

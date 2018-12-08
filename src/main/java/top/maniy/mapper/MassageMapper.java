@@ -12,6 +12,10 @@ import java.util.List;
  * @date 2018/10/16 15:33
  */
 public interface MassageMapper {
+
+    //获取全部massage
+    List<Massage> findAllMassage();
+
     //根据类型查询massage集合
     List<Massage> findMassageByCategoryId(Integer categoryId);
 

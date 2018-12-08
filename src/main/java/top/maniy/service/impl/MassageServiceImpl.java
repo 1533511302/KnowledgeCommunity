@@ -27,6 +27,11 @@ public class MassageServiceImpl implements MassageService {
 
 
     @Override
+    public List<Massage> findAllMassage() {
+        return massageMapper.findAllMassage();
+    }
+
+    @Override
     public PageInfo<Massage> findMassageByUserCollection(List<Collections> collectionsList, int currentPage, int pageSize) {
         PageHelper.startPage(currentPage,pageSize);
         List<Massage> massageList = new ArrayList<Massage>();

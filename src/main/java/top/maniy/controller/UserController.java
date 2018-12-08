@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import top.maniy.Form.CountForm;
 import top.maniy.entity.*;
 import top.maniy.service.*;
 import top.maniy.shiro.realm.CustomRealm;
@@ -417,7 +418,10 @@ public class UserController {
         return "collectionVUser";
     }
 
-
+    /**
+     * 所有用户
+     * @return
+     */
     @RequestMapping("AllUser")
     @ResponseBody
     public List<User> AllUser(){
@@ -496,6 +500,21 @@ public class UserController {
 
 
         return userService.updateUser(user);
+    }
+
+
+    //性别统计
+    @RequestMapping("count/userByGender")
+    @ResponseBody
+    public List<CountForm> countUserByGender(){
+        return userService.CountUserByGender();
+    }
+
+    //角色统计
+    @RequestMapping("count/userByRole")
+    @ResponseBody
+    public List<CountForm> countUserByRole(){
+        return userService.CountUserByRole();
     }
 
 }

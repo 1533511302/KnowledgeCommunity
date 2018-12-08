@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import top.maniy.Form.CountForm;
 import top.maniy.entity.Collections;
 import top.maniy.entity.User;
 import top.maniy.mapper.UserMapper;
@@ -27,6 +28,34 @@ public class UserServiceImpl implements UserService {
     //注入realm
     @Autowired
     private CustomRealm customRealm;
+
+    @Override
+    public List<CountForm> CountUserByGender() {
+        List<CountForm> countFormList =new ArrayList<>();
+        CountForm countForm1 =new CountForm();
+        countForm1.setLabel("男");
+        countForm1.setValue(usermapper.countUserByGender("1"));
+        countFormList.add(countForm1);
+        CountForm countForm2 =new CountForm();
+        countForm2.setLabel("女");
+        countForm2.setValue(usermapper.countUserByGender("2"));
+        countFormList.add(countForm2);
+        return countFormList;
+    }
+
+    @Override
+    public List<CountForm> CountUserByRole() {
+        List<CountForm> countFormList =new ArrayList<>();
+        CountForm countForm1 =new CountForm();
+        countForm1.setLabel("普通用户");
+        countForm1.setValue(usermapper.countUserByRole("1"));
+        countFormList.add(countForm1);
+        CountForm countForm2 =new CountForm();
+        countForm2.setLabel("认证用户");
+        countForm2.setValue(usermapper.countUserByRole("2"));
+        countFormList.add(countForm2);
+        return countFormList;
+    }
 
     @Override
     public List<User> findUserByTotalNumDesc(int num) {

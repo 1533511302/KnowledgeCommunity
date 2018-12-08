@@ -6,7 +6,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace ="top.maniy.mapper.AudioMapper">
 
 
-
+	<select id="findAllAudio" resultType="Audio">
+		select * from audio
+	</select>
 
 	<select id="findAudioByCategoryId" resultType="Audio">
 		select * from audio WHERE categoryId=#{categoryId}

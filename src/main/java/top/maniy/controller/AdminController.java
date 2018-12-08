@@ -28,4 +28,29 @@ public class AdminController {
     public String userList(){
         return "adminUserList";
     }
+
+    @RequestMapping("userCount")
+    public String userCount(){
+        return "adminUserCount";
+    }
+
+    @RequestMapping("labelCount")
+    public String  labelCount(){
+        return "adminLabelCount";
+    }
+
+    @RequestMapping("massageList")
+    public String massageCount(){
+        return "adminMassageList";
+    }
+
+    @RequestMapping("audioList")
+    public String massageList(){
+        return "adminAudioList";
+    }
+
+    @RequestMapping("questionList")
+    public String questionList(){
+        return "adminQuestionList";
+    }
 }

@@ -6,7 +6,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace ="top.maniy.mapper.QuestionMapper">
 
 
-
+	<select id="findAllQuestion" resultType="Question">
+		select * from question
+	</select>
 
 	<select id="findQuestionByTopicId" resultType="Question">
 		select * from question WHERE topicId=#{topicId}
@@ -94,6 +96,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 			<if test="photo != null" >
                 photo=#{photo},
+			</if>
+			<if test="status != null" >
+				status=#{status},
 			</if>
 
 		</set>

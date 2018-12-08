@@ -10,10 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import top.maniy.Form.MassageForm;
 import top.maniy.entity.*;
 import top.maniy.service.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -234,6 +236,30 @@ public class MassageController {
         modelMap.put("pageInfo",pageInfo);
         modelMap.put("user",user);
         return "collectionMassage";
+    }
+
+    /**全部图文
+     *
+     * @return
+     */
+    @RequestMapping("findAllMassage")
+    @ResponseBody
+    public List<MassageForm> findAllMassage(){
+        List<MassageForm> massageFormList =new ArrayList<>();
+        List<Massage> massageList=massageService.findAllMassage();
+        for(Massage massage:massageList){
+            MassageForm massageForm =new MassageForm();
+            massageForm.setId(massage.getId());
+            massageForm.setTitle(massage.getTitle());
+            massageForm.setUsername(massage.getUsername());
+            massageForm.setLikeNumb(massage.getLikeNumb());
+            massageForm.setBrowseNumb(massage.getBrowseNumb());
+            massageForm.setCreateTime(massage.getCreateTime());
+            massageForm.setCommentNumb(massage.getCommentNumb());
+            massageForm.setCategory(categoryService.findCategoryById(massage.getCategoryId()).getCategoryName());
+            massageFormList.add(massageForm);
+        }
+        return massageFormList;
     }
 
 

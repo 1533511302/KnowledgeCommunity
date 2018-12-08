@@ -18,7 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <title>人纹招聘后台管理系统 - 目录</title>
+    <title>后台管理系统 - 图文管理</title>
 
     <link rel="shortcut icon" href="favicon.ico"> <link href="${baseUrl}admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="${baseUrl}admin/css/font-awesome.css?v=4.4.0" rel="stylesheet">
@@ -49,7 +49,7 @@
         <div class="col-sm-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>用户管理</h5>
+                    <h5>图文管理</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -92,7 +92,7 @@
         // Examle data for jqGrid
         $.ajax({
             type: 'GET',
-            url: "${baseUrl}AllUser",
+            url: "${baseUrl}findAllMassage",
             data:{
 
             },
@@ -101,10 +101,6 @@
                 mydata =data;
                 console.log(mydata);
 
-                //在表格的单元列中显示图片
-                function imageFormat( cellvalue, options, rowObject ){
-                    return '<img src="/img/'+cellvalue+ '"  style="width:60px;height:60px;" />';
-                }
                 // Configuration for jqGrid Example 2
                 $("#table_list_2").jqGrid({
                     data: mydata,
@@ -114,7 +110,7 @@
                     shrinkToFit: true,
                     rowNum: 20,
                     rowList: [10, 20, 30],
-                    colNames: ['编号', '邮箱', '用户名', '真实姓名',"性别","图片","简介","角色","是否禁用",'创建时间'],
+                    colNames: ['编号', '标题','类型','作者用户名','点赞量','浏览量','创建时间'],
                     colModel: [
                         {
                             name: 'id',
@@ -124,8 +120,17 @@
                             search: true
                         },
                         {
-                            name: 'email',
-                            index: 'email',
+                            name: 'title',
+                            index: 'title',
+                            editable: true,
+                            width: 120,
+                            editrules:{edithidden:true,required:true,},
+                            search: true
+
+                        },
+                        {
+                            name: 'category',
+                            index: 'category',
                             editable: true,
                             width: 90,
                             editrules:{edithidden:true,required:true,},
@@ -142,63 +147,29 @@
 
                         },
                         {
-                            name: 'realname',
-                            index: 'realname',
-                            editable: true,
-                            width: 90,
-                            editrules:{edithidden:true,required:true,},
-                            search: true
-
-                        },
-                        {
-                            name: 'gender',
-                            index: 'gender',
+                            name: 'likeNumb',
+                            index: 'likeNumb',
                             editable: true,
                             width: 80,
                             editrules:{edithidden:true,required:true,number:true},
                             search: true
 
                         },
-                        {
-                            name: 'photo',
-                            index: 'photo',
-                            editable: true,
-                            edittype : 'file',
-                            editoptions:{enctype:"multipart/form-data"},
-                            sortable:false,
-                            formatter:imageFormat,
-                            width: 80
-                        },
-                        {
-                            name: 'autograph',
-                            index: 'autograph',
-                            editable: true,
-                            editrules: {edithidden:true,required:true},
-                            width: 100,
 
-                        },
                         {
-                            name: 'role',
-                            index: 'role',
-                            editable: true,
-                            width: 90,
-                            editrules:{edithidden:true,required:true,number:true},
-                            search: true
-
-                        },
-                        {
-                            name: 'forbidden',
-                            index: 'forbidden',
+                            name: 'browseNumb',
+                            index: 'browseNumb',
                             editable: true,
                             width: 80,
                             editrules:{edithidden:true,required:true,number:true},
                             search: true
 
                         },
+
                         {
                             name: 'createTime',
                             index: 'createTime',
-                            width: 80,
+                            width: 100,
 
 
                         }
@@ -206,7 +177,7 @@
                     ],
                     pager: "#pager_list_2",
                     viewrecords: true,
-                    caption: "目录",
+                    caption: "图文信息",
                     add: false,
                     edit: false,
                     addtext: 'Add',
@@ -220,7 +191,7 @@
 
                 // Setup buttons
                 $("#table_list_2").jqGrid('navGrid', '#pager_list_2', {
-                        edit: true,
+                        edit: false,
                         add: false,
                         del: true,
                         delfunc:deleteWorkgroup,

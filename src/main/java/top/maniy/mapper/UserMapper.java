@@ -13,6 +13,8 @@ import java.util.List;
  */
 public interface UserMapper {
 
+    //
+
     //根据文章数、问题数、回答数、音频数总和从大大小排列获取num条数据
     List<User> findUserByTotalNumDesc(@Param("num") int num);
 
@@ -31,6 +33,12 @@ public interface UserMapper {
     List<User> findAllUser();
     //根据用户角色查询信息
     List<User> findUserByRole(String role);
+
+    //根据性别查询信息
+    Integer countUserByGender(@Param("gender") String gender);
+
+    //根据角色查询信息
+    Integer countUserByRole(@Param("role") String role);
 
     //根据用户角色文章数量逆序查询信息
     List<User> findUserByRoleAndMassageNumbDesc(@Param("role") String role,@Param("start") int start,@Param("end") int end);

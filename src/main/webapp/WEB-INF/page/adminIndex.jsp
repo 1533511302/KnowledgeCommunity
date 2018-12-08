@@ -99,7 +99,7 @@
                 <li>
                     <a href="#"><i class="fa fa-user"></i> <span class="nav-label">用户管理</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="messageCount">用户统计</a>
+                        <li><a class="J_menuItem" href="admin/userCount">用户统计</a>
                         </li>
                         <li><a class="J_menuItem" href="admin/userList">用户管理</a>
                         </li>
@@ -110,9 +110,7 @@
                 <li>
                     <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">标签管理</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="resumeCount">标签统计</a>
-                        </li>
-                        <li><a class="J_menuItem" href="resumeList">标签管理</a>
+                        <li><a class="J_menuItem" href="admin/labelCount">标签统计</a>
                         </li>
 
                     </ul>
@@ -122,7 +120,7 @@
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="acceptCount">图文统计</a>
                         </li>
-                        <li><a class="J_menuItem" href="acceptList">图文管理</a>
+                        <li><a class="J_menuItem" href="admin/massageList">图文管理</a>
                         </li>
 
                     </ul>
@@ -132,7 +130,7 @@
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="companyCount">音频统计</a>
                         </li>
-                        <li><a class="J_menuItem" href="companyList">音频管理</a>
+                        <li><a class="J_menuItem" href="admin/audioList">音频管理</a>
                         </li>
 
 
@@ -143,7 +141,7 @@
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="jobCount">问题统计</a>
                         </li>
-                        <li><a class="J_menuItem" href="jobList">问题管理</a>
+                        <li><a class="J_menuItem" href="admin/questionList">问题管理</a>
                         </li>
 
 

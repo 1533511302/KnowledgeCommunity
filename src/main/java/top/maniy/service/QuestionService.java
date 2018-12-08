@@ -15,6 +15,9 @@ import java.util.List;
  */
 public interface QuestionService {
 
+    //全部问题
+    List<Question> findAllQuestion();
+
     //根据用户收藏获取问题
     PageInfo<Question> findQuestionByUserCollection(List<Collections> collectionsList, int currentPage, int pageSize);
 

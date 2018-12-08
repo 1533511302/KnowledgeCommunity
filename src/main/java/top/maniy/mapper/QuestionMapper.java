@@ -13,6 +13,9 @@ import java.util.List;
  */
 public interface QuestionMapper {
 
+    //全部问题
+    List<Question> findAllQuestion();
+
     //根据话题查询问题
     List<Question> findQuestionByTopicId(String topicId);
 

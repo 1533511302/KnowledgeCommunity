@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import top.maniy.Form.QuestionForm;
 import top.maniy.entity.*;
 import top.maniy.service.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -154,7 +156,11 @@ public class QuestionController {
         return questionService.saveQuestion(question);
     }
 
-
+    /**
+     * 删除问题
+     * @param questionId
+     * @return
+     */
     @RequestMapping(value = "deleteQuestion",method = RequestMethod.GET)
     @ResponseBody
     public boolean deleteQuestion(@RequestParam Integer questionId){
@@ -227,6 +233,39 @@ public class QuestionController {
         modelMap.put("pageInfo",pageInfo);
         modelMap.put("user",user);
         return "collectionQuestion";
+    }
+
+    @RequestMapping("findAllQuestion")
+    @ResponseBody
+    public List<QuestionForm> findAllQuestion(){
+        List<Question> questionList =questionService.findAllQuestion();
+        List<QuestionForm> questionFormList =new ArrayList<>();
+        for(Question question:questionList){
+            QuestionForm questionForm =new QuestionForm();
+            questionForm.setId(question.getId());
+            questionForm.setAnswerNumb(question.getAnswerNumb());
+            questionForm.setAttentionNumb(question.getAttentionNumb());
+            questionForm.setBrowseNumb(question.getBrowseNumb());
+            questionForm.setCreateTime(question.getCreateTime());
+            questionForm.setLikeNumb(question.getLikeNumb());
+            questionForm.setQuesName(question.getQuesName());
+            questionForm.setQuesDescribe(question.getQuesDescribe());
+            questionForm.setTopic(topicService.findTopicById(Integer.valueOf(question.getTopicId())).getTopicName());
+            questionForm.setUsername(userService.findUserById(question.getUserId()).getUsername());
+            questionForm.setStatus(question.getStatus());
+            questionFormList.add(questionForm);
+        }
+        return questionFormList;
+    }
+
+
+    @RequestMapping("adminUpdateQuestion")
+    @ResponseBody
+    public boolean adminUpdateQuestion(@RequestParam("id") Integer id,@RequestParam("status") String status){
+        Question question =new Question();
+        question.setId(id);
+        question.setStatus(status);
+        return questionService.updateQuestion(question);
     }
 
 }
