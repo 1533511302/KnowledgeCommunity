@@ -118,8 +118,6 @@
                 <li>
                     <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">图文管理</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="acceptCount">图文统计</a>
-                        </li>
                         <li><a class="J_menuItem" href="admin/massageList">图文管理</a>
                         </li>
 
@@ -128,50 +126,17 @@
                 <li>
                     <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">音频管理</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="companyCount">音频统计</a>
-                        </li>
                         <li><a class="J_menuItem" href="admin/audioList">音频管理</a>
                         </li>
-
-
                     </ul>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-table"></i> <span class="nav-label">问题管理</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="jobCount">问题统计</a>
-                        </li>
                         <li><a class="J_menuItem" href="admin/questionList">问题管理</a>
                         </li>
-
-
-
-                        </li>
                     </ul>
                 </li>
-                <li>
-                    <a href="#"><i class="fa fa-table"></i> <span class="nav-label">回答管理</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="jobHunterCount">回答统计</a>
-                        </li>
-                        <li><a class="J_menuItem" href="jobHunterList">回答管理</a>
-                        </li>
-
-                    </ul>
-                </li>
-
-
-                <li>
-                    <a href="#"><i class="fa fa-table"></i> <span class="nav-label">评论管理</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="jobHunterCount">评论统计</a>
-                        </li>
-                        <li><a class="J_menuItem" href="jobHunterList">评论管理</a>
-                        </li>
-
-                    </ul>
-                </li>
-
 
                 <li>
                     <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">用户充值</span><span class="fa arrow"></span></a>

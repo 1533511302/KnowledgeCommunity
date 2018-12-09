@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace ="top.maniy.mapper.ApplyMapper">
+
+
+
+
+	<select id="findApplyByStatus" resultType="Apply">
+		select * from apply WHERE status=#{status} ORDER BY createTime DESC
+	</select>
+
+	<select id="findApplyById" resultType="Apply">
+		select * from apply WHERE id=#{id}
+	</select>
+
+	<select id="findApplyByUserId" resultType="Apply">
+		select * from apply WHERE userId=#{userId}
+	</select>
+
+
+	<insert id="saveApply" parameterType="Apply">
+		INSERT INTO apply
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="userId != null" >
+                userId,
+            </if>
+            <if test="content != null" >
+                content,
+            </if>
+
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="userId != null" >
+				#{userId},
+			</if>
+            <if test="content != null" >
+                #{content},
+            </if>
+
+        </trim>
+	</insert>
+
+	<delete id="deleteApply">
+		DELETE FROM apply WHERE id=#{id}
+	</delete>
+
+	<update id="updateApply" parameterType="Apply">
+		UPDATE apply
+        <set>
+			<if test="userId != null" >
+				userId=#{userId},
+			</if>
+			<if test="content != null" >
+				content=#{content},
+			</if>
+			<if test="status != null" >
+				status=#{status},
+			</if>
+
+		</set>
+		WHERE id =#{id}
+	</update>
+</mapper>

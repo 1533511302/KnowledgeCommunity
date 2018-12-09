@@ -5,6 +5,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace ="top.maniy.mapper.MassageMapper">
 
+	<select id="findMassageCount" resultType="Integer">
+		SELECT COUNT(*) count FROM massage
+	</select>
+
 	<select id="findAllMassage" resultType="Massage">
 		SELECT id,title,userId,categoryId,username,commentNumb,likeNumb,browseNumb,createTime FROM massage
 	</select>

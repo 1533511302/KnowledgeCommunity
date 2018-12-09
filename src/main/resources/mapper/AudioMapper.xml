@@ -5,6 +5,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace ="top.maniy.mapper.AudioMapper">
 
+	<select id="findAudioCount" resultType="Integer">
+		select COUNT(*) count from audio
+	</select>
 
 	<select id="findAllAudio" resultType="Audio">
 		select * from audio

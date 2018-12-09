@@ -131,6 +131,12 @@
                     <i class="am-icon-heart"></i>
                     我的关注
                 </button></a>
+                <c:if test="${user.role=='1'}">
+                    <button  type="button" class="am-btn am-btn-warning" onclick="onClickToVUser()">
+                        <i class="am-icon-heart"></i>
+                        申请认证
+                    </button>
+                </c:if>
             </div>
         </c:if>
 

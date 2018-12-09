@@ -24,6 +24,11 @@ public class QuestionServiceImpl implements QuestionService {
     private QuestionMapper questionMapper;
 
     @Override
+    public Integer findQuestionCount() {
+        return questionMapper.findQuestionCount();
+    }
+
+    @Override
     public List<Question> findAllQuestion() {
         return questionMapper.findAllQuestion();
     }

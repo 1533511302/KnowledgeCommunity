@@ -14,6 +14,9 @@ import java.util.List;
  */
 public interface AudioService {
 
+    //音频总数
+    Integer findAudioCount();
+
     //全部音频
     List<Audio> findAllAudio();
 

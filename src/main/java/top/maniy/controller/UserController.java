@@ -53,6 +53,9 @@ public class UserController {
     @Autowired
     private CollectionService collectionService;
 
+    @Autowired
+    private ApplyService applyService;
+
 
     @Autowired
     private CustomRealm customRealm;
@@ -418,6 +421,16 @@ public class UserController {
         return "collectionVUser";
     }
 
+    @RequestMapping("updateUserRole")
+    @ResponseBody
+    public boolean updateUserStatus(Integer userId,Integer id){
+        applyService.updateApply(id,"2");
+        User user =new User();
+        user.setId(userId);
+        user.setRole("2");
+        return userService.updateUser(user);
+    }
+
     /**
      * 所有用户
      * @return
@@ -515,6 +528,14 @@ public class UserController {
     @ResponseBody
     public List<CountForm> countUserByRole(){
         return userService.CountUserByRole();
+    }
+
+    @RequestMapping("findHotUser")
+    @ResponseBody
+    public List<User> findHotUser(){
+        List<User> userList = userService.findUserByTotalNumDesc(10);
+        System.out.println(userList);
+        return userList;
     }
 
 }

@@ -7,16 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import top.maniy.entity.Audio;
-import top.maniy.entity.Massage;
-import top.maniy.entity.Topic;
-import top.maniy.entity.User;
+import org.springframework.web.bind.annotation.ResponseBody;
+import top.maniy.Form.CountForm;
+import top.maniy.entity.*;
 
-import top.maniy.service.AudioService;
-import top.maniy.service.MassageService;
-import top.maniy.service.TopicService;
-import top.maniy.service.UserService;
+import top.maniy.service.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,6 +36,9 @@ public class PageController {
 
     @Autowired
     private AudioService audioService;
+
+    @Autowired
+    private QuestionService questionService;
 
 
     @RequestMapping(value = "/toIndex",method = RequestMethod.GET)
@@ -87,4 +87,34 @@ public class PageController {
     public String toIndex_v1(){
         return "index_v1";
     }
+
+    //管理主页统计
+    @RequestMapping("indexCount")
+    @ResponseBody
+    public List<CountForm> indexCount(){
+        List<CountForm> countFormList =new ArrayList<>();
+        CountForm countForm1 =new CountForm();
+        countForm1.setLabel("user");
+        countForm1.setValue(userService.findUserCount());
+        countFormList.add(countForm1);
+
+        CountForm countForm2= new CountForm();
+        countForm2.setLabel("massage");
+        countForm2.setValue(massageService.findMassageCount());
+        countFormList.add(countForm2);
+
+        CountForm countForm3= new CountForm();
+        countForm3.setLabel("audio");
+        countForm3.setValue(audioService.findAudioCount());
+        countFormList.add(countForm3);
+
+        CountForm countForm4= new CountForm();
+        countForm4.setLabel("question");
+        countForm4.setValue(questionService.findQuestionCount());
+        countFormList.add(countForm4);
+
+        return countFormList;
+    }
+
+
 }

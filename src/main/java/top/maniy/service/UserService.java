@@ -20,6 +20,9 @@ import java.util.List;
 public interface UserService {
 
     //统计
+    //用户总数
+    Integer findUserCount();
+
     //男女性别统计
     List<CountForm> CountUserByGender();
 

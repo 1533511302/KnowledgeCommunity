@@ -133,6 +133,12 @@
                     <i class="am-icon-heart"></i>
                     我的关注
                 </button></a>
+                <c:if test="${user.role=='1'}">
+               <button  type="button" class="am-btn am-btn-warning" onclick="onClickToVUser()">
+                    <i class="am-icon-heart"></i>
+                    申请认证
+                </button>
+                </c:if>
             </div>
         </c:if>
 
@@ -282,6 +288,19 @@
 
     }
 
+    function onClickToVUser() {
+        $.post("${baseUrl}saveApply",{userId:${user.id}},function (data) {
+            if(data=="1"){
+                alert("成功发送申请，等待管理员处理");
+            }
+            if(data=="2"){
+                alert("已经申请过了，请耐心等待处理");
+            }
+            if(data=="3"){
+                alert("您的信息不满足申请要求！请完善信息再试！");
+            }
+        });
+    }
 </script>
 </body>
 </html>

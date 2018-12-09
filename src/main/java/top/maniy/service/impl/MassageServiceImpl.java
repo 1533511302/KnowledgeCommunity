@@ -27,6 +27,11 @@ public class MassageServiceImpl implements MassageService {
 
 
     @Override
+    public Integer findMassageCount() {
+        return massageMapper.findMassageCount();
+    }
+
+    @Override
     public List<Massage> findAllMassage() {
         return massageMapper.findAllMassage();
     }

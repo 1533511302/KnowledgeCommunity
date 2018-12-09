@@ -12,8 +12,8 @@ import java.util.List;
  * @date 2018/9/29 9:07
  */
 public interface UserMapper {
-
-    //
+    //用户总数
+    Integer findUserCount();
 
     //根据文章数、问题数、回答数、音频数总和从大大小排列获取num条数据
     List<User> findUserByTotalNumDesc(@Param("num") int num);

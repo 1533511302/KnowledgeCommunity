@@ -5,6 +5,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace ="top.maniy.mapper.QuestionMapper">
 
+    <select id="findQuestionCount" resultType="Integer">
+        select COUNT(*) count from question
+    </select>
 
 	<select id="findAllQuestion" resultType="Question">
 		select * from question

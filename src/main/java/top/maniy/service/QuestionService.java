@@ -15,6 +15,9 @@ import java.util.List;
  */
 public interface QuestionService {
 
+    //问题数
+    Integer findQuestionCount();
+
     //全部问题
     List<Question> findAllQuestion();
 

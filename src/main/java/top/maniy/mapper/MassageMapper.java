@@ -13,6 +13,9 @@ import java.util.List;
  */
 public interface MassageMapper {
 
+    //图文总数
+    Integer findMassageCount();
+
     //获取全部massage
     List<Massage> findAllMassage();
 

@@ -23,6 +23,11 @@ public class AudioServiceImpl implements AudioService {
     private AudioMapper audioMapper;
 
     @Override
+    public Integer findAudioCount() {
+        return audioMapper.findAudioCount();
+    }
+
+    @Override
     public List<Audio> findAllAudio() {
         return audioMapper.findAllAudio();
     }

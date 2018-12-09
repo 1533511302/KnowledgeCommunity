@@ -30,6 +30,11 @@ public class UserServiceImpl implements UserService {
     private CustomRealm customRealm;
 
     @Override
+    public Integer findUserCount() {
+        return usermapper.findUserCount();
+    }
+
+    @Override
     public List<CountForm> CountUserByGender() {
         List<CountForm> countFormList =new ArrayList<>();
         CountForm countForm1 =new CountForm();
@@ -59,7 +64,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findUserByTotalNumDesc(int num) {
-        return usermapper.findUserByTotalNumDesc(6);
+        return usermapper.findUserByTotalNumDesc(num);
     }
 
     @Override

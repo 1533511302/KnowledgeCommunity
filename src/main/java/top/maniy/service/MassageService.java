@@ -16,6 +16,9 @@ import java.util.List;
 public interface MassageService {
 
     //统计
+    //图文总数
+    Integer findMassageCount();
+
     //全部图文
     List<Massage> findAllMassage();
 
