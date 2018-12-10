@@ -50,10 +50,24 @@
 
 
 	<!-- 定义一个任务类 -->
+	<bean id="adminJob" class="top.maniy.quartz.AdminJob"></bean>
+
+
+	<!-- jobDetailRemindHaveClass -->
+	<bean id="jobDetailAdminNewContent" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="adminJob"></property>
+		<property name="targetMethod" value="adminNewContent"></property>
+		<property name="concurrent" value="true" /><!-- 作业不并发调度  -->
+	</bean>
+
+	<!-- 定义trigger 触发器 -->
+	<bean id="cronTriggerAdminNewContent" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="jobDetailAdminNewContent"></property>
+		<property name="cronExpression" value="0/60 * * * * ?"></property>
+	</bean>
+
+	<!-- 定义一个任务类 -->
 	<bean id="myJob" class="top.maniy.test.MyJob"></bean>
-
-
-
 	<!-- jobDetailRemindHaveClass -->
 	<bean id="jobDetailRemindHaveClass" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
 		<property name="targetObject" ref="myJob"></property>
@@ -96,6 +110,7 @@
 			<list>
 			<ref bean="cronTriggerHaveClass"/>
 			<ref bean="cronTriggerClassIsOver"/>
+			<ref bean="cronTriggerAdminNewContent"/>
 			</list>
 		</property>
 	</bean>

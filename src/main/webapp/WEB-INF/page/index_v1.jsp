@@ -316,14 +316,26 @@
       //加载用户请求
     $.post("${baseUrl}findApplyByStatus",null,function (data) {
         $.each(data,function (i,apply) {
-            $("#feed-activity").append(" <div class=\"feed-element\">\n" +
-                "                            <div>\n" +
-                "                                <small class=\"pull-right text-navy\"><a onclick=\"onClickToVUser("+apply.userId+","+apply.id+")\"><span class=\"label label-primary\">同意</span></a><a onclick=\"onClickDeleteApply("+apply.id+")\"><span class=\"label label-warning\">删除</span></a></small>\n" +
-                "                                <strong>申请信息</strong>\n" +
-                "                                <div>"+apply.content+"</div>\n" +
-                "                                <small class=\"text-muted\">"+apply.createTime+"</small>\n" +
-                "                            </div>\n" +
-                "                        </div>");
+            if(apply.status=="3"){
+                $("#feed-activity").append(" <div class=\"feed-element\">\n" +
+                    "                            <div>\n" +
+                    "                                <small class=\"pull-right text-navy\"><a onclick=\"onClickDeleteApply("+apply.id+")\"><span class=\"label label-warning\">删除</span></a></small>\n" +
+                    "                                <strong>系统通知</strong>\n" +
+                    "                                <div>"+apply.content+"</div>\n" +
+                    "                                <small class=\"text-muted\">"+apply.createTime+"</small>\n" +
+                    "                            </div>\n" +
+                    "                        </div>");
+            }else {
+                $("#feed-activity").append(" <div class=\"feed-element\">\n" +
+                    "                            <div>\n" +
+                    "                                <small class=\"pull-right text-navy\"><a onclick=\"onClickToVUser("+apply.userId+","+apply.id+")\"><span class=\"label label-primary\">同意</span></a><a onclick=\"onClickDeleteApply("+apply.id+")\"><span class=\"label label-warning\">删除</span></a></small>\n" +
+                    "                                <strong>申请信息</strong>\n" +
+                    "                                <div>"+apply.content+"</div>\n" +
+                    "                                <small class=\"text-muted\">"+apply.createTime+"</small>\n" +
+                    "                            </div>\n" +
+                    "                        </div>");
+            }
+
         });
     });
 

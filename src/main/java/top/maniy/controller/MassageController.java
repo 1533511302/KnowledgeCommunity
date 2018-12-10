@@ -2,21 +2,29 @@ package top.maniy.controller;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresGuest;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSendException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import top.maniy.Form.ImgResultForm;
 import top.maniy.Form.MassageForm;
 import top.maniy.entity.*;
 import top.maniy.service.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author liuzonghua
@@ -152,20 +160,63 @@ public class MassageController {
 
     /**
      * 添加图文
-     * @param type
-     * @param title
-     * @param content
      * @return
      */
     @RequestMapping(value = "/massages",method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("massage:insert")
-    public boolean saveMassage(@RequestParam Integer type ,@RequestParam String title,@RequestParam String content){
+    public boolean saveMassage(HttpServletRequest request, @RequestParam(required = false) MultipartFile photo,
+                               @RequestParam Integer type ,@RequestParam String title,@RequestParam String content){
+        User user = (User) request.getSession().getAttribute("User");
         Massage massage =new Massage();
         massage.setCategoryId(type);
+        massage.setUserId(user.getId());
+        massage.setUsername(user.getRealname());
         massage.setTitle(title);
         massage.setContent(content);
+
+
+
+        if(photo!=null){
+            String name = UUID.randomUUID().toString().replaceAll("-", "");
+
+
+            String fileName=photo.getOriginalFilename();// 文件原名称
+
+            //获取上传文件的目录
+
+            String path=request.getSession().getServletContext().getRealPath("/");
+
+            String newPath= null;
+            try {
+                newPath = path.substring(0,path.indexOf("KnowledgeCommunity"))+"images\\";
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new MailSendException("图片路径不正确");
+            }
+
+            //获取图片后缀
+            String ext= FilenameUtils.getExtension(fileName);
+
+            //获取文件的后缀
+            //String ext2=name.substring(name.lastIndexOf("."), name.length()-1);
+
+            //新图片
+            File newfile =new File(newPath+ name+"."+ext);
+            //把内存图片写入磁盘中
+
+            try {
+                photo.transferTo(newfile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            massage.setPhoto(name+"."+ext);
+        }else {
+            massage.setPhoto("191ea1c12d824851ade02cfcf0e61e31.jpg");
+        }
+
         return massageService.saveMassage(massage);
+
     }
 
     @RequestMapping(value = "/toUpdateMassages",method = RequestMethod.GET)
@@ -262,5 +313,46 @@ public class MassageController {
         return massageFormList;
     }
 
+    @RequestMapping("uploadMassagePhoto")
+    @ResponseBody
+    public ImgResultForm uploadMassagePhoto(HttpServletRequest request, MultipartFile photo){
+        System.out.println("请求到了什么，图片吧");
+        String name = UUID.randomUUID().toString().replaceAll("-", "");
+
+
+        String fileName=photo.getOriginalFilename();// 文件原名称
+
+        //获取上传文件的目录
+
+        String path=request.getSession().getServletContext().getRealPath("/");
+
+        String newPath= null;
+        try {
+            newPath = path.substring(0,path.indexOf("KnowledgeCommunity"))+"images\\";
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new MailSendException("图片路径不正确");
+        }
+
+        //获取图片后缀
+        String ext= FilenameUtils.getExtension(fileName);
+
+        //获取文件的后缀
+        //String ext2=name.substring(name.lastIndexOf("."), name.length()-1);
+
+        //新图片
+        File newfile =new File(newPath+ name+"."+ext);
+        //把内存图片写入磁盘中
+
+        try {
+            photo.transferTo(newfile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //把图片信息保存都数据库
+        String[] strArray=new String[]{"/img/"+ name+"."+ext};
+        ImgResultForm imgResultForm =new ImgResultForm(0,strArray);
+        return imgResultForm;
+    }
 
 }

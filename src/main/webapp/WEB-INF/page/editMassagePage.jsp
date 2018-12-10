@@ -118,6 +118,11 @@
                     <span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
                     <input id="title" type="text" class="am-form-field" placeholder="文章标题">
                 </div>
+
+                <div class="am-form-group am-form-file">
+                    <i class="am-icon-cloud-upload"></i> 选择图文预览图(非必选项)
+                    <input id="file" type="file" multiple>
+                </div>
                 <input type="hidden" name="content">
                 <div id="editor">
                     <p>文章内容编辑区域</p>
@@ -179,20 +184,71 @@
 <script type="text/javascript">
 
     $.get("categorise/1",null,function (data) {
-        $.each(data,function (i,message) {
-            $("#doc-select-1").append("<option value='"+message.categoryType+"'>"+message.categoryName+"</option>")
+        $.each(data,function (i,category) {
+            $("#doc-select-1").append("<option value='"+category.id+"'>"+category.categoryName+"</option>")
         });
     });
 
     var E = window.wangEditor
     var editor = new E('#editor')
-    editor.customConfig.uploadImgServer = '/upload'  // 上传图片到服务器
+    editor.customConfig.uploadImgServer = 'uploadMassagePhoto'  // 上传图片到服务器
+
+    //配置属性名称，绑定请求的图片数据
+    //controller会用到，可以随便设置，但是一定要与controller一致
+    editor.customConfig.uploadFileName = 'photo';
+
+    editor.customConfig.uploadImgHooks = {
+        before: function (xhr, editor, files) {
+            // 图片上传之前触发
+            // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，files 是选择的图片文件
+
+            // 如果返回的结果是 {prevent: true, msg: 'xxxx'} 则表示用户放弃上传
+            // return {
+            //     prevent: true,
+            //     msg: '放弃上传'
+            // }
+        },
+        success: function (xhr, editor, result) {
+            console.log(result);
+            // 图片上传并返回结果，图片插入成功之后触发
+            // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
+        },
+        fail: function (xhr, editor, result) {
+            console.log(result);
+            // 图片上传并返回结果，但图片插入错误时触发
+            // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
+        },
+        error: function (xhr, editor) {
+            console.log(result);
+            // 图片上传出错时触发
+            // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象
+        },
+        timeout: function (xhr, editor) {
+            // 图片上传超时时触发
+            // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象
+        },
+
+        // 如果服务器端返回的不是 {errno:0, data: [...]} 这种格式，可使用该配置
+        // （但是，服务器端返回的必须是一个 JSON 格式字符串！！！否则会报错）
+        customInsert: function (insertImg, result, editor) {
+            // 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
+            // insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
+
+            // 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
+            insertImg(result.data)
+
+            // result 必须是一个 JSON 格式字符串！！！否则报错
+        }
+
+    }
+
+
 
     // 或者 var editor = new E( document.getElementById('editor') )
     //插入网络图片的回调
     editor.customConfig.linkImgCallback = function (url) {
         console.log(url) // url 即插入图片的地址
-    }
+    };
     //插入链接的校验
     editor.customConfig.linkCheck = function (text, link) {
         console.log(text) // 插入的文字
@@ -200,30 +256,65 @@
 
         return true // 返回 true 表示校验成功
         // return '验证失败' // 返回字符串，即校验失败的提示信息
-    }
+    };
     //插入网络图片的校验
     editor.customConfig.linkImgCheck = function (src) {
         console.log(src) // 图片的链接
 
         return true // 返回 true 表示校验成功
         // return '验证失败' // 返回字符串，即校验失败的提示信息
-    }
-    editor.create()
+    };
+    editor.create();
+
+
+
+
+
+
+
+
+
 
     document.getElementById('save').addEventListener('click', function () {
         // 读取 text
         var type=$("#doc-select-1 option:selected").val();
         var title=$("#title").val();
+        var photo=$('#file')[0].files[0];
         var content=editor.txt.html();
+        var formData = new FormData();
+        formData.append('photo', $('#file')[0].files[0]);
+        formData.append('type', type);
+        formData.append('content', content);
+        formData.append('title', title);
+        console.log(photo);
+        console.log(type);
         console.log(title);
         console.log(content);
         if(type!="0"){
             if (title!="" && content!=""){
-                $.post("massages",{type:type,title:title,content:content},function (data) {
-                    if(data==1){
-                        alert("提交成功");
+                // $.post("massages",{type:type,title:title,content:content},function (data) {
+                //     if(data==1){
+                //         alert("提交成功");
+                //     }
+                // });
+                // $.post("massagesdsd",formData,function (data) {
+                //     if(data==1){
+                //         alert("提交成功");
+                //     }
+                // });
+                $.ajax({
+                    type: "POST",
+                    url:"massages",
+                    data:formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        if(data==1){
+                            alert("提交成功");
+                        }
                     }
                 });
+
             }else {
                 alert("标题和内容不能为空！！！")
             }
@@ -234,6 +325,9 @@
             alert("没有选择分类！！！")
         }
     }, false)
+
+
+
 
 
 </script>

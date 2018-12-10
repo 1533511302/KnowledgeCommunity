@@ -265,11 +265,11 @@
 
 
                     <li class="am-pagination-first ">
-                        <a href="<c:url value="${baseUrl}massages/likeName?title=${title}&page=1"/>">首页</a>
+                        <a href="<c:url value="/massages/likeName?title=${title}&page=1"/>">首页</a>
                     </li>
 
                     <li class="am-pagination-prev ">
-                        <a href="<c:url value="${baseUrl}massages/likeName?title=${title}&page=${pageInfo.pageNum-1>1?pageInfo.pageNum-1:1}"/>">&laquo;</a>
+                        <a href="<c:url value="/massages/likeName?title=${title}&page=${pageInfo.pageNum-1>1?pageInfo.pageNum-1:1}"/>">&laquo;</a>
                     </li>
                         <c:set var="start" value="${pageInfo.pageNum-5<=0?1:pageInfo.pageNum-5}"/>
                         <c:set var="end" value="${start+9<pageInfo.pages?start+9:pageInfo.pages}"/>
@@ -278,17 +278,17 @@
 
 
                         <li class="${active}">
-                            <a href="<c:url value="${baseUrl}massages/likeName?title=${title}&page=${loop.index}"/>">${loop.index}</a>
+                            <a href="<c:url value="/massages/likeName?title=${title}&page=${loop.index}"/>">${loop.index}</a>
                         </li>
                     </c:forEach>
 
 
                     <li class="am-pagination-next ">
-                        <a href="<c:url value="${baseUrl}massages/likeName?title=${title}&page=${pageInfo.pageNum+1<pageInfo.pages?pageInfo.pageNum+1:pageInfo.pages}"/>">&raquo;</a>
+                        <a href="<c:url value="/massages/likeName?title=${title}&page=${pageInfo.pageNum+1<pageInfo.pages?pageInfo.pageNum+1:pageInfo.pages}"/>">&raquo;</a>
                     </li>
 
                     <li class="am-pagination-last ">
-                        <a href="<c:url value="${baseUrl}massages/likeName?title=${title}&page=${pageInfo.pages}"/>">尾页</a>
+                        <a href="<c:url value="/massages/likeName?title=${title}&page=${pageInfo.pages}"/>">尾页</a>
                     </li>
                 </ul>
             </div>

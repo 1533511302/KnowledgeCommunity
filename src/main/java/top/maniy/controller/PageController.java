@@ -13,6 +13,7 @@ import top.maniy.entity.*;
 
 import top.maniy.service.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,6 +87,13 @@ public class PageController {
     @RequestMapping(value = "index_v1")
     public String toIndex_v1(){
         return "index_v1";
+    }
+
+    //获取登录的管理员信息
+    @RequestMapping(value = "adminInfo")
+    @ResponseBody
+    public User adminInfo(HttpServletRequest request){
+        return (User) request.getSession().getAttribute("User");
     }
 
     //管理主页统计

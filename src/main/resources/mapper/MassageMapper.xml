@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="findAllMassage" resultType="Massage">
-		SELECT id,title,userId,categoryId,username,commentNumb,likeNumb,browseNumb,createTime FROM massage
+		SELECT id,title,userId,categoryId,photo,username,commentNumb,likeNumb,browseNumb,createTime FROM massage
 	</select>
 
 	<select id="findMassageByCategoryId" resultType="Massage">
@@ -61,6 +61,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="categoryId != null" >
 				categoryId,
 			</if>
+            <if test="photo != null" >
+                photo,
+            </if>
 			<if test="username != null" >
 				username,
 			</if>
@@ -81,6 +84,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="categoryId != null" >
 				#{categoryId},
 			</if>
+            <if test="photo != null" >
+                #{photo},
+            </if>
 			<if test="username != null" >
 				#{username},
 			</if>
@@ -109,6 +115,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="categoryId != null" >
 				categoryId=#{categoryId},
 			</if>
+            <if test="cphoto != null" >
+                photo=#{photo},
+            </if>
 			<if test="username != null" >
 				username=#{username},
 			</if>

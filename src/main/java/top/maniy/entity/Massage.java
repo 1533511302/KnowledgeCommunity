@@ -11,6 +11,7 @@ public class Massage {
   private String title;
   private Integer userId;
   private Integer categoryId;
+  private String photo;
   private String username;
   private Integer likeNumb;
   private Integer CommentNumb;
@@ -19,7 +20,13 @@ public class Massage {
   private String content;
   private Date createTime;
 
+  public String getPhoto() {
+    return photo;
+  }
 
+  public void setPhoto(String photo) {
+    this.photo = photo;
+  }
 
   public Integer getId() {
     return id;

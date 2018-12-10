@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<select id="findApplyByStatus" resultType="Apply">
-		select * from apply WHERE status=#{status} ORDER BY createTime DESC
+		select * from apply WHERE status=#{status} OR status = '3' ORDER BY createTime DESC
 	</select>
 
 	<select id="findApplyById" resultType="Apply">
@@ -30,7 +30,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="content != null" >
                 content,
             </if>
-
+			<if test="status != null" >
+				status,
+			</if>
 
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -40,6 +42,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="content != null" >
                 #{content},
             </if>
+			<if test="status != null" >
+				#{status},
+			</if>
 
         </trim>
 	</insert>

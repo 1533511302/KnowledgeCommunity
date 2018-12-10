@@ -12,13 +12,13 @@ public class MyJob {
 
     public void remindClassIsOver(){
         if(DateUtil.getMiniute()%2==0) {
-            System.out.println("下课了请同学们休息！" + DateUtil.getDateTime());
+            System.out.println("时间过去了两分钟" + DateUtil.getDateTime());
         }
     }
 
     public void remindHaveAClass(){
         if(DateUtil.getMiniute()%2!=0) {
-            System.out.println("上课了请同学们安静！！！" + DateUtil.getDateTime());
+            System.out.println("项目又运行了一两分钟！" + DateUtil.getDateTime());
         }
     }
 
