@@ -18,7 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <title>人纹招聘后台管理系统 - 目录</title>
+    <title>后台管理系统 - 目录</title>
 
     <link rel="shortcut icon" href="favicon.ico"> <link href="${baseUrl}admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="${baseUrl}admin/css/font-awesome.css?v=4.4.0" rel="stylesheet">

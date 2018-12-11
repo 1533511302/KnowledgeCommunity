@@ -354,14 +354,58 @@ public class UserController {
     /**
      * 修改个人信息
      * @param request
-     * @param user
      * @return
      */
     @RequestMapping(value = "updateUser",method = RequestMethod.POST)
-    public String updateUser(HttpServletRequest request,User user){
+    public String updateUser(HttpServletRequest request,@RequestParam String realname,String email,String autograph,
+                             String gender,String introduce,@RequestParam(value = "photo",required = false) MultipartFile photo){
         User user1 =(User)request.getSession().getAttribute("User");
-        System.out.println(user);
+        User user =new User();
+        user.setRealname(realname);
+        user.setGender(gender);
+        user.setEmail(email);
+        user.setAutograph(autograph);
+        user.setIntroduce(introduce);
         user.setId(user1.getId());
+
+        if(photo !=null){
+            String name = UUID.randomUUID().toString().replaceAll("-", "");
+
+            String fileName=photo.getOriginalFilename();// 文件原名称
+
+            //获取上传文件的目录
+
+            String path=request.getSession().getServletContext().getRealPath("/");
+
+            String newPath= null;
+            try {
+                newPath = path.substring(0,path.indexOf("KnowledgeCommunity"))+"images\\";
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new MailSendException("图片路径不正确");
+            }
+            //获取图片后缀
+            String ext= FilenameUtils.getExtension(fileName);
+
+            //获取文件的后缀
+            //String ext2=name.substring(name.lastIndexOf("."), name.length()-1);
+
+            //新图片
+            File newfile =new File(newPath+ name+"."+ext);
+            //把内存图片写入磁盘中
+            try {
+                photo.transferTo(newfile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //把图片信息保存都数据库
+
+            user.setPhoto(name+"."+ext);
+        }
+
+
+
+
         userService.updateUser(user);
         return "redirect:vUsersQuestion/"+user.getId();
     }
@@ -471,11 +515,10 @@ public class UserController {
      */
     @RequestMapping("uploadUser")
     @ResponseBody
-    public boolean uploadTopic(HttpServletRequest request, MultipartFile photo,
+    public boolean uploadTopic(HttpServletRequest request, @RequestParam(required = false) MultipartFile photo,
                                String topicName,String topicDescribe){
 
         String name = UUID.randomUUID().toString().replaceAll("-", "");
-
 
         String fileName=photo.getOriginalFilename();// 文件原名称
 

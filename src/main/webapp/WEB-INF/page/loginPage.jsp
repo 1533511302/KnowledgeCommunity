@@ -22,6 +22,9 @@
     <link rel="stylesheet" href="<%=basePath%>assets/css/amazeui.css" />
     <link rel="stylesheet" href="<%=basePath%>assets/css/other.min.css" />
 
+    <!-- Sweet Alert -->
+    <link href="${baseUrl}admin/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+
     <script src="<%=basePath%>assets/js/jquery.min.js"></script>
     <script>
 
@@ -34,13 +37,13 @@
 
             var username=$("#username").val();
             if (username==""){
-                alert("用户名不能为空！");
+                swal("错误！", "用户名不能为空！", "error");
                 return false;//因为这是submit表单提交 返回false 不进行请求
             };
 
             var password=$("#password").val();
             if (password==""){
-                alert("密码不能为空！");
+                swal("错误！", "密码不能为空！", "error");
                 return false;
             }
             var rememberMe=$("#rememberMe").val();
@@ -54,14 +57,15 @@
                     var mydata =data;
                     console.log(mydata)
                     if (mydata == "1") {
-                        console.log("成功");
+
                         window.location.href="toIndex";
                     }if(mydata == "3"){
-                        console.log("成功");
+
                         window.location.href="toAdminIndex";
                     }
                     else {
-                        console.log("失败");
+                        swal("错误！", "用户名或密码不正确！", "error");
+                        return false;
                     }
                 }
             });
@@ -91,5 +95,7 @@
 
     </form>
 </div>
+<!-- Sweet alert -->
+<script src="${baseUrl}admin/js/plugins/sweetalert/sweetalert.min.js"></script>
 </body>
 </html>

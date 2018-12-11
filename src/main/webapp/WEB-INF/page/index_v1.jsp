@@ -18,15 +18,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <title>H+ 后台主题UI框架 - 首页示例二</title>
-    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
-    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
-
+    <title>首页</title>
     <link rel="shortcut icon" href="favicon.ico"> <link href="${baseUrl}admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="${baseUrl}admin/css/font-awesome.css?v=4.4.0" rel="stylesheet">
 
     <!-- Morris -->
     <link href="${baseUrl}admin/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
+
+    <!-- Sweet Alert -->
+    <link href="${baseUrl}admin/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
 
     <!-- Gritter -->
     <link href="${baseUrl}admin/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
@@ -245,51 +245,66 @@
 
 <!-- jQuery UI -->
 <script src="${baseUrl}admin/js/plugins/jquery-ui/jquery-ui.min.js"></script>
-
+<!-- Sweet alert -->
+<script src="js/plugins/sweetalert/sweetalert.min.js"></script>
 
 <script>
     //修改个人信息
       function onClickUpdatePasswordBtn() {
-          console.log("33232");
+
           var username=$("#username").val();
           if (username==""){
-
-              alert("用户名不能为空！");
+              swal("错误！", "用户名不能为空！", "error");
               return false;//因为这是submit表单提交 返回false 不进行请求
           }else {
               var oldPassword=$("#oldPassword").val();
               if (oldPassword==""){
-                  alert("旧密码不能为空！");
+
+                  swal("错误！", "旧密码不能为空！", "error");
                   return false;
               }
 
               var newPassword=$("#newPassword").val();
               if (newPassword==""){
-                  alert("新密码不能为空！");
+
+                  swal("错误！", "新密码不能为空！", "error");
                   return false;
               }
               var confirm=$("#confirm").val();
-              if(confirm !=newPassword){
-                  alert("确认密码不相等！");
-              }else {
+              if(confirm == newPassword){
                   $.ajax({
                       type: 'post',
                       url: "${baseUrl}updateUserPassword",
                       data: {username:username,oldPassword:oldPassword,newPassword:newPassword},
                       success: function (data) {
                           if(data=="2"){
-                              alert("修改成功！");
-                              window.location.href="${baseUrl}userInfo/${user.id}";
+
+                              swal({
+                                  title: "成功",
+                                  text: "修改成功！",
+                                  type: "success",
+                                  confirmButtonColor: "#4CAF50",
+                                  confirmButtonText: "OK",
+                                  closeOnConfirm: false
+                              }, function () {
+                                  location.reload();
+                              });
                           }
                           if(data=="1"){
-                              alert("用户名或旧密码输入错误！")
+
+                              swal("错误！", "用户名或旧密码输入错误！", "error");
                           }
                           if(data=="0"){
-                              alert("修改操作失败！")
+
+                              swal("错误！", "修改操作失败！", "error");
                           }
 
                       }
                   });
+
+              }else {
+                  swal("错误！", "确认密码不相等！", "error");
+                  return false;
               }
           }
 
@@ -358,8 +373,18 @@
       function onClickToVUser(userId,id) {
           $.post("${baseUrl}updateUserRole",{userId:userId,id:id},function (data) {
               if(data){
-                  alert("修改角色成功");
-                  location.reload();
+
+                  swal({
+                      title: "成功",
+                      text: "修改角色成功！",
+                      type: "success",
+                      confirmButtonColor: "#4CAF50",
+                      confirmButtonText: "OK",
+                      closeOnConfirm: false
+                  }, function () {
+                      location.reload();
+                  });
+
               }
           });
       }
@@ -367,14 +392,25 @@
       function onClickDeleteApply(id) {
           $.post("${baseUrl}deleteApply",{id:id},function (data) {
               if(data){
-                  alert("删除成功");
-                  location.reload();
+                  swal({
+                      title: "成功",
+                      text: "删除成功！",
+                      type: "success",
+                      confirmButtonColor: "#4CAF50",
+                      confirmButtonText: "OK",
+                      closeOnConfirm: false
+                  }, function () {
+                      location.reload();
+                  });
+
               }
           });
       }
 
 </script>
 
+<!-- Sweet alert -->
+<script src="${baseUrl}admin/js/plugins/sweetalert/sweetalert.min.js"></script>
 </body>
 
 </html>

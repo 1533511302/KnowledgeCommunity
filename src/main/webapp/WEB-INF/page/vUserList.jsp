@@ -118,9 +118,9 @@
         <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-6 am-thumbnails" id="topface">
             <c:forEach var="vUser" items="${userList}">
             <li>
-                <a href="#">
+                <a href="${baseUrl}vUsersCategory/${vUser.id}">
                     <div class="ctl ">
-                        <img src="${baseUrl}Temp-images/face1.jpg">
+                        <img src="/img/${vUser.photo}">
                         <h3>${vUser.realname}</h3>
                         <p>${vUser.autograph}</p>
                     </div>
@@ -173,12 +173,7 @@
         $("#topface li:eq(0) p").html(temp_p);
     });
 </script>
-<div id="cattit">
-    <ul class="am-avg-sm-2 am-avg-md-2 am-avg-lg-2">
-        <li><h3><a href="#">合作专栏</a></h3></li>
-        <li  class="active-none"><h3><a href="#">个人专栏</a></h3></li>
-    </ul>
-</div>
+
 <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
 <div id="cattlist" class="am-container">
     <ul class="am-avg-sm-1 am-avg-md-3 am-avg-lg-4">
@@ -190,7 +185,7 @@
 
                             <div class="am-u-sm-4 am-u-md-5 am-u-lg-5 am-vertical-align">
                                 <div class="am-vertical-align-middle">
-                                    <img src="${baseUrl}Temp-images/face1.jpg">
+                                    <img src="/img/${user.photo}">
                                 </div>
                             </div>
                             <div class="am-u-sm-8 am-u-md-7 am-u-lg-7">
@@ -269,7 +264,7 @@
             <li><a href="#">友情链接</a></li>
         </ul>
         <div class="btnlogo"><img src="${baseUrl}images/btnlogo.png"/></div>
-        <p>knowledge出品<br>京ICP备11008918号-3 Copyright ©2015 HTML5梦工场 助推HTML5发展</p>
+        <p>knowledge出品<br>京ICP备11008918号-3 Copyright ©2018 </p>
         <div class="w2div">
             <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2
   am-avg-md-2 am-avg-lg-2 am-gallery-overlay" data-am-gallery="{ pureview: true }" >

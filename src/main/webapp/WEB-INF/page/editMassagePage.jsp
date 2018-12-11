@@ -120,7 +120,7 @@
                 </div>
 
                 <div class="am-form-group am-form-file">
-                    <i class="am-icon-cloud-upload"></i> 选择图文预览图(非必选项)
+                    <i class="am-icon-cloud-upload"></i> 选择图文封面图(非必选项)
                     <input id="file" type="file" multiple>
                 </div>
                 <input type="hidden" name="content">
@@ -292,12 +292,12 @@
         console.log(content);
         if(type!="0"){
             if (title!="" && content!=""){
-                // $.post("massages",{type:type,title:title,content:content},function (data) {
+                // $.post("massages",{photo:photo,type:type,title:title,content:content},function (data) {
                 //     if(data==1){
                 //         alert("提交成功");
                 //     }
                 // });
-                // $.post("massagesdsd",formData,function (data) {
+                // $.post("massages",formData,function (data) {
                 //     if(data==1){
                 //         alert("提交成功");
                 //     }

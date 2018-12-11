@@ -121,9 +121,13 @@ public class TopicController {
 
         topic.setPhoto(name+"."+ext);
         System.out.println("图片写入");
+        if(topic.getId()==null){
+            return topicService.saveTopic(topic);
+        }else {
+            return topicService.updateTopic(topic);
+        }
 
 
-        return topicService.saveTopic(topic);
     }
 
     @RequestMapping("deleteTopic")

@@ -102,7 +102,7 @@
             <li>
                 <div class="am-gallery-item">
                     <a href="${baseUrl}questionList/${topic.id}" class="">
-                        <img src="${baseUrl}Temp-images/question.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
+                        <img src="/img/${topic.photo}"  alt="远方 有一个地方 那里种有我们的梦想"/>
                         <div class="efe">${topic.topicName}</div>
                         <p>${topic.topicDescribe}</p>
                         <div class="am-gallery-desc fee">
@@ -165,7 +165,10 @@
             <span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
             <input id="quesTitle" type="text" class="am-form-field" placeholder="问题">
         </div>
-
+        <div class="am-form-group am-form-file">
+            <i class="am-icon-cloud-upload"></i> 选择图文封面图(非必选项)
+            <input id="file" type="file" multiple>
+        </div>
         <h3 class="blog-comment">描述</h3>
         <fieldset>
             <div class="am-form-group">
@@ -187,7 +190,7 @@
             <div class="am-gallery-item">
                 <a href="http://s.amazeui.org/media/i/demos/bing-1.jpg" class="">
                     <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
-                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
+                    <h3 class="am-gallery-title">腾讯新闻：恭喜知识社区今日上线</h3>
                     <div class="am-gallery-desc">2375-09-26</div>
                 </a>
             </div>
@@ -196,7 +199,7 @@
             <div class="am-gallery-item">
                 <a href="http://s.amazeui.org/media/i/demos/bing-2.jpg" class="">
                     <img src="http://s.amazeui.org/media/i/demos/bing-2.jpg"  alt="某天 也许会相遇 相遇在这个好地方"/>
-                    <h3 class="am-gallery-title">某天 也许会相遇 相遇在这个好地方</h3>
+                    <h3 class="am-gallery-title">百度新闻：恭喜知识社区今日上线</h3>
                     <div class="am-gallery-desc">2375-09-26</div>
                 </a>
             </div>
@@ -205,7 +208,7 @@
             <div class="am-gallery-item">
                 <a href="http://s.amazeui.org/media/i/demos/bing-3.jpg" class="">
                     <img src="http://s.amazeui.org/media/i/demos/bing-3.jpg"  alt="不要太担心 只因为我相信"/>
-                    <h3 class="am-gallery-title">不要太担心 只因为我相信</h3>
+                    <h3 class="am-gallery-title">新浪新闻：恭喜知识社区今日上线</h3>
                     <div class="am-gallery-desc">2375-09-26</div>
                 </a>
             </div>
@@ -214,7 +217,7 @@
             <div class="am-gallery-item">
                 <a href="http://s.amazeui.org/media/i/demos/bing-4.jpg" class="">
                     <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg"  alt="终会走过这条遥远的道路"/>
-                    <h3 class="am-gallery-title">终会走过这条遥远的道路</h3>
+                    <h3 class="am-gallery-title">网易新闻：恭喜知识社区今日上线</h3>
                     <div class="am-gallery-desc">2375-09-26</div>
                 </a>
             </div>
@@ -223,7 +226,7 @@
             <div class="am-gallery-item">
                 <a href="http://s.amazeui.org/media/i/demos/bing-1.jpg" class="">
                     <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
-                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
+                    <h3 class="am-gallery-title">今日头条：恭喜知识社区今日上线</h3>
                     <div class="am-gallery-desc">2375-09-26</div>
                 </a>
             </div>
@@ -232,7 +235,7 @@
             <div class="am-gallery-item">
                 <a href="http://s.amazeui.org/media/i/demos/bing-2.jpg" class="">
                     <img src="http://s.amazeui.org/media/i/demos/bing-2.jpg"  alt="某天 也许会相遇 相遇在这个好地方"/>
-                    <h3 class="am-gallery-title">某天 也许会相遇 相遇在这个好地方</h3>
+                    <h3 class="am-gallery-title">人民日报：恭喜知识社区今日上线</h3>
                     <div class="am-gallery-desc">2375-09-26</div>
                 </a>
             </div>
@@ -241,7 +244,7 @@
             <div class="am-gallery-item">
                 <a href="http://s.amazeui.org/media/i/demos/bing-3.jpg" class="">
                     <img src="http://s.amazeui.org/media/i/demos/bing-3.jpg"  alt="不要太担心 只因为我相信"/>
-                    <h3 class="am-gallery-title">不要太担心 只因为我相信</h3>
+                    <h3 class="am-gallery-title">宣日新闻：恭喜知识社区今日上线</h3>
                     <div class="am-gallery-desc">2375-09-26</div>
                 </a>
             </div>
@@ -250,7 +253,7 @@
             <div class="am-gallery-item">
                 <a href="http://s.amazeui.org/media/i/demos/bing-4.jpg" class="">
                     <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg"  alt="终会走过这条遥远的道路"/>
-                    <h3 class="am-gallery-title">终会走过这条遥远的道路</h3>
+                    <h3 class="am-gallery-title">青年日报：恭喜知识社区今日上线</h3>
                     <div class="am-gallery-desc">2375-09-26</div>
                 </a>
             </div>
@@ -259,7 +262,7 @@
             <div class="am-gallery-item">
                 <a href="http://s.amazeui.org/media/i/demos/bing-3.jpg" class="">
                     <img src="http://s.amazeui.org/media/i/demos/bing-3.jpg"  alt="不要太担心 只因为我相信"/>
-                    <h3 class="am-gallery-title">不要太担心 只因为我相信</h3>
+                    <h3 class="am-gallery-title">北京新闻：恭喜知识社区今日上线</h3>
                     <div class="am-gallery-desc">2375-09-26</div>
                 </a>
             </div>
@@ -268,7 +271,7 @@
             <div class="am-gallery-item">
                 <a href="http://s.amazeui.org/media/i/demos/bing-4.jpg" class="">
                     <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg"  alt="终会走过这条遥远的道路"/>
-                    <h3 class="am-gallery-title">终会走过这条遥远的道路</h3>
+                    <h3 class="am-gallery-title">新华社报：恭喜知识社区今日上线</h3>
                     <div class="am-gallery-desc">2375-09-26</div>
                 </a>
             </div>
@@ -277,7 +280,7 @@
             <div class="am-gallery-item">
                 <a href="http://s.amazeui.org/media/i/demos/bing-3.jpg" class="">
                     <img src="http://s.amazeui.org/media/i/demos/bing-3.jpg"  alt="不要太担心 只因为我相信"/>
-                    <h3 class="am-gallery-title">不要太担心 只因为我相信</h3>
+                    <h3 class="am-gallery-title">中华网：恭喜知识社区今日上线</h3>
                     <div class="am-gallery-desc">2375-09-26</div>
                 </a>
             </div>
@@ -286,7 +289,7 @@
             <div class="am-gallery-item">
                 <a href="http://s.amazeui.org/media/i/demos/bing-4.jpg" class="">
                     <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg"  alt="终会走过这条遥远的道路"/>
-                    <h3 class="am-gallery-title">终会走过这条遥远的道路</h3>
+                    <h3 class="am-gallery-title">海外新闻：恭喜知识社区今日上线</h3>
                     <div class="am-gallery-desc">2375-09-26</div>
                 </a>
             </div>
@@ -350,14 +353,24 @@
         var type=$("#doc-select-1 option:selected").val();
         var title=$("#quesTitle").val();
         var content=$("#quesContent").val();
-        console.log(type);
-        console.log(content);
-        console.log(title);
+        var formData = new FormData();
+        formData.append('photo', $('#file')[0].files[0]);
+        formData.append('topicId', type);
+        formData.append('quesDescribe', content);
+        formData.append('quesName', title);
         if(type!="0"){
             if (title!="" && content!=""){
-                $.post("${baseUrl}saveQuestion",{topicId:type,quesName:title,quesDescribe:content},function (data) {
-                    if(data=1){
-                        alert("提交成功");
+
+                $.ajax({
+                    type: "POST",
+                    url:"${baseUrl}saveQuestion",
+                    data:formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        if(data==1){
+                            alert("提交成功");
+                        }
                     }
                 });
             }else {

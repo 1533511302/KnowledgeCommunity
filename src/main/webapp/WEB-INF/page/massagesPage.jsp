@@ -255,7 +255,7 @@
                         <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" style="border-top: 0px">
                             <div class="am-u-sm-5 am-list-thumb">
                                 <a href="#">
-                                    <img src="${baseUrl}Temp-images/b2.jpg" alt="配图"/>
+                                    <img src="/img/${massage.photo}" alt="配图"/>
                                 </a>
                             </div>
 
@@ -317,7 +317,7 @@
                     <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
                         <div class="am-u-sm-4 am-list-thumb">
                             <a href="vUsersCategory/${user.id}">
-                                <img src="Temp-images/face.jpg" class="face" style="width: 70px;height: 70px;"/>
+                                <img src="/img/${user.photo}" class="face" style="width: 70px;height: 70px;"/>
                             </a>
 
                             <button class="am-btn am-btn-warning am-round am-btn-xs"  key="1" onclick="clickVUserBtn(${user.id},this)"  style="margin-top: 5px;">

@@ -115,7 +115,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="categoryId != null" >
 				categoryId=#{categoryId},
 			</if>
-            <if test="cphoto != null" >
+            <if test="photo != null" >
                 photo=#{photo},
             </if>
 			<if test="username != null" >

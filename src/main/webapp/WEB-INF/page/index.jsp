@@ -245,7 +245,7 @@
                     <li>
                         <div class="am-gallery-item">
                             <a href="#">
-                                <img src="${baseUrl}Temp-images/lins.jpg"  alt="${audio.audioName}"/>
+                                <img src="/img/${audio.photo}"  alt="${audio.audioName}"/>
                                 <h3 class="am-gallery-title">${audio.audioName}</h3>
                                 <div class="am-gallery-desc">2375-09-26</div>
                             </a>
@@ -264,7 +264,7 @@
         <li>
             <div class="am-gallery-item">
                 <a href="${baseUrl}questionList/${topic.id}">
-                    <img src="${baseUrl}Temp-images/tempnews.png"  alt="远方 有一个地方 那里种有我们的梦想"/>
+                    <img src="/img/${topic.photo}"  alt="话题配图" style="height: 160px;"/>
                     <h3 class="am-gallery-title">${topic.topicName}</h3>
                     <div class="am-gallery-desc">2375-09-26</div>
                 </a>
@@ -292,7 +292,7 @@
                         <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
                             <div class="am-u-sm-5 am-list-thumb">
                                 <a href="#">
-                                    <img src="${baseUrl}Temp-images/b2.jpg" alt="配图"/>
+                                    <img src="/img/${massage.photo}" alt="配图"/>
                                 </a>
                             </div>
 
@@ -350,7 +350,7 @@
                         <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" style="border-top: 0px">
                             <div class="am-u-sm-5 am-list-thumb">
                                 <a href="#">
-                                    <img src="${baseUrl}Temp-images/b2.jpg" alt="配图"/>
+                                    <img src="/img/${massage.photo}" alt="配图"/>
                                 </a>
                             </div>
 
@@ -393,253 +393,7 @@
                     </c:forEach>
                 </ul>
             </div>
-            <a href="#"><img src="${baseUrl}Temp-images/ad2.png" class="am-img-responsive" width="100%"/></a>
 
-            <div class="am-hide-sm">
-                <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
-                    <h2 class="am-titlebar-title ">
-                        热门资讯
-                    </h2>
-                    <nav class="am-titlebar-nav">
-                        <a href="#more" onclick="$('.case').hide();$('#youxi').show();">游戏案例</a>
-                        <a href="#more" onclick="$('.case').hide();$('#yingxiao').show();">营销案例</a>
-                        <a href="#more" onclick="$('.case').hide();$('#gongju').show();">工具案例</a>
-                    </nav>
-                </div>
-
-
-                <div id="youxi" class="case am-animation-slide-left">
-                    <ul class="am-gallery am-avg-sm-2 am-avg-md-4 am-avg-lg-4 am-gallery-overlay" data-am-gallery="{ pureview: true }" >
-                        <li>
-                            <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
-                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                                    <div class="am-gallery-desc">2375-09-26</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
-                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                                    <div class="am-gallery-desc">2375-09-26</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
-                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                                    <div class="am-gallery-desc">2375-09-26</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
-                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                                    <div class="am-gallery-desc">2375-09-26</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
-                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                                    <div class="am-gallery-desc">2375-09-26</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
-                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                                    <div class="am-gallery-desc">2375-09-26</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
-                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                                    <div class="am-gallery-desc">2375-09-26</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
-                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                                    <div class="am-gallery-desc">2375-09-26</div>
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div id="yingxiao" class="case am-animation-slide-right dn">
-                    <ul class="am-gallery am-avg-sm-2 am-avg-md-4 am-avg-lg-4 am-gallery-overlay" data-am-gallery="{ pureview: true }" >
-                        <li>
-                            <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
-                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                                    <div class="am-gallery-desc">2375-09-26</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
-                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                                    <div class="am-gallery-desc">2375-09-26</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
-                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                                    <div class="am-gallery-desc">2375-09-26</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
-                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                                    <div class="am-gallery-desc">2375-09-26</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
-                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                                    <div class="am-gallery-desc">2375-09-26</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
-                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                                    <div class="am-gallery-desc">2375-09-26</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
-                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                                    <div class="am-gallery-desc">2375-09-26</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
-                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                                    <div class="am-gallery-desc">2375-09-26</div>
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-
-                <div id="gongju" class="dn case am-animation-slide-right">
-                    <ul class="am-gallery am-avg-sm-2 am-avg-md-4 am-avg-lg-4 am-gallery-overlay" data-am-gallery="{ pureview: true }" >
-                        <li>
-                            <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
-                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                                    <div class="am-gallery-desc">2375-09-26</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
-                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                                    <div class="am-gallery-desc">2375-09-26</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
-                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                                    <div class="am-gallery-desc">2375-09-26</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
-                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                                    <div class="am-gallery-desc">2375-09-26</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
-                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                                    <div class="am-gallery-desc">2375-09-26</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
-                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                                    <div class="am-gallery-desc">2375-09-26</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
-                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                                    <div class="am-gallery-desc">2375-09-26</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="am-gallery-item">
-                                <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
-                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                                    <div class="am-gallery-desc">2375-09-26</div>
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
         </div>
     </div>
     <div class="am-u-sm-12 am-u-md-12 am-u-lg-4">
@@ -657,7 +411,7 @@
                     <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
                         <div class="am-u-sm-4 am-list-thumb">
                             <a href="vUsersCategory/${user.id}">
-                                <img src="Temp-images/face.jpg" class="face" style="width: 70px;height: 70px;"/>
+                                <img src="/img/${user.photo}" class="face" style="width: 70px;height: 70px;"/>
                             </a>
 
                                 <button class="am-btn am-btn-warning am-round am-btn-xs"  key="1" onclick="clickVUserBtn(${user.id},this)"  style="margin-top: 5px;">
@@ -693,7 +447,7 @@
                     <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
                         <div class="am-u-sm-4 am-list-thumb">
                             <a href="vUsersCategory/${user.id}">
-                                <img src="Temp-images/face.jpg" class="face" style="width: 70px;height: 70px;"/>
+                                <img src="/img/${user.photo}" class="face" style="width: 70px;height: 70px;"/>
                             </a>
 
                             <button class="am-btn am-btn-warning am-round am-btn-xs"  key="1" onclick="clickVUserBtn(${user.id},this)"  style="margin-top: 5px;">
@@ -712,102 +466,6 @@
                 </c:forEach>
             </ul>
         </div>
-        <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
-            <h2 class="am-titlebar-title ">
-                评测
-            </h2>
-            <nav class="am-titlebar-nav">
-                <a href="#more">more &raquo;</a>
-            </nav>
-        </div>
-
-        <div data-am-widget="list_news" class="am-list-news am-list-news-default right-bg" data-am-scrollspy="{animation:'fade'}">
-            <ul class="am-list"  >
-                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-                    <div class="am-u-sm-4 am-list-thumb">
-                        <a href="http://www.douban.com/online/11624755/">
-                            <img src="Temp-images/face.jpg"/>
-                        </a>
-                    </div>
-
-                    <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">勾三古寺</a></h3>
-
-                        <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
-                    </div>
-                </li>
-                <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
-                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-                    <div class="am-u-sm-4 am-list-thumb">
-                        <a href="http://www.douban.com/online/11624755/">
-                            <img src="Temp-images/face.jpg"/>
-                        </a>
-                    </div>
-
-                    <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">勾三古寺</a></h3>
-
-                        <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
-
-                    </div>
-                </li>
-                <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
-                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-                    <div class="am-u-sm-4 am-list-thumb">
-                        <a href="http://www.douban.com/online/11624755/">
-                            <img src="Temp-images/face.jpg"/>
-                        </a>
-                    </div>
-
-                    <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">勾三古寺</a></h3>
-
-                        <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
-
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-        <ul class="am-gallery am-avg-sm-1
-  am-avg-md-2 am-avg-lg-2 am-gallery-default" data-am-gallery="{ pureview: true }" >
-            <li>
-                <div class="am-gallery-item">
-                    <a href="http://s.amazeui.org/media/i/demos/bing-1.jpg" class="">
-                        <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
-                        <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                        <div class="am-gallery-desc">
-                            <div class="am-fr">北京</div>
-                            <div class="am-fl">2016/11/11</div>
-                        </div>
-                    </a>
-                </div>
-            </li>
-            <li>
-                <div class="am-gallery-item">
-                    <a href="http://s.amazeui.org/media/i/demos/bing-2.jpg" class="">
-                        <img src="http://s.amazeui.org/media/i/demos/bing-2.jpg"  alt="某天 也许会相遇 相遇在这个好地方"/>
-                        <h3 class="am-gallery-title">某天 也许会相遇 相遇在这个好地方</h3>
-                        <div class="am-gallery-desc">
-                            <div class="am-fr">北京</div>
-                            <div class="am-fl">2016/11/11</div>
-                        </div>
-                    </a>
-                </div>
-            </li>
-            <li>
-                <div class="am-gallery-item">
-                    <a href="http://s.amazeui.org/media/i/demos/bing-2.jpg" class="">
-                        <img src="http://s.amazeui.org/media/i/demos/bing-2.jpg"  alt="某天 也许会相遇 相遇在这个好地方"/>
-                        <h3 class="am-gallery-title">某天 也许会相遇 相遇在这个好地方</h3>
-                        <div class="am-gallery-desc">
-                            <div class="am-fr">北京</div>
-                            <div class="am-fl">2016/11/11</div>
-                        </div>
-                    </a>
-                </div>
-            </li>
-        </ul>
 
     </div>
 </div>

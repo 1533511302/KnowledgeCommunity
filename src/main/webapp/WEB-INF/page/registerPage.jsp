@@ -17,6 +17,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="${baseurl}assets/css/amazeui.css" />
     <link rel="stylesheet" href="${baseurl}assets/css/other.min.css" />
+
+    <!-- Sweet Alert -->
+    <link href="${baseUrl}admin/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
     <script src="${baseurl}assets/js/jquery.min.js"></script>
     <script type="text/javascript">
 
@@ -30,12 +33,12 @@
             var username=$("#username").val();
             if (username==""){
 
-                alert("用户名不能为空！");
+                swal("错误！", "用户名不能为空！", "error");
                 return false;//因为这是submit表单提交 返回false 不进行请求
             }else {
                 $.post("isUsername",{username:username},function (data) {
                     if (data){
-                        alert("用户名已存在！");
+                        swal("错误！", "用户名已存在！", "error");
                         return false;
                     }else {
 
@@ -43,12 +46,12 @@
 
                         var password=$("#password").val();
                         if (password==""){
-                            alert("密码不能为空！");
+                            swal("错误！", "密码不能为空！", "error");
                             return false;
                         }
                         var confirm=$("#confirm").val();
                         if(confirm !=password){
-                            alert("确认密码不相等！");
+                            swal("错误！", "确认密码不相等！", "error");
                         }else {
                             $.ajax({
                                 type: 'post',
@@ -58,8 +61,17 @@
 
 
 
-                                        alert("注册成功！")
+                                    swal({
+                                        title: "成功",
+                                        text: "注册成功！",
+                                        type: "success",
+                                        confirmButtonColor: "#4CAF50",
+                                        confirmButtonText: "OK",
+                                        closeOnConfirm: false
+                                    }, function () {
                                         window.location.href="toLogin";
+                                    });
+
 
                                 }
                             });
@@ -97,5 +109,7 @@
         <button class="am-btn am-btn-secondary" onclick="login()" type="submit">注册</button>
     </form>
 </div>
+<!-- Sweet alert -->
+<script src="${baseUrl}admin/js/plugins/sweetalert/sweetalert.min.js"></script>
 </body>
 </html>

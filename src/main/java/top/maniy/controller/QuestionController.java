@@ -2,18 +2,24 @@ package top.maniy.controller;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSendException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import top.maniy.Form.QuestionForm;
 import top.maniy.entity.*;
 import top.maniy.service.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author liuzonghua
@@ -144,7 +150,8 @@ public class QuestionController {
      */
     @RequestMapping(value = "saveQuestion",method = RequestMethod.POST)
     @ResponseBody
-    public boolean SaveQuestion(@RequestParam String topicId,@RequestParam String quesName,@RequestParam String quesDescribe){
+    public boolean SaveQuestion(@RequestParam String topicId, HttpServletRequest request, @RequestParam(value = "photo",required = false) MultipartFile photo,
+                                @RequestParam String quesName, @RequestParam String quesDescribe){
         String username = (String) SecurityUtils.getSubject().getPrincipal();
         int userId =userService.findUserByUsername(username).getId();
 
@@ -153,6 +160,36 @@ public class QuestionController {
         question.setTopicId(topicId);
         question.setQuesName(quesName);
         question.setQuesDescribe(quesDescribe);
+
+        if(photo!=null){
+            String name = UUID.randomUUID().toString().replaceAll("-", "");
+            String fileName=photo.getOriginalFilename();// 文件原名称
+            //获取上传文件的目录
+            String path=request.getSession().getServletContext().getRealPath("/");
+            String newPath= null;
+            try {
+                newPath = path.substring(0,path.indexOf("KnowledgeCommunity"))+"images\\";
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new MailSendException("图片路径不正确");
+            }
+            //获取图片后缀
+            String ext= FilenameUtils.getExtension(fileName);
+            //新图片
+            File newfile =new File(newPath+ name+"."+ext);
+            //把内存图片写入磁盘中
+
+            try {
+                photo.transferTo(newfile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            question.setPhoto(name+"."+ext);
+        }else {
+            question.setPhoto("191ea1c12d824851ade02cfcf0e61e31.jpg");
+        }
+
+
         return questionService.saveQuestion(question);
     }
 

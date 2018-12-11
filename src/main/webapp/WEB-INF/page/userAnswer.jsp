@@ -102,7 +102,7 @@
         <div class="am-u-sm-12 am-u-md-12 am-u-lg-5 userinfo_left">
             <div class="am-g">
                 <div class="am-u-md-12 am-u-lg-6 userface">
-                    <img src="${baseurl}Temp-images/face2.jpg">
+                    <img src="/img/${user.photo}">
                 </div>
                 <div class="am-u-md-9 am-u-lg-6 userin">
                     <h3>姓名：${user.realname}</h3>

@@ -103,7 +103,7 @@
         <div class="am-u-sm-12 am-u-md-12 am-u-lg-5 userinfo_left">
             <div class="am-g">
                 <div class="am-u-md-12 am-u-lg-6 userface">
-                    <img src="${baseUrl}Temp-images/face2.jpg">
+                    <img src="/img/${user.photo}">
                 </div>
                 <div class="am-u-md-9 am-u-lg-6 userin">
                     <h3>姓名：${user.realname}</h3>
@@ -139,7 +139,7 @@
             <div class="am-panel-hd">个人信息</div>
             <div class="am-panel-bd" style="padding: 1rem;padding-bottom: 0.2rem">
 
-                <form class="am-form" action="${baseUrl}updateUser" method="post">
+                <form class="am-form" action="${baseUrl}updateUser" method="post" enctype="multipart/form-data">
                     <fieldset disabled id="field">
                         <div class="am-form-group">
                             <label for="doc-ipt-name-1">真实姓名</label>
@@ -170,6 +170,12 @@
 
                             </select>
                             <span class="am-form-caret"></span>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label for="photo">头像上传：</label>
+                            <input type="file" name="photo" id="photo">
+                            <p class="am-form-help">请选择要上传的图片...</p>
                         </div>
 
                        <%-- <div class="am-form-group am-form-file">
