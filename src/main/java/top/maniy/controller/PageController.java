@@ -45,6 +45,8 @@ public class PageController {
     @RequestMapping(value = "/toIndex",method = RequestMethod.GET)
 
     public String toIndex(ModelMap modelMap){
+        //点赞量最多的4篇文章
+        List<Massage> likeMassageList =massageService.findMassageByLikeNumbDesc0To4();
         //热门文章前五
         List<Massage> hotMassageList =massageService.findMassageByBrowseNumbDesc0To5();
         //最新文章前五
@@ -57,6 +59,7 @@ public class PageController {
         List<User> hotUserList=userService.findUserByRoleAndMassageNumbDescTo3();
         //文章大于或等于1新认证用户前三 bycreateTime
         List<User> newUserList=userService.findUserByRoleAndByMassageNumbAndCreateTimeDesc();
+        modelMap.put("likeMassageList",likeMassageList);
         modelMap.put("audioList",audioList);
         modelMap.put("newUserList",newUserList);
         modelMap.put("hotUserList",hotUserList);

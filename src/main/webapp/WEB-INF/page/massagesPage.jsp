@@ -103,7 +103,7 @@
 
         if($(btn).attr("key")==1){
 
-            $.post("saveCollectionMassage",{massageId:massageId},function (data) {
+            $.post("${baseUrl}saveCollectionMassage",{massageId:massageId},function (data) {
 
                 if(data=="1"){
                     $(btn).html("<i class='am-icon-heart'></i>&nbsp;已收藏");
@@ -123,7 +123,7 @@
 
         if($(btn).attr("key")==1){
 
-            $.post("saveCollectionVUser",{vUserId:vUserId},function (data) {
+            $.post("${baseUrl}saveCollectionVUser",{vUserId:vUserId},function (data) {
 
                 if(data=="1"){
                     $(btn).html("已关注");
@@ -192,25 +192,12 @@
         <div class="am-u-sm-12 am-u-md-12 am-u-lg-8 padding-none">
             <div data-am-widget="slider" class="am-slider am-slider-c1" data-am-slider='{"directionNav":false}' >
                 <ul class="am-slides">
-                    <li>
-                        <img src="${baseUrl}Temp-images/tad3.png">
-                        <div class="am-slider-desc">远方 有一个地方 那里种有我们的梦想</div>
-                    </li>
-                    <li>
-                        <img src="${baseUrl}Temp-images/tad3.png">
-                        <div class="am-slider-desc">某天 也许会相遇 相遇在这个好地方</div>
-
-                    </li>
-                    <li>
-                        <img src="${baseUrl}Temp-images/tad3.png">
-                        <div class="am-slider-desc">不要太担心 只因为我相信 终会走过这条遥远的道路</div>
-
-                    </li>
-                    <li>
-                        <img src="${baseUrl}Temp-images/tad3.png">
-                        <div class="am-slider-desc">OH PARA PARADISE 是否那么重要 你是否那么地遥远</div>
-
-                    </li>
+                    <c:forEach var="massage" items="${likeMassageList}" varStatus="index">
+                        <li>
+                            <a href="${baseUrl}massages/${massage.id}"><img src="/img/${massage.photo}" style="height: 420px;"></a>
+                            <div class="am-slider-desc">${massage.title}</div>
+                        </li>
+                    </c:forEach>
                 </ul>
             </div>
 
@@ -307,7 +294,7 @@
                 新咖
             </h2>
             <nav class="am-titlebar-nav">
-                <a href="#more">more &raquo;</a>
+                <a href="${baseUrl}vUsers/1">more &raquo;</a>
             </nav>
         </div>
 

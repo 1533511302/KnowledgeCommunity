@@ -97,6 +97,11 @@ public class MassageServiceImpl implements MassageService {
     }
 
     @Override
+    public List<Massage> findMassageByLikeNumbDesc0To4() {
+        return massageMapper.findMassageByLikeNumbDesc(0,4);
+    }
+
+    @Override
     public PageInfo<Massage> findMassageByUserIdAndLikeTitle(Integer userId, String title, int currentPage, int pageSize) {
         PageHelper.startPage(currentPage,pageSize);
         List<Massage> massageList =massageMapper.findMassageByUserIdAndLikeTitle(userId,title);

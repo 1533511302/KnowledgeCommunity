@@ -34,6 +34,11 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    public List<Question> findQuestionByLikeNumbDesc0To4(Integer topicId) {
+        return questionMapper.findQuestionByLikeNumbDesc(topicId,0,4);
+    }
+
+    @Override
     public PageInfo<Question> findQuestionByUserCollection(List<Collections> collectionsList, int currentPage, int pageSize) {
         PageHelper.startPage(currentPage,pageSize);
         List<Question> massageList = new ArrayList<Question>();

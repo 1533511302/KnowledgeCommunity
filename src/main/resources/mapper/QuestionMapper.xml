@@ -21,6 +21,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM question WHERE quesName LIKE '%${quesName}%'
 	</select>
 
+	<select id="findQuestionByLikeNumbDesc" resultType="Question">
+		SELECT * FROM question WHERE topicId=#{topicId} ORDER BY likeNumb DESC LIMIT #{start},#{end}
+	</select>
 
 	<select id="findQuestionByUserId" resultType="Question">
 		SELECT * FROM question WHERE userId = #{userId}

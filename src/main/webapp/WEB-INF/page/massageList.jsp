@@ -349,7 +349,7 @@
                 新咖
             </h2>
             <nav class="am-titlebar-nav">
-                <a href="#more">more &raquo;</a>
+                <a href="${baseUrl}vUsers/1">more &raquo;</a>
             </nav>
         </div>
 

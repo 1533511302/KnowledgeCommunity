@@ -321,7 +321,7 @@
                 大咖
             </h2>
             <nav class="am-titlebar-nav">
-                <a href="#more">more &raquo;</a>
+                <a href="${baseUrl}vUsers/1">more &raquo;</a>
             </nav>
         </div>
         <div data-am-widget="list_news" class="am-list-news am-list-news-default right-bg" data-am-scrollspy="{animation:'fade'}">

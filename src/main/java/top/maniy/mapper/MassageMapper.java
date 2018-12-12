@@ -34,6 +34,9 @@ public interface MassageMapper {
     //根据时间排序获取massage
     List<Massage> findMassageByCreateTimeDesc(@Param("start") Integer start,@Param("end") Integer end);
 
+    //根据点赞量排序获取massage
+    List<Massage> findMassageByLikeNumbDesc(@Param("start") Integer start,@Param("end") Integer end);
+
     //根据点击量排序获取massage
     List<Massage> findMassageByBrowseNumbDesc(@Param("start") Integer start,@Param("end") Integer end);
 

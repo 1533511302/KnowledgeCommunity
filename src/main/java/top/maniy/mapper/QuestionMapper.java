@@ -28,6 +28,9 @@ public interface QuestionMapper {
     //根据问题名模糊查询
     List<Question> findQuestionLikeQuesName(@Param("quesName") String quesName);
 
+    //根据点赞量排序获取massage
+    List<Question> findQuestionByLikeNumbDesc(@Param("topicId") Integer topicId,@Param("start") Integer start,@Param("end") Integer end);
+
     //根据问题id查询问题
     Question findQuestionById(Integer id);
 

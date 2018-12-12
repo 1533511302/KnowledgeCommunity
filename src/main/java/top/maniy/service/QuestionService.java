@@ -21,6 +21,10 @@ public interface QuestionService {
     //全部问题
     List<Question> findAllQuestion();
 
+    //根据点赞量排序获取massage前4条
+    List<Question> findQuestionByLikeNumbDesc0To4(Integer topicId);
+
+
     //根据用户收藏获取问题
     PageInfo<Question> findQuestionByUserCollection(List<Collections> collectionsList, int currentPage, int pageSize);
 

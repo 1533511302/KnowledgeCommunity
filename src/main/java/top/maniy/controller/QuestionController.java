@@ -61,12 +61,19 @@ public class QuestionController {
                                         @RequestParam(value="page", required=false, defaultValue="1") Integer page,
                                         @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize,
                                         ModelMap modelMap){
+        //话题
+        PageInfo<Topic> topicList=topicService.findAllTopic(1,20);
+        //问题
         PageInfo<Question> pageInfo=questionService.findQuestionByTopicId(String.valueOf(topicId),page,pageSize);
+        //话题中点赞量最多的4个问题
+        List<Question> likeQuestionList =questionService.findQuestionByLikeNumbDesc0To4(topicId);
         Topic topic =topicService.findTopicById(topicId);
         List<Label> labelList =labelService.findQuestionLabelByHot(20);
         modelMap.put("pageInfo",pageInfo);
         modelMap.put("topic",topic);
         modelMap.put("labelList",labelList);
+        modelMap.put("topicList",topicList);
+        modelMap.put("likeQuestionList",likeQuestionList);
         return "questionList";
     }
 
@@ -121,6 +128,12 @@ public class QuestionController {
         PageInfo<Topic> topicList=topicService.findAllTopic(1,20);
         Question question=questionService.findQuestionById(quesId);
         PageInfo<Answer> pageInfo =answerService.findAnswerByQuesId(quesId,page,pageSize);
+        //热门认证用户前三 by文章数
+        List<User> hotUserList=userService.findUserByRoleAndMassageNumbDescTo3();
+        //文章大于或等于1新认证用户前三 bycreateTime
+        List<User> newUserList=userService.findUserByRoleAndByMassageNumbAndCreateTimeDesc();
+        modelMap.put("newUserList",newUserList);
+        modelMap.put("hotUserList",hotUserList);
         modelMap.put("topicList",topicList);
         modelMap.put("question",question);
         modelMap.put("pageInfo",pageInfo);

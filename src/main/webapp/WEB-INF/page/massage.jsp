@@ -47,7 +47,6 @@
     <![endif]-->
     <script src="${baseUrl}assets/js/amazeui.min.js"></script>
     <script src="${baseUrl}js/public.js"></script>
-
 </head>
 <body>
 
@@ -172,179 +171,78 @@
             </div>
         </div>
     </div>
-    <div class="am-u-sm-0 am-u-md-0 am-u-lg-4">
+    <div class="am-u-sm-12 am-u-md-12 am-u-lg-4">
         <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
             <h2 class="am-titlebar-title ">
-                个人专栏
+                大咖
             </h2>
             <nav class="am-titlebar-nav">
-                <a href="#more">more &raquo;</a>
+                <a href="${baseUrl}vUsers/1">more &raquo;</a>
             </nav>
         </div>
-
-        <div data-am-widget="list_news" class="am-list-news am-list-news-default right-bg">
+        <div data-am-widget="list_news" class="am-list-news am-list-news-default right-bg" data-am-scrollspy="{animation:'fade'}">
             <ul class="am-list"  >
-                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-                    <div class="am-u-sm-4 am-list-thumb">
-                        <a href="http://www.douban.com/online/11624755/">
-                            <img src="${baseUrl}Temp-images/face.jpg" class="face"/>
-                        </a>
-                    </div>
+                <c:forEach var="user" items="${hotUserList}" varStatus="index">
+                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+                        <div class="am-u-sm-4 am-list-thumb">
+                            <a href="vUsersCategory/${user.id}">
+                                <img src="/img/${user.photo}" class="face" style="width: 70px;height: 70px;"/>
+                            </a>
 
-                    <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">勾三古寺</a></h3>
+                            <button class="am-btn am-btn-warning am-round am-btn-xs"  key="1" onclick="clickVUserBtn(${user.id},this)"  style="margin-top: 5px;">
+                                关注一下
+                            </button>
 
-                        <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
-                    </div>
-                </li>
-                <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
-                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-                    <div class="am-u-sm-4 am-list-thumb">
-                        <a href="http://www.douban.com/online/11624755/">
-                            <img src="${baseUrl}Temp-images/face.jpg" class="face"/>
-                        </a>
-                    </div>
+                        </div>
 
-                    <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">勾三古寺</a></h3>
+                        <div class=" am-u-sm-8 am-list-main">
+                            <h3 class="am-list-item-hd"><a href="vUsersCategory/${user.id}">${user.realname}</a></h3>
 
-                        <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
+                            <div class="am-list-item-text">${user.autograph}</div>
+                        </div>
 
-                    </div>
-                </li>
-                <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
-                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-                    <div class="am-u-sm-4 am-list-thumb">
-                        <a href="http://www.douban.com/online/11624755/">
-                            <img src="${baseUrl}Temp-images/face.jpg" class="face"/>
-                        </a>
-                    </div>
-
-                    <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">勾三古寺</a></h3>
-
-                        <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
-
-                    </div>
-                </li>
+                    </li>
+                    <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+                </c:forEach>
             </ul>
         </div>
 
         <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
             <h2 class="am-titlebar-title ">
-                合作专栏
+                新咖
             </h2>
             <nav class="am-titlebar-nav">
-                <a href="#more">more &raquo;</a>
+                <a href="${baseUrl}vUsers/1">more &raquo;</a>
             </nav>
         </div>
 
-        <div data-am-widget="list_news" class="am-list-news am-list-news-default right-bg">
+        <div data-am-widget="list_news" class="am-list-news am-list-news-default right-bg" data-am-scrollspy="{animation:'fade'}">
             <ul class="am-list">
-                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-                    <div class="am-u-sm-4 am-list-thumb">
-                        <a href="http://www.douban.com/online/11624755/">
-                            <img src="${baseUrl}Temp-images/face.jpg" class="face"/>
-                        </a>
-                    </div>
+                <c:forEach var="user" items="${newUserList}" varStatus="index">
+                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+                        <div class="am-u-sm-4 am-list-thumb">
+                            <a href="vUsersCategory/${user.id}">
+                                <img src="/img/${user.photo}" class="face" style="width: 70px;height: 70px;"/>
+                            </a>
 
-                    <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">勾三古寺</a></h3>
+                            <button class="am-btn am-btn-warning am-round am-btn-xs"  key="1" onclick="clickVUserBtn(${user.id},this)"  style="margin-top: 5px;">
+                                关注一下
+                            </button>
 
-                        <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
-                    </div>
-                </li>
-                <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
-                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-                    <div class="am-u-sm-4 am-list-thumb">
-                        <a href="http://www.douban.com/online/11624755/">
-                            <img src="${baseUrl}Temp-images/face.jpg" class="face"/>
-                        </a>
-                    </div>
+                        </div>
 
-                    <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">勾三古寺</a></h3>
+                        <div class=" am-u-sm-8 am-list-main">
+                            <h3 class="am-list-item-hd"><a href="vUsersCategory/${user.id}">${user.realname}</a></h3>
 
-                        <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
-
-                    </div>
-                </li>
-                <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
-                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-                    <div class="am-u-sm-4 am-list-thumb">
-                        <a href="http://www.douban.com/online/11624755/">
-                            <img src="${baseUrl}Temp-images/face.jpg" class="face"/>
-                        </a>
-                    </div>
-
-                    <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">勾三古寺</a></h3>
-
-                        <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
-
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
-            <h2 class="am-titlebar-title ">
-                评测
-            </h2>
-            <nav class="am-titlebar-nav">
-                <a href="#more">more &raquo;</a>
-            </nav>
-        </div>
-
-        <div data-am-widget="list_news" class="am-list-news am-list-news-default right-bg">
-            <ul class="am-list"  >
-                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-                    <div class="am-u-sm-4 am-list-thumb">
-                        <a href="http://www.douban.com/online/11624755/">
-                            <img src="${baseUrl}Temp-images/face.jpg"/>
-                        </a>
-                    </div>
-
-                    <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">勾三古寺</a></h3>
-
-                        <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
-                    </div>
-                </li>
-                <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
-                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-                    <div class="am-u-sm-4 am-list-thumb">
-                        <a href="http://www.douban.com/online/11624755/">
-                            <img src="${baseUrl}Temp-images/face.jpg"/>
-                        </a>
-                    </div>
-
-                    <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">勾三古寺</a></h3>
-
-                        <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
-
-                    </div>
-                </li>
-                <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
-                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-                    <div class="am-u-sm-4 am-list-thumb">
-                        <a href="http://www.douban.com/online/11624755/">
-                            <img src="${baseUrl}Temp-images/face.jpg"/>
-                        </a>
-                    </div>
-
-                    <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">勾三古寺</a></h3>
-
-                        <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
-
-                    </div>
-                </li>
+                            <div class="am-list-item-text">${user.autograph}</div>
+                        </div>
+                    </li>
+                    <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+                </c:forEach>
             </ul>
         </div>
 
-
-
+    </div>
     </div>
 </div>
 </div>
@@ -407,6 +305,26 @@
         }else {
             alert("内容不能为空！！！")
         }
+    }
+
+    function clickVUserBtn(vUserId,btn) {
+
+        if($(btn).attr("key")==1){
+
+            $.post("${baseUrl}saveCollectionVUser",{vUserId:vUserId},function (data) {
+
+                if(data=="1"){
+                    $(btn).html("已关注");
+
+                }
+                if(data=="2"){
+                    $(btn).html("关注过");
+
+                }
+            });
+        }
+        $(btn).attr("key","2");
+
     }
 
 </script>

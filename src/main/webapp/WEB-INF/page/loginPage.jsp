@@ -25,6 +25,8 @@
     <!-- Sweet Alert -->
     <link href="${baseUrl}admin/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
 
+    <!-- Sweet alert -->
+    <script src="${baseUrl}admin/js/plugins/sweetalert/sweetalert.min.js"></script>
     <script src="<%=basePath%>assets/js/jquery.min.js"></script>
     <script>
 
@@ -59,7 +61,7 @@
                     if (mydata == "1") {
 
                         window.location.href="toIndex";
-                    }if(mydata == "3"){
+                    }else if(mydata == "3"){
 
                         window.location.href="toAdminIndex";
                     }
@@ -89,13 +91,12 @@
             <input type="password" id="password" placeholder="输入密码" required/>
         </div>
 
-            <input type="checkbox" id="rememberMe"/>自动登录
+            <input type="checkbox" id="rememberMe"/>自动登录 <a style="margin-left: 200px;" href="toRegister">注册</a>
 
         <button class="am-btn am-btn-secondary"  onclick="login()" type="button">登录</button>
 
     </form>
 </div>
-<!-- Sweet alert -->
-<script src="${baseUrl}admin/js/plugins/sweetalert/sweetalert.min.js"></script>
+
 </body>
 </html>

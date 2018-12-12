@@ -65,7 +65,12 @@ public class MassageController {
 
         Massage massage= massageService.findMassageById(id);
         List<Comment> commentList=commentService.findCommentByMassageIdAndByLikeNumbDescTo3(id);
-
+        //热门认证用户前三 by文章数
+        List<User> hotUserList=userService.findUserByRoleAndMassageNumbDescTo3();
+        //文章大于或等于1新认证用户前三 bycreateTime
+        List<User> newUserList=userService.findUserByRoleAndByMassageNumbAndCreateTimeDesc();
+        modelMap.put("newUserList",newUserList);
+        modelMap.put("hotUserList",hotUserList);
         modelMap.put("commentList",commentList);
         modelMap.put("massage",massage);
         return "massage";
@@ -78,6 +83,8 @@ public class MassageController {
      */
     @RequestMapping(value = "/massagePage")
     public String massagePage(ModelMap modelMap){
+        //点赞量最多的4篇文章
+        List<Massage> likeMassageList =massageService.findMassageByLikeNumbDesc0To4();
         //文章大于或等于1新认证用户前三 bycreateTime
         List<User> newUserList=userService.findUserByRoleAndByMassageNumbAndCreateTimeDesc();
         //随机10片文章
@@ -88,6 +95,7 @@ public class MassageController {
         modelMap.put("categoryList",categoryList);
         modelMap.put("labelList",labelList);
         modelMap.put("newUserList",newUserList);
+        modelMap.put("likeMassageList",likeMassageList);
         return "massagesPage";
     }
 

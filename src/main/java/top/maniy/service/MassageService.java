@@ -49,6 +49,9 @@ public interface MassageService {
     //根据点击量排序获取massage前5条
     List<Massage> findMassageByBrowseNumbDesc0To5();
 
+    //根据点赞量排序获取massage前4条
+    List<Massage> findMassageByLikeNumbDesc0To4();
+
     //根据userId，title模糊查询massage
     PageInfo<Massage> findMassageByUserIdAndLikeTitle(Integer userId,String title, int currentPage, int pageSize);
 
