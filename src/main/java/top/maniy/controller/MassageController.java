@@ -243,12 +243,51 @@ public class MassageController {
     @RequestMapping(value = "/updateMassages",method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("massage:update")
-    public boolean updateMassage(@RequestParam Integer massageId,@RequestParam Integer type ,@RequestParam String title,@RequestParam String content){
+    public boolean updateMassage(HttpServletRequest request, @RequestParam(required = false) MultipartFile photo,
+                                 @RequestParam Integer massageId,@RequestParam Integer type ,@RequestParam String title,
+                                 @RequestParam String content){
         Massage massage =new Massage();
         massage.setId(massageId);
         massage.setCategoryId(type);
         massage.setTitle(title);
         massage.setContent(content);
+
+        if(photo!=null){
+            String name = UUID.randomUUID().toString().replaceAll("-", "");
+
+
+            String fileName=photo.getOriginalFilename();// 文件原名称
+
+            //获取上传文件的目录
+
+            String path=request.getSession().getServletContext().getRealPath("/");
+
+            String newPath= null;
+            try {
+                newPath = path.substring(0,path.indexOf("KnowledgeCommunity"))+"images\\";
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new MailSendException("图片路径不正确");
+            }
+
+            //获取图片后缀
+            String ext= FilenameUtils.getExtension(fileName);
+
+            //获取文件的后缀
+            //String ext2=name.substring(name.lastIndexOf("."), name.length()-1);
+
+            //新图片
+            File newfile =new File(newPath+ name+"."+ext);
+            //把内存图片写入磁盘中
+
+            try {
+                photo.transferTo(newfile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            massage.setPhoto(name+"."+ext);
+        }
+
         return massageService.updateMassage(massage);
     }
 

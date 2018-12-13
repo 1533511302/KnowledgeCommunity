@@ -231,7 +231,7 @@
                 <c:forEach var="audio" items="${audioList}">
                     <li>
                         <div class="am-gallery-item">
-                            <a href="#">
+                            <a href="${baseUrl}audio/${audio.id}">
                                 <img src="/img/${audio.photo}"  alt="${audio.audioName}"/>
                                 <h3 class="am-gallery-title">${audio.audioName}</h3>
                                 <div class="am-gallery-desc">2375-09-26</div>

@@ -133,7 +133,10 @@
                         </c:forEach>
                     </select>
                 </div>
-
+                <div class="am-form-group am-form-file">
+                    <i class="am-icon-cloud-upload"></i> 选择图文封面图(非必选项)
+                    <input id="file" type="file" multiple>
+                </div>
                 <div class="am-input-group am-input-group-primary" style="margin-top: 20px;margin-bottom: 20px">
                     <span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
                     <input id="title" type="text" class="am-form-field" value="${massage.title}">
@@ -233,16 +236,26 @@
         var title=$("#title").val();
         var content=editor.txt.html();
         var massageId=$("#massageId").val();
-        console.log(title);
-        console.log(content);
+        var formData = new FormData();
+        formData.append('photo', $('#file')[0].files[0]);
+        formData.append('type', type);
+        formData.append('content', content);
+        formData.append('title', title);
+        formData.append('massageId',massageId);
         if(type!="0"){
             if (title!="" && content!=""){
-                $.post("${baseUrl}updateMassages",{massageId:massageId,type:type,title:title,content:content},function (data) {
-                    console.log("sss");
-                    if(data==1){
-                        alert("提交成功");
-                        //js跳转页面
-                        location.href="${baseUrl}massages/${massage.id}";
+                $.ajax({
+                    type: "POST",
+                    url:"${baseUrl}updateMassages",
+                    data:formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        if(data==1){
+                            alert("提交成功");
+                            //js跳转页面
+                            location.href="${baseUrl}massages/${massage.id}";
+                        }
                     }
                 });
             }else {

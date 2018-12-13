@@ -1,21 +1,26 @@
 package top.maniy.controller;
 
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSendException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import top.maniy.Form.AudioForm;
 import top.maniy.entity.Audio;
 import top.maniy.entity.Category;
+import top.maniy.entity.User;
 import top.maniy.service.AudioService;
 import top.maniy.service.CategoryService;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author liuzonghua
@@ -31,6 +36,156 @@ public class AudioController {
 
     @Autowired
     private AudioService audioService;
+
+    @RequestMapping(value = "editAudioPage")
+    public String toSaveAudio(){
+        return "editAudioPage";
+    }
+
+    @RequestMapping(value = "saveAudio",method = RequestMethod.POST)
+    @ResponseBody
+    public boolean saveAudio(HttpServletRequest request,@RequestParam(required = false) MultipartFile photo,MultipartFile audio,Integer type,String audioName,
+                            String audioDescribe){
+        Audio audio1 =new Audio();
+        User user = (User) request.getSession().getAttribute("User");
+        audio1.setUserId(user.getId());
+        audio1.setUserName(user.getRealname());
+        audio1.setCategoryId(type);
+        audio1.setAudioName(audioName);
+        audio1.setAudioDescribe(audioDescribe);
+
+        if(photo!=null){
+            String name = UUID.randomUUID().toString().replaceAll("-", "");
+            String fileName=photo.getOriginalFilename();// 文件原名称
+            //获取上传文件的目录
+            String path=request.getSession().getServletContext().getRealPath("/");
+            String newPath= null;
+            try {
+                newPath = path.substring(0,path.indexOf("KnowledgeCommunity"))+"images\\";
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new MailSendException("图片路径不正确");
+            }
+            //获取图片后缀
+            String ext= FilenameUtils.getExtension(fileName);
+            //新图片
+            File newfile =new File(newPath+ name+"."+ext);
+            //把内存图片写入磁盘中
+            try {
+                photo.transferTo(newfile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            audio1.setPhoto(name+"."+ext);
+        }else {
+            audio1.setPhoto("191ea1c12d824851ade02cfcf0e61e31.jpg");
+        }
+
+        String name = UUID.randomUUID().toString().replaceAll("-", "");
+        String fileName=audio.getOriginalFilename();// 文件原名称
+        //获取上传文件的目录
+        String path=request.getSession().getServletContext().getRealPath("/");
+        String newPath= null;
+        try {
+            newPath = path.substring(0,path.indexOf("KnowledgeCommunity"))+"images\\";
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new MailSendException("图片路径不正确");
+        }
+        //获取图片后缀
+        String ext= FilenameUtils.getExtension(fileName);
+        //新图片
+        File newfile =new File(newPath+ name+"."+ext);
+        //把内存图片写入磁盘中
+        try {
+            audio.transferTo(newfile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        audio1.setUrl(name+"."+ext);
+
+        return audioService.saveAudio(audio1);
+    }
+
+
+    @RequestMapping(value = "updateAudio",method = RequestMethod.POST)
+    @ResponseBody
+    public boolean updateAudio(HttpServletRequest request,@RequestParam(required = false) MultipartFile photo,
+                               @RequestParam(required = false) MultipartFile audio,Integer type,String audioName,
+                             String audioDescribe,Integer audioId){
+        Audio audio1 =new Audio();
+        audio1.setId(audioId);
+        audio1.setCategoryId(type);
+        audio1.setAudioName(audioName);
+        audio1.setAudioDescribe(audioDescribe);
+
+        if(photo!=null){
+            String name = UUID.randomUUID().toString().replaceAll("-", "");
+            String fileName=photo.getOriginalFilename();// 文件原名称
+            //获取上传文件的目录
+            String path=request.getSession().getServletContext().getRealPath("/");
+            String newPath= null;
+            try {
+                newPath = path.substring(0,path.indexOf("KnowledgeCommunity"))+"images\\";
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new MailSendException("图片路径不正确");
+            }
+            //获取图片后缀
+            String ext= FilenameUtils.getExtension(fileName);
+            //新图片
+            File newfile =new File(newPath+ name+"."+ext);
+            //把内存图片写入磁盘中
+            try {
+                photo.transferTo(newfile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            audio1.setPhoto(name+"."+ext);
+        }
+
+        if(audio!=null) {
+            String name = UUID.randomUUID().toString().replaceAll("-", "");
+            String fileName = audio.getOriginalFilename();// 文件原名称
+            //获取上传文件的目录
+            String path = request.getSession().getServletContext().getRealPath("/");
+            String newPath = null;
+            try {
+                newPath = path.substring(0, path.indexOf("KnowledgeCommunity")) + "images\\";
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new MailSendException("图片路径不正确");
+            }
+            //获取图片后缀
+            String ext = FilenameUtils.getExtension(fileName);
+            //新图片
+            File newfile = new File(newPath + name + "." + ext);
+            //把内存图片写入磁盘中
+            try {
+                audio.transferTo(newfile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            audio1.setUrl(name + "." + ext);
+        }
+        return audioService.updateAudio(audio1);
+    }
+
+    @RequestMapping("toUpdateAudio")
+    public String toUpdateAudio(@RequestParam Integer audioId,ModelMap modelMap){
+        List<Category> categoryList =categoryService.findCategoryByTypeAndStatus(2,"1");
+        Audio audio =audioService.findAudioById(audioId);
+        modelMap.put("audio",audio);
+        modelMap.put("categoryList",categoryList);
+        return "updateAudioPage";
+    }
+
+    @RequestMapping("deleteAudio")
+    @ResponseBody
+    public boolean deleteAudio(@RequestParam Integer id){
+        return audioService.deleteAudio(id);
+    }
+
 
     /**
      * 音频主页
@@ -149,10 +304,5 @@ public class AudioController {
         return audioService.updateAudio(audio);
     }
 
-    @RequestMapping("deleteAudio")
-    @ResponseBody
-    public boolean deleteAudio(@RequestParam("id") Integer id){
-        return audioService.deleteAudio(id);
-    }
 
 }

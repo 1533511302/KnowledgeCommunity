@@ -173,16 +173,18 @@
                                 <div align="right" style="width:840px;height:50px;margin-top: 120px;">
                                     <div class="am-btn-group">
 
-
-                                        <button class="am-btn am-btn-warning am-radius" style="width: 100px">
-                                            <i class="am-icon-pencil"></i>
-                                            修改
-                                        </button>
-
-                                        <button class="am-btn am-btn-danger  am-radius" style="width: 100px">
+                                        <button class="am-btn am-btn-danger  am-radius" style="width: 100px" onclick="clickDeleteBtn(${massage.id})">
                                             <i class="am-icon-eraser"></i>
                                             删除
                                         </button>
+
+                                        <a href="${baseUrl}toUpdateAudio?audioId=${audio.id}">
+                                            <button class="am-btn am-btn-warning am-radius" style="width: 100px">
+                                                <i class="am-icon-pencil"></i>
+                                                修改
+                                            </button>
+                                        </a>
+
                                     </div>
 
                                 </div>
@@ -276,5 +278,15 @@
         </div>
     </div>
 </footer>
+<script>
+    function clickDeleteBtn(audioId) {
+        $.post("${baseUrl}deleteAudio",{id:audioId},function (data) {
+            if(data){
+                alert("删除成功！");
+            }
+        });
+
+    }
+</script>
 </body>
 </html>

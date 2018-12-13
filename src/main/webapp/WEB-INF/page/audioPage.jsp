@@ -210,12 +210,13 @@
         $("#topface li:eq(0) p").html(temp_p);
     });
 </script>
+
+<div class="star am-container mcenter"><span><a class="am-badge am-badge-secondary am-text-xl" style="margin-left: 10px" href="${baseUrl}editAudioPage">分享音频</a></span></div>
 <div class="am-container" style="margin-top: 10px">
     <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
         <h2 class="am-titlebar-title ">
             音频分类
         </h2>
-
     </div>
     <ul class="am-avg-sm-1 am-avg-md-2 am-avg-lg-1" style="margin-top: 30px;margin-left: 10px">
         <li class="ms" style="line-height: 50px">
@@ -239,7 +240,7 @@
             <li>
             <div class="am-gallery-item">
                 <a href="${baseUrl}audio/${audio.id}" class="">
-                    <img src="/img/${audio.photo}"  alt="远方 有一个地方 那里种有我们的梦想"/>
+                    <img src="/img/${audio.photo}"  alt="配图"/>
                     <h3 class="am-gallery-title">${audio.audioName}</h3>
                     <div class="am-gallery-desc">${audio.createTime}</div>
                 </a>
@@ -259,7 +260,7 @@
             <li>
                 <div class="am-gallery-item">
                     <a href="${baseUrl}audio/${audio.id}" class="">
-                        <img src="/img/${audio.photo}"  alt="远方 有一个地方 那里种有我们的梦想"/>
+                        <img src="/img/${audio.photo}"  alt="配图"/>
                         <h3 class="am-gallery-title">${audio.audioName}</h3>
                         <div class="am-gallery-desc">${audio.createTime}</div>
                     </a>
@@ -279,7 +280,7 @@
             <li>
                 <div class="am-gallery-item">
                     <a href="${baseUrl}audio/${audio.id}" class="">
-                        <img src="/img/${audio.photo}"  alt="远方 有一个地方 那里种有我们的梦想"/>
+                        <img src="/img/${audio.photo}"  alt="配图"/>
                         <h3 class="am-gallery-title">${audio.audioName}</h3>
                         <div class="am-gallery-desc">${audio.createTime}</div>
                     </a>
@@ -299,7 +300,7 @@
             <li>
                 <div class="am-gallery-item">
                     <a href="${baseUrl}audio/${audio.id}" class="">
-                        <img src="/img/${audio.photo}"  alt="远方 有一个地方 那里种有我们的梦想"/>
+                        <img src="/img/${audio.photo}"  alt="配图"/>
                         <h3 class="am-gallery-title">${audio.audioName}</h3>
                         <div class="am-gallery-desc">${audio.createTime}</div>
                     </a>

@@ -131,8 +131,8 @@
         <c:forEach var="audio" items="${pageInfo.list}" varStatus="v">
             <li>
             <div class="am-gallery-item">
-                <a href="http://s.amazeui.org/media/i/demos/bing-1.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
+                <a href="${baseUrl}audio/${audio.id}" class="">
+                    <img src="/img/${audio.photo}"  alt="配图"/>
                     <h3 class="am-gallery-title">${audio.audioName}</h3>
                     <div class="am-gallery-desc">${audio.createTime}</div>
                 </a>
