@@ -26,6 +26,9 @@ public interface AudioService {
     //根据UserId查询音频
     PageInfo<Audio> findAudioByUserId(Integer userId, int currentPage, int pageSize);
 
+    //根据UserId查询音频
+    List<Audio> findAudioByUserId(Integer userId);
+
     //根据id查询音频
     Audio findAudioById(Integer id);
 

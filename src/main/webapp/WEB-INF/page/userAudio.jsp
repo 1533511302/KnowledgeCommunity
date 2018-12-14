@@ -159,7 +159,7 @@
                         <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" style="border-top: 0px">
                             <div class="am-u-sm-5 am-list-thumb">
                                 <a href="#">
-                                    <img src="${baseUrl}Temp-images/b2.jpg" alt="配图"/>
+                                    <img src="/img/${audio.photo}" alt="配图" style="height: 200px;"/>
                                 </a>
                             </div>
 
@@ -173,7 +173,7 @@
                                 <div align="right" style="width:840px;height:50px;margin-top: 120px;">
                                     <div class="am-btn-group">
 
-                                        <button class="am-btn am-btn-danger  am-radius" style="width: 100px" onclick="clickDeleteBtn(${massage.id})">
+                                        <button class="am-btn am-btn-danger  am-radius" style="width: 100px" onclick="clickDeleteBtn(${audio.id})">
                                             <i class="am-icon-eraser"></i>
                                             删除
                                         </button>
@@ -283,6 +283,7 @@
         $.post("${baseUrl}deleteAudio",{id:audioId},function (data) {
             if(data){
                 alert("删除成功！");
+                location.reload();
             }
         });
 

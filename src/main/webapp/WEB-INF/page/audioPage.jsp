@@ -83,7 +83,7 @@
                     </ul>
                 </li>
             </ul>
-            <form action="${baseUrl}massages/likeName" class="am-topbar-form am-topbar-left am-form-inline" role="search">
+            <form action="${baseUrl}audioList/likeName" class="am-topbar-form am-topbar-left am-form-inline" role="search">
                 <div class="am-form-group" style="margin-top: 9px;margin-left: 100px">
                     <input name="title" type="text" class="am-form-field am-input-sm" placeholder="搜索内容" value="${title}">
                 </div>
@@ -105,66 +105,18 @@
     </div>
     <div class="am-container" >
         <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-6 am-thumbnails" id="topface">
-            <li>
-                <a href="category2.html">
-                    <div class="ctl active">
-                        <img src="${baseUrl}Temp-images/face1.jpg">
-                        <h3>情商课</h3>
-                        <p>蔡康永</p>
-                    </div>
-                    <button type="button" class="am-btn am-btn-primary">专辑推荐</button>
-                </a>
-            </li>
-            <li>
-                <a href="http://www.sina.com">
-                    <div class="ctl">
-                        <img src="${baseUrl}Temp-images/face2.jpg">
-                        <h3>矮大紧指北</h3>
-                        <p>高晓松</p>
-                    </div>
-                    <button type="button" class="am-btn am-btn-default">专辑推荐</button>
-                </a>
-            </li>
-            <li>
-                <a href="http://www.qq.com">
-                    <div class="ctl">
-                        <img src="${baseUrl}Temp-images/face3.jpg">
-                        <h3>像他一样说话</h3>
-                        <p>崔永元</p>
-                    </div>
-                    <button type="button" class="am-btn am-btn-default">专辑推荐</button>
-                </a>
-            </li>
-            <li>
-                <a href="http://www.youku.com">
-                    <div class="ctl">
-                        <img src="${baseUrl}Temp-images/face4.jpg">
-                        <h3>观复嘟嘟</h3>
-                        <p>马未都</p>
-                    </div>
-                    <button type="button" class="am-btn am-btn-default">专辑推荐</button>
-                </a>
-            </li>
-            <li>
-                <a href="http://www.yahoo.com">
-                    <div class="ctl">
-                        <img src="${baseUrl}Temp-images/face5.jpg">
-                        <h3>吴晓波频道</h3>
-                        <p>吴晓波</p>
-                    </div>
-                    <button type="button" class="am-btn am-btn-default">专辑推荐</button>
-                </a>
-            </li>
-            <li>
-                <a href="http://www.china.com">
-                    <div class="ctl">
-                        <img src="${baseUrl}Temp-images/face6.jpg">
-                        <h3>讲讲行天下</h3>
-                        <p>刘宗华</p>
-                    </div>
-                    <button type="button" class="am-btn am-btn-default">专辑推荐</button>
-                </a>
-            </li>
+            <c:forEach var="user" items="${userList}">
+                <li>
+                    <a href="${baseUrl}audioPage/${user.id}">
+                        <div class="ctl ">
+                            <img src="/img/${user.photo}">
+                            <h3>${user.realname}</h3>
+                            <p>${user.autograph}</p>
+                        </div>
+                        <button type="button" class="am-btn am-btn-primary">大咖专栏</button>
+                    </a>
+                </li>
+            </c:forEach>
         </ul>
 
     </div>
@@ -240,7 +192,7 @@
             <li>
             <div class="am-gallery-item">
                 <a href="${baseUrl}audio/${audio.id}" class="">
-                    <img src="/img/${audio.photo}"  alt="配图"/>
+                    <img src="/img/${audio.photo}"  alt="配图" style="height: 150px;"/>
                     <h3 class="am-gallery-title">${audio.audioName}</h3>
                     <div class="am-gallery-desc">${audio.createTime}</div>
                 </a>
@@ -260,7 +212,7 @@
             <li>
                 <div class="am-gallery-item">
                     <a href="${baseUrl}audio/${audio.id}" class="">
-                        <img src="/img/${audio.photo}"  alt="配图"/>
+                        <img src="/img/${audio.photo}"  alt="配图" style="height: 150px;"/>
                         <h3 class="am-gallery-title">${audio.audioName}</h3>
                         <div class="am-gallery-desc">${audio.createTime}</div>
                     </a>
@@ -280,7 +232,7 @@
             <li>
                 <div class="am-gallery-item">
                     <a href="${baseUrl}audio/${audio.id}" class="">
-                        <img src="/img/${audio.photo}"  alt="配图"/>
+                        <img src="/img/${audio.photo}"  alt="配图" style="height: 150px;"/>
                         <h3 class="am-gallery-title">${audio.audioName}</h3>
                         <div class="am-gallery-desc">${audio.createTime}</div>
                     </a>
@@ -300,7 +252,7 @@
             <li>
                 <div class="am-gallery-item">
                     <a href="${baseUrl}audio/${audio.id}" class="">
-                        <img src="/img/${audio.photo}"  alt="配图"/>
+                        <img src="/img/${audio.photo}"  alt="配图" style="height: 150px;"/>
                         <h3 class="am-gallery-title">${audio.audioName}</h3>
                         <div class="am-gallery-desc">${audio.createTime}</div>
                     </a>

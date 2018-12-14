@@ -158,7 +158,7 @@
                         <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" style="border-top: 0px">
                             <div class="am-u-sm-5 am-list-thumb">
                                 <a href="#">
-                                    <img src="${baseUrl}Temp-images/b2.jpg" alt="配图"/>
+                                    <img src="/img/${question.photo}" alt="配图"/>
                                 </a>
                             </div>
 
@@ -283,6 +283,7 @@
         $.post("${baseUrl}deleteQuestion",{questionId:questionId},function (data) {
             if(data){
                 alert("删除成功！");
+                location.reload();
             }
         });
 

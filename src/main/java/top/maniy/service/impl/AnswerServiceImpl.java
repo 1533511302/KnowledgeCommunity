@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.maniy.entity.Answer;
+import top.maniy.entity.Question;
 import top.maniy.mapper.AnswerMapper;
 import top.maniy.service.AnswerService;
 import top.maniy.service.QuestionService;
@@ -39,8 +40,11 @@ public class AnswerServiceImpl implements AnswerService {
         PageHelper.startPage(currentPage,pageSize);
         List<Answer> answerList=answerMapper.findAnswerByQuesId(userId);
         for(Answer answer:answerList){
-            String quesTitle=questionService.findQuestionById(answer.getQuesId()).getQuesName();
+            Question question =questionService.findQuestionById(answer.getQuesId());
+            String quesTitle=question.getQuesName();
+            String quesPhoto=question.getPhoto();
             answer.setQuesTitle(quesTitle);
+            answer.setPhoto(quesPhoto);
         }
         PageInfo<Answer> pageInfo =new PageInfo<>(answerList);
         return pageInfo;

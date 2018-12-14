@@ -9,6 +9,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT COUNT(*) count FROM user
 	</select>
 
+	<select id="findUserByAudioNumDesc" resultType="User">
+				SELECT id,realname,gender,photo,autograph FROM user WHERE audionumb>=1 ORDER BY  audionumb DESC LIMIT 0,#{num}
+	</select>
 
 	<select id="queryPermissionByUserName" resultType="String">
 		SELECT permission FROM roles_permissions WHERE role_name=#{role_name}

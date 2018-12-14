@@ -14,6 +14,7 @@ import top.maniy.entity.Category;
 import top.maniy.entity.User;
 import top.maniy.service.AudioService;
 import top.maniy.service.CategoryService;
+import top.maniy.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -36,6 +37,9 @@ public class AudioController {
 
     @Autowired
     private AudioService audioService;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "editAudioPage")
     public String toSaveAudio(){
@@ -195,6 +199,8 @@ public class AudioController {
     @RequestMapping(value = "/audioPage")
     public String audioPage(ModelMap modelMap){
         //获取音频分类
+        List<User> userList =userService.findUserByTotalNumDesc(6);
+
         List<Category> categoryList=categoryService.findCategoryByTypeAndStatus(2,"1");
         List<Category> categoryListRand4=categoryService.findCategoryByTypeRandNum(2,4);
         int i=1;
@@ -208,6 +214,7 @@ public class AudioController {
             i++;
         }
         modelMap.put("categoryList",categoryList);
+        modelMap.put("userList",userList);
         return "audioPage";
     }
 
@@ -269,6 +276,19 @@ public class AudioController {
         Audio audio=audioService.findAudioById(audioId);
         modelMap.put("audio",audio);
         return "music";
+    }
+
+    /**
+     * 音频播放页
+     * @param userId
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping(value = "audioPage/{userId}")
+    public String audioPage(@PathVariable Integer userId,ModelMap modelMap){
+        List<Audio> audioList=audioService.findAudioByUserId(userId);
+        modelMap.put("audioList",audioList);
+        return "musicPage";
     }
 
     /**

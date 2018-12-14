@@ -29,6 +29,9 @@ public interface UserService {
     //普通用户和认证用户角色统计
     List<CountForm> CountUserByRole();
 
+    //根据音频数从大到下取num条user数据（前提音频数大于或等于1）
+    List<User> findUserByAudioNumDesc(int num);
+
     //根据文章数、问题数、回答数、音频数总和从大大小排列获取num条数据
     List<User> findUserByTotalNumDesc(int num);
 

@@ -127,7 +127,7 @@ public class CustomRealm extends AuthorizingRealm{
 
     public static void main(String[] args) {
         //单一的是密码加密容易破解，这时候就需要 加盐
-        Md5Hash md5Hash= new Md5Hash("123456","good");
+        Md5Hash md5Hash= new Md5Hash("123456","zhang");
         System.out.println(md5Hash.toString());
 
         if("f0f8c900cc3816a7bfd1aaf8f890a05e"=="f0f8c900cc3816a7bfd1aaf8f890a05e"){

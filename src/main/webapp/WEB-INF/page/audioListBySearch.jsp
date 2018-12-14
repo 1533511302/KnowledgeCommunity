@@ -37,7 +37,7 @@
 
     <link rel="icon" type="image/png" href="${baseUrl}images/i/favicon.png">
     <link rel="stylesheet" href="${baseUrl}assets/css/amazeui.min.css">
-    <link rel="stylesheet" href="${baseUrl}>css/public.css">
+    <link rel="stylesheet" href="${baseUrl}css/public.css">
 
     <!--[if (gte IE 9)|!(IE)]><!-->
     <script src="${baseUrl}assets/js/jquery.min.js"></script>
@@ -130,8 +130,8 @@
         <c:forEach var="audio" items="${pageInfo.list}" varStatus="v">
             <li>
                 <div class="am-gallery-item">
-                    <a href="http://s.amazeui.org/media/i/demos/bing-1.jpg" class="">
-                        <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
+                    <a href="${baseUrl}audio/${audio.id}" class="">
+                        <img src="/img/${audio.photo}"  alt="配图" style="height: 150px;"/>
                         <h3 class="am-gallery-title">${audio.audioName}</h3>
                         <div class="am-gallery-desc">${audio.createTime}</div>
                     </a>
@@ -188,7 +188,7 @@
             <li><a href="#">友情链接</a></li>
         </ul>
         <div class="btnlogo"><img src="${baseUrl}images/btnlogo.png"/></div>
-        <p>Amaze UI出品<br>© 2016 AllMobilize, Inc. Licensed under MIT license. Developed with WebStorm.</p>
+        <p>knowledge出品<br>© 2018 AllMobilize, Inc. Licensed under MIT license. Developed with WebStorm.</p>
         <div class="w2div">
             <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2
   am-avg-md-2 am-avg-lg-2 am-gallery-overlay" data-am-gallery="{ pureview: true }" >
@@ -196,7 +196,7 @@
                     <div class="am-gallery-item">
                         <a href="${baseUrl}Temp-images/dd.jpg">
                             <img src="${baseUrl}Temp-images/dd.jpg" />
-                            <h3 class="am-gallery-title">订阅号：Amaze UI</h3>
+                            <h3 class="am-gallery-title">订阅号</h3>
                         </a>
                     </div>
                 </li>
@@ -204,7 +204,7 @@
                     <div class="am-gallery-item">
                         <a href="${baseUrl}Temp-images/dd.jpg">
                             <img src="${baseUrl}Temp-images/dd.jpg"/>
-                            <h3 class="am-gallery-title">服务号：Amaze UI</h3>
+                            <h3 class="am-gallery-title">服务号</h3>
                         </a>
                     </div>
                 </li>

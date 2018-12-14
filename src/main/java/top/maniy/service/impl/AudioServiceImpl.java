@@ -49,6 +49,11 @@ public class AudioServiceImpl implements AudioService {
     }
 
     @Override
+    public List<Audio> findAudioByUserId(Integer userId) {
+        return audioMapper.findAudioByUserId(userId);
+    }
+
+    @Override
     public Audio findAudioById(Integer id) {
         return audioMapper.findAudioById(id);
     }

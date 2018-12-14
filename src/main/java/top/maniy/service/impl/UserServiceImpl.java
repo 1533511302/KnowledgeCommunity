@@ -63,6 +63,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> findUserByAudioNumDesc(int num) {
+        return usermapper.findUserByAudioNumDesc(num);
+    }
+
+    @Override
     public List<User> findUserByTotalNumDesc(int num) {
         return usermapper.findUserByTotalNumDesc(num);
     }

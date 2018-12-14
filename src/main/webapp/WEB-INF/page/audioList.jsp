@@ -132,7 +132,7 @@
             <li>
             <div class="am-gallery-item">
                 <a href="${baseUrl}audio/${audio.id}" class="">
-                    <img src="/img/${audio.photo}"  alt="配图"/>
+                    <img src="/img/${audio.photo}"  alt="配图" style="height: 150px;"/>
                     <h3 class="am-gallery-title">${audio.audioName}</h3>
                     <div class="am-gallery-desc">${audio.createTime}</div>
                 </a>
