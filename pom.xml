@@ -29,6 +29,7 @@
         <shiro-core>1.2.3</shiro-core>
         <quartz-scheduler>2.2.1</quartz-scheduler>
         <logback-core>1.0.6</logback-core>
+        <poi>3.14-beta1</poi>
     </properties>
     <dependencies>
         <!--阿里巴巴连接池-->
@@ -221,6 +222,35 @@
             <artifactId>quartz-jobs</artifactId>
             <version>${quartz-scheduler}</version>
         </dependency>
+
+        <!-- 引入poi不会自动加入另外需要的包
+
+         引入poi-ooxml就会自动引入操作xlsx文件所用到的其他包 -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${poi}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml-schemas</artifactId>
+            <version>${poi}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>${poi}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.2</version>
+        </dependency>
+
     </dependencies>
     <build>
         <finalName>${project.artifactId}</finalName>

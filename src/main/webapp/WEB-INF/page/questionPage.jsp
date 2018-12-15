@@ -320,9 +320,11 @@
         var content=$("#answerContent").val();
             if (content!=""){
                 $.post("${baseUrl}saveAnswer",{quesId:quesId,answerContent:content},function (data) {
-                    if(data=1){
+                    if(data){
                         alert("提交成功");
-                        location.href="${baseUrl}question/${question.id}";
+                        location.reload();
+                    }else {
+                        alert("权限不够！");
                     }
                 });
             }else {

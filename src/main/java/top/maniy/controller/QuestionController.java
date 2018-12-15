@@ -3,7 +3,13 @@ package top.maniy.controller;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSendException;
 import org.springframework.stereotype.Controller;
@@ -15,8 +21,10 @@ import top.maniy.entity.*;
 import top.maniy.service.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -155,7 +163,7 @@ public class QuestionController {
     }
 
     /**
-     * ajax添加回答
+     * ajax添加问题
      * @param topicId
      * @param quesName
      * @param quesDescribe
@@ -163,6 +171,7 @@ public class QuestionController {
      */
     @RequestMapping(value = "saveQuestion",method = RequestMethod.POST)
     @ResponseBody
+    @RequiresPermissions("question:insert")
     public boolean SaveQuestion(@RequestParam String topicId, HttpServletRequest request, @RequestParam(value = "photo",required = false) MultipartFile photo,
                                 @RequestParam String quesName, @RequestParam String quesDescribe){
         String username = (String) SecurityUtils.getSubject().getPrincipal();
@@ -213,6 +222,7 @@ public class QuestionController {
      */
     @RequestMapping(value = "deleteQuestion",method = RequestMethod.GET)
     @ResponseBody
+    @RequiresPermissions("question:delete")
     public boolean deleteQuestion(@RequestParam Integer questionId){
         return questionService.deleteQuestion(questionId);
     }
@@ -224,6 +234,7 @@ public class QuestionController {
      * @return
      */
     @RequestMapping(value = "toUpdateQuestion",method = RequestMethod.GET)
+    @RequiresPermissions("question:update")
     public String toUpdateQuestion(@RequestParam Integer questionId,ModelMap modelMap){
 
         String username = (String) SecurityUtils.getSubject().getPrincipal();
@@ -247,6 +258,7 @@ public class QuestionController {
      */
     @RequestMapping(value = "updateQuestion",method = RequestMethod.POST)
     @ResponseBody
+    @RequiresPermissions("question:update")
     public boolean updateQuestion(@RequestParam Integer questionId,@RequestParam String topicId,
                                   @RequestParam String quesName,@RequestParam String quesDescribe){
         Question question =new Question();
@@ -311,11 +323,83 @@ public class QuestionController {
 
     @RequestMapping("adminUpdateQuestion")
     @ResponseBody
+    @RequiresPermissions("all:all")
     public boolean adminUpdateQuestion(@RequestParam("id") Integer id,@RequestParam("status") String status){
         Question question =new Question();
         question.setId(id);
         question.setStatus(status);
         return questionService.updateQuestion(question);
+    }
+
+    /**
+     * 导出Excel表
+     * @param response
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping(value = "admin/questionExcel")
+    @ResponseBody
+    @RequiresPermissions("all:all")
+    public String getExcel(HttpServletResponse response)  throws IOException{
+        List<Question> questionList =questionService.findAllQuestion();
+
+//创建HSSFWorkbook对象
+        HSSFWorkbook wb = new HSSFWorkbook();
+
+//创建HSSFSheet对象
+        HSSFSheet sheet = wb.createSheet("问题表");
+
+//创建HSSFRow对象
+        HSSFRow row = sheet.createRow(0);
+//创建HSSFCell对象
+        HSSFCell cell=row.createCell(0);
+////设置单元格的值
+        cell.setCellValue("问题信息表");
+////合并单元格CellRangeAddress构造参数依次表示起始行，截至行，起始列， 截至列
+        sheet.addMergedRegion(new CellRangeAddress(0,0,0,6));
+
+        //在sheet里创建第i行
+        HSSFRow row1=sheet.createRow(1);
+
+
+        //创建单元格并设置单元格内容
+        row1.createCell(0).setCellValue("编号");
+        row1.createCell(1).setCellValue("问题");
+        row1.createCell(2).setCellValue("分类");
+        row1.createCell(3).setCellValue("描述");
+        row1.createCell(4).setCellValue("点赞量");
+        row1.createCell(5).setCellValue("浏览量");
+        row1.createCell(6).setCellValue("创建时间");
+
+        int i=2;
+        for (Question question:questionList){
+
+            //在sheet里创建第i行
+            HSSFRow irow=sheet.createRow(i);
+
+            //创建单元格并设置单元格内容
+            irow.createCell(0).setCellValue(question.getId());
+            irow.createCell(1).setCellValue(question.getQuesName());
+            irow.createCell(2).setCellValue(question.getTopicId());
+            irow.createCell(3).setCellValue(question.getQuesDescribe());
+            irow.createCell(4).setCellValue(question.getLikeNumb());
+            irow.createCell(5).setCellValue(question.getBrowseNumb());
+            irow.createCell(6).setCellValue(question.getCreateTime());
+
+            i++;
+        }
+//输出Excel文件
+        OutputStream output=response.getOutputStream();
+        response.reset();
+        response.setHeader("Content-disposition", "attachment; filename=question.xls");
+        response.setContentType("application/msexcel");
+
+        //FileOutputStream output=new FileOutputStream("d:\\workbook.xls");
+
+        wb.write(output);
+
+        output.close();
+        return null;
     }
 
 }

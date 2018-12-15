@@ -2,6 +2,12 @@ package top.maniy.controller;
 
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSendException;
 import org.springframework.stereotype.Controller;
@@ -11,14 +17,17 @@ import org.springframework.web.multipart.MultipartFile;
 import top.maniy.Form.AudioForm;
 import top.maniy.entity.Audio;
 import top.maniy.entity.Category;
+import top.maniy.entity.Massage;
 import top.maniy.entity.User;
 import top.maniy.service.AudioService;
 import top.maniy.service.CategoryService;
 import top.maniy.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -42,12 +51,14 @@ public class AudioController {
     private UserService userService;
 
     @RequestMapping(value = "editAudioPage")
+    @RequiresPermissions("audio:insert")
     public String toSaveAudio(){
         return "editAudioPage";
     }
 
     @RequestMapping(value = "saveAudio",method = RequestMethod.POST)
     @ResponseBody
+    @RequiresPermissions("audio:insert")
     public boolean saveAudio(HttpServletRequest request,@RequestParam(required = false) MultipartFile photo,MultipartFile audio,Integer type,String audioName,
                             String audioDescribe){
         Audio audio1 =new Audio();
@@ -114,6 +125,7 @@ public class AudioController {
 
     @RequestMapping(value = "updateAudio",method = RequestMethod.POST)
     @ResponseBody
+    @RequiresPermissions("audio:update")
     public boolean updateAudio(HttpServletRequest request,@RequestParam(required = false) MultipartFile photo,
                                @RequestParam(required = false) MultipartFile audio,Integer type,String audioName,
                              String audioDescribe,Integer audioId){
@@ -176,6 +188,7 @@ public class AudioController {
     }
 
     @RequestMapping("toUpdateAudio")
+    @RequiresPermissions("audio:update")
     public String toUpdateAudio(@RequestParam Integer audioId,ModelMap modelMap){
         List<Category> categoryList =categoryService.findCategoryByTypeAndStatus(2,"1");
         Audio audio =audioService.findAudioById(audioId);
@@ -317,6 +330,7 @@ public class AudioController {
 
     @RequestMapping("adminUpdateAudio")
     @ResponseBody
+    @RequiresPermissions("all:all")
     public boolean adminUpdateAudio(@RequestParam("id") Integer id,@RequestParam("status") String status){
         Audio audio =new Audio();
         audio.setId(id);
@@ -324,5 +338,69 @@ public class AudioController {
         return audioService.updateAudio(audio);
     }
 
+    @RequestMapping(value = "admin/audioExcel")
+    @ResponseBody
+    @RequiresPermissions("all:all")
+    public String getExcel(HttpServletResponse response)  throws IOException{
+        List<Audio> audioList =audioService.findAllAudio();
+
+//创建HSSFWorkbook对象
+        HSSFWorkbook wb = new HSSFWorkbook();
+
+//创建HSSFSheet对象
+        HSSFSheet sheet = wb.createSheet("音频表");
+
+//创建HSSFRow对象
+        HSSFRow row = sheet.createRow(0);
+//创建HSSFCell对象
+        HSSFCell cell=row.createCell(0);
+////设置单元格的值
+        cell.setCellValue("音频信息表");
+////合并单元格CellRangeAddress构造参数依次表示起始行，截至行，起始列， 截至列
+        sheet.addMergedRegion(new CellRangeAddress(0,0,0,6));
+
+        //在sheet里创建第i行
+        HSSFRow row1=sheet.createRow(1);
+
+
+        //创建单元格并设置单元格内容
+        row1.createCell(0).setCellValue("编号");
+        row1.createCell(1).setCellValue("标题");
+        row1.createCell(2).setCellValue("分类");
+        row1.createCell(3).setCellValue("作者");
+        row1.createCell(4).setCellValue("描述");
+        row1.createCell(5).setCellValue("音频文件名");
+        row1.createCell(6).setCellValue("创建时间");
+
+        int i=2;
+        for (Audio audio:audioList){
+
+            //在sheet里创建第i行
+            HSSFRow irow=sheet.createRow(i);
+
+            //创建单元格并设置单元格内容
+            irow.createCell(0).setCellValue(audio.getId());
+            irow.createCell(1).setCellValue(audio.getAudioName());
+            irow.createCell(2).setCellValue(audio.getCategoryId());
+            irow.createCell(3).setCellValue(audio.getUserName());
+            irow.createCell(4).setCellValue(audio.getAudioDescribe());
+            irow.createCell(5).setCellValue(audio.getUrl());
+            irow.createCell(6).setCellValue(audio.getCreateTime());
+
+            i++;
+        }
+//输出Excel文件
+        OutputStream output=response.getOutputStream();
+        response.reset();
+        response.setHeader("Content-disposition", "attachment; filename=audio.xls");
+        response.setContentType("application/msexcel");
+
+        //FileOutputStream output=new FileOutputStream("d:\\workbook.xls");
+
+        wb.write(output);
+
+        output.close();
+        return null;
+    }
 
 }

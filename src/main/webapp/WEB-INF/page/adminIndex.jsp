@@ -103,7 +103,8 @@
                         </li>
                         <li><a class="J_menuItem" href="admin/userList">用户管理</a>
                         </li>
-
+                        <li><a class="J_menuItem" href="admin/userExcel">导出excel</a>
+                        </li>
 
                     </ul>
                 </li>
@@ -120,7 +121,8 @@
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="admin/massageList">图文管理</a>
                         </li>
-
+                        <li><a class="J_menuItem" href="admin/massageExcel">导出excel</a>
+                        </li>
                     </ul>
                 </li>
                 <li>
@@ -128,12 +130,16 @@
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="admin/audioList">音频管理</a>
                         </li>
+                        <li><a class="J_menuItem" href="admin/audioExcel">导出excel</a>
+                        </li>
                     </ul>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-table"></i> <span class="nav-label">问题管理</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="admin/questionList">问题管理</a>
+                        </li>
+                        <li><a class="J_menuItem" href="admin/questionExcel">导出excel</a>
                         </li>
                     </ul>
                 </li>

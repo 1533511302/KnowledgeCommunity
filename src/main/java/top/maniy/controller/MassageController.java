@@ -3,6 +3,11 @@ package top.maniy.controller;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresGuest;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -19,8 +24,10 @@ import top.maniy.entity.*;
 import top.maniy.service.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
@@ -342,6 +349,7 @@ public class MassageController {
      */
     @RequestMapping("findAllMassage")
     @ResponseBody
+    @RequiresPermissions("all:all")
     public List<MassageForm> findAllMassage(){
         List<MassageForm> massageFormList =new ArrayList<>();
         List<Massage> massageList=massageService.findAllMassage();
@@ -362,6 +370,7 @@ public class MassageController {
 
     @RequestMapping("uploadMassagePhoto")
     @ResponseBody
+    @RequiresPermissions("massage:insert")
     public ImgResultForm uploadMassagePhoto(HttpServletRequest request, MultipartFile photo){
         System.out.println("请求到了什么，图片吧");
         String name = UUID.randomUUID().toString().replaceAll("-", "");
@@ -401,5 +410,77 @@ public class MassageController {
         ImgResultForm imgResultForm =new ImgResultForm(0,strArray);
         return imgResultForm;
     }
+
+
+    @RequestMapping(value = "admin/massageExcel")
+    @ResponseBody
+    @RequiresPermissions("all:all")
+    public String getExcel(HttpServletResponse response)  throws IOException{
+        List<Massage> massageList =massageService.findAllMassage();
+
+
+//创建HSSFWorkbook对象
+        HSSFWorkbook wb = new HSSFWorkbook();
+
+//创建HSSFSheet对象
+        HSSFSheet sheet = wb.createSheet("图文表");
+
+//创建HSSFRow对象
+        HSSFRow row = sheet.createRow(0);
+//创建HSSFCell对象
+        HSSFCell cell=row.createCell(0);
+////设置单元格的值
+        cell.setCellValue("图文信息表");
+////合并单元格CellRangeAddress构造参数依次表示起始行，截至行，起始列， 截至列
+
+
+
+        sheet.addMergedRegion(new CellRangeAddress(0,0,0,6));
+
+        //在sheet里创建第i行
+        HSSFRow row1=sheet.createRow(1);
+
+
+        //创建单元格并设置单元格内容
+        row1.createCell(0).setCellValue("编号");
+        row1.createCell(1).setCellValue("标题");
+        row1.createCell(2).setCellValue("分类");
+        row1.createCell(3).setCellValue("作者");
+        row1.createCell(4).setCellValue("点赞量");
+        row1.createCell(5).setCellValue("浏览量");
+        row1.createCell(6).setCellValue("创建时间");
+
+        int i=2;
+        for (Massage massage:massageList){
+
+            //在sheet里创建第i行
+            HSSFRow irow=sheet.createRow(i);
+
+
+            //创建单元格并设置单元格内容
+            irow.createCell(0).setCellValue(massage.getId());
+            irow.createCell(1).setCellValue(massage.getTitle());
+            irow.createCell(2).setCellValue(massage.getCategoryId());
+            irow.createCell(3).setCellValue(massage.getUsername());
+            irow.createCell(4).setCellValue(massage.getLikeNumb());
+            irow.createCell(5).setCellValue(massage.getBrowseNumb());
+            irow.createCell(6).setCellValue(massage.getCreateTime());
+
+            i++;
+        }
+//输出Excel文件
+        OutputStream output=response.getOutputStream();
+        response.reset();
+        response.setHeader("Content-disposition", "attachment; filename=massage.xls");
+        response.setContentType("application/msexcel");
+
+        //FileOutputStream output=new FileOutputStream("d:\\workbook.xls");
+
+        wb.write(output);
+
+        output.close();
+        return null;
+    }
+
 
 }

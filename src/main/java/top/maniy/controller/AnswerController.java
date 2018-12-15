@@ -3,6 +3,7 @@ package top.maniy.controller;
 import com.github.pagehelper.PageInfo;
 import com.sun.org.glassfish.external.probe.provider.annotations.ProbeParam;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -45,8 +46,10 @@ public class AnswerController {
      */
     @RequestMapping(value = "saveAnswer",method = RequestMethod.POST)
     @ResponseBody
+    @RequiresPermissions("answer:insert")
     public boolean addAnswer(@RequestParam Integer quesId, @RequestParam String answerContent
                             ){
+        System.out.println("执行了这这里");
         Answer answer =new Answer();
         answer.setQuesId(quesId);
         answer.setAnswerContent(answerContent);
@@ -60,6 +63,7 @@ public class AnswerController {
      */
     @RequestMapping(value = "deleteAnswer",method = RequestMethod.GET)
     @ResponseBody
+    @RequiresPermissions("answer:delete")
     public boolean deleteAnswer(@RequestParam Integer answerId){
         return answerService.deleteAnswer(answerId);
     }
@@ -71,6 +75,7 @@ public class AnswerController {
      * @return
      */
     @RequestMapping(value = "toUpdateAnswer",method = RequestMethod.GET)
+    @RequiresPermissions("answer:update")
     public String toUpdateAnswer(@RequestParam Integer answerId,ModelMap modelMap){
 
         String username = (String) SecurityUtils.getSubject().getPrincipal();
@@ -93,6 +98,7 @@ public class AnswerController {
      */
     @RequestMapping(value = "updateAnswer",method = RequestMethod.POST)
     @ResponseBody
+    @RequiresPermissions("answer:update")
     public boolean updateAnswer(@RequestParam Integer answerId,@RequestParam String answerContent){
         Answer answer =new Answer();
         answer.setId(answerId);

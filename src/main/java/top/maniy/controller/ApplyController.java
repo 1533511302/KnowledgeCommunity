@@ -1,5 +1,6 @@
 package top.maniy.controller;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,7 @@ public class ApplyController {
 
     @RequestMapping("saveApply")
     @ResponseBody
+    @RequiresPermissions("apply:insert")
     public String saveApply(Integer userId, HttpServletRequest request){
         Apply temp =applyService.findApplyByUserId(userId);
         User user = (User) request.getSession().getAttribute("User");
@@ -45,12 +47,14 @@ public class ApplyController {
 
     @RequestMapping("findApplyByStatus")
     @ResponseBody
+    @RequiresPermissions("apply:select")
     public List<Apply> findApplyByStatus(){
         return applyService.findApplyByStatus("1");
     }
 
     @RequestMapping("updateApply")
     @ResponseBody
+    @RequiresPermissions("apply:update")
     public boolean updateApply(Integer id){
         return applyService.updateApply(id,"2");
     }
@@ -58,6 +62,7 @@ public class ApplyController {
 
     @RequestMapping("deleteApply")
     @ResponseBody
+    @RequiresPermissions("apply:delete")
     public boolean deleteApply(Integer id){
         return applyService.deleteApply(id);
     }

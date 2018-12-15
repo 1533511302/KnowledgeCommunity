@@ -2,6 +2,7 @@ package top.maniy.controller;
 
 
 import org.apache.shiro.authz.annotation.RequiresGuest;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -43,7 +44,6 @@ public class PageController {
 
 
     @RequestMapping(value = "/toIndex",method = RequestMethod.GET)
-
     public String toIndex(ModelMap modelMap){
         //点赞量最多的4篇文章
         List<Massage> likeMassageList =massageService.findMassageByLikeNumbDesc0To4();
@@ -77,6 +77,7 @@ public class PageController {
 
 
     @RequestMapping(value = "toAdminIndex")
+    @RequiresPermissions("all:all")
     public String toAdminIndex(ModelMap modelMap){
         return "adminIndex";
     }
@@ -88,6 +89,7 @@ public class PageController {
 
 
     @RequestMapping(value = "index_v1")
+    @RequiresPermissions("all:all")
     public String toIndex_v1(){
         return "index_v1";
     }
@@ -95,6 +97,7 @@ public class PageController {
     //获取登录的管理员信息
     @RequestMapping(value = "adminInfo")
     @ResponseBody
+    @RequiresPermissions("all:all")
     public User adminInfo(HttpServletRequest request){
         return (User) request.getSession().getAttribute("User");
     }
@@ -102,6 +105,7 @@ public class PageController {
     //管理主页统计
     @RequestMapping("indexCount")
     @ResponseBody
+    @RequiresPermissions("all:all")
     public List<CountForm> indexCount(){
         List<CountForm> countFormList =new ArrayList<>();
         CountForm countForm1 =new CountForm();
