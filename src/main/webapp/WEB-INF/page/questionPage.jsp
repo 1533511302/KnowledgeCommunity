@@ -320,11 +320,11 @@
         var content=$("#answerContent").val();
             if (content!=""){
                 $.post("${baseUrl}saveAnswer",{quesId:quesId,answerContent:content},function (data) {
-                    if(data){
+                    if(data=="1"){
                         alert("提交成功");
                         location.reload();
                     }else {
-                        alert("权限不够！");
+                        alert("权限不够,必须为认证用户才可作答！");
                     }
                 });
             }else {

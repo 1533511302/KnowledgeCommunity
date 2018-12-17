@@ -113,9 +113,11 @@
         function clickLikeNumbBtn(massageId,likeNumb,btn) {
             if($(btn).attr("key")==1){
                 $.post("AddLikeNum",{massageId:massageId},function (data) {
-                    if(data){
+                    if(data=="1"){
                         $(btn).attr("data-am-popover","{content: '鄙是点击显示的'}");
                         $(btn).html("<i class=\"am-icon-caret-up\"></i>&nbsp;赞&nbsp;"+(likeNumb+1));
+                    }else {
+                        alert("还没有登录，登录后再试试吧");
                     }
                 });
                 $(btn).attr("key","2");

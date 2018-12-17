@@ -1,7 +1,6 @@
 package top.maniy.controller;
 
 import com.github.pagehelper.PageInfo;
-import jdk.management.resource.internal.inst.SocketOutputStreamRMHooks;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -11,6 +10,7 @@ import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,6 @@ import top.maniy.shiro.realm.CustomRealm;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -80,6 +79,30 @@ public class UserController {
         return "loginPage";
     }
 
+    /**
+     * 没有权限时跳转页面
+     * @return
+     */
+    @RequestMapping(value = "permissions",method = RequestMethod.GET)
+    public String noPermissions(){
+        return "403";
+    }
+    /**
+     * 没有找到页面时跳转页面
+     * @return
+     */
+    @RequestMapping(value = "error404",method = RequestMethod.GET)
+    public String urlError(){
+        return "404";
+    }
+    /**
+     * 没有系统错误时跳转页面
+     * @return
+     */
+    @RequestMapping(value = "error500",method = RequestMethod.GET)
+    public String serverError(){
+        return "500";
+    }
     /**
      * 跳转注册页面
      * @return
@@ -305,6 +328,7 @@ public class UserController {
     public String logout(HttpServletRequest request){
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
+        request.getSession().setAttribute("User",null);
         //清除shiro缓存
         customRealm.clearCached();
         return "redirect:toLogin";
@@ -437,6 +461,7 @@ public class UserController {
      */
     @RequestMapping(value = "updateUserPassword",method = RequestMethod.POST)
     @ResponseBody
+    @RequiresPermissions("massage:update")
     public String updateUserPassword(String username,String oldPassword,String newPassword){
         User user =userService.findUserByUsername(username);
         if(user!=null){
@@ -474,6 +499,7 @@ public class UserController {
 
     @RequestMapping("updateUserRole")
     @ResponseBody
+    @RequiresPermissions("all:all")
     public boolean updateUserStatus(Integer userId,Integer id){
         applyService.updateApply(id,"2");
         User user =new User();
@@ -488,6 +514,7 @@ public class UserController {
      */
     @RequestMapping("AllUser")
     @ResponseBody
+    @RequiresPermissions("all:all")
     public List<User> AllUser(){
         return userService.findAllUser();
     }
@@ -500,6 +527,7 @@ public class UserController {
      */
     @RequestMapping("AdminUpdateUser")
     @ResponseBody
+    @RequiresPermissions("all:all")
     public boolean AdminUpdateUser(User user2){
         user =new User();
         user.setId(user2.getId());
@@ -591,6 +619,7 @@ public class UserController {
 
     @RequestMapping(value = "admin/userExcel")
     @ResponseBody
+
     public String getExcel(HttpServletResponse response)  throws IOException{
         List<User> userList =userService.findAllUser();
 

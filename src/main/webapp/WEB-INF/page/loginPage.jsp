@@ -29,7 +29,11 @@
     <script src="${baseUrl}admin/js/plugins/sweetalert/sweetalert.min.js"></script>
     <script src="<%=basePath%>assets/js/jquery.min.js"></script>
     <script>
-
+        window.onload = function () {
+            if (window.parent.window != window) {
+                window.top.location = "/toLogin";
+            }
+        }
 
         //json两种形式
         //当是对象的时候最外层是{}

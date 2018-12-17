@@ -8,6 +8,7 @@ import java.util.Date;
 public class Comment {
 
   private Integer id;
+  private String username;
   private Integer quesId;
   private Integer answerId;
   private Integer massageId;
@@ -16,6 +17,13 @@ public class Comment {
   private Integer likeNumb;
   private Date createTime;
 
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
 
   public Integer getId() {
     return id;

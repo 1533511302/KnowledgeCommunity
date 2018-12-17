@@ -338,7 +338,7 @@
     </div>
     <!--mini聊天窗口结束-->
 </div>
-<#--弹窗-->
+<%--<#--弹窗-->
 <div class="modal fade" id="mymodal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -359,17 +359,8 @@
 
     </div>
 
-</div>
-<#--播放音乐-->
-<audio id="notice" >
+</div>--%>
 
-    <source src="mp3/song.mp3" type="audio/mpeg" />
-</audio>
-<#--播放音乐-->
-<audio id="chatMusic" >
-
-    <source src="mp3/didididi.mp3" type="audio/mpeg" />
-</audio>
 <!-- 全局js -->
 <script src="${baseUrl}admin/js/jquery.min.js?v=2.1.4"></script>
 <script src="${baseUrl}admin/js/bootstrap.min.js?v=3.3.6"></script>

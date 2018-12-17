@@ -1,5 +1,6 @@
 package top.maniy.controller;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,6 +39,7 @@ public class CategoryController {
 
     @RequestMapping("saveCategory")
     @ResponseBody
+    @RequiresPermissions("category:insert")
     public boolean saveCategory(@RequestParam("categoryName") String categoryName,
                                 @RequestParam("categoryType") Integer categoryType,
                                 @RequestParam("status") String status){
@@ -50,6 +52,7 @@ public class CategoryController {
 
     @RequestMapping("updateCategory")
     @ResponseBody
+    @RequiresPermissions("category:update")
     public boolean updateCategory(@RequestParam("id") Integer id,@RequestParam("categoryName") String categoryName,
                                   @RequestParam("categoryType") Integer categoryType,
                                   @RequestParam("status") String status){
@@ -62,6 +65,7 @@ public class CategoryController {
 
     @RequestMapping("deleteCategory")
     @ResponseBody
+    @RequiresPermissions("category:update")
     public boolean deleteCategory(@RequestParam("id") Integer id){
         return categoryService.deleteCategory(id);
     }

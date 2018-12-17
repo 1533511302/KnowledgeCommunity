@@ -21,6 +21,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="saveComment" parameterType="Comment">
 		INSERT INTO comment
         <trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="username != null" >
+				username,
+			</if>
 			<if test="quesId != null" >
 				quesId,
 			</if>
@@ -41,6 +44,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="username != null" >
+				#{username},
+			</if>
 			<if test="quesId != null" >
 				#{quesId},
 			</if>

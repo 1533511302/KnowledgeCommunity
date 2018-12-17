@@ -245,8 +245,8 @@
 
 <!-- jQuery UI -->
 <script src="${baseUrl}admin/js/plugins/jquery-ui/jquery-ui.min.js"></script>
-<!-- Sweet alert -->
-<script src="js/plugins/sweetalert/sweetalert.min.js"></script>
+
+
 
 <script>
     //修改个人信息

@@ -47,17 +47,7 @@
     <![endif]-->
     <script src="${baseUrl}assets/js/amazeui.min.js"></script>
     <script src="${baseUrl}js/public.js"></script>
-    <script>
 
-        var str=window.location.href;
-        var arr=str.split("vUsers/");
-        var page=arr[arr.length-1];
-        $.get("vUserList",{page:page},function (data) {
-            $.each(data,function (i,vUser) {
-                console.log(vUser);
-            });
-        })
-    </script>
 </head>
 <body>
 

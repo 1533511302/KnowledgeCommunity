@@ -91,9 +91,11 @@
         function clickLikeNumbBtn(massageId,likeNumb,btn) {
             if($(btn).attr("key")==1){
                 $.post("${baseUrl}AddLikeNum",{massageId:massageId},function (data) {
-                    if(data){
+                    if(data=="1"){
                         $(btn).attr("data-am-popover","{content: '鄙是点击显示的'}");
                         $(btn).html("<i class=\"am-icon-caret-up\"></i>&nbsp;赞&nbsp;"+(likeNumb+1));
+                    }else {
+                        alert("还没有登录，登录后再试试吧");
                     }
                 });
                 $(btn).attr("key",2);
@@ -199,33 +201,34 @@
         <div class="am-u-sm-12 am-u-md-12 am-u-lg-8 padding-none">
             <div data-am-widget="slider" class="am-slider am-slider-c1" data-am-slider='{"directionNav":false}' >
                 <ul class="am-slides">
-                    <li>
-                        <img src="${baseUrl}Temp-images/tad3.png">
-                        <div class="am-slider-desc">远方 有一个地方 那里种有我们的梦想</div>
-                    </li>
-                    <li>
-                        <img src="${baseUrl}Temp-images/tad3.png">
-                        <div class="am-slider-desc">某天 也许会相遇 相遇在这个好地方</div>
-
-                    </li>
-                    <li>
-                        <img src="${baseUrl}Temp-images/tad3.png">
-                        <div class="am-slider-desc">不要太担心 只因为我相信 终会走过这条遥远的道路</div>
-
-                    </li>
-                    <li>
-                        <img src="${baseUrl}Temp-images/tad3.png">
-                        <div class="am-slider-desc">OH PARA PARADISE 是否那么重要 你是否那么地遥远</div>
-
-                    </li>
+                    <c:forEach var="massage" items="${likeMassageList}" varStatus="index">
+                        <li>
+                            <a href="${baseUrl}massages/${massage.id}"><img src="/img/${massage.photo}" style="height: 420px;"></a>
+                            <div class="am-slider-desc">${massage.title}</div>
+                        </li>
+                    </c:forEach>
                 </ul>
             </div>
 
         </div>
         <div class="am-u-sm-0 am-u-md-0 am-u-lg-4 padding-none lrad">
-            <ul class="am-avg-sm-1 am-avg-md-2 am-avg-lg-1">
-                <li class="ms"><img src="${baseUrl}Temp-images/tad3.png" class="am-img-responsive"></li>
-                <li><img src="${baseUrl}Temp-images/tad3.png" class="am-img-responsive"></li>
+            <div class="star am-container mcenter"><span><a class="am-badge am-badge-secondary am-text-lg" style="margin-left: 10px" href="${baseUrl}editMassagePage">分享知识</a></span></div>
+            <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
+                <h2 class="am-titlebar-title ">
+                    图文分类
+                </h2>
+
+            </div>
+            <ul class="am-avg-sm-1 am-avg-md-2 am-avg-lg-1" style="margin-top: 30px;margin-left: 10px">
+                <li class="ms" style="line-height: 50px">
+
+                    <c:forEach var="category" items="${categoryList}" varStatus="v">
+                        <c:set var="badge" value="${v.index%4==1?'am-badge-primary':(v.index%4==2?'am-badge-secondary':(v.index%4==3?'am-badge-success':'am-badge-warning'))}"/>
+
+                        <a class="am-badge am-round ${badge} am-text-lg" style="margin-left: 10px" href="${baseUrl}categoryId/${category.id}/massages">${category.categoryName}</a>
+                    </c:forEach>
+                </li>
+
             </ul>
         </div>
     </div>

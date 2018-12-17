@@ -272,8 +272,13 @@ public class QuestionController {
 
     @RequestMapping(value = "questionAddLikeNumb",method = RequestMethod.POST)
     @ResponseBody
-    public boolean questionAddLikeNumb(@RequestParam Integer questionId){
-        return questionService.LikeNumbAddOne(questionId);
+    @RequiresPermissions("question:update")
+    public String questionAddLikeNumb(@RequestParam Integer questionId){
+        if(questionService.LikeNumbAddOne(questionId)){
+            return "1";
+        }else {
+            return "2";
+        }
     }
 
 
@@ -297,8 +302,13 @@ public class QuestionController {
         return "collectionQuestion";
     }
 
+    /**
+     * 管理员获取全部问题
+     * @return
+     */
     @RequestMapping("findAllQuestion")
     @ResponseBody
+    @RequiresPermissions("all:all")
     public List<QuestionForm> findAllQuestion(){
         List<Question> questionList =questionService.findAllQuestion();
         List<QuestionForm> questionFormList =new ArrayList<>();
@@ -320,7 +330,12 @@ public class QuestionController {
         return questionFormList;
     }
 
-
+    /**
+     * 管理员修改问题状态
+     * @param id
+     * @param status
+     * @return
+     */
     @RequestMapping("adminUpdateQuestion")
     @ResponseBody
     @RequiresPermissions("all:all")

@@ -17,6 +17,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM massage WHERE categoryId=#{type}
 	</select>
 
+	<select id="findByMassageAndCategoryIdLikeNumbDesc" resultType="Massage">
+		SELECT * FROM massage WHERE categoryId=#{categoryId} ORDER BY likeNumb DESC LIMIT #{start},#{end}
+	</select>
+
 	<select id="findMassageById" resultType="Massage">
 		SELECT * FROM massage WHERE id=#{id}
 	</select>

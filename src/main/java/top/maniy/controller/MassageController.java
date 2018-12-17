@@ -96,7 +96,9 @@ public class MassageController {
         List<User> newUserList=userService.findUserByRoleAndByMassageNumbAndCreateTimeDesc();
         //随机10片文章
         List<Massage> massageList=massageService.findMassageRandTo10();
+        //类型
         List<Category> categoryList=categoryService.findCategoryByTypeAndStatus(1,"1");
+        //标签
         List<Label> labelList =labelService.findMassageLabelByHot(20);
         modelMap.put("massageList",massageList);
         modelMap.put("categoryList",categoryList);
@@ -121,12 +123,20 @@ public class MassageController {
                                   ModelMap modelMap){
         //文章大于或等于1新认证用户前三 bycreateTime
         List<User> newUserList=userService.findUserByRoleAndByMassageNumbAndCreateTimeDesc();
+
         PageInfo<Massage> pageInfo = massageService.findMassageByCategoryId(categoryId,page,pageSize);
+        //标签
         List<Label> labelList =labelService.findMassageLabelByHot(20);
+        //类型
+        List<Category> categoryList=categoryService.findCategoryByTypeAndStatus(1,"1");
+        //本话题点赞量前4
+        List<Massage> likeMassageList =massageService.findByMassageAndCategoryIdLikeNumbDescTo4(categoryId);
         modelMap.put("categoryId",categoryId);
         modelMap.put("pageInfo",pageInfo);
+        modelMap.put("categoryList",categoryList);
         modelMap.put("labelList",labelList);
         modelMap.put("newUserList",newUserList);
+        modelMap.put("likeMassageList",likeMassageList);
         return "massageList";
     }
 
@@ -306,8 +316,11 @@ public class MassageController {
     @RequestMapping(value = "AddLikeNum")
     @ResponseBody
     @RequiresPermissions("massage:select")
-    public boolean addLikeNum(@RequestParam("massageId") Integer massageId) {
-       return massageService.LikeNumbAddOne(massageId);
+    public String addLikeNum(@RequestParam("massageId") Integer massageId) {
+       if( massageService.LikeNumbAddOne(massageId)){
+           return "1";
+       }
+       return "2";
     }
 
     /**

@@ -70,6 +70,8 @@ public class PageController {
         return "index";
     }
 
+
+
     @RequestMapping(value = "music")
     public String musicPage(ModelMap modelMap){
         return "music";

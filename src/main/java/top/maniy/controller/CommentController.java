@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.maniy.entity.Comment;
+import top.maniy.entity.User;
 import top.maniy.service.CommentService;
 import top.maniy.service.UserService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -37,11 +39,17 @@ public class CommentController {
 
     @RequestMapping(value = "/saveComment",method = RequestMethod.POST)
     @ResponseBody
-    public boolean saveComment(@RequestParam("massageId") int massageId,@RequestParam("commentContent") String commentContent){
+    public boolean saveComment(HttpServletRequest request,@RequestParam("massageId") int massageId, @RequestParam("commentContent") String commentContent){
 
-        Comment comment =new Comment();
-        comment.setCommentContent(commentContent);
-        comment.setMassageId(massageId);
-        return commentService.saveComment(comment);
+        User user = (User) request.getSession().getAttribute("User");
+        if(user!=null){
+            Comment comment =new Comment();
+            comment.setCommentContent(commentContent);
+            comment.setMassageId(massageId);
+            comment.setUsername(user.getRealname());
+            comment.setCommentatorId(user.getId());
+            return commentService.saveComment(comment);
+        }
+      return false;
     }
 }

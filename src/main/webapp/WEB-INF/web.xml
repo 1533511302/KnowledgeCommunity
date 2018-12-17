@@ -71,4 +71,6 @@
         <!-- 所有的请求都进入springMVC -->
         <url-pattern>/toIndex</url-pattern>
     </servlet-mapping>
+
+
 </web-app>

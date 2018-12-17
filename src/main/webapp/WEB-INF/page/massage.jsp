@@ -294,7 +294,7 @@
     function clickSubmit(massageId) {
         // 读取 text
         var content=$("#massageContent").val();
-        alert(content);
+
         if (content!=""){
             $.post("${baseUrl}saveComment",{massageId:massageId,commentContent:content},function (data) {
                 if(data==1){

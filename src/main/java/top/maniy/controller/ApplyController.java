@@ -47,7 +47,7 @@ public class ApplyController {
 
     @RequestMapping("findApplyByStatus")
     @ResponseBody
-    @RequiresPermissions("apply:select")
+    @RequiresPermissions("all:all")
     public List<Apply> findApplyByStatus(){
         return applyService.findApplyByStatus("1");
     }

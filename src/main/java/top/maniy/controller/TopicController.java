@@ -2,6 +2,7 @@ package top.maniy.controller;
 
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSendException;
 import org.springframework.stereotype.Controller;
@@ -61,6 +62,7 @@ public class TopicController {
 
     @RequestMapping("saveTopic")
     @ResponseBody
+    @RequiresPermissions("topic:insert")
     public boolean saveTopic(String topicName,String topicDescribe){
 
         System.out.println("信息保存");
@@ -72,6 +74,7 @@ public class TopicController {
     }
     @RequestMapping("updateTopic")
     @ResponseBody
+    @RequiresPermissions("topic:update")
     public boolean updateTopic(@RequestParam("id") Integer id,String topicName,String topicDescribe){
         topic =new Topic();
         topic.setId(id);
@@ -82,6 +85,7 @@ public class TopicController {
 
     @RequestMapping("uploadTopic")
     @ResponseBody
+    @RequiresPermissions("topic:update")
     public boolean uploadTopic(HttpServletRequest request, MultipartFile photo,
                              String topicName,String topicDescribe){
 
@@ -132,6 +136,7 @@ public class TopicController {
 
     @RequestMapping("deleteTopic")
     @ResponseBody
+    @RequiresPermissions("topic:delete")
     public boolean deleteTopic(@RequestParam("id") Integer id){
         return topicService.deleteTopic(id);
     }

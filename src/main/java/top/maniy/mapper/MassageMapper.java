@@ -2,6 +2,7 @@ package top.maniy.mapper;
 
 import org.apache.ibatis.annotations.Param;
 import top.maniy.entity.Massage;
+import top.maniy.entity.Question;
 
 import java.util.List;
 
@@ -30,6 +31,10 @@ public interface MassageMapper {
 
     //根据userId查询massage
     List<Massage> findMassageByUserId(@Param("userId")Integer userId);
+
+    //根据点赞量排序获取massage
+    List<Massage> findByMassageAndCategoryIdLikeNumbDesc(@Param("categoryId") Integer categoryId, @Param("start") Integer start, @Param("end") Integer end);
+
 
     //根据时间排序获取massage
     List<Massage> findMassageByCreateTimeDesc(@Param("start") Integer start,@Param("end") Integer end);

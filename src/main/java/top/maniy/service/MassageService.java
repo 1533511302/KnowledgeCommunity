@@ -22,6 +22,10 @@ public interface MassageService {
     //全部图文
     List<Massage> findAllMassage();
 
+    //根据点赞量排序获取massage
+    List<Massage> findByMassageAndCategoryIdLikeNumbDescTo4(Integer categoryId);
+
+
     //根据用户收藏获取massage
     PageInfo<Massage> findMassageByUserCollection(List<Collections> collectionsList,int currentPage, int pageSize);
 

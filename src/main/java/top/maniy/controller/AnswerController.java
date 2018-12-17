@@ -47,13 +47,14 @@ public class AnswerController {
     @RequestMapping(value = "saveAnswer",method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("answer:insert")
-    public boolean addAnswer(@RequestParam Integer quesId, @RequestParam String answerContent
-                            ){
-        System.out.println("执行了这这里");
+    public String addAnswer(@RequestParam Integer quesId, @RequestParam String answerContent){
         Answer answer =new Answer();
         answer.setQuesId(quesId);
         answer.setAnswerContent(answerContent);
-        return answerService.saveAnswer(answer);
+        if(answerService.saveAnswer(answer)){
+            return "1";
+        }
+        return "2";
     }
 
     /**

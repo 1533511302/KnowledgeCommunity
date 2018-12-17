@@ -37,6 +37,11 @@ public class MassageServiceImpl implements MassageService {
     }
 
     @Override
+    public List<Massage> findByMassageAndCategoryIdLikeNumbDescTo4(Integer categoryId) {
+        return massageMapper.findByMassageAndCategoryIdLikeNumbDesc(categoryId,0,4);
+    }
+
+    @Override
     public PageInfo<Massage> findMassageByUserCollection(List<Collections> collectionsList, int currentPage, int pageSize) {
         PageHelper.startPage(currentPage,pageSize);
         List<Massage> massageList = new ArrayList<Massage>();

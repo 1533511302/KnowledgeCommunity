@@ -7,6 +7,7 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd">
 
+
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
         <!-- loginUrl认证地址，如果没有认证将会此地址进行认证-->
@@ -14,7 +15,17 @@
         <!-- 认证成功统一跳转到index，建议不配置，shiro认证成功自动跳请求路径-->
         <!--<property name="successUrl" value="index"/>-->
         <!-- 通过unauthorizedUrl指定没有权限操作时跳转页面-->
-        <property name="unauthorizedUrl" value="403.html" />
+        <property name="unauthorizedUrl" value="/permissions" />
+        <property name="filters">
+            <util:map>
+            <entry key="rolesOr" value-ref="rolesOrFilter"/>
+            </util:map>
+            <!--<util:map>-->
+                <!--<entry key="authc" value-ref="formAuthenticationFilter"/>-->
+            <!--</util:map>-->
+
+
+        </property>
         <property name="filterChainDefinitions">
             <value>
                 <!-- 这里顺序执行 anon不要认证 authc需要认证，一般情况下 /*放在最下面-->
@@ -42,14 +53,18 @@
                 /massagePage =anon
                 /massages/* =anon
                 /categoryId/** =anon
-                /audioPage =anon
                 /audioList/* =anon
                 /audioList/likeName =anon
                 /audio/* =anon
+                /audioPage =anon
+                /audioPage/* =anon
                 /questionList/** =anon
                 /question/* = anon
                 /topics/* =anon
                 /topics=anon
+                /permissions =anon
+                /error404 =anon
+                /error500 =anon
                 <!--/testRole2=roles["admin"]-->
                 <!--/testRole3=rolesOr["admin","admin1"]-->
                 <!--/testPerms =perms[user:select]-->
@@ -59,13 +74,7 @@
                 /** = authc
             </value>
         </property>
-        <property name="filters">
-            <util:map>
-                <entry key="rolesOr" value-ref="rolesOrFilter"/>
-            </util:map>
 
-
-        </property>
     </bean>
 
     <bean class="top.maniy.filter.RolesOrFilter" id="rolesOrFilter"/>
