@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import top.maniy.entity.Answer;
 import top.maniy.entity.Question;
 import top.maniy.entity.Topic;
+import top.maniy.entity.User;
 import top.maniy.service.AnswerService;
 import top.maniy.service.QuestionService;
 import top.maniy.service.TopicService;
 import top.maniy.service.UserService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -47,9 +49,20 @@ public class AnswerController {
     @RequestMapping(value = "saveAnswer",method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("answer:insert")
-    public String addAnswer(@RequestParam Integer quesId, @RequestParam String answerContent){
+    public String addAnswer(HttpServletRequest request, @RequestParam Integer quesId, @RequestParam String answerContent){
+
+        User user = (User) request.getSession().getAttribute("User");
+
+        //用户音频数加一
+        User user1=userService.findUserById(user.getId());
+        user1.setAudionumb(user1.getAudionumb()+1);
+        userService.updateUser(user1);
+
         Answer answer =new Answer();
         answer.setQuesId(quesId);
+        answer.setUserId(user.getId());
+        answer.setUsername(user.getUsername());
+        answer.setPhoto(user.getPhoto());
         answer.setAnswerContent(answerContent);
         if(answerService.saveAnswer(answer)){
             return "1";

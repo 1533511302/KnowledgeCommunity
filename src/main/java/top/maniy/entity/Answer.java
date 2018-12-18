@@ -9,6 +9,7 @@ public class Answer {
 
   private Integer id;
   private Integer userId;
+  private String username;
   private Integer quesId;
   private String quesTitle;
   private String answerContent;
@@ -18,6 +19,14 @@ public class Answer {
   private Integer commentNumb;
   private Date createTime;
 
+
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
 
   public String getQuesTitle() {
     return quesTitle;

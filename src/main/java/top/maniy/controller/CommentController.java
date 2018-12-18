@@ -7,12 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import top.maniy.Form.CommentForm;
 import top.maniy.entity.Comment;
 import top.maniy.entity.User;
 import top.maniy.service.CommentService;
 import top.maniy.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,11 +32,31 @@ public class CommentController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/indexComment")
+    @RequestMapping("/commentList")
     @ResponseBody
     public List<Comment> indexComment(@RequestParam("massageId") Integer massageId){
         return commentService.findCommentByMassageId(massageId);
 
+    }
+
+    @RequestMapping("/indexComment")
+    @ResponseBody
+    public List<CommentForm> findCommentByMassageIdAndByLikeNumbDescTo3(@RequestParam("massageId") Integer massageId){
+        List<CommentForm> commentFormList =new ArrayList<>();
+        List<Comment> commentList =commentService.findCommentByMassageIdAndByLikeNumbDescTo3(massageId);
+        for(Comment comment:commentList){
+            CommentForm commentForm =new CommentForm();
+            commentForm.setAnswerId(comment.getAnswerId());
+            commentForm.setCommentatorId(comment.getCommentatorId());
+            commentForm.setId(comment.getId());
+            commentForm.setCreateTime(comment.getCreateTime());
+            commentForm.setCommentContent(comment.getCommentContent());
+            commentForm.setUsername(comment.getUsername());
+            commentForm.setPhoto(userService.findUserById(comment.getCommentatorId()).getPhoto());
+            commentFormList.add(commentForm);
+
+        }
+        return commentFormList;
     }
 
     @RequestMapping(value = "/saveComment",method = RequestMethod.POST)

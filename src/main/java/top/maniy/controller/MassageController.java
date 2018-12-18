@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import top.maniy.Form.CommentForm;
 import top.maniy.Form.ImgResultForm;
 import top.maniy.Form.MassageForm;
 import top.maniy.entity.*;
@@ -70,15 +71,30 @@ public class MassageController {
     public String findMassageById(@PathVariable Integer id,ModelMap modelMap){
         massageService.browseNumb(id);
 
+        List<CommentForm> commentFormList =new ArrayList<>();
+        List<Comment> commentList=commentService.findCommentByMassageId(id);
+        for(Comment comment:commentList){
+            CommentForm commentForm =new CommentForm();
+            commentForm.setAnswerId(comment.getAnswerId());
+            commentForm.setCommentatorId(comment.getCommentatorId());
+            commentForm.setId(comment.getId());
+            commentForm.setCreateTime(comment.getCreateTime());
+            commentForm.setCommentContent(comment.getCommentContent());
+            commentForm.setUsername(comment.getUsername());
+            commentForm.setPhoto(userService.findUserById(comment.getCommentatorId()).getPhoto());
+            commentFormList.add(commentForm);
+
+        }
+
         Massage massage= massageService.findMassageById(id);
-        List<Comment> commentList=commentService.findCommentByMassageIdAndByLikeNumbDescTo3(id);
+
         //热门认证用户前三 by文章数
         List<User> hotUserList=userService.findUserByRoleAndMassageNumbDescTo3();
         //文章大于或等于1新认证用户前三 bycreateTime
         List<User> newUserList=userService.findUserByRoleAndByMassageNumbAndCreateTimeDesc();
         modelMap.put("newUserList",newUserList);
         modelMap.put("hotUserList",hotUserList);
-        modelMap.put("commentList",commentList);
+        modelMap.put("commentList",commentFormList);
         modelMap.put("massage",massage);
         return "massage";
     }
@@ -193,6 +209,11 @@ public class MassageController {
     public boolean saveMassage(HttpServletRequest request, @RequestParam(required = false) MultipartFile photo,
                                @RequestParam Integer type ,@RequestParam String title,@RequestParam String content){
         User user = (User) request.getSession().getAttribute("User");
+        //用户文章数加一
+        User user1=userService.findUserById(user.getId());
+        user1.setMassagenumb(user1.getMassagenumb()+1);
+        userService.updateUser(user1);
+
         Massage massage =new Massage();
         massage.setCategoryId(type);
         massage.setUserId(user.getId());
@@ -348,7 +369,8 @@ public class MassageController {
     public String collectionMassage(ModelMap modelMap, HttpServletRequest request,
                                     @RequestParam(value="page", required=false, defaultValue="1") Integer page,
                                     @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize){
-        User user =((User)request.getSession().getAttribute("User"));
+        User temp =((User)request.getSession().getAttribute("User"));
+        User user =userService.findUserById(temp.getId());
         List<Collections> collectionsList =collectionService.findCollectionByTypeIsMassage(user.getId());
         PageInfo<Massage> pageInfo =massageService.findMassageByUserCollection(collectionsList,page,pageSize);
         modelMap.put("pageInfo",pageInfo);
@@ -385,7 +407,6 @@ public class MassageController {
     @ResponseBody
     @RequiresPermissions("massage:insert")
     public ImgResultForm uploadMassagePhoto(HttpServletRequest request, MultipartFile photo){
-        System.out.println("请求到了什么，图片吧");
         String name = UUID.randomUUID().toString().replaceAll("-", "");
 
 

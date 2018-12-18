@@ -174,11 +174,15 @@ public class QuestionController {
     @RequiresPermissions("question:insert")
     public boolean SaveQuestion(@RequestParam String topicId, HttpServletRequest request, @RequestParam(value = "photo",required = false) MultipartFile photo,
                                 @RequestParam String quesName, @RequestParam String quesDescribe){
-        String username = (String) SecurityUtils.getSubject().getPrincipal();
-        int userId =userService.findUserByUsername(username).getId();
+        User user = (User) request.getSession().getAttribute("User");
+
+        //用户音频数加一
+        User user1=userService.findUserById(user.getId());
+        user1.setAudionumb(user1.getAudionumb()+1);
+        userService.updateUser(user1);
 
         Question question =new Question();
-        question.setUserId(userId);
+        question.setUserId(user.getId());
         question.setTopicId(topicId);
         question.setQuesName(quesName);
         question.setQuesDescribe(quesDescribe);
@@ -294,7 +298,8 @@ public class QuestionController {
     public String collectionQuestion(ModelMap modelMap, HttpServletRequest request,
                                     @RequestParam(value="page", required=false, defaultValue="1") Integer page,
                                     @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize){
-        User user =((User)request.getSession().getAttribute("User"));
+        User temp =((User)request.getSession().getAttribute("User"));
+        User user =userService.findUserById(temp.getId());
         List<Collections> collectionsList =collectionService.findCollectionByTypeIsQuestion(user.getId());
         PageInfo<Question> pageInfo =questionService.findQuestionByUserCollection(collectionsList,page,pageSize);
         modelMap.put("pageInfo",pageInfo);

@@ -70,22 +70,11 @@
                 <li><a href="${baseUrl}audioPage">音频</a></li>
                 <li><a href="${baseUrl}topics/1">问答</a></li>
                 <li  class="am-active"><a href="${paseUrl}vUsers/1">大咖秀</a></li>
-                <li class="am-dropdown" data-am-dropdown>
-                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                        付费专区<span class="am-icon-caret-down"></span>
-                    </a>
-                    <ul class="am-dropdown-content">
-                        <li class="am-dropdown-header">付费内容</li>
-                        <li><a href="#">图文付费</a></li>
-                        <li><a href="#">音频付费</a></li>
-                        <li><a href="#">问答付费</a></li>
 
-                    </ul>
-                </li>
             </ul>
 
             <form action="${baseUrl}vUsersCategory/${user.id}/likeTitle" class="am-topbar-form am-topbar-left am-form-inline" role="search">
-                <div class="am-form-group" style="margin-top: 9px;margin-left: 100px">
+                <div class="am-form-group" style="margin-top: 12px;margin-left: 10px">
                     <input name="title" type="text" class="am-form-field am-input-sm" placeholder="搜索内容" value="${title}">
                 </div>
                 <div class="am-topbar-right">
@@ -146,7 +135,19 @@
     </div>
 </div>
 <div id="cattit">
-    <c:import url="tabPlugin.jsp"></c:import>
+    <c:if test="${user.role=='2'}">
+        <ul class="am-avg-sm-4 am-avg-md-4 am-avg-lg-4" style="width: 700px;margin-left: -250px">
+            <li class="active-none"><h3><a href="${baseUrl}vUsersCategory/${user.id}">我的图文</a></h3></li>
+            <li  class="active" ><h3><a href="${baseUrl}vUsersAudio/${user.id}">我的音频</a></h3></li>
+            <li  class="active-none"><h3><a href="${baseUrl}vUsersQuestion/${user.id}">我的问题</a></h3></li>
+            <li  class="active-none"><h3><a href="${baseUrl}vUsersAnswer/${user.id}">我的回答</a></h3></li>
+        </ul>
+    </c:if>
+    <c:if test="${user.role=='1'}">
+        <ul class="am-avg-sm-1 am-avg-md-1 am-avg-lg-1" style="width: 700px;margin-left: -250px">
+            <li class="active-none"><h3><a href="${baseUrl}vUsersQuestion/${user.id}">我的问题</a></h3></li>
+        </ul>
+    </c:if>
 </div>
 <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
 <div class="am-g">

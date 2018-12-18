@@ -5,9 +5,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace ="top.maniy.mapper.AnswerMapper">
 
-
-
-
 	<select id="findAnswerByQuesId" resultType="Answer">
 		select * from answer WHERE quesId=#{quseId} ORDER BY likeNumb DESC
 	</select>
@@ -28,6 +25,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="userId != null" >
                 userId,
             </if>
+			<if test="username != null" >
+				username,
+			</if>
             <if test="quesId != null" >
                 quesId,
             </if>
@@ -45,6 +45,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <trim prefix="values (" suffix=")" suffixOverrides="," >
 			<if test="userId != null" >
 				#{userId},
+			</if>
+			<if test="username != null" >
+				#{username},
 			</if>
             <if test="quesId != null" >
                 #{quesId},
@@ -68,6 +71,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateAnswer" parameterType="Answer">
 		UPDATE answer
         <set>
+			<if test="username != null" >
+				username=#{username},
+			</if>
 			<if test="answerContent != null" >
 				answerContent=#{answerContent},
 			</if>

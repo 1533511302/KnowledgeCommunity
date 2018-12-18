@@ -342,6 +342,8 @@ public class UserController {
     @RequestMapping(value = "users",method = RequestMethod.POST)
     @ResponseBody
     public boolean saveUser(User user){
+        user.setRealname("暂无");
+        user.setPhoto("81d44a287b3b4bb4ae8e31ccf3acd7e2.jpg");
         return userService.saveUser(user);
     }
 
@@ -489,7 +491,8 @@ public class UserController {
     public String collectionMassage(ModelMap modelMap,HttpServletRequest request,
                                     @RequestParam(value="page", required=false, defaultValue="1") Integer page,
                                     @RequestParam(value="pageSize", required=false, defaultValue="10") Integer pageSize){
-        User user =((User)request.getSession().getAttribute("User"));
+        User temp =((User)request.getSession().getAttribute("User"));
+        User user =userService.findUserById(temp.getId());
         List<Collections> collectionsList =collectionService.findCollectionByTypeIsVUser(user.getId());
         PageInfo<User> pageInfo =userService.findVUserByUserCollection(collectionsList,page,pageSize);
         modelMap.put("pageInfo",pageInfo);

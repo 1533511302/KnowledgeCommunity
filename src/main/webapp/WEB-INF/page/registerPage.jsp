@@ -14,14 +14,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>注册</title>
     <link rel="stylesheet" href="${baseUrl}assets/css/amazeui.css" />
     <link rel="stylesheet" href="${baseUrl}assets/css/other.min.css" />
 
     <!-- Sweet Alert -->
     <link href="${baseUrl}admin/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
-    <!-- Sweet alert -->
-    <script src="${baseUrl}admin/js/plugins/sweetalert/sweetalert.min.js"></script>
+
+
     <script src="${baseUrl}assets/js/jquery.min.js"></script>
     <script type="text/javascript">
 
@@ -33,6 +33,7 @@
             var username=$("#username").val();
             $.post("isUsername",{username:username},function (data) {
                 if (data) {
+
                     swal("错误！", "用户名已存在！", "error");
                     return false;
                 }
@@ -40,6 +41,7 @@
 
 
             if (username==""){
+
                 swal("错误！", "用户名不能为空！", "error");
                 return false;//因为这是submit表单提交 返回false 不进行请求
             }else {
@@ -166,6 +168,7 @@
         <button class="am-btn am-btn-secondary"  type="submit">注册</button>
     </form>
 </div>
-
+<!-- Sweet alert -->
+<script src="${baseUrl}admin/js/plugins/sweetalert/sweetalert.min.js"></script>
 </body>
 </html>

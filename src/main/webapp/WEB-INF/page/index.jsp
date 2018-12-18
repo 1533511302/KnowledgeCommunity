@@ -57,14 +57,14 @@
                         $("#new"+massageId).append(" <li class=\"am-comment am-comment-highlight\">\n" +
                             "                                <article class=\"am-comment\" style=\"margin-top: -20px;margin-bottom: -20px;margin-left: 30px;\">\n" +
                             "                                    <a href=\"#link-to-user-home\">\n" +
-                            "                                        <img src=\"${baseUrl}Temp-images/face2.jpg\" alt=\"\" class=\"am-comment-avatar\" width=\"48\" height=\"48\"/>\n" +
+                            "                                        <img src=\"/img/"+comment.photo+"\" alt=\"\" class=\"am-comment-avatar\" width=\"48\" height=\"48\"/>\n" +
                             "                                    </a>\n" +
                             "\n" +
                             "                                    <div class=\"am-comment-main\">\n" +
                             "                                        <header class=\"am-comment-hd\">\n" +
                             "                                            <!--<h3 class=\"am-comment-title\">评论标题</h3>-->\n" +
                             "                                            <div class=\"am-comment-meta\">\n" +
-                            "                                                <a href=\"#link-to-user\" class=\"am-comment-author\">某人</a>\n" +
+                            "                                                <a href=\"#link-to-user\" class=\"am-comment-author\">"+comment.username+"</a>\n" +
                             "                                                评论于 <time datetime=\"2013-07-27T04:54:29-07:00\" title=\"2013年7月27日 下午7:54 格林尼治标准时间+0800\">"+comment.createTime+"</time>\n" +
                             "                                            </div>\n" +
                             "                                        </header>\n" +
@@ -80,14 +80,14 @@
                     $("#"+massageId).append(" <li class=\"am-comment am-comment-highlight\">\n" +
                         "                                <article class=\"am-comment\" style=\"margin-top: -20px;margin-bottom: -20px;margin-left: 30px;\">\n" +
                         "                                    <a href=\"#link-to-user-home\">\n" +
-                        "                                        <img src=\"${baseUrl}Temp-images/face2.jpg\" alt=\"\" class=\"am-comment-avatar\" width=\"48\" height=\"48\"/>\n" +
+                        "                                        <img  src=\"/img/"+comment.photo+"\" alt=\"\" class=\"am-comment-avatar\" width=\"48\" height=\"48\"/>\n" +
                         "                                    </a>\n" +
                         "\n" +
                         "                                    <div class=\"am-comment-main\">\n" +
                         "                                        <header class=\"am-comment-hd\">\n" +
                         "                                            <!--<h3 class=\"am-comment-title\">评论标题</h3>-->\n" +
                         "                                            <div class=\"am-comment-meta\">\n" +
-                        "                                                <a href=\"#link-to-user\" class=\"am-comment-author\">某人</a>\n" +
+                        "                                                <a href=\"#link-to-user\" class=\"am-comment-author\">"+comment.username+"</a>\n" +
                         "                                                评论于 <time datetime=\"2013-07-27T04:54:29-07:00\" title=\"2013年7月27日 下午7:54 格林尼治标准时间+0800\">"+comment.createTime+"</time>\n" +
                         "                                            </div>\n" +
                         "                                        </header>\n" +
@@ -186,21 +186,9 @@
                 <li><a href="${baseUrl}audioPage">音频</a></li>
                 <li><a href="${baseUrl}topics/1">问答</a></li>
                 <li><a href="${baseUrl}vUsers/1">大咖秀</a></li>
-                <li class="am-dropdown" data-am-dropdown>
-                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                        付费专区<span class="am-icon-caret-down"></span>
-                    </a>
-                    <ul class="am-dropdown-content">
-                        <li class="am-dropdown-header">付费内容</li>
-                        <li><a href="#">图文付费</a></li>
-                        <li><a href="#">音频付费</a></li>
-                        <li><a href="#">问答付费</a></li>
-
-                    </ul>
-                </li>
             </ul>
             <form action="${baseUrl}massages/likeName" class="am-topbar-form am-topbar-left am-form-inline" role="search">
-                <div class="am-form-group" style="margin-top: 9px;margin-left: 100px">
+                <div class="am-form-group" style="margin-top: 12px;margin-left: 10px">
                     <input name="title" type="text" class="am-form-field am-input-sm" placeholder="搜索内容" value="${title}">
                 </div>
                 <div class="am-topbar-right">

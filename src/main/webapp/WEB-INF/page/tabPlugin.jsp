@@ -25,9 +25,6 @@
 <c:if test="${user.role=='1'}">
     <ul class="am-avg-sm-1 am-avg-md-1 am-avg-lg-1" style="width: 700px;margin-left: -250px">
         <li class="active-none"><h3><a href="${baseUrl}vUsersQuestion/${user.id}">我的问题</a></h3></li>
-
-
-
     </ul>
 </c:if>
 </body>

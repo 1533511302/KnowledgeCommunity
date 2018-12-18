@@ -63,6 +63,13 @@ public class AudioController {
                             String audioDescribe){
         Audio audio1 =new Audio();
         User user = (User) request.getSession().getAttribute("User");
+
+        //用户音频数加一
+        User user1=userService.findUserById(user.getId());
+        user1.setAudionumb(user1.getAudionumb()+1);
+        userService.updateUser(user1);
+
+
         audio1.setUserId(user.getId());
         audio1.setUserName(user.getRealname());
         audio1.setCategoryId(type);
