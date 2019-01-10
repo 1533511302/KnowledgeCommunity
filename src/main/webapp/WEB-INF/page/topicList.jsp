@@ -155,7 +155,7 @@
             <input id="quesTitle" type="text" class="am-form-field" placeholder="问题">
         </div>
         <div class="am-form-group am-form-file">
-            <i class="am-icon-cloud-upload"></i> 选择图文封面图(非必选项)
+            <i class="am-icon-cloud-upload"></i> 选择问题封面图(非必选项)
             <input id="file" type="file" multiple>
         </div>
         <h3 class="blog-comment">描述</h3>

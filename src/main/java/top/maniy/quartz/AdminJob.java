@@ -16,7 +16,7 @@ public class AdminJob {
     @Autowired
     private ApplyService applyService;
     public void adminNewContent(){
-        if(DateUtil.getMiniute()%10==0) {
+        if(DateUtil.getMiniute()%30==0) {
             Apply apply =new Apply();
             apply.setContent("一周时间过去了，请管理员处理相关事务。");
             apply.setStatus("3");

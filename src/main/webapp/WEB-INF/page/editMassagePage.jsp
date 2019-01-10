@@ -110,7 +110,8 @@
 
                 <div class="am-form-group am-form-file">
                     <i class="am-icon-cloud-upload"></i> 选择图文封面图(非必选项)
-                    <input id="file" type="file" multiple>
+                    <input id="file" type="file"  onchange="preSubmitFileCheck(event)"
+                           accept="image/jpg, image/jpeg, image/gif, image/png" multiple>
                 </div>
                 <input type="hidden" name="content">
                 <div id="editor">
@@ -257,11 +258,51 @@
 
 
 
+    function preSubmitFileCheck(e){
+        var fileTypes =["jpeg","jpg","png","gif"];
 
-
-
-
-
+        if(window.navigator.userAgent.indexOf("MSIE")>=1){
+            //ie浏览器
+            //只看后缀是不是给定的四种,不是就不通过
+            //ie暂时还没有获得文件大小的合适方法,欢迎前端大神在评论区补充
+            var filePath = document.selection.createRange().text;
+            var type = filePath.substring(filePath.lastIndexOf('.') + 1);
+            for (var i = 0; i < fileTypes.length; i++) {
+                if (fileTypes[i] == type) {
+                    typeFlag = true;
+                    break;
+                }
+            }
+            if (!typeFlag) {
+                alert("上传格式不符，请重新上传！");
+                return false;
+            }
+        }else{
+            //非ie浏览器
+            var files = e.target.files, fs = files.length, s = 0;
+            for (var i = 0; i < fs; i++) {
+                var name = files[i].name;
+                console.log("图片大小:size:"+files[i].size)
+                if(files[i].size > 5*1024*1024){
+                    //对图片大小限制,大于5兆也不行
+                    sizeFlag = true;
+                }
+                var type = name.substring(name.lastIndexOf('.') + 1);
+                typeFlag = false;
+                for (var j = 0; j < fileTypes.length; j++) {
+                    if (fileTypes[j] == type) {
+                        typeFlag = true;
+                        break;
+                    }
+                }
+                if (!typeFlag || sizeFlag) {
+                    alert("上传格式不符，请重新上传！");
+                }
+            }
+        }
+        //到这里代表校验通过了
+        return true;
+    }
 
 
     document.getElementById('save').addEventListener('click', function () {

@@ -119,43 +119,7 @@
     </div>
 </header>
 <!--banner-->
-<div class="banner">
-    <div class="am-g am-container padding-none">
-        <div class="am-u-sm-12 am-u-md-12 am-u-lg-8 padding-none">
-            <div data-am-widget="slider" class="am-slider am-slider-c1" data-am-slider='{"directionNav":false}' >
-                <ul class="am-slides">
-                    <li>
-                        <img src="${baseUrl}Temp-images/tad3.png">
-                        <div class="am-slider-desc">远方 有一个地方 那里种有我们的梦想</div>
 
-                    </li>
-                    <li>
-                        <img src="${baseUrl}Temp-images/tad3.png">
-                        <div class="am-slider-desc">某天 也许会相遇 相遇在这个好地方</div>
-
-                    </li>
-                    <li>
-                        <img src="${baseUrl}Temp-images/tad3.png">
-                        <div class="am-slider-desc">不要太担心 只因为我相信 终会走过这条遥远的道路</div>
-
-                    </li>
-                    <li>
-                        <img src="${baseUrl}Temp-images/tad3.png">
-                        <div class="am-slider-desc">OH PARA PARADISE 是否那么重要 你是否那么地遥远</div>
-
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-        <div class="am-u-sm-0 am-u-md-0 am-u-lg-4 padding-none lrad">
-            <ul class="am-avg-sm-1 am-avg-md-2 am-avg-lg-1">
-                <li class="ms"><img src="${baseUrl}Temp-images/tad3.png" class="am-img-responsive"></li>
-                <li><img src="${baseUrl}Temp-images/tad3.png" class="am-img-responsive"></li>
-            </ul>
-        </div>
-    </div>
-</div>
 
 <div class="am-g am-container padding-none">
     <div class="am-u-sm-12 am-u-md-12 am-u-lg-8 newshui">

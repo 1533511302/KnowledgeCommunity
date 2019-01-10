@@ -132,7 +132,7 @@
                 <prop key="org.apache.shiro.authz.UnauthorizedException">redirect:/permissions</prop>
                 <prop key="org.apache.shiro.authz.UnauthenticatedException">redirect:/permissions</prop>
                 <prop key="java.lang.IllegalArgumentException">/redirect:/permissions</prop>  <!-- 参数错误(bizError.jsp) -->
-                <prop key="java.lang.Exception">/redirect:/error500</prop>  <!-- 其他错误为'未定义错误'(unknowError.jsp) -->
+
             </props>
         </property>
     </bean>

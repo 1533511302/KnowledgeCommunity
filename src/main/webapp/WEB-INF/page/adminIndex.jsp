@@ -144,16 +144,6 @@
                     </ul>
                 </li>
 
-                <li>
-                    <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">用户充值</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="resumeCount">知识点充值</a>
-                        </li>
-                        <li><a class="J_menuItem" href="resumeList">其他</a>
-                        </li>
-
-                    </ul>
-                </li>
 
             </ul>
         </div>
@@ -166,7 +156,7 @@
                 <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
                     <form role="search" class="navbar-form-custom" method="post" action="search_results.html">
                         <div class="form-group">
-                            <input type="text" placeholder="系统全局搜索" class="form-control" name="top-search" id="top-search">
+                            <input type="text" placeholder="知识社区后台管理系统" class="form-control" name="top-search" id="top-search">
                         </div>
                     </form>
                 </div>

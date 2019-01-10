@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.maniy.Form.CommentForm;
 import top.maniy.entity.Comment;
+import top.maniy.entity.Massage;
 import top.maniy.entity.User;
 import top.maniy.service.CommentService;
+import top.maniy.service.MassageService;
 import top.maniy.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +33,9 @@ public class CommentController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private MassageService massageService;
 
     @RequestMapping("/commentList")
     @ResponseBody
@@ -70,6 +75,11 @@ public class CommentController {
             comment.setMassageId(massageId);
             comment.setUsername(user.getRealname());
             comment.setCommentatorId(user.getId());
+
+            Massage massage =massageService.findMassageById(massageId);
+            massage.setCommentNumb(massage.getCommentNumb()+1);
+            massageService.updateMassage(massage);
+
             return commentService.saveComment(comment);
         }
       return false;

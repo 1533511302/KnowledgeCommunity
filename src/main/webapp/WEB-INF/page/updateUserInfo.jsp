@@ -163,7 +163,7 @@
 
                         <div class="am-form-group">
                             <label for="photo">头像上传：</label>
-                            <input type="file" name="photo" id="photo">
+                            <input type="file" name="photo" id="photo" accept="image/jpg, image/jpeg, image/gif, image/png">
                             <p class="am-form-help">请选择要上传的图片...</p>
                         </div>
 

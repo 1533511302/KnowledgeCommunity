@@ -86,7 +86,7 @@
         </div>
     </div>
 </header>
-<div class="star am-container mcenter"><span>编写我的知识图文</span></div>
+<div class="star am-container mcenter"><span>编写我的知识音频</span></div>
 <div>
 
     <div class="am-container" style="margin-top: 10px">
@@ -105,12 +105,12 @@
 
                 <div class="am-input-group am-input-group-primary" style="margin-top: 20px;margin-bottom: 20px">
                     <span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
-                    <input id="audioName" type="text" class="am-form-field" placeholder="文章标题">
+                    <input id="audioName" type="text" class="am-form-field" placeholder="音频标题">
                 </div>
 
                 <div class="am-form-group am-form-file">
                     <i class="am-icon-cloud-upload"></i> 选择音频封面图
-                    <input id="file" type="file" multiple>
+                    <input id="file" type="file" accept="image/jpg, image/jpeg, image/gif, image/png" multiple>
                 </div>
                 <div class="am-form-group">
                     <label for="audio">上传的音频文件</label>
@@ -121,7 +121,7 @@
                 <h3 class="blog-comment">描述</h3>
                 <fieldset>
                     <div class="am-form-group">
-                        <textarea id="audioDescribe" style="width: 100%;" rows="6" placeholder="问题描述"></textarea>
+                        <textarea id="audioDescribe" style="width: 100%;" rows="6" placeholder="音频描述"></textarea>
                     </div>
                 </fieldset>
             </div>
@@ -132,8 +132,6 @@
         <div class="star am-container mcenter">
             <span><button id="save" type="button"  class="am-btn am-btn-primary am-radius" style="width: 150px">提交</button></span>
         </div>
-
-
 </div>
 
 <div data-am-widget="gotop" class="am-gotop am-gotop-fixed" >

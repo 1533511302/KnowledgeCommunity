@@ -281,7 +281,7 @@
                             </div>
                             <div style="width:840px;height:50px;margin-top: 120px;">
                                 <div class="am-btn-group">
-                                <button class="am-btn am-btn-secondary am-radius" key="1"  onclick="clickLikeNumbBtn(${massage.id},${massage.likeNumb},this)"  data-am-popover="{content: '已经点赞成功！！'}"  style="width: 100px">
+                                <button class="am-btn am-btn-secondary am-radius" key="1"  onclick="clickLikeNumbBtn(${massage.id},${massage.likeNumb},this)"   style="width: 100px">
                                 <i class="am-icon-caret-up"></i>
                                 赞 ${massage.likeNumb}
                                 </button>
@@ -290,7 +290,7 @@
                                 ${massage.commentNumb}条评论
                                 </button>
 
-                                <button class="am-btn am-btn-secondary am-radius" key="1" onclick="clickCollectionBtn(${massage.id},this)"  style="width: 100px"  data-am-popover="{content: '已经添加收藏！！'}">
+                                <button class="am-btn am-btn-secondary am-radius" key="1" onclick="clickCollectionBtn(${massage.id},this)"  style="width: 100px"  >
                                     <i class="am-icon-heart"></i>
                                 收藏
                                 </button>

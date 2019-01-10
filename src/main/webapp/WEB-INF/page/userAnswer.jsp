@@ -134,15 +134,15 @@
 <div id="cattit">
     <c:if test="${user.role=='2'}">
         <ul class="am-avg-sm-4 am-avg-md-4 am-avg-lg-4" style="width: 700px;margin-left: -250px">
-            <li class="active-none"><h3><a href="${baseUrl}vUsersCategory/${user.id}">我的图文</a></h3></li>
-            <li  class="active-none" ><h3><a href="${baseUrl}vUsersAudio/${user.id}">我的音频</a></h3></li>
-            <li  class="active-none"><h3><a href="${baseUrl}vUsersQuestion/${user.id}">我的问题</a></h3></li>
-            <li  class="active"><h3><a href="${baseUrl}vUsersAnswer/${user.id}">我的回答</a></h3></li>
+            <li class="active-none"><h3><a href="${baseurl}vUsersCategory/${user.id}">我的图文</a></h3></li>
+            <li  class="active-none" ><h3><a href="${baseurl}vUsersAudio/${user.id}">我的音频</a></h3></li>
+            <li  class="active-none"><h3><a href="${baseurl}vUsersQuestion/${user.id}">我的问题</a></h3></li>
+            <li  class="active"><h3><a href="${baseurl}vUsersAnswer/${user.id}">我的回答</a></h3></li>
         </ul>
     </c:if>
     <c:if test="${user.role=='1'}">
         <ul class="am-avg-sm-1 am-avg-md-1 am-avg-lg-1" style="width: 700px;margin-left: -250px">
-            <li class="active-none"><h3><a href="${baseUrl}vUsersQuestion/${user.id}">我的问题</a></h3></li>
+            <li class="active-none"><h3><a href="${baseurl}vUsersQuestion/${user.id}">我的问题</a></h3></li>
         </ul>
     </c:if>
 </div>

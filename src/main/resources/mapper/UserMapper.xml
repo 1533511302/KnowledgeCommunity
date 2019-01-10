@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="findUserByTotalNumDesc" resultType="User">
-		SELECT id,realname,gender,photo,autograph,introduce,massagenumb,questionnumb,answernumb,audionumb,createtime FROM user ORDER BY  massagenumb+questionnumb+answernumb+audionumb DESC LIMIT 0,#{num}
+		SELECT id,realname,gender,photo,autograph,introduce,massagenumb,questionnumb,answernumb,audionumb,createtime FROM user ORDER BY  massagenumb+answernumb+audionumb DESC LIMIT 0,#{num}
 	</select>
 
 	<select id="findUserByUsername" resultType="User">

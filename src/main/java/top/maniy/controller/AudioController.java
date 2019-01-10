@@ -219,7 +219,7 @@ public class AudioController {
     @RequestMapping(value = "/audioPage")
     public String audioPage(ModelMap modelMap){
         //获取音频分类
-        List<User> userList =userService.findUserByTotalNumDesc(6);
+        List<User> userList =userService.findUserByAudioNumDesc(6);
 
         List<Category> categoryList=categoryService.findCategoryByTypeAndStatus(2,"1");
         List<Category> categoryListRand4=categoryService.findCategoryByTypeRandNum(2,4);

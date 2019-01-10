@@ -123,7 +123,7 @@
 
                 <div class="am-form-group am-form-file">
                     <i class="am-icon-cloud-upload"></i> 选择音频封面图
-                    <input id="file" type="file" multiple>
+                    <input id="file" type="file" accept="image/jpg, image/jpeg, image/gif, image/png" multiple>
                 </div>
                 <div class="am-form-group">
                     <label for="audio">上传的音频文件</label>
